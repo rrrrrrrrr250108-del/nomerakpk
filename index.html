@@ -87,6 +87,7 @@ nav .ping::after{content:"";position:absolute;top:3px;right:24%;width:7px;height
 .chips{display:flex;gap:5px;overflow-x:auto;margin-bottom:5px;flex:none;scrollbar-width:none}
 
 #grid{flex:1;min-height:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(66px,1fr));gap:10px 6px;overflow-y:auto;padding:8px 6px;background:#0006;border-radius:14px;justify-items:center;margin-top:4px;align-content:start}
+#grid.compact{grid-template-columns:repeat(auto-fill,minmax(50px,1fr));gap:8px 4px}
 .cell{text-align:center;cursor:pointer;transition:transform .15s}.cell:active{transform:scale(.93)}.cell small{display:block;margin-top:3px;font-size:10px;color:var(--gold);font-weight:800}.cell .tag,.row .tag{animation:none!important}
 
 .row{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid #ffffff0d;border-radius:13px;padding:8px 11px;margin-bottom:6px}
@@ -102,10 +103,13 @@ table{width:100%;border-collapse:collapse;font-size:12px;margin:4px 0 10px}td,th
 
 /* Модалки, Профиль и Админка */
 #md{position:fixed;inset:0;z-index:90;background:#000d;display:none;align-items:center;justify-content:center;text-align:center;backdrop-filter:blur(6px);padding:14px}#md.on{display:flex}#md .f{margin:4px;font-size:13px;padding:9px 14px}
-.adm-box,.prof-box{background:#14141d;border:1px solid #ffffff22;border-radius:20px;padding:14px;width:100%;max-width:420px;max-height:86vh;overflow-y:auto;text-align:left;box-shadow:0 12px 34px #000c;animation:fin .2s ease-out}
-.adm-box h3{margin:8px 0 5px;color:var(--gold);font-size:14px}
+.adm-box,.prof-box{background:#14141d;border:1px solid #ffffff22;border-radius:20px;padding:14px;width:100%;max-width:440px;max-height:86vh;overflow-y:auto;text-align:left;box-shadow:0 12px 34px #000c;animation:fin .2s ease-out}
+.adm-box h3{margin:10px 0 6px;color:var(--gold);font-size:14px}
 .adm-row{display:flex;gap:6px;margin-bottom:7px;align-items:center}
-.adm-inp{flex:1;background:#09090f;border:1px solid #ffffff26;color:#fff;border-radius:10px;padding:8px 10px;font-size:13px;min-width:0}
+.adm-inp{flex:1;background:#09090f;border:1px solid #ffffff26;color:#fff;border-radius:10px;padding:8px 10px;font-size:12px;min-width:0}
+.adm-tabs{display:flex;gap:5px;margin-bottom:10px}
+.adm-tabs button{flex:1;padding:7px 4px;font-size:11px;font-weight:700;border-radius:10px;background:#ffffff0d;color:var(--mut);border:1px solid transparent;cursor:pointer}
+.adm-tabs button.on{background:#2a1018;color:#fff;border-color:#ff3355}
 
 /* Стили Профиля игрока */
 .prof-head{display:flex;align-items:center;gap:12px;background:#ffffff09;border:1px solid #ffffff14;border-radius:16px;padding:10px 12px;margin-bottom:10px}
@@ -125,23 +129,31 @@ table{width:100%;border-collapse:collapse;font-size:12px;margin:4px 0 10px}td,th
 #tt{position:fixed;left:50%;top:calc(12px + env(safe-area-inset-top,0px));transform:translateX(-50%);z-index:95;background:#111118f5;border:1px solid #ffffff33;border-radius:12px;padding:8px 14px;opacity:0;pointer-events:none;transition:.25s;text-align:center;font-size:13px;max-width:92%;box-shadow:0 6px 20px #000a}#tt.on{opacity:1}
 h3{margin:4px 0 6px;font-size:15px}
 
-/* Мини-игры */
+/* Мини-игры и Апгрейдер */
 #gnet{font-size:11px;color:var(--mut);margin:0 0 6px}
 .gcard{background:var(--card);border:1px solid #ffffff12;border-radius:18px;padding:12px;text-align:center}
 .gres{min-height:20px;margin:8px 0;font-size:12px;color:var(--mut)}.gres.win{color:var(--ok)}.gres.lose{color:var(--bad)}
-.gbtn{font:800 15px Rubik,sans-serif;color:#fff;background:linear-gradient(135deg,#ff3355,#d4001a);border:0;border-radius:14px;padding:11px 16px;cursor:pointer;box-shadow:0 4px 14px #ff174444;width:100%}.gbtn:active{transform:scale(.97)}
+.gbtn{font:800 15px Rubik,sans-serif;color:#fff;background:linear-gradient(135deg,#ff3355,#d4001a);border:0;border-radius:14px;padding:11px 16px;cursor:pointer;box-shadow:0 4px 14px #ff174444;width:100%}.gbtn:active{transform:scale(.97)}.gbtn:disabled{opacity:.4;pointer-events:none}
 .pair{display:flex;gap:8px}.pair .gbtn{flex:1}
 .reels{display:flex;gap:8px;justify-content:center}.reel{width:68px;height:68px;overflow:hidden;border-radius:14px;background:linear-gradient(#0a0a10,#1a1a24);border:2px solid #ffffff22;box-shadow:inset 0 0 12px #000}
 .strip>div{height:68px;line-height:68px;font-size:40px;text-align:center}
 .coinwrap{height:100px;display:flex;align-items:center;justify-content:center;perspective:500px}#coin{font-size:68px;filter:drop-shadow(0 6px 8px #000a)}
-#sky{position:relative;height:160px;border-radius:14px;overflow:hidden;background:linear-gradient(#0d0d2b,#25104a 60%,#4a1a3a);border:1px solid #ffffff1a}
+#sky{position:relative;height:150px;border-radius:14px;overflow:hidden;background:linear-gradient(#0d0d2b,#25104a 60%,#4a1a3a);border:1px solid #ffffff1a}
 #sky::before{content:"";position:absolute;inset:0;background:radial-gradient(#fff 1px,transparent 1.4px) 0 0/34px 34px,radial-gradient(#fff8 1px,transparent 1.4px) 17px 17px/34px 34px;opacity:.35;animation:stars 3s linear infinite}@keyframes stars{to{background-position:0 34px,17px 51px}}
-#mul{position:absolute;left:0;right:0;top:12px;font-size:28px;font-weight:800;z-index:2;text-shadow:0 2px 10px #000}
-#rk{position:absolute;left:50%;bottom:8px;font-size:38px;transform:translateX(-50%);z-index:2;transition:none}
+#mul{position:absolute;left:0;right:0;top:10px;font-size:26px;font-weight:800;z-index:2;text-shadow:0 2px 10px #000}
+#rkStatus{position:absolute;left:0;right:0;top:42px;font-size:11px;color:var(--gold);z-index:2}
+#rk{position:absolute;left:50%;bottom:8px;font-size:36px;transform:translateX(-50%);z-index:2;transition:none}
 #rk.boom{animation:boom .6s forwards}@keyframes boom{to{transform:translateX(-50%) scale(2.8);opacity:0}}
+.rk-bets{margin-top:8px;background:#0006;border-radius:12px;padding:6px 8px;max-height:110px;overflow-y:auto;text-align:left}
+.rk-bet-row{display:flex;justify-content:space-between;font-size:11px;padding:3px 2px;border-bottom:1px solid #ffffff0a}
 .mg{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;max-width:260px;margin:0 auto}.mt{aspect-ratio:1;border:0;border-radius:12px;background:linear-gradient(#2d2d3a,#1c1c26);font-size:22px;color:#fff;cursor:pointer;box-shadow:0 3px 0 #0008}.mt:active{transform:translateY(2px)}.mt.ok{background:#164d2b;animation:pop .3s}.mt.bm{background:#5a1220;animation:pop .3s}.mt.ghost{opacity:.55}
 
-/* Номерок */
+/* Апгрейдер */
+.upg-stage{display:flex;align-items:center;justify-content:space-around;gap:8px;margin:6px 0 10px;background:#0005;padding:12px 8px;border-radius:16px;border:1px solid #ffffff12}
+.upg-slot{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:90px}
+.upg-wheel{width:84px;height:84px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;position:relative;border:4px solid #ffffff1a;box-shadow:inset 0 0 14px #000}
+
+/* Номерок (всегда белые чёткие цифры на пластике, без лишнего значка справа) */
 .tag{--w:132px;--c:#8b93a1;--sh0:0 .05em .1em #000a;position:relative;flex:none;width:var(--w);aspect-ratio:5/8.2;font-size:calc(var(--w)/4);overflow:hidden;text-align:center;border-radius:26% 26% 6% 6%/15.5% 15.5% 3.8% 3.8%;box-shadow:var(--sh0);animation:pop .4s cubic-bezier(.2,1.4,.4,1) backwards;transition:box-shadow .4s}
 @keyframes pop{from{transform:scale(.6) rotate(-6deg);opacity:0}}
 @keyframes bob{50%{transform:translateY(-.08em) rotate(1deg)}}
@@ -150,15 +162,13 @@ h3{margin:4px 0 6px;font-size:15px}
 .tag u,.tag i{position:absolute;display:block;pointer-events:none;text-decoration:none}.tag i{left:50%;transform:translateX(-50%);aspect-ratio:1;border-radius:50%}.tag .kpk{position:absolute;left:0;right:0}
 .digits{position:absolute;left:0;right:0;bottom:8%;display:flex;justify-content:center;font-weight:800;font-size:1.3em;line-height:1.1em}
 .col{height:1.1em;overflow:hidden;min-width:.62em}.st>div{height:1.1em}
-.bdg{position:absolute;right:5%;top:34%;font-size:.55em;opacity:0;transition:opacity .4s;text-decoration:none;z-index:4}.rev .bdg{opacity:1}
 .pl{--sh0:0 .07em 0 #cfc9ba,0 .13em .22em #000b,inset 0 .03em 0 #fff;background:linear-gradient(160deg,#fcfaf4,#e0dbcf)}
 .pl .face,.pl .gloss{inset:.14em .14em .16em .2em;border-radius:24% 24% 4% 4%/14.5% 14.5% 3% 3%}
 .pl .face{background:radial-gradient(#ffffff0c 1px,transparent 1.3px) 0 0/4px 4px,radial-gradient(ellipse at 30% 10%,#ff2b2b,#e0061c 45%,#b50010);box-shadow:inset 0 0 .3em #55000a99,inset 0 .05em .08em #ffffff55}
 .pl .gloss{background:linear-gradient(118deg,#ffffff4a 0%,#ffffff14 26%,transparent 40%),linear-gradient(0deg,#0000002a,transparent 22%)}
 .pl i{top:6%;width:62%;background:radial-gradient(circle,#0a0a0d 0 52%,#22222a 55%,#cfc9bb 57%,#fcfaf2 67%,#d9d3c6 78%,transparent 79%)}
-.pl .kpk{top:48%;font:700 1.3em/1 Georgia,'Times New Roman',serif;letter-spacing:.03em;color:#efe3bf;text-shadow:0 -.03em 0 #5c0008,0 .03em 0 #fff2c8aa}
-.pl .digits{color:#222a57;text-shadow:0 .03em 0 #ffffff66,0 -.02em 0 #0d1230}
-body.wd .pl .kpk,body.wd .pl .digits{color:#fff7ee;text-shadow:0 -.03em 0 #6b0008,0 .03em 0 #ff9d9d66}
+.pl .kpk,.pl .digits{color:#fff7ee;text-shadow:0 -.03em 0 #6b0008,0 .03em 0 #ff9d9d66}
+.pl .kpk{top:48%;font:700 1.3em/1 Georgia,'Times New Roman',serif;letter-spacing:.03em}
 .pp{--sh0:0 .05em .14em #000b;background:#cfc9b8}
 .pp .face{inset:0;border-radius:inherit;background:radial-gradient(#0000000d 1px,transparent 1.3px) 0 0/4px 4px,linear-gradient(170deg,#fffdf6,#eae5d3);box-shadow:inset 0 0 0 .09em #fffdf6,inset 0 0 0 .13em #c8202d,inset 0 0 .5em #0002}
 .pp i{top:6%;width:30%;background:radial-gradient(circle,#0a0a0d 0 56%,#a9a395 59%,#fff 70%,transparent 72%)}
@@ -177,7 +187,7 @@ body.wd .pl .kpk,body.wd .pl .digits{color:#fff7ee;text-shadow:0 -.03em 0 #6b000
 <script>
 /* ===== Конфигурация Админа и Облачной БД ===== */
 const ADMIN_ID = 7646030838; // Твой личный Telegram ID
-/* Вставь ссылку на свою Firebase Realtime Database (и открой Rules: .read: true, .write: true): */
+/* Вставь сюда ссылку на свою Firebase Realtime Database: */
 const FIREBASE_DB_URL = 'https://nomerokkpk-default-rtdb.firebaseio.com/';
 
 (function(){
@@ -241,8 +251,9 @@ const FIREBASE_DB_URL = 'https://nomerokkpk-default-rtdb.firebaseio.com/';
 
   <section class="s" id="s3">
     <div class="sub">
-      <button class="on" data-t="0">🏆 Богачи</button>
-      <button data-t="1">💎 Мои лучшие</button>
+      <button class="on" data-t="0">💰 По балансу</button>
+      <button data-t="1">🎫 По номерку</button>
+      <button data-t="2">💎 Мои лучшие</button>
     </div>
     <div id="top0"></div>
   </section>
@@ -257,15 +268,15 @@ const FIREBASE_DB_URL = 'https://nomerokkpk-default-rtdb.firebaseio.com/';
   </section>
 
   <section class="s" id="s5">
-    <h3>🔑 Промокод / Код выдачи</h3>
+    <h3>🎟️ Активация купона</h3>
     <div class="adm-row">
-      <input class="adm-inp" id="promoInp" placeholder="Введи код от бота или админа...">
+      <input class="adm-inp" id="promoInp" placeholder="Введи купон...">
       <button class="f on" id="promoBtn">Активировать</button>
     </div>
     <div id="myIdBox" style="font-size:12px;color:var(--mut);margin-bottom:10px"></div>
     <h3>⚙️ Настройки</h3>
     <div id="sets"></div>
-    <h3>Цены и шансы</h3>
+    <h3>Цены и шансы (Номера 1–999)</h3>
     <table id="rates"></table>
     <h3>Бонусные номера</h3>
     <table id="bon"></table>
@@ -297,63 +308,83 @@ const MY_UID = TG_USER.id || (window.__IS_ADMIN ? ADMIN_ID : 100000 + Math.floor
 
 function cleanNick(str){
   if(!str || typeof str !== 'string') return '';
-  let s = str
-    .replace(/https?:\/\/\S+/gi, '')
-    .replace(/t\.me\/\S+/gi, '')
-    .replace(/[@<>#"']/g, '')
-    .trim();
-  return s.slice(0, 22);
+  return str.replace(/https?:\/\/\S+/gi, '').replace(/t\.me\/\S+/gi, '').replace(/[@<>#"']/g, '').trim().slice(0, 22);
 }
-const UN = cleanNick(TG_USER.first_name) || 'Игрок_' + String(MY_UID).slice(-4);
+const RAW_UNAME = cleanNick(TG_USER.username || '').toLowerCase();
+const UN = cleanNick(TG_USER.first_name || TG_USER.username) || 'Игрок_' + String(MY_UID).slice(-4);
+const MY_UNAME = RAW_UNAME || cleanNick(UN).toLowerCase().replace(/\s+/g,'_');
 
 $('#bgfx').innerHTML=Array.from({length:12},()=>`<s style="--sz:${20+Math.random()*45}px;--lf:${Math.random()*100}%;--du:${9+Math.random()*10}s;--dl:-${Math.random()*15}s"></s>`).join('');
 
-/* ===== Данные и экономика ===== */
+/* Звуковой синтезатор щелчков (Web Audio API) */
+let audioCtx = null;
+function playTickSound(freq=520, dur=0.025){
+  if(!G || !G.set || !G.set.snd) return;
+  try{
+    if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const o = audioCtx.createOscillator(), g = audioCtx.createGain();
+    o.type = 'triangle'; o.frequency.value = freq;
+    g.gain.setValueAtTime(0.06, audioCtx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + dur);
+    o.connect(g); g.connect(audioCtx.destination);
+    o.start(); o.stop(audioCtx.currentTime + dur);
+  }catch(e){}
+}
+
+/* ===== Данные и экономика (Номера строго 1..999, №1000 убран) ===== */
+const MAX_NUM = 999;
 const RN=['Обычный','Необычный','Редкий','Эпический','Легендарный','Мифический'],RC=['#8b93a1','#3fbf5f','#2f8dff','#a855f7','#ffa51f','#ff1744'],W0=[6000,2500,1000,350,120,30],LIM=[10,40,150,500];
 const BASE=[[36,52,90,200,620,2800],[7,10,18,40,124,560]],COST0=[100,20],TN=['пластиковый','бумажный'];
 const FIX=[
-  [1,2,3,4,5,6,7,8,9,10,747,777,1000],
+  [1,2,3,4,5,6,7,8,9,10,747,777],
   [11,22,33,44,55,66,77,99,100,111,222,333,444,555,666,888,999,123,321],
   [200,300,400,500,600,700,800,900,228,52,420],
   [812,322,312,13,337,404]
 ];
-const RAR=Array(1001).fill(-1),P=[[],[],[],[],[],[]];
-FIX.forEach((a,i)=>a.forEach(n=>RAR[n]=5-i));
+const RAR=Array(MAX_NUM+1).fill(-1),P=[[],[],[],[],[],[]];
+FIX.forEach((a,i)=>a.forEach(n=>{if(n<=MAX_NUM)RAR[n]=5-i}));
 {
   let rest=[],sd=1337;const rnd=()=>(sd=sd*16807%2147483647)/2147483647;
-  for(let n=1;n<=1000;n++)if(RAR[n]<0)rest.push(n);
+  for(let n=1;n<=MAX_NUM;n++)if(RAR[n]<0)rest.push(n);
   for(let i=rest.length-1;i>0;i--){const j=Math.floor(rnd()*(i+1));[rest[i],rest[j]]=[rest[j],rest[i]]}
   rest.forEach((n,i)=>RAR[n]=i<27?3:i<141?2:i<391?1:0);
-  for(let n=1;n<=1000;n++)P[RAR[n]].push(n);
+  for(let n=1;n<=MAX_NUM;n++)P[RAR[n]].push(n);
 }
 
-const KEY='nomerok-rng-v6';
+const KEY = 'nomerok-rng-v7-' + MY_UID;
+const LEGACY_KEY = 'nomerok-rng-v6';
 let G=null,busy=false,ty=0,spinMult=1,fT=-1,fR=-1,ttab=0,gtab=0,pend=[];
-try{G=JSON.parse(localStorage.getItem(KEY))}catch(e){}
-if(!G||!G.items) G={c:1000,items:[],nid:1,rolls:0,p:[[0,0,0,0],[0,0,0,0]],up:{l:0,m:0,r:0,s:0,g:0},lv:1,xp:0,sp:1,gift:0,spent:0,earned:0,st:{sold:0,bonus:0,rare:0,s67:0},qt:{},bless:0,gnet:0,col:[],usedCodes:[],customBots:null,best:null,hideBots:0,set:{hap:1,shake:1,fast:0,wd:0,autosell:0}};
-if(!G.col) G.col=[];
-if(!G.usedCodes) G.usedCodes=[];
-if(G.set.autosell===undefined) G.set.autosell=0;
-if(G.hideBots===undefined) G.hideBots=0;
-if(!G.uid) G.uid = MY_UID;
-/* Очистка возможного сломанного бота из прошлых сохранений */
-if(Array.isArray(G.customBots)){
-  G.customBots = G.customBots.filter(x=>x && typeof x==='object' && x.n && x.n!=='Игрок' && Number.isFinite(Number(x.r)));
-  if(!G.customBots.length) G.customBots = null;
+
+try{
+  G = JSON.parse(localStorage.getItem(KEY)) || JSON.parse(localStorage.getItem(LEGACY_KEY));
+}catch(e){}
+
+function defaultSave(){
+  return {uid:MY_UID,uname:MY_UNAME,c:1000,items:[],nid:1,rolls:0,p:[[0,0,0,0],[0,0,0,0]],up:{l:0,m:0,r:0,s:0,g:0},lv:1,xp:0,sp:1,gift:0,spent:0,earned:0,st:{sold:0,bonus:0,rare:0,s67:0},qt:{},bless:0,gnet:0,col:[],usedCodes:[],best:null,updatedAt:0,set:{hap:1,shake:1,fast:0,autosell:0,autosellUncommon:0,snd:1,compact:0}};
 }
+if(!G||!Array.isArray(G.items)) G = defaultSave();
+G.uid = MY_UID;
+G.uname = MY_UNAME;
+if(!G.col) G.col=[];
+G.col = G.col.filter(n=>n>=1 && n<=MAX_NUM);
+G.items = G.items.filter(i=>i && i.n>=1 && i.n<=MAX_NUM);
+if(!G.usedCodes) G.usedCodes=[];
+if(!G.set) G.set={hap:1,shake:1,fast:0,autosell:0,autosellUncommon:0,snd:1,compact:0};
+if(G.set.snd===undefined) G.set.snd=1;
+if(G.set.compact===undefined) G.set.compact=0;
+if(G.set.autosellUncommon===undefined) G.set.autosellUncommon=0;
 
 const hap=t=>{if(!G.set.hap)return;try{TG.HapticFeedback.impactOccurred(t)}catch(e){}};
-const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(G))}catch(e){}};
-/* Защита от "не число ₽" (NaN) */
 const fmt=n=>{const v=Number(n);if(!Number.isFinite(v))return '0';return v>=1e6?(v/1e6).toFixed(2).replace('.',',')+' млн':Math.floor(v).toLocaleString('ru-RU')};
 const sg=n=>{const v=Number(n)||0;return(v>=0?'+':'−')+fmt(Math.abs(v))};
 
-const SP={300:[2.5,'🦍','Биг Бой'],812:[2,'🏙️','СПБ Yung Trappa'],228:[2.5,'😎','Блатной'],52:[2.5,'🔥','52NGG'],337:[1.5,'🎩','337'],322:[2,'😎','Блатной'],312:[2,'😎','Блатной'],13:[1.8,'😎','Блатной'],420:[1.8,'🌿','Блатной'],404:[1.5,'🤖','Not Found'],1000:[1.5,'💎','Тысяча']};
+/* Бонусные номера (1-10 теперь ×2, 1000 убран) */
+const SP={300:[2.5,'🦍','Биг Бой'],812:[2,'🏙️','СПБ Yung Trappa'],228:[2.5,'😎','Блатной'],52:[2.5,'🔥','52NGG'],337:[1.5,'🎩','337'],322:[2,'😎','Блатной'],312:[2,'😎','Блатной'],13:[1.8,'😎','Блатной'],420:[1.8,'🌿','Блатной'],404:[1.5,'🤖','Not Found']};
 function bonus(i){
   if(!i)return null;
   const n=i.n,s=String(n),L=[];
   if(SP[n])L.push(SP[n]);
-  if(n<=10)L.push([1.2,'👑','Топ-10']);
+  if(n>=1&&n<=10)L.push([2,'👑','Топ-10']);
   if(n>=11&&n<=99&&s[0]==s[1])L.push([1.8,'😎','Блатной']);
   if(/^(\d)\1\1$/.test(s))L.push([['777','888','999'].includes(s)?3:2.2,'😎','Блатной']);
   if(s.includes('67'))L.push([1.35,'🤪','67']);
@@ -368,15 +399,33 @@ const worth=()=>Math.max(0, Math.round((Number(G.c)||0)+G.items.reduce((a,i)=>a+
 const W=bl=>W0.map((w,i)=>i?w*(1+.02*G.up.l)*(bl?2:1):w);
 const pick=w=>{let x=Math.random()*w.reduce((a,b)=>a+b),r=0;while(r<w.length-1&&x>=w[r]){x-=w[r];r++}return r};
 
-/* Отслеживание самого лучшего номерка за всю историю игрока */
 function checkBest(it){
-  if(!it) return;
-  if(!G.best || price(it) > price(G.best) || (price(it) === price(G.best) && it.r > G.best.r)){
-    G.best = {id:it.id||0, n:it.n, r:it.r, t:it.t};
+  if(!it || it.n > MAX_NUM) return;
+  if(!G.best || G.best.n > MAX_NUM || price(it) > price(G.best) || (price(it) === price(G.best) && it.r > G.best.r)){
+    G.best = {id:it.id||0, n:it.n, r:it.r, t:it.t, p:price(it)};
+  } else if(G.best){
+    G.best.p = price(G.best);
   }
 }
-if(G.items && G.items.length){
-  G.items.forEach(checkBest);
+G.items.forEach(checkBest);
+
+/* Надёжное сохранение: локально + облачный слепок */
+let saveTimer = null;
+function save(syncNow=false){
+  G.updatedAt = Date.now();
+  G.uname = MY_UNAME;
+  if(G.best) G.best.p = price(G.best);
+  try{
+    const raw = JSON.stringify(G);
+    localStorage.setItem(KEY, raw);
+    localStorage.setItem(LEGACY_KEY, raw);
+  }catch(e){}
+  if(syncNow){
+    syncCloud(true);
+  } else {
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(()=>syncCloud(false), 1800);
+  }
 }
 
 function sell(list){
@@ -384,10 +433,11 @@ function sell(list){
   const s=list.reduce((a,i)=>a+price(i),0);
   G.items=G.items.filter(i=>!list.includes(i));
   G.c+=s;G.earned+=s;G.st.sold+=list.length;
-  hap('light');save();return s;
+  hap('light');save(true);return s;
 }
 
-const tg=(i,w,sp,x='')=>{const b=bonus(i);return`<div class="tag ${i.t?'pp':'pl'} r${i.r}${sp?'':' rev'} ${x}" data-id="${i.id}" style="--w:${w}px;--c:${RC[i.r]}"><u class="face"></u><u class="gloss"></u><i></i><b class="kpk">КПК</b><div class="digits">${sp?String(i.n).split('').map(d=>`<div class="col"><div class="st" data-d="${d}"></div></div>`).join(''):i.n}</div>${b?`<s class="bdg">${b[1]}</s>`:''}</div>`};
+/* Генерация HTML номерка БЕЗ значка бонуса справа сверху */
+const tg=(i,w,sp,x='')=>`<div class="tag ${i.t?'pp':'pl'} r${i.r}${sp?'':' rev'} ${x}" data-id="${i.id}" style="--w:${w}px;--c:${RC[i.r]}"><u class="face"></u><u class="gloss"></u><i></i><b class="kpk">КПК</b><div class="digits">${sp?String(i.n).split('').map(d=>`<div class="col"><div class="st" data-d="${d}"></div></div>`).join(''):i.n}</div></div>`;
 
 function toast(t){const e=$('#tt');e.textContent=t;e.classList.add('on');clearTimeout(toast.k);toast.k=setTimeout(()=>e.classList.remove('on'),2600)}
 function burst(x,y,c,n){for(let i=0;i<n;i++){const s=document.createElement('s');s.style.cssText=`position:fixed;left:${x}px;top:${y}px;width:7px;height:7px;border-radius:2px;background:${c||`hsl(${Math.random()*360} 100% 60%)`};pointer-events:none;z-index:85`;document.body.append(s);const a=Math.random()*6.28,d=50+Math.random()*160;s.animate([{transform:'none',opacity:1},{transform:`translate(${Math.cos(a)*d}px,${Math.sin(a)*d+50}px) rotate(${Math.random()*720}deg)`,opacity:0}],{duration:850+Math.random()*450,easing:'ease-out'}).onfinish=()=>s.remove()}}
@@ -417,21 +467,9 @@ function roll(t,bl){
   return it;
 }
 
-/* ===== Профиль игрока при клике на уровень (#lv) ===== */
-const RANKS = [
-  [1, 'Новичок гардероба'],
-  [5, 'Искатель номерков'],
-  [10, 'Смотритель крючков'],
-  [18, 'Коллекционер КПК'],
-  [28, 'Барон раздевалки'],
-  [40, 'Магнат гардероба'],
-  [60, 'Легенда КПК']
-];
-function getRankTitle(lv){
-  let t = RANKS[0][1];
-  for(const [minLv, name] of RANKS) if(lv >= minLv) t = name;
-  return t;
-}
+/* ===== Профиль игрока ===== */
+const RANKS = [[1,'Новичок гардероба'],[5,'Искатель номерков'],[10,'Смотритель крючков'],[18,'Коллекционер КПК'],[28,'Барон раздевалки'],[40,'Магнат гардероба'],[60,'Легенда КПК']];
+function getRankTitle(lv){let t=RANKS[0][1];for(const[m,n]of RANKS)if(lv>=m)t=n;return t}
 
 $('#lv').onclick=()=>{
   hap('light');
@@ -446,26 +484,23 @@ $('#lv').onclick=()=>{
     ['🧠 Уровень 10+', G.lv >= 10],
     ['🤪 Нашёл 67', G.st.s67 > 0]
   ];
-
   $('#md').innerHTML = `<div class="prof-box">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
       <h3 style="margin:0;font-size:16px">👤 Профиль игрока</h3>
       <button class="f" onclick="document.getElementById('md').classList.remove('on')">✕</button>
     </div>
-
     <div class="prof-head">
       <div class="prof-ava">${UN.charAt(0).toUpperCase()}</div>
       <div style="flex:1;min-width:0">
         <div class="prof-title">${getRankTitle(G.lv)}</div>
         <div style="font-size:17px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${UN}</div>
-        <div style="font-size:11px;color:var(--mut)">ID: <span style="user-select:all;color:#fff">${MY_UID}</span></div>
+        <div style="font-size:11px;color:var(--mut)">Юзернейм: <b style="color:#fff">@${MY_UNAME}</b></div>
       </div>
       <div style="text-align:right">
         <div style="font-size:18px;font-weight:800;color:var(--ok)">Ур. ${G.lv}</div>
         <small style="font-size:10px;color:var(--mut)">${G.xp}/${need(G.lv)} XP</small>
       </div>
     </div>
-
     <div style="font-size:12px;font-weight:800;color:var(--gold);margin:0 0 6px">🏆 Лучший выбитый номерок за всё время</div>
     ${bIt ? `<div class="prof-best">
       ${tg(bIt, 74, false)}
@@ -476,31 +511,24 @@ $('#lv').onclick=()=>{
         <div style="font-size:18px;font-weight:800;color:var(--gold);margin-top:4px">Оценка: ${fmt(price(bIt))} ₽</div>
       </div>
     </div>` : `<div class="prof-best" style="color:var(--mut);font-size:12px;padding:18px">У тебя пока нет выбитых номерков — сделай первую крутку!</div>`}
-
     <div style="font-size:12px;font-weight:800;margin:0 0 6px">📊 Статистика аккаунта</div>
     <div class="prof-stats">
+      <div class="pstat"><small>Чистый баланс</small><b style="color:var(--ok)">${fmt(G.c)} ₽</b></div>
       <div class="pstat"><small>Общее состояние</small><b style="color:var(--gold)">${fmt(worth())} ₽</b></div>
       <div class="pstat"><small>Всего круток</small><b>${fmt(G.rolls)} шт.</b></div>
-      <div class="pstat"><small>Открыто в коллекции</small><b>${G.col.length} / 1000</b></div>
-      <div class="pstat"><small>Выбито редких и выше</small><b style="color:#2f8dff">${fmt(G.st.rare)} шт.</b></div>
+      <div class="pstat"><small>Открыто в коллекции</small><b>${G.col.length} / ${MAX_NUM}</b></div>
       <div class="pstat"><small>Заработано с продаж</small><b style="color:var(--ok)">${fmt(G.earned)} ₽</b></div>
       <div class="pstat"><small>Итог в мини-играх</small><b style="color:${G.gnet>=0?'var(--ok)':'var(--bad)'}">${sg(G.gnet)} ₽</b></div>
     </div>
-
     <div style="font-size:12px;font-weight:800;margin:0 0 6px">🏅 Значки достижений</div>
-    <div class="pbadges">
-      ${ach.map(([label, ok])=>`<span class="pbdg ${ok?'got':''}">${label}</span>`).join('')}
-    </div>
+    <div class="pbadges">${ach.map(([l,ok])=>`<span class="pbdg ${ok?'got':''}">${l}</span>`).join('')}</div>
   </div>`;
   $('#md').classList.add('on');
 };
 
-/* Вычисление компактного размера номерка */
 function fit(count=1){
   const s=$('#stage'),w=s.clientWidth||320,h=s.clientHeight||220;
-  if(count>1){
-    return Math.max(54, Math.min(76, Math.floor((w-40)/3), Math.floor((h-28)/3.4)));
-  }
+  if(count>1) return Math.max(54, Math.min(76, Math.floor((w-40)/3), Math.floor((h-28)/3.4)));
   return Math.max(82, Math.floor(Math.min(134, w-40, (h-12)/1.65)));
 }
 function refit(){
@@ -522,8 +550,7 @@ $('#multBtn').onclick=()=>{
   spinMult = spinMult===1 ? 5 : 1;
   $('#multBtn').textContent = '×'+spinMult;
   $('#multBtn').classList.toggle('x5', spinMult===5);
-  hap('light');
-  hud();
+  hap('light');hud();
 };
 
 /* ===== Крутка (x1 и x5) ===== */
@@ -541,8 +568,7 @@ async function spin(){
   G.spent += totalCost;
 
   const rolled = [];
-  let gotBless = false;
-  let usedBless = false;
+  let gotBless = false, usedBless = false;
 
   for(let k=0; k<actualCount; k++){
     const bl = G.bless;
@@ -587,7 +613,7 @@ async function spin(){
     });
   });
 
-  const tick=setInterval(()=>hap('soft'),150);
+  const tick=setInterval(()=>{hap('soft');playTickSound(440+Math.random()*220,0.02)},150);
   await sleep(maxT*1000+200);
   clearInterval(tick);
 
@@ -605,12 +631,13 @@ async function spin(){
   $('#aura').style.opacity=.15+best.r*.06;
 
   let autoSoldCount = 0, autoSoldSum = 0;
-  if(G.set.autosell){
-    const commons = rolled.filter(i=>i.r===0 && !bonus(i));
-    if(commons.length){
-      autoSoldCount = commons.length;
-      autoSoldSum = sell(commons);
-      commons.forEach(c=>{
+  const maxAutoR = G.set.autosellUncommon ? 1 : (G.set.autosell ? 0 : -1);
+  if(maxAutoR >= 0){
+    const toSell = rolled.filter(i=>i.r<=maxAutoR && !bonus(i));
+    if(toSell.length){
+      autoSoldCount = toSell.length;
+      autoSoldSum = sell(toSell);
+      toSell.forEach(c=>{
         const mw = stg.querySelector(`.mwrap[data-id="${c.id}"]`);
         if(mw) mw.classList.add('sold');
       });
@@ -632,7 +659,7 @@ async function spin(){
   if(best.r>=4)toast(best.r==5?'🌈 МИФИЧЕСКИЙ НОМЕРОК!!!':'🔥 Легендарный номерок!');
   if(gotBless)setTimeout(()=>toast('👵 Добрая гардеробщица: следующая крутка с удачей ×2!'),1800);
   busy=false;
-  syncCloud();
+  save(true);
   hud();
 }
 
@@ -681,7 +708,7 @@ function resolve(mode){
       pend = pend.filter(i=>!junk.includes(i));
       toast(`🧹 Продано ${junk.length} шт. за ${fmt(s)} ₽`);
     }
-    save();hud();return;
+    save(true);hud();return;
   }
   const list = [...pend];
   pend = [];
@@ -693,7 +720,7 @@ function resolve(mode){
     msg = list.length>1 ? `📦 Оставлено в хранилище (${list.length} шт.)` : '📦 Номерок в хранилище';
   }
   $('#info').innerHTML = msg;
-  hap('light');save();syncCloud();hud();
+  hap('light');save(true);hud();
 }
 $('#d1').onclick=()=>resolve('keep');
 $('#d2').onclick=()=>resolve('sell');
@@ -753,7 +780,10 @@ function store(){
   $('#ct').innerHTML=['Все','🔴 Пластик','📄 Бумага'].map((x,i)=>`<button class="f ${fT==i-1?'on':''}" data-t="${i-1}">${x}</button>`).join('');
   $('#cr').innerHTML=`<button class="f ${fR<0?'on':''}" data-r="-1">Любая</button>`+RN.map((x,i)=>`<button class="f ${fR==i?'on':''}" data-r="${i}" style="background:${RC[i]}44">${x}</button>`).join('');
   const l=G.items.filter(i=>(fT<0||i.t==fT)&&(fR<0||i.r==fR)).sort((a,b)=>price(b)-price(a));
-  $('#grid').innerHTML=l.length?l.map(i=>`<div class="cell" data-id="${i.id}">${tg(i,58,false)}<small>${fmt(price(i))} ₽</small></div>`).join(''):'<p style="color:var(--mut);grid-column:1/-1;text-align:center">Здесь пока пусто</p>';
+  const gridEl = $('#grid');
+  gridEl.classList.toggle('compact', !!G.set.compact);
+  const tagW = G.set.compact ? 46 : 58;
+  gridEl.innerHTML=l.length?l.map(i=>`<div class="cell" data-id="${i.id}">${tg(i,tagW,false)}<small>${fmt(price(i))} ₽</small></div>`).join(''):'<p style="color:var(--mut);grid-column:1/-1;text-align:center">Здесь пока пусто</p>';
 }
 $('#ct').onclick=e=>{const b=e.target.closest('.f');if(b){fT=+b.dataset.t;store()}};
 $('#cr').onclick=e=>{const b=e.target.closest('.f');if(b){fR=+b.dataset.r;store()}};
@@ -775,48 +805,287 @@ $('#md').onclick=e=>{
   if(!b){if(e.target.id==='md')$('#md').classList.remove('on');return}
   if(b.dataset.a==='sell'){
     const i=G.items.find(x=>x.id==+b.dataset.id);if(!i)return;
-    const p=sell([i]);toast(`+${fmt(p)} ₽`);$('#md').classList.remove('on');save();hud();view();
+    const p=sell([i]);toast(`+${fmt(p)} ₽`);$('#md').classList.remove('on');save(true);hud();view();
   }
 };
 
-/* ===== Мини-игры ===== */
-const SY=['🍒','🍋','🔔','💎','7️⃣'],SW=[32,26,20,14,8],SPAY=[5,8,15,40,120],BETS=[10,50,100,500,0],GN=['🎰 Слоты','🪙 Монета','🚀 Ракета','💣 Мины'];
-let gt=0,gi=1,gbusy=false,rkS={on:0},mn=null;
+/* ===== Мини-игры + Общая Ракета 10 сек + Апгрейдер ===== */
+const DB_BASE = FIREBASE_DB_URL.trim().replace(/\/+$/,'').replace(/\/players\.json$/i,'');
+const SY=['🍒','🍋','🔔','💎','7️⃣'],SW=[32,26,20,14,8],SPAY=[5,8,15,40,120],BETS=[10,50,100,500,0],GN=['🚀 Ракета','⚡ Апгрейд','🎰 Слоты','🪙 Монета','💣 Мины'];
+let gt=0,gi=1,gbusy=false,mn=null;
 const MN=16,MM=3,mmult=k=>{let m=.95;for(let i=0;i<k;i++)m*=(MN-i)/(MN-MM-i);return m};
 function getBet(){const b=gi==4?Math.floor(G.c):BETS[gi];if(b<1||b>G.c){toast('Не хватает денег на такую ставку');return 0}return b}
-function gnet(){const e=$('#gnet');if(e)e.innerHTML=`Итог в играх: <b style="color:${G.gnet>=0?'var(--ok)':'var(--bad)'}">${sg(G.gnet)} ₽</b> · только азарт и риск 😈`}
+function gnet(){const e=$('#gnet');if(e)e.innerHTML=`Итог в играх: <b style="color:${G.gnet>=0?'var(--ok)':'var(--bad)'}">${sg(G.gnet)} ₽</b>`}
 function fin(b,win,msg){
   G.c+=win;G.gnet+=win-b;hap(win>b?'medium':'light');const el=$('#gres');
   if(el){el.innerHTML=msg+(win>b?` · <b>+${fmt(win-b)} ₽</b>`:win==b?'':` · <b>−${fmt(b-win)} ₽</b>`);el.className='gres '+(win>b?'win':win<b?'lose':'')}
   if(win>=b*5)burst(innerWidth/2,innerHeight/2,null,35);else if(win>b)burst(innerWidth/2,innerHeight/2,'#ffd54a',16);
-  gbusy=false;save();syncCloud();hud();gnet();
+  gbusy=false;save(true);hud();gnet();
 }
 function games(){
   $('#gtabs').innerHTML=GN.map((x,i)=>`<button class="${gt==i?'on':''}" data-g="${i}">${x}</button>`).join('');
+  $('#gbets').style.display = gt===1 ? 'none' : 'flex';
   $('#gbets').innerHTML=BETS.map((b,i)=>`<button class="f ${gi==i?'on':''}" data-b="${i}">${b?fmt(b)+' ₽':'🔥 ВА-БАНК'}</button>`).join('');
-  gnet();if(!gbusy)[gSlots,gCoin,gRocket,gMines][gt]();
+  gnet();if(!gbusy)[gRocket,gUpgrader,gSlots,gCoin,gMines][gt]();
 }
 $('#gtabs').onclick=e=>{const b=e.target.closest('button');if(!b)return;if(gbusy)return toast('Доиграй текущую игру');gt=+b.dataset.g;games()};
 $('#gbets').onclick=e=>{const b=e.target.closest('button');if(!b)return;if(gbusy)return toast('Ставку нельзя менять во время игры');gi=+b.dataset.b;games()};
-function gSlots(){$('#gm').innerHTML=`<div class="gcard"><div class="reels">${[0,1,2].map(i=>`<div class="reel"><div class="strip" id="rs${i}"><div>🎰</div></div></div>`).join('')}</div><div class="gres" id="gres">Три в ряд — выигрыш, пара — возврат половины</div><button class="gbtn" id="gplay">🎰 Крутить</button><table><tr><th>Комбо</th><th>Выплата</th></tr>${SY.map((s,i)=>`<tr><td>${s+s+s}</td><td>×${SPAY[i]}</td></tr>`).reverse().join('')}<tr><td>Любая пара</td><td>×0,5</td></tr></table></div>`;$('#gplay').onclick=playSlots}
+
+/* --- 1. ОБЩАЯ РАКЕТА (Синхронный раунд у всех игроков: 10с ставки + полёт + живые ставки) --- */
+let rkLoopId = 0, myRkBet = null, liveRkBets = {}, lastRkFetch = 0, lastFetchedRound = 0;
+
+function getGlobalRocketState(now = Date.now()){
+  /* Чтобы раунды шли синхронно у всех без сервера, используем детерминированные блоки времени */
+  const PERIOD = 22000; // 10 сек ожидание ставок + до 9 сек полёт + 3 сек показ краша
+  const roundId = Math.floor(now / PERIOD);
+  const elapsed = (now % PERIOD) / 1000;
+  /* Детерминированный краш от roundId (одинаковый на всех телефонах!) */
+  let h = Math.imul(roundId ^ 0x5bd1e995, 1540483477);
+  h = ((h ^ (h >>> 13)) >>> 0) / 4294967296;
+  const crash = h < 0.06 ? 1.00 : Math.min(25.0, Math.max(1.02, Math.floor((0.94 / (1 - h * 0.94)) * 100) / 100));
+  const flyDur = Math.log(crash) / 0.24; // время полёта до точки краша
+
+  if(elapsed < 10){
+    return {roundId, phase:'wait', left: 10 - elapsed, mul: 1.00, crash};
+  }
+  const flyTime = elapsed - 10;
+  if(flyTime < flyDur){
+    const mul = Math.exp(0.24 * flyTime);
+    return {roundId, phase:'fly', flyTime, mul, crash};
+  }
+  return {roundId, phase:'crash', mul: crash, crash, nextIn: Math.max(0, 22 - elapsed)};
+}
+
+async function postRocketBet(roundId, betObj){
+  if(!DB_BASE) return;
+  try{
+    await fetch(`${DB_BASE}/rocket_bets/${roundId}/${MY_UID}.json`, {
+      method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify(betObj)
+    });
+  }catch(e){}
+}
+
+async function fetchRocketBets(roundId){
+  const now = Date.now();
+  if(now - lastRkFetch < 1100 && lastFetchedRound === roundId) return;
+  lastRkFetch = now;
+  if(lastFetchedRound !== roundId){ liveRkBets = {}; lastFetchedRound = roundId; }
+  if(!DB_BASE) return;
+  try{
+    const r = await fetch(`${DB_BASE}/rocket_bets/${roundId}.json`);
+    const d = await r.json();
+    if(d && !d.error && typeof d === 'object') liveRkBets = d;
+  }catch(e){}
+}
+
+function gRocket(){
+  cancelAnimationFrame(rkLoopId);
+  $('#gm').innerHTML=`<div class="gcard">
+    <div id="sky">
+      <div id="mul">1.00×</div>
+      <div id="rkStatus">Подключение к общему раунду…</div>
+      <div id="rk">🚀</div>
+    </div>
+    <div class="gres" id="gres">Ракета взлетает каждые 10 секунд одновременно у всех!</div>
+    <button class="gbtn" id="gplay">🚀 Сделать ставку</button>
+    <div class="rk-bets" id="rkBetsList"><div style="color:var(--mut);font-size:11px;text-align:center">Ставок в этом раунде пока нет</div></div>
+  </div>`;
+  $('#gplay').onclick = onRocketBtn;
+  tickGlobalRocket();
+}
+
+function onRocketBtn(){
+  const st = getGlobalRocketState();
+  if(st.phase === 'wait'){
+    if(myRkBet && myRkBet.roundId === st.roundId) return toast('Ставка на этот раунд уже сделана!');
+    const b = getBet(); if(!b) return;
+    G.c -= b;
+    myRkBet = {roundId: st.roundId, uid: MY_UID, n: UN, b, cashed: 0, win: 0};
+    liveRkBets[MY_UID] = myRkBet;
+    save(true); hud();
+    postRocketBet(st.roundId, myRkBet);
+    toast(`🚀 Ставка ${fmt(b)} ₽ принята!`);
+  } else if(st.phase === 'fly'){
+    if(!myRkBet || myRkBet.roundId !== st.roundId || myRkBet.cashed) return;
+    myRkBet.cashed = Number(st.mul.toFixed(2));
+    const w = Math.floor(myRkBet.b * myRkBet.cashed);
+    myRkBet.win = w;
+    liveRkBets[MY_UID] = myRkBet;
+    postRocketBet(st.roundId, myRkBet);
+    fin(myRkBet.b, w, `🎉 Забрал на ×${myRkBet.cashed.toFixed(2)}`);
+  }
+}
+
+function tickGlobalRocket(){
+  if(!$('#s2').classList.contains('on') || gt !== 0) return;
+  const st = getGlobalRocketState();
+  fetchRocketBets(st.roundId);
+
+  const mulEl = $('#mul'), stEl = $('#rkStatus'), rkEl = $('#rk'), btn = $('#gplay'), listEl = $('#rkBetsList');
+  if(!mulEl) return;
+
+  if(myRkBet && myRkBet.roundId !== st.roundId){
+    myRkBet = null;
+  }
+
+  if(st.phase === 'wait'){
+    rkEl.className = '';
+    rkEl.style.transform = 'translateX(-50%)';
+    mulEl.textContent = `${st.left.toFixed(1)} с`;
+    mulEl.style.color = '#fff';
+    stEl.textContent = `⏳ Приём ставок до взлёта (Раунд #${st.roundId % 1000})`;
+    if(myRkBet){
+      btn.textContent = `✅ Ставка ${fmt(myRkBet.b)} ₽ принята (ждём старт)`;
+      btn.disabled = true;
+    } else {
+      btn.textContent = `🚀 Поставить на раунд`;
+      btn.disabled = false;
+    }
+  } else if(st.phase === 'fly'){
+    rkEl.className = '';
+    const k = Math.min(1, Math.log(st.mul) / Math.log(25));
+    rkEl.style.transform = `translate(calc(-50% + ${k*55+Math.sin(st.flyTime*9)*3}px),${-k*88}px) rotate(${k*8}deg)`;
+    mulEl.textContent = st.mul.toFixed(2) + '×';
+    mulEl.style.color = 'var(--ok)';
+    stEl.textContent = '🔥 Ракета в полёте!';
+    if(myRkBet && !myRkBet.cashed){
+      btn.disabled = false;
+      btn.textContent = `💸 Забрать ${fmt(Math.floor(myRkBet.b * st.mul))} ₽ (×${st.mul.toFixed(2)})`;
+    } else if(myRkBet && myRkBet.cashed){
+      btn.disabled = true;
+      btn.textContent = `✅ Забрано на ×${myRkBet.cashed.toFixed(2)} (+${fmt(myRkBet.win)} ₽)`;
+    } else {
+      btn.disabled = true;
+      btn.textContent = 'Ракета уже летит (жди новый раунд)';
+    }
+  } else {
+    rkEl.className = 'boom';
+    mulEl.textContent = `💥 ${st.crash.toFixed(2)}×`;
+    mulEl.style.color = 'var(--bad)';
+    stEl.textContent = `Взрыв! Новый раунд через ${st.nextIn.toFixed(0)} с`;
+    if(myRkBet && !myRkBet.cashed && !myRkBet.lostHandled){
+      myRkBet.lostHandled = true;
+      fin(myRkBet.b, 0, `💥 Улетела на ×${st.crash.toFixed(2)}`);
+    }
+    btn.disabled = true;
+    btn.textContent = `⏳ Новый раунд через ${st.nextIn.toFixed(0)} с`;
+  }
+
+  /* Рендер списка живых ставок всех игроков */
+  const betsArr = Object.values(liveRkBets).filter(x=>x && x.n && x.b);
+  if(myRkBet && !liveRkBets[MY_UID]) betsArr.unshift(myRkBet);
+  if(betsArr.length){
+    listEl.innerHTML = `<div style="font-size:10px;color:var(--mut);margin-bottom:3px">Ставки игроков в раунде (${betsArr.length}):</div>` +
+      betsArr.map(x=>{
+        let status = `<span style="color:var(--gold)">В игре (${fmt(x.b)} ₽)</span>`;
+        if(x.cashed) status = `<span style="color:var(--ok)">×${Number(x.cashed).toFixed(2)} (+${fmt(x.win)} ₽)</span>`;
+        else if(st.phase === 'crash') status = `<span style="color:var(--bad)">💥 Сгорело (${fmt(x.b)} ₽)</span>`;
+        return `<div class="rk-bet-row"><b>${cleanNick(x.n)}</b>${status}</div>`;
+      }).join('');
+  } else {
+    listEl.innerHTML = `<div style="color:var(--mut);font-size:11px;text-align:center">Ставок в этом раунде пока нет — будь первым!</div>`;
+  }
+
+  rkLoopId = requestAnimationFrame(tickGlobalRocket);
+}
+
+/* --- 2. АПГРЕЙДЕР НОМЕРКОВ --- */
+let upgItemId = null, upgTargetR = 1;
+function gUpgrader(){
+  cancelAnimationFrame(rkLoopId);
+  const avail = G.items.filter(i=>i.r < 5 && !pend.includes(i)).sort((a,b)=>price(b)-price(a));
+  if(!avail.length){
+    $('#gm').innerHTML = `<div class="gcard"><p style="color:var(--mut)">На складе нет номерков для апгрейда (нужен хотя бы 1 номерок ниже Мифического).</p></div>`;
+    return;
+  }
+  let src = avail.find(i=>i.id === upgItemId) || avail[0];
+  upgItemId = src.id;
+  if(upgTargetR <= src.r || upgTargetR > 5) upgTargetR = src.r + 1;
+
+  const srcPrice = price(src);
+  const dstBasePrice = Math.round(BASE[src.t][upgTargetR] * (1 + 0.01 * G.up.m));
+  const rawChance = (srcPrice / dstBasePrice) * 92;
+  const chance = Math.min(80, Math.max(5, Number(rawChance.toFixed(1))));
+
+  $('#gm').innerHTML = `<div class="gcard">
+    <div style="font-size:12px;color:var(--mut);margin-bottom:6px">Выбери свой номерок и желаемую редкость для апгрейда</div>
+    <div class="upg-stage">
+      <div class="upg-slot">
+        ${tg(src, 64, false)}
+        <small style="color:${RC[src.r]};font-weight:700">${RN[src.r]}</small>
+        <small style="color:var(--gold)">${fmt(srcPrice)} ₽</small>
+      </div>
+      <div class="upg-wheel" id="upgWheel" style="background:conic-gradient(var(--ok) 0% ${chance}%, #2a2a38 ${chance}% 100%)">
+        <div style="background:#14141d;width:66px;height:66px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center">
+          <span style="font-size:14px;color:var(--ok)">${chance}%</span>
+          <small style="font-size:9px;color:var(--mut)">ШАНС</small>
+        </div>
+      </div>
+      <div class="upg-slot">
+        ${tg({id:0,n:'???',r:upgTargetR,t:src.t}, 64, false)}
+        <small style="color:${RC[upgTargetR]};font-weight:700">${RN[upgTargetR]}</small>
+        <small style="color:var(--gold)">~${fmt(dstBasePrice)} ₽</small>
+      </div>
+    </div>
+
+    <div class="adm-row">
+      <select class="adm-inp" id="upgSelectSrc">
+        ${avail.map(i=>`<option value="${i.id}" ${i.id===src.id?'selected':''}>№${i.n} (${RN[i.r]} · ${fmt(price(i))} ₽)</option>`).join('')}
+      </select>
+      <select class="adm-inp" id="upgSelectDst" style="flex:0.8">
+        ${RN.map((rn,r)=>r>src.r?`<option value="${r}" ${r===upgTargetR?'selected':''}>➔ ${rn}</option>`:'').join('')}
+      </select>
+    </div>
+    <div class="gres" id="gres">При неудаче старый номерок сгорает, при успехе — получаешь новый!</div>
+    <button class="gbtn" id="upgGo">⚡ Прокачать (${chance}%)</button>
+  </div>`;
+
+  $('#upgSelectSrc').onchange = e => { upgItemId = +e.target.value; gUpgrader(); };
+  $('#upgSelectDst').onchange = e => { upgTargetR = +e.target.value; gUpgrader(); };
+  $('#upgGo').onclick = async () => {
+    if(gbusy) return;
+    gbusy = true;
+    $('#upgGo').disabled = true;
+    hap('medium');
+    const win = (Math.random() * 100) < chance;
+    const wEl = $('#upgWheel');
+    wEl.style.transition = 'transform 1.1s cubic-bezier(.15,.85,.25,1)';
+    wEl.style.transform = `rotate(${720 + Math.random()*360}deg)`;
+    await sleep(1150);
+
+    G.items = G.items.filter(x=>x.id !== src.id);
+    if(win){
+      const newNum = P[upgTargetR][Math.random()*P[upgTargetR].length|0];
+      const newIt = {id:G.nid++, n:newNum, r:upgTargetR, t:src.t};
+      G.items.push(newIt);
+      if(!G.col.includes(newNum)) G.col.push(newNum);
+      checkBest(newIt);
+      upgItemId = newIt.id;
+      burst(innerWidth/2, innerHeight/2, RC[upgTargetR], 35);
+      hap('heavy');
+      toast(`⚡ УСПЕХ! Получен ${RN[upgTargetR]} №${newNum}!`);
+    } else {
+      hap('light');
+      toast('💥 Апгрейд не удался, номерок сгорел…');
+    }
+    gbusy = false;
+    save(true); hud(); gUpgrader();
+  };
+}
+
+/* --- Слоты, Монетка, Мины --- */
+function gSlots(){cancelAnimationFrame(rkLoopId);$('#gm').innerHTML=`<div class="gcard"><div class="reels">${[0,1,2].map(i=>`<div class="reel"><div class="strip" id="rs${i}"><div>🎰</div></div></div>`).join('')}</div><div class="gres" id="gres">Три в ряд — выигрыш, пара — возврат половины</div><button class="gbtn" id="gplay">🎰 Крутить</button><table><tr><th>Комбо</th><th>Выплата</th></tr>${SY.map((s,i)=>`<tr><td>${s+s+s}</td><td>×${SPAY[i]}</td></tr>`).reverse().join('')}<tr><td>Любая пара</td><td>×0,5</td></tr></table></div>`;$('#gplay').onclick=playSlots}
 async function playSlots(){if(gbusy)return;const b=getBet();if(!b)return;gbusy=true;G.c-=b;hud();hap('light');const res=[0,1,2].map(()=>pick(SW)),F=G.set.fast?.6:1;$('#gres').className='gres';$('#gres').textContent='…';
 [0,1,2].forEach(i=>{const st=$('#rs'+i),arr=[];for(let k=0;k<16+i*6;k++)arr.push(SY[Math.random()*5|0]);arr.push(SY[res[i]]);st.style.transition='none';st.style.transform='none';st.innerHTML=arr.map(x=>`<div>${x}</div>`).join('');void st.offsetWidth;st.style.transition=`transform ${(1.2+i*.45)*F}s cubic-bezier(.15,.8,.2,1)`;st.style.transform=`translateY(-${(arr.length-1)*68}px)`});
 await sleep((2.1*F)*1000+150);const[a,c,d]=res;
 if(a==c&&c==d)fin(b,b*SPAY[a],`🎉 ДЖЕКПОТ ×${SPAY[a]}!`);else if(a==c||c==d||a==d)fin(b,Math.floor(b/2),'Пара — половина ставки назад');else fin(b,0,'Мимо…')}
-function gCoin(){$('#gm').innerHTML=`<div class="gcard"><div class="coinwrap"><div id="coin">🪙</div></div><div class="gres" id="gres">Угадай сторону — выплата ×2 (шанс 48%)</div><div class="pair"><button class="gbtn" data-s="0">🦅 Орёл</button><button class="gbtn" data-s="1">👑 Решка</button></div></div>`;$$('#gm .pair button').forEach(x=>x.onclick=()=>playCoin(+x.dataset.s))}
+
+function gCoin(){cancelAnimationFrame(rkLoopId);$('#gm').innerHTML=`<div class="gcard"><div class="coinwrap"><div id="coin">🪙</div></div><div class="gres" id="gres">Угадай сторону — выплата ×2 (шанс 48%)</div><div class="pair"><button class="gbtn" data-s="0">🦅 Орёл</button><button class="gbtn" data-s="1">👑 Решка</button></div></div>`;$$('#gm .pair button').forEach(x=>x.onclick=()=>playCoin(+x.dataset.s))}
 async function playCoin(ch){if(gbusy)return;const b=getBet();if(!b)return;gbusy=true;G.c-=b;hud();const win=Math.random()<.48,face=win?ch:1-ch,c=$('#coin');c.textContent='🪙';$('#gres').className='gres';
 try{await c.animate([{transform:'translateY(0) rotateY(0)'},{transform:'translateY(-60px) rotateY(900deg)',offset:.5},{transform:'translateY(0) rotateY(1800deg)'}],{duration:1200/(G.set.fast?1.6:1),easing:'ease-in-out'}).finished}catch(e){await sleep(800)}
 c.textContent=face?'👑':'🦅';fin(b,win?b*2:0,win?'Угадал!':'Не угадал…')}
-function gRocket(){rkS={on:0};$('#gm').innerHTML=`<div class="gcard"><div id="sky"><div id="mul">1.00×</div><div id="rk">🚀</div></div><div class="gres" id="gres">Забери деньги до того, как ракета улетит</div><button class="gbtn" id="gplay">🚀 Старт</button></div>`;$('#gplay').onclick=playRocket}
-function playRocket(){if(rkS.on){rkS.on=0;const w=Math.floor(rkS.b*rkS.m);$('#gplay').textContent='🚀 Ещё раз';fin(rkS.b,w,`Забрал на ×${rkS.m.toFixed(2)}`);return}
-if(gbusy)return;const b=getBet();if(!b)return;gbusy=true;G.c-=b;hud();hap('light');
-const crash=Math.min(1000,Math.max(1,Math.floor(95/(1-Math.random()))/100));rkS={on:1,b,crash,t0:performance.now(),m:1};
-const rk=$('#rk');rk.className='';rk.style.transform='translateX(-50%)';$('#gres').className='gres';$('#gres').textContent='Летим…';
-const loop=n=>{if(!rkS.on)return;const t=(n-rkS.t0)/1000,m=Math.exp(.2*t);rkS.m=m;
-if(m>=crash){rkS.on=0;$('#mul').textContent=crash.toFixed(2)+'×';rk.className='boom';$('#gplay').textContent='🚀 Ещё раз';hap('heavy');fin(b,0,`💥 Улетела на ×${crash.toFixed(2)}`);return}
-const k=Math.min(1,Math.log(m)/Math.log(40));rk.style.transform=`translate(calc(-50% + ${k*50+Math.sin(t*9)*3}px),${-k*95}px) rotate(${k*8}deg)`;
-$('#mul').textContent=m.toFixed(2)+'×';$('#gplay').textContent=`💸 Забрать ${fmt(Math.floor(b*m))} ₽`;requestAnimationFrame(loop)};requestAnimationFrame(loop)}
-function gMines(){mn=null;$('#gm').innerHTML=`<div class="gcard"><div class="mg" id="mg">${Array.from({length:MN},(_,i)=>`<button class="mt" data-i="${i}"></button>`).join('')}</div><div class="gres" id="gres">3 мины из 16. Открывай алмазы и забирай вовремя</div><button class="gbtn" id="gplay">💣 Начать</button></div>`;$('#gplay').onclick=minesBtn;$('#mg').onclick=minesTap}
+
+function gMines(){cancelAnimationFrame(rkLoopId);mn=null;$('#gm').innerHTML=`<div class="gcard"><div class="mg" id="mg">${Array.from({length:MN},(_,i)=>`<button class="mt" data-i="${i}"></button>`).join('')}</div><div class="gres" id="gres">3 мины из 16. Открывай алмазы и забирай вовремя</div><button class="gbtn" id="gplay">💣 Начать</button></div>`;$('#gplay').onclick=minesBtn;$('#mg').onclick=minesTap}
 function mUpd(){const k=mn.open.size,m=mmult(k),nx=mmult(k+1);$('#gplay').textContent=k?`💸 Забрать ${fmt(Math.floor(mn.b*m))} ₽ (×${m.toFixed(2)})`:'Открой клетку';$('#gres').className='gres';$('#gres').textContent=`Следующий алмаз: ×${nx.toFixed(2)}`}
 function mReveal(hit){$$('#mg .mt').forEach(t=>{const i=+t.dataset.i;if(mn.mines.has(i)){t.textContent='💣';t.className='mt bm'+(i==hit?'':' ghost')}})}
 function minesBtn(){if(mn&&mn.on){if(!mn.open.size)return toast('Открой хотя бы одну клетку');mCash();return}
@@ -827,58 +1096,93 @@ function minesTap(e){const t=e.target.closest('.mt');if(!t||!mn||!mn.on)return;c
 if(mn.mines.has(i)){mn.on=0;mReveal(i);$('#gplay').textContent='💣 Новая игра';hap('heavy');fin(mn.b,0,'💥 Бабах!');return}
 mn.open.add(i);t.textContent='💎';t.className='mt ok';hap('light');if(mn.open.size==MN-MM)mCash();else mUpd()}
 
-/* ===== Рабочий Топ (Строгая фильтрация от "Игрок не число ₽" + Облако) ===== */
-const DB_BASE = FIREBASE_DB_URL.trim().replace(/\/+$/,'').replace(/\/players\.json$/i,'');
-const NM=['Гардеробщик_Макс','КПК_Король','Номерок228','Red_Tag','Валет','Мистер747','Сеня_Пальто','Крючок','Лёха_Вешалка','Тётя_Валя','Бархат','Антресоль','Раздевалка','Шубник','ЧёрныйХод'];
-
+/* ===== Облачная БД: Авто-восстановление, Сохранение и Топ (Баланс / Номерок) ===== */
 function isValidPlayer(x){
   return !!(x && typeof x === 'object' && !x.error && !x.banned && typeof x.n === 'string' && cleanNick(x.n).length > 0 && cleanNick(x.n) !== 'Игрок' && Number.isFinite(Number(x.r)) && Number(x.r) >= 0);
 }
 
-function getLocalBots(){
-  if(G.hideBots) return [];
-  if(G.customBots && G.customBots.length) return G.customBots.filter(isValidPlayer);
-  const hourSeed = Math.floor(Date.now() / 600000);
-  return NM.map((n,i)=>{
-    const base = Math.round(45000 * (.74**i));
-    const wave = Math.sin(hourSeed * 0.3 + i * 1.7) * 0.08 + 1;
-    return {uid:'bot_'+i, n:cleanNick(n), r:Math.max(500, Math.round(base * wave)), lv:Math.max(1, 16-i)};
-  });
+let cloudPlayers = [];
+let cloudStatus = DB_BASE ? 'Подключение...' : '⚠️ Вставь ссылку в FIREBASE_DB_URL';
+let cloudRestored = false;
+
+async function initCloudRecovery(){
+  if(!DB_BASE || cloudRestored) return;
+  cloudRestored = true;
+  try{
+    const r = await fetch(`${DB_BASE}/players/${MY_UID}.json`);
+    const d = await r.json();
+    if(d && !d.error && d.save && typeof d.save === 'object'){
+      const cloudSave = d.save;
+      /* Если локальный прогресс пустой/сброшенный или облачный новее — восстанавливаем из облака! */
+      const localWorth = worth();
+      const cloudWorth = (Number(cloudSave.c)||0) + (Array.isArray(cloudSave.items)?cloudSave.items.length*50:0);
+      if((G.rolls === 0 && (cloudSave.rolls||0) > 0) || (cloudSave.updatedAt||0) > (G.updatedAt||0) || (G.lv === 1 && localWorth <= 1000 && (cloudSave.lv > 1 || cloudWorth > 1200))){
+        G = {...defaultSave(), ...cloudSave, uid: MY_UID, uname: MY_UNAME};
+        G.items = (G.items||[]).filter(i=>i && i.n>=1 && i.n<=MAX_NUM);
+        G.col = (G.col||[]).filter(n=>n>=1 && n<=MAX_NUM);
+        save(false);
+        hud();
+        toast('☁️ Твой прогресс восстановлен из облака!');
+      }
+    }
+    syncCloud(true);
+  }catch(e){}
 }
 
-let cloudPlayers = [];
-let cloudStatus = DB_BASE ? 'Подключение...' : 'Локальный режим (FIREBASE_DB_URL не задан)';
-
-async function syncCloud(){
+async function syncCloud(force=false){
   if(!DB_BASE) return;
   try{
+    G.items.forEach(checkBest);
+    const payload = {
+      uid: MY_UID,
+      uname: MY_UNAME,
+      n: UN,
+      c: Math.round(Number(G.c)||0),
+      r: worth(),
+      lv: G.lv,
+      rolls: G.rolls,
+      colCount: G.col.length,
+      best: G.best || null,
+      ts: Date.now(),
+      save: {
+        c: G.c, items: G.items.slice(0, 120), nid: G.nid, rolls: G.rolls,
+        p: G.p, up: G.up, lv: G.lv, xp: G.xp, sp: G.sp, gift: G.gift,
+        spent: G.spent, earned: G.earned, st: G.st, qt: G.qt, bless: G.bless,
+        gnet: G.gnet, col: G.col, usedCodes: G.usedCodes, best: G.best,
+        updatedAt: G.updatedAt || Date.now(), set: G.set
+      }
+    };
     const res = await fetch(`${DB_BASE}/players/${MY_UID}.json`, {
-      method:'PUT',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({uid:MY_UID, n:UN, r:worth(), lv:G.lv, ts:Date.now()})
+      method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload)
     });
     const data = await res.json();
     if(data && data.error){
-      cloudStatus = '⚠️ Ошибка Firebase Rules: открой .read: true и .write: true';
+      cloudStatus = '⚠️ Ошибка Firebase Rules: обнови правила БД!';
       return;
     }
-    cloudStatus = '🟢 Облачный топ активен';
-    const cmdRes = await fetch(`${DB_BASE}/commands/${MY_UID}.json`);
-    const cmd = await cmdRes.json();
-    if(cmd && !cmd.error && cmd.ts && !G.usedCodes.includes('cmd_'+cmd.ts)){
-      G.usedCodes.push('cmd_'+cmd.ts);
-      if(cmd.addCoins) G.c = Math.max(0, G.c + Number(cmd.addCoins));
-      if(cmd.setLv) G.lv = Math.max(1, Number(cmd.setLv));
-      if(cmd.giveNum){
-        const num = Math.min(1000, Math.max(1, Number(cmd.giveNum)));
-        const it = {id:G.nid++, n:num, r:RAR[num]||0, t:cmd.giveType||0};
-        G.items.push(it); checkBest(it);
+    cloudStatus = '🟢 Облачная БД синхронизирована';
+
+    /* Проверка команд выдачи (по юзернейму или ID) */
+    for(const key of [String(MY_UID), MY_UNAME]){
+      if(!key) continue;
+      const cmdRes = await fetch(`${DB_BASE}/commands/${key}.json`);
+      const cmd = await cmdRes.json();
+      if(cmd && !cmd.error && cmd.ts && !G.usedCodes.includes('cmd_'+cmd.ts)){
+        G.usedCodes.push('cmd_'+cmd.ts);
+        if(cmd.addCoins) G.c = Math.max(0, G.c + Number(cmd.addCoins));
+        if(cmd.setCoins !== undefined) G.c = Math.max(0, Number(cmd.setCoins));
+        if(cmd.addLv) { G.lv = Math.max(1, G.lv + Number(cmd.addLv)); G.sp += Number(cmd.addLv); }
+        if(cmd.giveNum){
+          const num = Math.min(MAX_NUM, Math.max(1, Number(cmd.giveNum)));
+          const it = {id:G.nid++, n:num, r:RAR[num]||0, t:cmd.giveType||0};
+          G.items.push(it); if(!G.col.includes(num)) G.col.push(num); checkBest(it);
+        }
+        await fetch(`${DB_BASE}/commands/${key}.json`, {method:'DELETE'});
+        save(true); hud(); toast('⚡ Получена выдача от Администратора!');
       }
-      await fetch(`${DB_BASE}/commands/${MY_UID}.json`, {method:'DELETE'});
-      save();hud();toast('⚡ Получена выдача от Администратора!');
     }
   }catch(e){
-    cloudStatus = '⚠️ Нет связи с БД (проверь ссылку FIREBASE_DB_URL)';
+    cloudStatus = '⚠️ Нет связи с Firebase';
   }
 }
 
@@ -890,38 +1194,46 @@ async function loadLeaderboard(){
     if(d && !d.error && typeof d === 'object'){
       cloudPlayers = Object.values(d).filter(isValidPlayer);
       cloudStatus = `🟢 Облачный топ (${cloudPlayers.length} игр.)`;
-    } else if(d && d.error){
-      cloudPlayers = [];
-      cloudStatus = '⚠️ В Firebase закрыты Rules (.read/.write: false)';
     }
-  }catch(e){
-    cloudPlayers = [];
-  }
+  }catch(e){}
 }
 
 $$('#s3 .sub button').forEach(b=>b.onclick=()=>{ttab=+b.dataset.t;$$('#s3 .sub button').forEach(x=>x.classList.toggle('on',x==b));board()});
+
 async function board(){
-  if(ttab){
+  if(ttab === 2){
     const l=[...G.items].sort((a,b)=>price(b)-price(a)).slice(0,15);
     $('#top0').innerHTML=l.length?l.map((i,k)=>`<div class="row"><b class="n">${k+1}</b>${tg(i,38,false)}<div><b style="color:${RC[i.r]}">${RN[i.r]} №${i.n}</b><small>${TN[i.t]}</small></div><b style="color:var(--gold)">${fmt(price(i))} ₽</b></div>`).join(''):'<p style="color:var(--mut)">Хранилище пусто — покрути номерки!</p>';
     return;
   }
   await syncCloud();
   await loadLeaderboard();
-  const me={uid:MY_UID, n:UN, r:worth(), lv:G.lv, me:1};
+  G.items.forEach(checkBest);
+
+  const me={uid:MY_UID, uname:MY_UNAME, n:UN, c:G.c, r:worth(), lv:G.lv, best:G.best, me:1};
   const validCloud = cloudPlayers.filter(x=>String(x.uid)!==String(MY_UID));
-  const bots = getLocalBots();
-  const merged = [...validCloud, ...bots];
-  const all=[...merged.map(x=>({uid:x.uid, n:cleanNick(x.n), r:Number(x.r)||0, lv:Number(x.lv)||1, me:0})), me]
-    .filter(x=>x.n && Number.isFinite(x.r))
-    .sort((a,b)=>b.r-a.r);
-  const rk=all.indexOf(me);
-  const row=(x,i)=>`<div class="row leader-row ${x.me?'me':''}"><b class="n">${['🥇','🥈','🥉'][i]||i+1}</b><div><span class="nick">${x.n}</span><small>Ур. ${x.lv||1} · состояние ${fmt(x.r)} ₽</small></div></div>`;
+  const pool = [...validCloud.map(x=>({...x, n:cleanNick(x.n), me:0})), me];
   const admHint = window.__IS_ADMIN ? `<div style="font-size:10px;color:var(--gold);margin-bottom:6px">${cloudStatus}</div>` : '';
-  $('#top0').innerHTML=`<p style="color:var(--mut);font-size:11px;margin:0 0 4px">Состояние = баланс + стоимость всех номерков на складе. Профили скрыты для приватности.</p>`+admHint+all.slice(0,15).map(row).join('')+(rk>=15?`<div style="text-align:center;color:var(--mut)">⋮</div>`+row(me,rk):'');
+
+  if(ttab === 0){
+    /* Топ по Балансу / Состоянию */
+    const all = pool.sort((a,b)=>b.r - a.r);
+    const rk = all.indexOf(me);
+    const row=(x,i)=>`<div class="row leader-row ${x.me?'me':''}"><b class="n">${['🥇','🥈','🥉'][i]||i+1}</b><div><span class="nick">${x.n}</span><small>Ур. ${x.lv||1} · баланс ${fmt(x.c ?? x.r)} ₽ · состояние ${fmt(x.r)} ₽</small></div></div>`;
+    $('#top0').innerHTML=`<p style="color:var(--mut);font-size:11px;margin:0 0 4px">Рейтинг богачей по общему состоянию и балансу.</p>`+admHint+all.slice(0,15).map(row).join('')+(rk>=15?`<div style="text-align:center;color:var(--mut)">⋮</div>`+row(me,rk):'');
+  } else if(ttab === 1){
+    /* Топ по Лучшему Номерку */
+    const withBest = pool.filter(x=>x.best && x.best.n && x.best.n <= MAX_NUM).map(x=>{
+      const bp = x.best.p || price(x.best);
+      return {...x, bestPrice: bp};
+    }).sort((a,b)=>b.bestPrice - a.bestPrice || (b.best.r - a.best.r));
+
+    const row=(x,i)=>`<div class="row leader-row ${x.me?'me':''}"><b class="n">${['🥇','🥈','🥉'][i]||i+1}</b>${tg(x.best,34,false)}<div><span class="nick">${x.n}</span><small style="color:${RC[x.best.r||0]}">${RN[x.best.r||0]} №${x.best.n}</small></div><b style="color:var(--gold);font-size:13px">${fmt(x.bestPrice)} ₽</b></div>`;
+    $('#top0').innerHTML=`<p style="color:var(--mut);font-size:11px;margin:0 0 4px">Рейтинг самых дорогих выбитых номерков среди игроков.</p>`+admHint+(withBest.length?withBest.slice(0,15).map(row).join(''):'<p style="color:var(--mut)">Пока никто не выбил номерки</p>');
+  }
 }
 
-/* ===== Цели: Задания, Навыки, Коллекция ===== */
+/* ===== Цели: Задания, Навыки, Коллекция (1..999) ===== */
 const UP=[{k:'l',e:'🍀',n:'Удача',d:l=>`+${l*2}% к шансу редкостей выше обычной`,m:5},{k:'m',e:'🤝',n:'Торговец',d:l=>`+${l}% к цене продажи`,m:5},{k:'r',e:'🏷️',n:'Скидка',d:l=>`крутки дешевле на ${l}%`,m:5},{k:'s',e:'📦',n:'Склад',d:l=>`вместимость ${40+10*l} номерков`,m:5},{k:'g',e:'🎁',n:'Щедрость',d:l=>`подарок гардеробщика +${l*10}%`,m:5}];
 const pc=l=>1+Math.floor(l/3);
 $$('#s4 .sub button').forEach(b=>b.onclick=()=>{gtab=+b.dataset.g;$$('#s4 .sub button').forEach(x=>x.classList.toggle('on',x==b));goals()});
@@ -933,7 +1245,7 @@ function goals(){
     $('#gl').innerHTML=`<p style="margin:0 0 8px;font-size:13px">Очки навыков: <b style="color:var(--gold)">${G.sp} 🧠</b> <span style="color:var(--mut);font-size:11px">(за уровни и задания)</span></p>`+UP.map((u,i)=>{const l=G.up[u.k],mx=l>=u.m;return`<div class="row up"><em>${u.e}</em><div><b>${u.n}</b> · ур. ${l}/${u.m}<small>${u.d(l)}${mx?'':' → '+u.d(l+1)}</small></div><button data-u="${i}" ${mx||G.sp<pc(l)?'disabled':''}>${mx?'MAX':pc(l)+' 🧠'}</button></div>`}).join('');
   } else {
     const cnt = G.col.length;
-    $('#gl').innerHTML=`<div class="row"><div><b>📖 Открыто уникальных номеров: ${cnt} / 1000</b><div class="pb"><i style="width:${cnt/10}%"></i></div><small>Выбивай новые номера от 1 до 1000, чтобы собрать полный гардероб!</small></div></div>` +
+    $('#gl').innerHTML=`<div class="row"><div><b>📖 Открыто уникальных номеров: ${cnt} / ${MAX_NUM}</b><div class="pb"><i style="width:${cnt/MAX_NUM*100}%"></i></div><small>Выбивай номера от 1 до ${MAX_NUM}, чтобы собрать всю коллекцию!</small></div></div>` +
     RN.map((rn,r)=>{
       const totalInR = P[r].length;
       const gotInR = P[r].filter(n=>G.col.includes(n)).length;
@@ -945,199 +1257,289 @@ $('#gl').onclick=e=>{
   const b=e.target.closest('button');if(!b)return;
   if(b.dataset.q!=null){const q=Q[b.dataset.q];if(QV(q)<QG(q))return;G.c+=QR(q);G.sp++;G.qt[q.k]=QT(q)+1;toast(`🎯 Задание выполнено: +${fmt(QR(q))} ₽ и 🧠1`);hap('medium')}
   else if(b.dataset.u!=null){const u=UP[b.dataset.u],l=G.up[u.k];if(l>=u.m||G.sp<pc(l))return;G.sp-=pc(l);G.up[u.k]++;hap('medium')}
-  save();goals();hud();
+  save(true);goals();hud();
 };
 
-/* ===== Система Кодов выдачи ===== */
-function makeSign(str){
-  let h = 2166136261;
-  const s = str + '_KPK_SECRET_7646030838';
-  for(let i=0;i<s.length;i++){h ^= s.charCodeAt(i); h = Math.imul(h, 16777619);}
-  return (h>>>0).toString(36).toUpperCase().slice(0,5);
-}
-function createGiftCode(targetUid, type, val, extra=0){
-  const nonce = Math.floor(100 + Math.random()*899);
-  const payload = `${targetUid}:${type}:${val}:${extra}:${nonce}`;
-  const sig = makeSign(payload);
-  return 'KPK-' + btoa(payload).replace(/=/g,'') + '-' + sig;
-}
-function redeemCode(raw){
-  const code = raw.trim();
+/* ===== Активация Облачных Купонов (с проверкой лимитов, времени и @username) ===== */
+async function redeemCoupon(raw){
+  const code = raw.trim().toUpperCase();
   if(!code) return;
-  if(G.usedCodes.includes(code)) return toast('❌ Этот код уже был активирован');
-  if(code.toUpperCase() === 'START2026'){
-    G.usedCodes.push(code); G.c += 2500; save(); hud();
-    return toast('🎁 Промокод активирован: +2 500 ₽!');
+  if(G.usedCodes.includes('cp_'+code)) return toast('❌ Ты уже активировал этот купон');
+
+  if(!DB_BASE){
+    if(code === 'START2026'){
+      G.usedCodes.push('cp_'+code); G.c += 2500; save(true); hud();
+      return toast('🎁 Купон активирован: +2 500 ₽!');
+    }
+    return toast('⚠️ Подключи Firebase для работы облачных купонов');
   }
-  if(!code.startsWith('KPK-')) return toast('❌ Неверный формат кода');
+
   try{
-    const parts = code.split('-');
-    const payload = atob(parts[1]);
-    const sig = parts[2];
-    if(makeSign(payload) !== sig) return toast('❌ Подпись кода недействительна');
-    const [tUid, type, val, extra] = payload.split(':');
-    if(Number(tUid)!==0 && Number(tUid)!==Number(MY_UID)){
-      return toast(`❌ Этот код предназначен только для ID ${tUid}`);
+    const r = await fetch(`${DB_BASE}/coupons/${code}.json`);
+    const cp = await r.json();
+    if(!cp || cp.error || !cp.code) return toast('❌ Такого купона не существует');
+
+    if(cp.expiresAt && Date.now() > cp.expiresAt) return toast('⌛ Срок действия купона истёк');
+    const usedBy = cp.usedBy || {};
+    const usedCount = Object.keys(usedBy).length;
+    if(cp.maxUses && usedCount >= cp.maxUses) return toast('❌ Лимит активаций этого купона исчерпан');
+    if(usedBy[MY_UID]) return toast('❌ Ты уже активировал этот купон');
+
+    if(cp.targetUser){
+      const target = cp.targetUser.replace(/^@/,'').trim().toLowerCase();
+      if(target && target !== MY_UNAME && target !== UN.toLowerCase()){
+        return toast(`❌ Этот купон создан лично для @${target}`);
+      }
     }
-    G.usedCodes.push(code);
-    if(type === 'C'){
-      G.c += Number(val);
-      toast(`💸 Зачислено +${fmt(Number(val))} ₽!`);
-    } else if(type === 'N'){
-      const num = Math.min(1000, Math.max(1, Number(val)));
-      const r = RAR[num] ?? 0;
-      const it = {id:G.nid++, n:num, r, t:Number(extra)||0};
-      G.items.push(it);
-      if(!G.col.includes(num)) G.col.push(num);
-      checkBest(it);
-      toast(`🎫 Получен номерок №${num} (${RN[r]})!`);
-    } else if(type === 'L'){
-      G.lv += Number(val); G.sp += Number(val);
-      toast(`⬆️ +${val} к уровню и очкам навыков!`);
+
+    /* Записываем активацию в БД */
+    await fetch(`${DB_BASE}/coupons/${code}/usedBy/${MY_UID}.json`, {
+      method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify(MY_UNAME || UN)
+    });
+
+    G.usedCodes.push('cp_'+code);
+    if(cp.kind === 'C'){
+      G.c += Number(cp.val||0);
+      toast(`🎟️ Купон активирован: +${fmt(cp.val)} ₽!`);
+    } else if(cp.kind === 'N'){
+      const num = Math.min(MAX_NUM, Math.max(1, Number(cp.val||777)));
+      const it = {id:G.nid++, n:num, r:RAR[num]||0, t:Number(cp.extra)||0};
+      G.items.push(it); if(!G.col.includes(num)) G.col.push(num); checkBest(it);
+      toast(`🎟️ Купон активирован: получен №${num} (${RN[it.r]})!`);
+    } else if(cp.kind === 'L'){
+      const lvAdd = Number(cp.val||1);
+      G.lv += lvAdd; G.sp += lvAdd;
+      toast(`🎟️ Купон активирован: +${lvAdd} к уровню и 🧠!`);
     }
-    save();syncCloud();hud();
-    $('#promoInp').value='';
+    $('#promoInp').value = '';
+    save(true); hud();
   }catch(e){
-    toast('❌ Ошибка чтения кода');
+    toast('❌ Ошибка проверки купона');
   }
 }
-$('#promoBtn').onclick=()=>redeemCode($('#promoInp').value);
+$('#promoBtn').onclick=()=>redeemCoupon($('#promoInp').value);
 
-/* ===== Личная Админ-панель (ID 7646030838) ===== */
-$('#admBtn').onclick=()=>{
-  if(!window.__IS_ADMIN) return;
-  $('#md').innerHTML=`<div class="adm-box">
-    <div style="display:flex;justify-content:space-between;align-items:center">
-      <h3>👑 Админ-панель (${ADMIN_ID})</h3>
+/* ===== Гибкая Админ-панель (Вкладки: Себе / Игрокам по @username / Купоны) ===== */
+let admTab = 0;
+$('#admBtn').onclick = () => { if(window.__IS_ADMIN) renderAdminModal(); };
+
+async function renderAdminModal(){
+  await loadLeaderboard();
+  $('#md').innerHTML = `<div class="adm-box">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <h3 style="margin:0">👑 Админ-центр (@${MY_UNAME})</h3>
       <button class="f" onclick="document.getElementById('md').classList.remove('on')">✕</button>
     </div>
-    <div style="font-size:11px;color:var(--gold);margin-bottom:6px">${cloudStatus}</div>
-
-    <h3>1. Быстрая выдача себе</h3>
-    <div class="adm-row">
-      <input class="adm-inp" id="admCoins" type="number" placeholder="Сумма ₽" value="50000">
-      <button class="f on" id="admAddC">+ Деньги</button>
-      <button class="f" id="admSetC">= Задать</button>
+    <div class="adm-tabs">
+      <button class="${admTab===0?'on':''}" data-at="0">⚡ Себе</button>
+      <button class="${admTab===1?'on':''}" data-at="1">👤 Игрокам (@ник)</button>
+      <button class="${admTab===2?'on':''}" data-at="2">🎟️ Купоны</button>
     </div>
-    <div class="adm-row">
-      <input class="adm-inp" id="admNum" type="number" placeholder="Номер КПК (1-1000)" value="777">
-      <select class="adm-inp" id="admType" style="flex:0.7"><option value="0">🔴 Пластик</option><option value="1">📄 Бумага</option></select>
-      <button class="f on" id="admGiveN">Выдать №</button>
-    </div>
-    <div class="adm-row">
-      <button class="f" id="admLvUp">+5 Ур. и 🧠</button>
-      <button class="f" id="admBless">👵 Удача ×2</button>
-      <button class="f" id="admUnlockAll">📖 Вся коллекция</button>
-    </div>
-
-    <h3>2. Генератор кода выдачи для игрока</h3>
-    <div class="adm-row">
-      <input class="adm-inp" id="gUid" type="number" placeholder="TG ID игрока (0 = любому)" value="0">
-      <select class="adm-inp" id="gKind" style="flex:0.8">
-        <option value="C">💸 Деньги (₽)</option>
-        <option value="N">🎫 Номерок (№)</option>
-        <option value="L">⬆️ Уровни</option>
-      </select>
-    </div>
-    <div class="adm-row">
-      <input class="adm-inp" id="gVal" type="number" placeholder="Сумма ₽ или № номерка" value="10000">
-      <button class="f on" id="gMake">Создать код</button>
-    </div>
-    <div class="adm-row">
-      <input class="adm-inp" id="gOut" readonly placeholder="Тут появится готовый код...">
-      <button class="f" id="gCopy">📋</button>
-    </div>
-
-    <h3>3. Управление Топом</h3>
-    <div class="adm-row">
-      <button class="f ${!G.hideBots?'on':''}" id="bToggleBots" style="flex:1">🤖 Боты в топе: ${G.hideBots?'Выкл':'Вкл'}</button>
-      <button class="f" id="bReset" style="flex:1">🔄 Сбросить ботов</button>
-    </div>
-    <div class="adm-row">
-      <input class="adm-inp" id="bNick" placeholder="Ник игрока">
-      <input class="adm-inp" id="bWorth" type="number" placeholder="Состояние ₽" value="150000">
-      <button class="f on" id="bAdd">+</button>
-    </div>
+    <div id="admBody"></div>
   </div>`;
   $('#md').classList.add('on');
 
-  $('#admAddC').onclick=()=>{G.c+=Number($('#admCoins').value||0);save();syncCloud();hud();toast('✅ Баланс пополнен')};
-  $('#admSetC').onclick=()=>{G.c=Math.max(0,Number($('#admCoins').value||0));save();syncCloud();hud();toast('✅ Баланс установлен')};
-  $('#admGiveN').onclick=()=>{
-    const n=Math.min(1000,Math.max(1,Number($('#admNum').value||777))), t=Number($('#admType').value||0);
-    const it={id:G.nid++,n,r:RAR[n]??5,t};
-    G.items.push(it);
-    if(!G.col.includes(n))G.col.push(n);
-    checkBest(it);
-    save();syncCloud();hud();toast(`✅ Выдан №${n} (${RN[RAR[n]]})`);
-  };
-  $('#admLvUp').onclick=()=>{G.lv+=5;G.sp+=5;save();syncCloud();hud();toast('✅ +5 уровней и очков навыков')};
-  $('#admBless').onclick=()=>{G.bless=1;save();hud();toast('✅ Благословение активировано')};
-  $('#admUnlockAll').onclick=()=>{G.col=Array.from({length:1000},(_,i)=>i+1);save();toast('✅ Вся коллекция открыта')};
+  $$('.adm-tabs button').forEach(b=>b.onclick=()=>{admTab=+b.dataset.at;renderAdminModal()});
+  const body = $('#admBody');
 
-  $('#gMake').onclick=()=>{
-    const code = createGiftCode(Number($('#gUid').value||0), $('#gKind').value, Number($('#gVal').value||1000), 0);
-    $('#gOut').value = code;
-  };
-  $('#gCopy').onclick=()=>{
-    const v=$('#gOut').value;if(!v)return;
-    navigator.clipboard&&navigator.clipboard.writeText(v);
-    toast('📋 Код скопирован! Отправь его игроку');
-  };
-  $('#bToggleBots').onclick=e=>{
-    G.hideBots = G.hideBots ? 0 : 1;
-    e.target.textContent = `🤖 Боты в топе: ${G.hideBots?'Выкл':'Вкл'}`;
-    e.target.classList.toggle('on', !G.hideBots);
-    save();board();
-  };
-  $('#bAdd').onclick=()=>{
-    const n=cleanNick($('#bNick').value), r=Number($('#bWorth').value||10000);
-    if(!n) return toast('Введи корректный ник');
-    if(!G.customBots) G.customBots = getLocalBots();
-    const ex = G.customBots.find(x=>x.n.toLowerCase()===n.toLowerCase());
-    if(ex) ex.r = r; else G.customBots.push({uid:'c_'+Date.now(), n, r, lv:15});
-    save();board();toast(`✅ Игрок ${n} добавлен в топ`);
-  };
-  $('#bReset').onclick=()=>{G.customBots=null;G.hideBots=0;save();board();toast('✅ Топ сброшен')};
-};
+  if(admTab === 0){
+    body.innerHTML = `
+      <h3>Быстрое управление своим аккаунтом</h3>
+      <div class="adm-row">
+        <input class="adm-inp" id="admCoins" type="number" placeholder="Сумма ₽" value="50000">
+        <button class="f on" id="admAddC">+ Деньги</button>
+        <button class="f" id="admSetC">= Задать</button>
+      </div>
+      <div class="adm-row">
+        <input class="adm-inp" id="admNum" type="number" placeholder="Номер (1-999)" value="777">
+        <select class="adm-inp" id="admType" style="flex:0.7"><option value="0">🔴 Пластик</option><option value="1">📄 Бумага</option></select>
+        <button class="f on" id="admGiveN">Выдать №</button>
+      </div>
+      <div class="adm-row">
+        <button class="f" id="admLvUp">+5 Ур. и 🧠</button>
+        <button class="f" id="admBless">👵 Удача ×2</button>
+        <button class="f" id="admUnlockAll">📖 Вся коллекция</button>
+      </div>`;
+    $('#admAddC').onclick=()=>{G.c+=Number($('#admCoins').value||0);save(true);hud();toast('✅ Баланс пополнен')};
+    $('#admSetC').onclick=()=>{G.c=Math.max(0,Number($('#admCoins').value||0));save(true);hud();toast('✅ Баланс установлен')};
+    $('#admGiveN').onclick=()=>{
+      const n=Math.min(MAX_NUM,Math.max(1,Number($('#admNum').value||777))), t=Number($('#admType').value||0);
+      const it={id:G.nid++,n,r:RAR[n]??5,t};
+      G.items.push(it); if(!G.col.includes(n))G.col.push(n); checkBest(it);
+      save(true);hud();toast(`✅ Выдан №${n} (${RN[RAR[n]]})`);
+    };
+    $('#admLvUp').onclick=()=>{G.lv+=5;G.sp+=5;save(true);hud();toast('✅ +5 уровней и 🧠')};
+    $('#admBless').onclick=()=>{G.bless=1;save(true);hud();toast('✅ Удача ×2 активирована')};
+    $('#admUnlockAll').onclick=()=>{G.col=Array.from({length:MAX_NUM},(_,i)=>i+1);save(true);toast('✅ Вся коллекция открыта')};
 
-/* ===== Настройки и справка ===== */
+  } else if(admTab === 1){
+    body.innerHTML = `
+      <h3>Выдача и управление по @username</h3>
+      <div class="adm-row">
+        <input class="adm-inp" id="tUname" placeholder="@username или имя игрока">
+      </div>
+      <div class="adm-row">
+        <select class="adm-inp" id="tAct">
+          <option value="addCoins">💸 Прибавить баланс (+₽)</option>
+          <option value="setCoins">💰 Установить баланс (=₽)</option>
+          <option value="giveNum">🎫 Выдать номерок (№1-999)</option>
+          <option value="addLv">⬆️ Прибавить уровни (+Ур)</option>
+        </select>
+        <input class="adm-inp" id="tVal" type="number" placeholder="Значение" value="25000" style="flex:0.7">
+      </div>
+      <button class="f on" id="tSend" style="width:100%;margin-bottom:10px">🚀 Отправить игроку</button>
+
+      <h3>Игроки в базе (${cloudPlayers.length}) — нажми для выбора</h3>
+      <div style="max-height:170px;overflow-y:auto">
+        ${cloudPlayers.sort((a,b)=>b.r-a.r).map(p=>`<div class="row" style="padding:6px 8px;margin-bottom:4px">
+          <div style="cursor:pointer" data-pick="${p.uname||p.n}">
+            <b>${cleanNick(p.n)}</b> <small style="display:inline;color:var(--gold)">@${p.uname||'нет_ника'}</small>
+            <small>Ур. ${p.lv||1} · Состояние: ${fmt(p.r)} ₽</small>
+          </div>
+          <button class="f" data-del="${p.uid}" style="padding:4px 8px;color:var(--bad)">🗑️</button>
+        </div>`).join('') || '<div style="color:var(--mut);font-size:12px">Игроков пока нет</div>'}
+      </div>`;
+
+    body.querySelectorAll('[data-pick]').forEach(el=>el.onclick=()=>{
+      $('#tUname').value = '@' + el.dataset.pick;
+    });
+    body.querySelectorAll('[data-del]').forEach(btn=>btn.onclick=async()=>{
+      const uid = btn.dataset.del;
+      if(!DB_BASE) return;
+      await fetch(`${DB_BASE}/players/${uid}.json`, {method:'DELETE'});
+      toast('🗑️ Игрок удалён из топа');
+      renderAdminModal();
+    });
+    $('#tSend').onclick = async () => {
+      if(!DB_BASE) return toast('⚠️ Подключи Firebase');
+      const rawU = $('#tUname').value.replace(/^@/,'').trim().toLowerCase();
+      if(!rawU) return toast('Введи @username игрока');
+      const act = $('#tAct').value, val = Number($('#tVal').value||0);
+      const found = cloudPlayers.find(p=>(p.uname&&p.uname.toLowerCase()===rawU) || cleanNick(p.n).toLowerCase()===rawU);
+      const targetKey = found ? found.uid : rawU;
+      const cmdObj = {ts: Date.now(), [act]: val};
+      await fetch(`${DB_BASE}/commands/${targetKey}.json`, {
+        method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify(cmdObj)
+      });
+      toast(`✅ Отправлено для @${rawU}! Сработает автоматически`);
+    };
+
+  } else if(admTab === 2){
+    let couponsList = [];
+    if(DB_BASE){
+      try{
+        const r = await fetch(`${DB_BASE}/coupons.json`);
+        const d = await r.json();
+        if(d && !d.error) couponsList = Object.values(d);
+      }catch(e){}
+    }
+    const rndCode = 'KPK' + Math.floor(1000 + Math.random()*9000);
+    body.innerHTML = `
+      <h3>Создать новый купон</h3>
+      <div class="adm-row">
+        <input class="adm-inp" id="cpCode" placeholder="Код купона" value="${rndCode}">
+        <select class="adm-inp" id="cpKind" style="flex:0.9">
+          <option value="C">💸 Деньги (₽)</option>
+          <option value="N">🎫 Номерок (№)</option>
+          <option value="L">⬆️ Уровни</option>
+        </select>
+      </div>
+      <div class="adm-row">
+        <input class="adm-inp" id="cpVal" type="number" placeholder="Сумма ₽ или № (1-999)" value="15000">
+        <input class="adm-inp" id="cpUses" type="number" placeholder="Кол-во активаций" value="10" style="flex:0.7">
+      </div>
+      <div class="adm-row">
+        <select class="adm-inp" id="cpTime">
+          <option value="0">♾️ Без ограничения времени</option>
+          <option value="15">⏱️ На 15 минут</option>
+          <option value="60">⏱️ На 1 час</option>
+          <option value="1440">⏱️ На 24 часа</option>
+          <option value="10080">⏱️ На 7 дней</option>
+        </select>
+        <input class="adm-inp" id="cpTarget" placeholder="Для @username (пусто = всем)">
+      </div>
+      <button class="f on" id="cpCreate" style="width:100%;margin-bottom:10px">➕ Создать купон в БД</button>
+
+      <h3>Активные купоны (${couponsList.length})</h3>
+      <div style="max-height:150px;overflow-y:auto">
+        ${couponsList.map(c=>{
+          const used = c.usedBy ? Object.keys(c.usedBy).length : 0;
+          const exp = c.expiresAt ? (Date.now()>c.expiresAt ? 'Истёк' : `до ${new Date(c.expiresAt).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}`) : 'Бессрочный';
+          return `<div class="row" style="padding:6px 8px;margin-bottom:4px">
+            <div>
+              <b style="color:var(--gold)">${c.code}</b> <small style="display:inline">(${c.kind==='C'?fmt(c.val)+' ₽':c.kind==='N'?'№'+c.val:'+'+c.val+' Ур'})</small>
+              <small>Активаций: ${used}/${c.maxUses||1} · ${exp} ${c.targetUser?'· для @'+c.targetUser:''}</small>
+            </div>
+            <button class="f" data-delcp="${c.code}" style="padding:4px 8px;color:var(--bad)">🗑️</button>
+          </div>`;
+        }).join('') || '<div style="color:var(--mut);font-size:12px">Купонов пока нет</div>'}
+      </div>`;
+
+    $('#cpCreate').onclick = async () => {
+      if(!DB_BASE) return toast('⚠️ Подключи Firebase');
+      const code = $('#cpCode').value.trim().toUpperCase().replace(/[^A-Z0-9_-]/g,'');
+      if(!code) return toast('Введи код купона');
+      const mins = Number($('#cpTime').value||0);
+      const cpObj = {
+        code,
+        kind: $('#cpKind').value,
+        val: Number($('#cpVal').value||1000),
+        maxUses: Math.max(1, Number($('#cpUses').value||1)),
+        expiresAt: mins > 0 ? Date.now() + mins * 60000 : 0,
+        targetUser: $('#cpTarget').value.replace(/^@/,'').trim().toLowerCase(),
+        createdAt: Date.now()
+      };
+      await fetch(`${DB_BASE}/coupons/${code}.json`, {
+        method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify(cpObj)
+      });
+      navigator.clipboard && navigator.clipboard.writeText(code);
+      toast(`🎟️ Купон ${code} создан и скопирован!`);
+      renderAdminModal();
+    };
+    body.querySelectorAll('[data-delcp]').forEach(btn=>btn.onclick=async()=>{
+      await fetch(`${DB_BASE}/coupons/${btn.dataset.delcp}.json`, {method:'DELETE'});
+      toast('🗑️ Купон удалён');
+      renderAdminModal();
+    });
+  }
+}
+
+/* ===== Обновлённые Настройки и Справка ===== */
 function more(){
-  $('#myIdBox').innerHTML=`Твой Telegram ID: <b style="color:#fff;user-select:all">${MY_UID}</b> (нажми на <b>👤 Ур. ${G.lv}</b> сверху слева, чтобы открыть свой профиль)`;
+  $('#myIdBox').innerHTML=`Твой юзернейм: <b style="color:#fff;user-select:all">@${MY_UNAME}</b> · ID: <b style="color:#fff;user-select:all">${MY_UID}</b>`;
   $('#sets').innerHTML=[
-    ['hap','📳 Вибрация'],
-    ['autosell','🧹 Авто-продажа обычных (серых) при крутке'],
-    ['wd','⚪ Белые цифры на пластике'],
-    ['shake','💥 Тряска экрана на редких'],
-    ['fast','⏩ Быстрая крутка']
+    ['hap','📳 Тактильная отдача (вибрация)'],
+    ['snd','🔊 Звуковые щелчки при крутке'],
+    ['fast','⏩ Турбо-крутка (ускоренная анимация)'],
+    ['autosell','🧹 Авто-продажа обычных (серых) без бонуса'],
+    ['autosellUncommon','🧹 Авто-продажа обычных + необычных (зелёных)'],
+    ['compact','📐 Компактная сетка номерков на складе'],
+    ['shake','💥 Тряска экрана при выпадении Легендарки/Мифика']
   ].map(([k,n])=>`<div class="row"><div>${n}</div><button class="f ${G.set[k]?'on':''}" data-k="${k}">${G.set[k]?'Вкл':'Выкл'}</button></div>`).join('');
 
   const w=W(false),t=w.reduce((a,b)=>a+b);
   $('#rates').innerHTML=`<tr><th>Редкость</th><th>Шанс</th><th>🔴 цена</th><th>📄 цена</th></tr>`+RN.map((x,i)=>`<tr><td><span class="dot" style="background:${RC[i]}"></span>${x}</td><td>${(w[i]/t*100).toFixed(2)}%</td><td>${fmt(BASE[0][i])}</td><td>${fmt(BASE[1][i])}</td></tr>`).join('');
   $('#bon').innerHTML=`<tr><th>Номер</th><th>Бонус</th><th>Редкость</th></tr>
-<tr><td>👑 1–10</td><td>×1.2</td><td>Мифический</td></tr>
-<tr><td>🦍 300 Биг Бой</td><td>×2.5</td><td>Эпический</td></tr>
-<tr><td>😎 228 Блатной</td><td>×2.5</td><td>Эпический</td></tr>
-<tr><td>🔥 52 · 52NGG</td><td>×2.5</td><td>Эпический</td></tr>
-<tr><td>🏙️ 812 СПБ Yung Trappa</td><td>×2</td><td>Редкий</td></tr>
-<tr><td>😎 322, 312</td><td>×2</td><td>Редкий</td></tr>
-<tr><td>😎 13 / 🌿 420</td><td>×1.8</td><td>Редкий / Эпич.</td></tr>
-<tr><td>😎 11, 22 … 99</td><td>×1.8</td><td>Легендарный</td></tr>
-<tr><td>😎 111…666</td><td>×2.2</td><td>Легендарный</td></tr>
+<tr><td>👑 1–10 (Топ-10)</td><td>×2</td><td>Мифический</td></tr>
 <tr><td>😎 777 / 888 / 999</td><td>×3</td><td>Миф. / Легенд.</td></tr>
-<tr><td>🎩 337 · 🤖 404 · 💎 1000</td><td>×1.5</td><td>Редкий / Миф.</td></tr>`;
+<tr><td>🦍 300 · 😎 228 · 🔥 52</td><td>×2.5</td><td>Эпический</td></tr>
+<tr><td>😎 111…666</td><td>×2.2</td><td>Легендарный</td></tr>
+<tr><td>🏙️ 812 · 😎 322, 312</td><td>×2</td><td>Редкий</td></tr>
+<tr><td>😎 11…99 · 🌿 420 · 😎 13</td><td>×1.8</td><td>Лег. / Эпич. / Ред.</td></tr>
+<tr><td>🎩 337 · 🤖 404</td><td>×1.5</td><td>Редкий</td></tr>`;
   const net=G.earned+G.items.reduce((a,i)=>a+price(i),0)-G.spent;
   $('#pity').innerHTML=`👵 Каждые 100 круток добрая гардеробщица даёт удачу ×2<br>Гарант (${ty?'бумажные':'пластиковые'}): редкий+ через ${LIM[0]-G.p[ty][0]}, эпический+ через ${LIM[1]-G.p[ty][1]}, легендарный+ через ${LIM[2]-G.p[ty][2]}, мифический через ${LIM[3]-G.p[ty][3]} кр.<br>Круток: ${G.rolls} · потрачено ${fmt(G.spent)} ₽ · продано на ${fmt(G.earned)} ₽<br>Итог по круткам: <b style="color:${net>=0?'var(--ok)':'var(--bad)'}">${sg(net)} ₽</b>`;
 }
-$('#sets').onclick=e=>{const b=e.target.closest('[data-k]');if(!b)return;G.set[b.dataset.k]=G.set[b.dataset.k]?0:1;document.body.classList.toggle('wd',!!G.set.wd);save();more()};
-let rc=0;$('#reset').onclick=e=>{if(!rc){rc=1;e.target.textContent='Точно? Нажми ещё раз';setTimeout(()=>{rc=0;e.target.textContent='Сбросить прогресс'},3000)}else{try{localStorage.removeItem(KEY)}catch(x){}location.reload()}};
+$('#sets').onclick=e=>{const b=e.target.closest('[data-k]');if(!b)return;G.set[b.dataset.k]=G.set[b.dataset.k]?0:1;save(true);more()};
+let rc=0;$('#reset').onclick=e=>{if(!rc){rc=1;e.target.textContent='Точно? Нажми ещё раз';setTimeout(()=>{rc=0;e.target.textContent='Сбросить прогресс'},3000)}else{try{localStorage.removeItem(KEY);localStorage.removeItem(LEGACY_KEY)}catch(x){}location.reload()}};
 
 /* Подарок раз в 4 минуты */
-$('#gb').onclick=e=>{if(!ready())return;const g=Math.round((60+6*G.lv)*(1+.1*G.up.g));G.c+=g;G.gift=Date.now()+240000;toast(`🎁 Подарок гардеробщика: +${g} ₽`);burst(e.clientX||innerWidth/2,e.clientY||40,'#ffd54a',18);hap('medium');hud();save()};
+$('#gb').onclick=e=>{if(!ready())return;const g=Math.round((60+6*G.lv)*(1+.1*G.up.g));G.c+=g;G.gift=Date.now()+240000;toast(`🎁 Подарок гардеробщика: +${g} ₽`);burst(e.clientX||innerWidth/2,e.clientY||40,'#ffd54a',18);hap('medium');hud();save(true)};
 setInterval(()=>{const left=G.gift-Date.now(),b=$('#gb'),r=ready();b.classList.toggle('rdy',r);b.textContent=r?'🎁 Забрать':`🎁 ${String(Math.floor(left/60000)).padStart(2,'0')}:${String(Math.floor(left/1000)%60).padStart(2,'0')}`},500);
-setInterval(save,5000);document.addEventListener('visibilitychange',save);
-document.body.classList.toggle('wd',!!G.set.wd);
-idle();hud();syncCloud();
+setInterval(()=>save(false), 6000);
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')save(true)});
+
+idle();hud();initCloudRecovery();
 setTimeout(()=>{if(!busy&&!pend.length)idle()},250);
 })();
 </script></body></html>
