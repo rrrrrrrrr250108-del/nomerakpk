@@ -6,160 +6,132 @@
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;700;800&display=swap" rel="stylesheet">
 <style>
-:root{color-scheme:dark;--ac:#ff1744;--bg:#080811;--card:#ffffff10;--card2:#1c1c28;--mut:#9d9db2;--gold:#ffd54a;--ok:#3fe06b;--bad:#ff5468;box-sizing:border-box}
+:root{color-scheme:dark;--ac:#ff1744;--bg:#07070c;--card:#ffffff0d;--card2:#1b1b24;--mut:#9494a6;--gold:#ffd54a;--ok:#3fe06b;--bad:#ff5468;box-sizing:border-box}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;height:var(--vh,100dvh);overflow:hidden;background:radial-gradient(ellipse 110% 80% at 50% 0%,#261028 0%,#0b0b16 55%,#05050a 100%);color:#fff;font-family:Rubik,system-ui,sans-serif;user-select:none;-webkit-user-select:none;overscroll-behavior:none;font-size:15px}
+html,body{margin:0;height:var(--vh,100dvh);overflow:hidden;background:var(--bg);color:#fff;font-family:Rubik,system-ui,sans-serif;user-select:none;-webkit-user-select:none;overscroll-behavior:none}
 button,input,select,textarea{font-family:inherit}
-#aura{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse 85% 50% at 50% 42%,var(--ac),transparent 72%);opacity:.22;transition:background .8s,opacity .8s}
-
-/* Основной макет — увеличенный и просторный */
-#app{position:relative;height:100%;max-width:520px;margin:0 auto;display:flex;flex-direction:column;padding:calc(8px + env(safe-area-inset-top,0px)) 12px calc(74px + env(safe-area-inset-bottom,0px))}
-#top{display:flex;gap:6px;align-items:center;margin-bottom:8px;flex:none}
-.chip{background:var(--card);border:1px solid #ffffff1a;border-radius:16px;padding:8px 11px;font-weight:800;font-size:13px;white-space:nowrap;color:#fff;backdrop-filter:blur(10px)}
-#lv{flex:1;min-width:92px;display:flex;align-items:center;gap:7px;padding:8px 11px;cursor:pointer;transition:transform .12s}
+#bgfx{position:fixed;inset:0;overflow:hidden;pointer-events:none}
+#bgfx s{position:absolute;bottom:-80px;left:var(--lf);width:var(--sz);height:var(--sz);border-radius:50%;background:radial-gradient(circle at 30% 30%,#ffffff24,#ffffff00 70%);animation:rise var(--du) linear infinite;animation-delay:var(--dl)}
+@keyframes rise{to{transform:translate(30px,-115vh);opacity:.15}}
+#aura{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse 80% 45% at 50% 38%,var(--ac),transparent 70%);opacity:.18;transition:background 1s,opacity 1s;animation:aur 5s ease-in-out infinite}
+@keyframes aur{50%{transform:scale(1.1)}}
+#app{position:relative;height:100%;max-width:500px;margin:0 auto;display:flex;flex-direction:column;padding:calc(6px + env(safe-area-inset-top,0px)) 10px calc(66px + env(safe-area-inset-bottom,0px))}
+#top{display:flex;gap:5px;align-items:center;margin-bottom:6px;flex:none}
+.chip{background:var(--card);border:1px solid #ffffff14;border-radius:14px;padding:6px 9px;font-weight:800;font-size:12px;white-space:nowrap;color:#fff;backdrop-filter:blur(8px)}
+#lv{flex:1;min-width:86px;display:flex;align-items:center;gap:6px;padding:6px 9px;cursor:pointer;transition:transform .12s}
 #lv:active{transform:scale(.96)}
-#lv i{flex:1;height:7px;border-radius:4px;background:#ffffff22;overflow:hidden}#lv u{display:block;height:100%;background:linear-gradient(90deg,var(--ok),#9dff6b);width:0;transition:width .5s;border-radius:4px}
-.top-ic{cursor:pointer;padding:8px 10px;position:relative;font-size:14px}
-.top-ic:active{transform:scale(.93)}
-.top-ic.ping::after,nav .ping::after{content:"";position:absolute;top:3px;right:3px;width:8px;height:8px;border-radius:50%;background:#ff3355;animation:pl 1s infinite alternate}
-nav .ping::after{top:5px;right:22%}
-#gb{cursor:pointer;font-size:13px;padding:8px 10px}
+#lv i{flex:1;height:6px;border-radius:4px;background:#ffffff1f;overflow:hidden}#lv u{display:block;height:100%;background:linear-gradient(90deg,var(--ok),#9dff6b);width:0;transition:width .5s;border-radius:4px}
+#newsTopBtn{cursor:pointer;padding:6px 8px;position:relative}
+#newsTopBtn.ping::after,nav .ping::after,.hub-btn.ping::after{content:"";position:absolute;top:4px;right:4px;width:8px;height:8px;border-radius:50%;background:#ff3355;animation:pl 1s infinite alternate}
+nav .ping::after{top:3px;right:22%}
+#gb{cursor:pointer;font-size:12px;padding:6px 8px}
 #gb.rdy{background:#3a0b14;border-color:#ff3355;animation:pl 1s infinite alternate}
-#admBtn{background:linear-gradient(135deg,#ffd54a,#ff9100);color:#000;border:0;cursor:pointer;padding:8px 10px;font-size:13px;display:none}
-@keyframes pl{to{box-shadow:0 0 16px #ff1744aa;transform:scale(1.03)}}
-#bal{text-align:right;line-height:1.05;padding-left:4px}#bal small{display:block;color:var(--mut);font-size:10.5px;font-weight:500}#bal b{font-size:17px;display:inline-block;white-space:nowrap}
+#admBtn{background:linear-gradient(135deg,#ffd54a,#ff9100);color:#000;border:0;cursor:pointer;padding:6px 8px;font-size:12px;display:none}
+@keyframes pl{to{box-shadow:0 0 15px #ff1744aa;transform:scale(1.03)}}
+#bal{text-align:right;line-height:1.05;padding-left:2px}#bal small{display:block;color:var(--mut);font-size:10px;font-weight:500}#bal b{font-size:15px;display:inline-block;white-space:nowrap}
 #bt.up{animation:bup .6s}#bt.dn{animation:bdn .6s}@keyframes bup{40%{color:var(--ok);transform:scale(1.12)}}@keyframes bdn{40%{color:var(--bad);transform:scale(.92)}}
-
 .s{display:none}.s.on{display:flex;flex-direction:column;flex:1;min-height:0;overflow-y:auto;animation:fin .22s ease-out}#s0.on{overflow:hidden}
 @keyframes fin{from{opacity:0;transform:translateY(6px)}}
-
-/* Активные бусты + Быстрый переход в Лавку */
-#playSubBar{display:flex;gap:6px;align-items:center;margin-bottom:6px;flex:none}
-#activeBoosts{display:flex;gap:5px;overflow-x:auto;scrollbar-width:none;flex:1}
-.b-pill{background:linear-gradient(135deg,#2a1836,#161224);border:1px solid #a855f766;border-radius:12px;padding:5px 9px;font-size:11px;font-weight:700;color:#e9d5ff;white-space:nowrap;display:flex;align-items:center;gap:4px}.b-pill b{color:var(--gold)}
-#quickShopBtn{background:linear-gradient(135deg,#2e1642,#1b122c);border:1px solid #a855f788;color:#f3e8ff;border-radius:13px;padding:6px 11px;font-size:12px;font-weight:800;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:5px}
-#quickShopBtn:active{transform:scale(.96)}
-
-/* Вкладка Играть */
-#types{display:flex;gap:8px;margin-bottom:7px;flex:none}
-.ty{flex:1;color:#fff;background:var(--card);border:2px solid transparent;border-radius:16px;padding:7px 8px;cursor:pointer;text-align:center;transition:.2s}
-.ty b{font-size:14px;display:block}.ty small{display:block;color:var(--gold);font-weight:800;font-size:12px;margin-top:2px}
-.ty.on{border-color:#ff3355;background:#2a1018;box-shadow:0 5px 16px #ff174433}
-
-#head{background:var(--card);border:1px solid #ffffff14;border-radius:16px;padding:8px 14px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex:none;margin-bottom:5px}
-#rn{font-weight:800;font-size:15px;transition:color .3s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-#seg{display:flex;gap:5px;margin-top:5px}#seg i{width:22px;height:5px;border-radius:3px;background:#ffffff26;transition:background .3s}
-#val{font-weight:800;font-size:18px;color:var(--gold);text-align:right;white-space:nowrap}
-
-#stage{flex:1;min-height:145px;display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;align-content:center;padding:4px 0;position:relative}
-#stage.multi{gap:8px 10px}
+#activeBoosts{display:none;gap:5px;overflow-x:auto;scrollbar-width:none;margin-bottom:5px;flex:none}#activeBoosts.on{display:flex}
+.b-pill{background:linear-gradient(135deg,#2a1836,#161224);border:1px solid #a855f766;border-radius:10px;padding:3px 8px;font-size:10px;font-weight:700;color:#e9d5ff;white-space:nowrap;display:flex;align-items:center;gap:4px}.b-pill b{color:var(--gold)}
+#types{display:flex;gap:6px;margin-bottom:6px;flex:none}
+.ty{flex:1;color:#fff;background:var(--card);border:1.5px solid transparent;border-radius:14px;padding:5px 6px;cursor:pointer;text-align:center;transition:.2s}
+.ty b{font-size:13px;display:block}.ty small{display:block;color:var(--gold);font-weight:800;font-size:11px;margin-top:1px}
+.ty.on{border-color:#ff3355;background:#2a1018;box-shadow:0 4px 14px #ff17442a}
+#head{background:var(--card);border:1px solid #ffffff10;border-radius:14px;padding:6px 12px;display:flex;justify-content:space-between;align-items:center;gap:8px;flex:none;margin-bottom:4px}
+#rn{font-weight:800;font-size:14px;transition:color .3s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#seg{display:flex;gap:4px;margin-top:4px}#seg i{width:20px;height:4px;border-radius:2px;background:#ffffff26;transition:background .3s}
+#val{font-weight:800;font-size:16px;color:var(--gold);text-align:right;white-space:nowrap}
+#stage{flex:1;min-height:130px;display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;align-content:center;padding:4px 0;position:relative}
+#stage.multi{gap:6px 8px}
 #stage .mwrap{display:flex;flex-direction:column;align-items:center;cursor:pointer;transition:transform .15s}#stage .mwrap:active{transform:scale(.94)}
-#stage .mwrap small{margin-top:4px;font-size:11px;font-weight:800;color:var(--gold);background:#000a;padding:2px 7px;border-radius:7px}
+#stage .mwrap small{margin-top:3px;font-size:10px;font-weight:800;color:var(--gold);background:#0009;padding:1px 6px;border-radius:6px}
 #stage .mwrap.sold{opacity:.25;pointer-events:none;filter:grayscale(1)}
-
-#lady{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid #ffffff14;border-radius:14px;padding:6px 12px;flex:none;margin-bottom:6px;transition:.3s}
-#lady em{font-size:22px;font-style:normal}#lady div{flex:1;font-size:12px;line-height:1.3}#lady small{color:var(--mut)}#lady .pb{margin:4px 0 0;height:5px}
+#lady{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid #ffffff10;border-radius:12px;padding:5px 10px;flex:none;margin-bottom:5px;transition:.3s}
+#lady em{font-size:20px;font-style:normal}#lady div{flex:1;font-size:11px;line-height:1.25}#lady small{color:var(--mut)}#lady .pb{margin:3px 0 0;height:4px}
 #lady.on{border-color:var(--gold);background:#3a2f0a;animation:pl 1s infinite alternate}#lady.on small{color:var(--gold)}
-
-#bar{display:flex;align-items:center;min-height:34px;margin-bottom:6px;flex:none;background:#ffffff08;border-radius:12px;padding:5px 12px}
-#info{flex:1;color:var(--mut);font-size:12px;line-height:1.35;text-align:center}#info b{color:#fff}
-
-#ctl{display:flex;gap:8px;flex:none;align-items:stretch}
-#ctl .chip{cursor:pointer;padding:0 12px;display:flex;align-items:center;justify-content:center;font-size:13px}
-#multBtn{background:#252533;border:2px solid #ffffff26;color:var(--gold);font-weight:800;font-size:15px;min-width:58px;transition:.2s}
-#multBtn.x5{background:#3a1824;border-color:#ff3355;color:#fff;box-shadow:0 0 14px #ff174455}
-
-#go{position:relative;overflow:hidden;flex:1;font:inherit;font-weight:800;font-size:17px;color:#fff;background:linear-gradient(135deg,#ff3355,#d4001a);border:0;border-radius:16px;padding:14px 10px;cursor:pointer;box-shadow:0 6px 20px #ff174455;transition:transform .12s;display:flex;align-items:center;justify-content:center;gap:8px}
+#bar{display:flex;align-items:center;min-height:30px;margin-bottom:5px;flex:none;background:#ffffff06;border-radius:10px;padding:4px 10px}
+#info{flex:1;color:var(--mut);font-size:11px;line-height:1.35;text-align:center}#info b{color:#fff}
+#ctl{display:flex;gap:6px;flex:none;align-items:stretch}
+#ctl .chip{cursor:pointer;padding:0 10px;display:flex;align-items:center;justify-content:center;font-size:12px}
+#multBtn{background:#252533;border:1.5px solid #ffffff26;color:var(--gold);font-weight:800;font-size:14px;min-width:52px;transition:.2s}
+#multBtn.x5{background:#3a1824;border-color:#ff3355;color:#fff;box-shadow:0 0 12px #ff174455}
+#go{position:relative;overflow:hidden;flex:1;font:inherit;font-weight:800;font-size:16px;color:#fff;background:linear-gradient(135deg,#ff3355,#d4001a);border:0;border-radius:15px;padding:12px 8px;cursor:pointer;box-shadow:0 5px 18px #ff174455;transition:transform .12s;display:flex;align-items:center;justify-content:center;gap:6px}
 #go::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,#ffffff55,transparent);transform:skewX(-20deg);animation:sw 2.8s infinite}@keyframes sw{to{left:140%}}
-#go small{background:#0005;border-radius:10px;padding:3px 9px;font-size:14px}#go:active{transform:scale(.97)}#go:disabled{filter:grayscale(1) brightness(.55)}#go:disabled::after{display:none}
+#go small{background:#0005;border-radius:10px;padding:2px 8px;font-size:13px}#go:active{transform:scale(.97)}#go:disabled{filter:grayscale(1) brightness(.55)}#go:disabled::after{display:none}
+#dec{display:none;gap:6px;flex:none}
+.dbt{flex:1;font:800 13px/1.15 Rubik,sans-serif;color:#fff;background:var(--card2);border:1.5px solid #ffffff2a;border-radius:14px;padding:11px 6px;cursor:pointer;animation:fin .2s}
+.dbt.gold{background:var(--gold);color:#000;border:0}.dbt.junk{background:#2b1922;border-color:#ff546866;color:#ff99a6;flex:0.8}
+nav{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(6px + env(safe-area-inset-bottom,0px));width:min(490px,calc(100% - 12px));background:#16161cf2;backdrop-filter:blur(14px);border-radius:22px;padding:4px;display:flex;z-index:20;border:1px solid #ffffff14}
+nav button{flex:1;position:relative;background:0;border:0;color:var(--mut);font:700 10.5px Rubik,sans-serif;padding:5px 0;border-radius:16px;cursor:pointer;transition:.2s}
+nav button b{display:block;font-size:17px;font-weight:400;line-height:1.15;transition:transform .2s}
+nav button.on{background:#ffffff1c;color:var(--ok)}nav button.on b{transform:translateY(-1px) scale(1.1)}
+.sub{display:flex;gap:5px;margin-bottom:8px;flex:none;overflow-x:auto;scrollbar-width:none}
+.sub button,.f{font:600 11.5px Rubik,sans-serif;color:#fff;background:var(--card);border:1.5px solid transparent;border-radius:13px;padding:6px 9px;cursor:pointer;white-space:nowrap;transition:.2s}
+.sub button.on,.f.on{border-color:#fff;background:#ffffff1a}
+#gtabs{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;overflow:visible}#gtabs button{padding:6px 2px;font-size:10.5px;text-align:center}
+.pb{height:6px;background:#ffffff1a;border-radius:4px;overflow:hidden;margin:5px 0;flex:none}.pb i{display:block;height:100%;background:linear-gradient(90deg,#ff3355,#ffd54a);transition:width .4s}
+.chips{display:flex;gap:5px;overflow-x:auto;margin-bottom:5px;flex:none;scrollbar-width:none}
+#grid{flex:1;min-height:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(66px,1fr));gap:10px 6px;overflow-y:auto;padding:8px 6px;background:#0006;border-radius:14px;justify-items:center;margin-top:4px;align-content:start}
+#grid.compact{grid-template-columns:repeat(auto-fill,minmax(50px,1fr));gap:8px 4px}
+.cell{text-align:center;cursor:pointer;transition:transform .15s;position:relative}.cell:active{transform:scale(.93)}.cell small{display:block;margin-top:3px;font-size:10px;color:var(--gold);font-weight:800}.cell .tag,.row .tag{animation:none!important}
+.cell .lk{position:absolute;top:-4px;right:-4px;background:#000c;border:1px solid #ffd54a66;border-radius:50%;width:18px;height:18px;font-size:10px;display:flex;align-items:center;justify-content:center;z-index:5}
+.row{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid #ffffff0d;border-radius:13px;padding:8px 11px;margin-bottom:6px}
+.row.me{border:1px solid #ff3355;background:#2a1018}.row b.n{width:28px;font-size:15px;color:var(--mut);text-align:center}.row>div:not(.tag){flex:1;min-width:0}.row small{display:block;color:var(--mut);font-size:11px}
+.leader-row{pointer-events:none!important;user-select:none!important}.leader-row .nick{font-weight:700;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:block}
+.up button{font:inherit;font-weight:800;font-size:12px;color:#000;background:var(--gold);border:0;border-radius:10px;padding:7px 11px;cursor:pointer;white-space:nowrap}.up button:disabled{opacity:.35}.up em{font-size:24px;font-style:normal}
+table{width:100%;border-collapse:collapse;font-size:12px;margin:4px 0 10px}td,th{padding:5px 4px;border-bottom:1px solid #ffffff14;text-align:right;color:var(--mut);font-weight:500}td:first-child,th:first-child{text-align:left;color:#fff}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}
 
-#dec{display:none;gap:8px;flex:none}
-.dbt{flex:1;font:800 14px/1.15 Rubik,sans-serif;color:#fff;background:var(--card2);border:1.5px solid #ffffff2a;border-radius:16px;padding:13px 8px;cursor:pointer;animation:fin .2s}
-.dbt.gold{background:var(--gold);color:#000;border:0}.dbt.junk{background:#2b1922;border-color:#ff546866;color:#ff99a6;flex:0.85}
+/* Меню Ещё (Категории и Кнопки) */
+.more-cat{font-size:11px;font-weight:800;color:var(--mut);text-transform:uppercase;letter-spacing:.05em;margin:10px 4px 6px}
+.more-cat:first-child{margin-top:2px}
+.more-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.hub-btn{position:relative;background:var(--card);border:1.5px solid #ffffff14;border-radius:16px;padding:12px 11px;display:flex;align-items:center;gap:10px;color:#fff;cursor:pointer;text-align:left;transition:transform .14s,border-color .2s,background .2s}
+.hub-btn:active{transform:scale(.96)}
+.hub-btn.wide{grid-column:1 / -1}
+.hub-btn.accent{background:linear-gradient(135deg,#251238,#141122);border-color:#a855f755}
+.hub-btn.gold-card{background:linear-gradient(135deg,#2b2108,#14120e);border-color:#ffd54a55}
+.hub-icon{width:40px;height:40px;border-radius:12px;background:#ffffff0f;display:flex;align-items:center;justify-content:center;font-size:21px;flex:none}
+.hub-info{min-width:0;flex:1}
+.hub-info b{display:block;font-size:13.5px;font-weight:800;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hub-info small{display:block;font-size:10.5px;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.subpage-head{display:flex;align-items:center;gap:10px;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid #ffffff14;flex:none}
+.back-btn{background:#ffffff14;border:1px solid #ffffff24;color:#fff;border-radius:12px;padding:7px 12px;font:700 12px Rubik,sans-serif;cursor:pointer;display:flex;align-items:center;gap:5px}
+.back-btn:active{transform:scale(.95)}
+.subpage-title{font-size:16px;font-weight:800;margin:0;flex:1}
 
-/* КРУПНАЯ И ПОНЯТНАЯ НИЖНЯЯ НАВИГАЦИЯ НА 4 КНОПКИ */
-nav{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(6px + env(safe-area-inset-bottom,0px));width:min(496px,calc(100% - 16px));background:#151520f5;backdrop-filter:blur(16px);border-radius:24px;padding:5px;display:grid;grid-template-columns:repeat(4,1fr);gap:4px;z-index:20;border:1px solid #ffffff1a;box-shadow:0 8px 28px #000b}
-nav button{position:relative;background:0;border:0;color:var(--mut);font:700 11.5px Rubik,sans-serif;padding:6px 2px;border-radius:18px;cursor:pointer;transition:.2s;display:flex;flex-direction:column;align-items:center;gap:2px}
-nav button b{display:block;font-size:20px;font-weight:400;line-height:1.1;transition:transform .2s}
-nav button.on{background:#ffffff1f;color:var(--ok)}nav button.on b{transform:translateY(-1px) scale(1.1)}
-
-.sub{display:flex;gap:6px;margin-bottom:9px;flex:none;overflow-x:auto;scrollbar-width:none}
-.sub button,.f{font:700 12.5px Rubik,sans-serif;color:#fff;background:var(--card);border:1.5px solid transparent;border-radius:14px;padding:8px 12px;cursor:pointer;white-space:nowrap;transition:.2s}
-.sub button.on,.f.on{border-color:#ff3355;background:#2a1018;color:#fff}
-#gtabs{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;overflow:visible}#gtabs button{padding:8px 2px;font-size:11.5px;text-align:center}
-.pb{height:7px;background:#ffffff1a;border-radius:4px;overflow:hidden;margin:6px 0;flex:none}.pb i{display:block;height:100%;background:linear-gradient(90deg,#ff3355,#ffd54a);transition:width .4s}
-.chips{display:flex;gap:6px;overflow-x:auto;margin-bottom:6px;flex:none;scrollbar-width:none}
-
-#grid{flex:1;min-height:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(72px,1fr));gap:12px 8px;overflow-y:auto;padding:10px 8px;background:#0006;border-radius:16px;justify-items:center;margin-top:4px;align-content:start}
-#grid.compact{grid-template-columns:repeat(auto-fill,minmax(54px,1fr));gap:8px 5px}
-.cell{text-align:center;cursor:pointer;transition:transform .15s;position:relative}.cell:active{transform:scale(.93)}.cell small{display:block;margin-top:4px;font-size:11px;color:var(--gold);font-weight:800}.cell .tag,.row .tag{animation:none!important}
-.cell .lk{position:absolute;top:-4px;right:-4px;background:#000c;border:1px solid #ffd54a66;border-radius:50%;width:20px;height:20px;font-size:11px;display:flex;align-items:center;justify-content:center;z-index:5}
-
-.row{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid #ffffff12;border-radius:15px;padding:10px 12px;margin-bottom:7px}
-.row.me{border:1.5px solid #ff3355;background:#2a1018}.row b.n{width:30px;font-size:16px;color:var(--mut);text-align:center}.row>div:not(.tag){flex:1;min-width:0}.row small{display:block;color:var(--mut);font-size:11.5px}
-.leader-row{pointer-events:none!important;user-select:none!important}.leader-row .nick{font-weight:700;font-size:14px;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:block}
-.up button{font:inherit;font-weight:800;font-size:12.5px;color:#000;background:var(--gold);border:0;border-radius:12px;padding:8px 12px;cursor:pointer;white-space:nowrap}.up button:disabled{opacity:.35}.up em{font-size:26px;font-style:normal}
-table{width:100%;border-collapse:collapse;font-size:12.5px;margin:4px 0 10px}td,th{padding:6px 5px;border-bottom:1px solid #ffffff14;text-align:right;color:var(--mut);font-weight:500}td:first-child,th:first-child{text-align:left;color:#fff}.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px}
-
-/* ВИЗУАЛЬНАЯ СИСТЕМА ТРЕЙДОВ */
-.tr-step{background:var(--card);border:1px solid #ffffff16;border-radius:18px;padding:12px;margin-bottom:10px}
-.tr-step-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-.tr-step-hd b{font-size:13.5px;color:var(--gold)}
-.tr-users-bar{display:flex;gap:7px;overflow-x:auto;padding-bottom:4px;margin-bottom:8px;scrollbar-width:none}
-.tr-u-chip{display:flex;align-items:center;gap:7px;background:#12121e;border:1.5px solid #ffffff18;border-radius:14px;padding:6px 10px;cursor:pointer;flex:none;transition:.15s}
-.tr-u-chip.on{border-color:#ff3355;background:#2a1018}
-.tr-u-ava{width:28px;height:28px;border-radius:9px;background:linear-gradient(135deg,#ff3355,#ff9100);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;color:#fff}
-.tr-inv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(68px,1fr));gap:10px 6px;max-height:195px;overflow-y:auto;padding:8px;background:#08080f;border-radius:14px;border:1px solid #ffffff12;justify-items:center}
-.tr-pick-cell{position:relative;padding:5px;border-radius:12px;border:2px solid transparent;background:#ffffff06;cursor:pointer;text-align:center;transition:.15s}
-.tr-pick-cell .tag{animation:none!important}
-.tr-pick-cell.sel{border-color:var(--ok);background:#143d2266;transform:translateY(-2px)}
-.tr-pick-cell .chk{position:absolute;top:-5px;right:-5px;width:20px;height:20px;border-radius:50%;background:var(--ok);color:#000;font-size:12px;font-weight:800;display:none;align-items:center;justify-content:center;z-index:6;box-shadow:0 2px 6px #000}
-.tr-pick-cell.sel .chk{display:flex}
-.tr-offer-card{background:linear-gradient(145deg,#181826,#10101a);border:1.5px solid #ffffff1c;border-radius:18px;padding:12px;margin-bottom:10px}
-.tr-offer-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;padding-bottom:7px;border-bottom:1px solid #ffffff12}
-.tr-offer-items{display:flex;gap:8px;overflow-x:auto;padding:6px 2px;align-items:center;scrollbar-width:none}
-.tr-offer-items .tag{animation:none!important}
-
-/* Магазин Бустов */
-.shop-head{background:linear-gradient(135deg,#251238,#12101e);border:1px solid #a855f755;border-radius:16px;padding:11px 13px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;gap:8px}
-.shop-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:10px}
-.shop-item{background:var(--card);border:1.5px solid #ffffff16;border-radius:16px;padding:12px 10px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.shop-head{background:linear-gradient(135deg,#251238,#12101e);border:1px solid #a855f755;border-radius:16px;padding:10px 12px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.shop-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.shop-item{background:var(--card);border:1.5px solid #ffffff14;border-radius:16px;padding:11px 10px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
 .shop-item.sale{border-color:#ffd54a88;background:linear-gradient(160deg,#281f09,#12121a)}
-.sale-badge{position:absolute;top:6px;right:6px;background:var(--bad);color:#fff;font-size:9.5px;font-weight:800;padding:2px 6px;border-radius:6px}
-.shop-icon{font-size:32px;margin-bottom:4px}.shop-title{font-weight:800;font-size:13.5px;line-height:1.2;margin-bottom:4px}.shop-desc{font-size:11px;color:var(--mut);line-height:1.35;margin-bottom:9px;flex:1}
-
-/* Новости */
-.news-card{background:var(--card);border:1px solid #ffffff18;border-radius:16px;padding:13px;margin-bottom:9px}.news-card.pinned{border-color:#ff335588;background:linear-gradient(145deg,#240d15,#12121a)}
-.news-meta{display:flex;justify-content:space-between;font-size:10.5px;color:var(--mut);margin-bottom:5px}.news-title{font-weight:800;font-size:15px;color:var(--gold);margin-bottom:6px}.news-body{font-size:13px;color:#e2e2ee;line-height:1.45;white-space:pre-line}
-
-/* Модалки, Профиль, Админка */
+.sale-badge{position:absolute;top:6px;right:6px;background:var(--bad);color:#fff;font-size:9px;font-weight:800;padding:2px 6px;border-radius:6px}
+.shop-icon{font-size:30px;margin-bottom:4px}.shop-title{font-weight:800;font-size:13px;line-height:1.2;margin-bottom:4px}.shop-desc{font-size:10.5px;color:var(--mut);line-height:1.3;margin-bottom:8px;flex:1}
+.news-card{background:var(--card);border:1px solid #ffffff16;border-radius:16px;padding:12px;margin-bottom:8px}.news-card.pinned{border-color:#ff335588;background:linear-gradient(145deg,#240d15,#12121a)}
+.news-meta{display:flex;justify-content:space-between;font-size:10px;color:var(--mut);margin-bottom:4px}.news-title{font-weight:800;font-size:14px;color:var(--gold);margin-bottom:5px}.news-body{font-size:12px;color:#e2e2ee;line-height:1.45;white-space:pre-line}
 #md{position:fixed;inset:0;z-index:90;background:#000d;display:none;align-items:center;justify-content:center;text-align:center;backdrop-filter:blur(6px);padding:14px}#md.on{display:flex}#md .f{margin:4px;font-size:13px;padding:9px 14px}
-.adm-box,.prof-box{background:#14141f;border:1px solid #ffffff26;border-radius:22px;padding:15px;width:100%;max-width:460px;max-height:86vh;overflow-y:auto;text-align:left;box-shadow:0 12px 34px #000c;animation:fin .2s ease-out}
-.adm-box h3{margin:10px 0 6px;color:var(--gold);font-size:14.5px}.adm-row{display:flex;gap:6px;margin-bottom:8px;align-items:center}
-.adm-inp{flex:1;background:#090910;border:1px solid #ffffff2a;color:#fff;border-radius:12px;padding:9px 11px;font-size:13px;min-width:0}
-.adm-tabs{display:flex;gap:4px;margin-bottom:10px;overflow-x:auto}.adm-tabs button{flex:1;padding:8px 6px;font-size:11px;font-weight:700;border-radius:11px;background:#ffffff0d;color:var(--mut);border:1px solid transparent;cursor:pointer;white-space:nowrap}.adm-tabs button.on{background:#2a1018;color:#fff;border-color:#ff3355}
-.scard{background:var(--card);border:1px solid #ffffff14;border-radius:16px;padding:13px;margin-bottom:10px}.scard h3{margin:0 0 8px;font-size:14.5px;color:var(--gold);display:flex;align-items:center;gap:6px}
-.seg-Group{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin-bottom:8px}.seg-btn{padding:9px 6px;border-radius:12px;border:1.5px solid #ffffff1a;background:#0b0b12;color:var(--mut);font-size:11.5px;font-weight:700;cursor:pointer;text-align:center;transition:.2s}.seg-btn.on{border-color:#ff3355;background:#2a1018;color:#fff;box-shadow:0 3px 10px #ff174433}
-
-.prof-head{display:flex;align-items:center;gap:12px;background:#ffffff09;border:1px solid #ffffff14;border-radius:16px;padding:11px 13px;margin-bottom:10px}
-.prof-ava{width:50px;height:50px;border-radius:14px;background:linear-gradient(135deg,#ff3355,#ff9100);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800;flex:none}
+.adm-box,.prof-box{background:#14141d;border:1px solid #ffffff22;border-radius:20px;padding:14px;width:100%;max-width:450px;max-height:86vh;overflow-y:auto;text-align:left;box-shadow:0 12px 34px #000c;animation:fin .2s ease-out}
+.adm-box h3{margin:10px 0 6px;color:var(--gold);font-size:14px}.adm-row{display:flex;gap:6px;margin-bottom:7px;align-items:center}
+.adm-inp{flex:1;background:#09090f;border:1px solid #ffffff26;color:#fff;border-radius:10px;padding:8px 10px;font-size:12px;min-width:0}
+.adm-tabs{display:flex;gap:4px;margin-bottom:10px;overflow-x:auto}.adm-tabs button{flex:1;padding:7px 5px;font-size:10.5px;font-weight:700;border-radius:10px;background:#ffffff0d;color:var(--mut);border:1px solid transparent;cursor:pointer;white-space:nowrap}.adm-tabs button.on{background:#2a1018;color:#fff;border-color:#ff3355}
+.scard{background:var(--card);border:1px solid #ffffff12;border-radius:16px;padding:12px;margin-bottom:10px}.scard h3{margin:0 0 8px;font-size:14px;color:var(--gold);display:flex;align-items:center;gap:6px}
+.seg-Group{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin-bottom:8px}.seg-btn{padding:8px 6px;border-radius:11px;border:1.5px solid #ffffff1a;background:#0b0b12;color:var(--mut);font-size:11px;font-weight:700;cursor:pointer;text-align:center;transition:.2s}.seg-btn.on{border-color:#ff3355;background:#2a1018;color:#fff;box-shadow:0 3px 10px #ff174433}
+.prof-head{display:flex;align-items:center;gap:12px;background:#ffffff09;border:1px solid #ffffff14;border-radius:16px;padding:10px 12px;margin-bottom:10px}
+.prof-ava{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#ff3355,#ff9100);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800;flex:none}
 .prof-title{font-size:11px;color:var(--gold);font-weight:700;text-transform:uppercase}.prof-best{background:radial-gradient(ellipse at 50% 30%,#ffffff12,#09090f 75%);border:1px solid #ffffff1a;border-radius:16px;padding:12px;text-align:center;margin-bottom:10px;display:flex;align-items:center;gap:14px;justify-content:center}.prof-best .tag{animation:none!important}
-.prof-stats{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:10px}.pstat{background:#ffffff08;border:1px solid #ffffff10;border-radius:12px;padding:9px 11px}.pstat small{display:block;color:var(--mut);font-size:10.5px;margin-bottom:2px}.pstat b{font-size:14.5px;color:#fff}
+.prof-stats{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:10px}.pstat{background:#ffffff08;border:1px solid #ffffff10;border-radius:12px;padding:8px 10px}.pstat small{display:block;color:var(--mut);font-size:10px;margin-bottom:2px}.pstat b{font-size:14px;color:#fff}
 #fl{position:fixed;inset:0;z-index:80;pointer-events:none;opacity:0}
-#tt{position:fixed;left:50%;top:calc(12px + env(safe-area-inset-top,0px));transform:translateX(-50%);z-index:95;background:#111118f5;border:1px solid #ffffff33;border-radius:13px;padding:9px 15px;opacity:0;pointer-events:none;transition:.25s;text-align:center;font-size:13.5px;max-width:92%;box-shadow:0 6px 20px #000a}#tt.on{opacity:1}
+#tt{position:fixed;left:50%;top:calc(12px + env(safe-area-inset-top,0px));transform:translateX(-50%);z-index:95;background:#111118f5;border:1px solid #ffffff33;border-radius:12px;padding:8px 14px;opacity:0;pointer-events:none;transition:.25s;text-align:center;font-size:13px;max-width:92%;box-shadow:0 6px 20px #000a}#tt.on{opacity:1}
 h3{margin:4px 0 6px;font-size:15px}
-
-/* Мини-игры */
-#gnet{font-size:11.5px;color:var(--mut);margin:0 0 6px}
-.bet-panel{background:var(--card);border:1px solid #ffffff14;border-radius:16px;padding:9px;margin-bottom:8px;flex:none}
+#gnet{font-size:11px;color:var(--mut);margin:0 0 6px}
+.bet-panel{background:var(--card);border:1px solid #ffffff14;border-radius:15px;padding:8px;margin-bottom:8px;flex:none}
 .bet-top{display:flex;gap:6px;margin-bottom:6px;align-items:center}.bet-inp{flex:1;background:#08080d;border:1.5px solid #ffffff24;border-radius:11px;color:var(--gold);font:800 15px Rubik,sans-serif;padding:7px 10px;min-width:0}
-.bet-quick{display:flex;gap:5px;overflow-x:auto;scrollbar-width:none}.bet-quick button{flex:1;background:#ffffff0e;border:1px solid #ffffff18;color:#fff;font:700 11.5px Rubik,sans-serif;padding:7px 8px;border-radius:9px;cursor:pointer;white-space:nowrap}
+.bet-quick{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}.bet-quick button{flex:1;background:#ffffff0e;border:1px solid #ffffff18;color:#fff;font:700 11px Rubik,sans-serif;padding:6px 8px;border-radius:9px;cursor:pointer;white-space:nowrap}
 .rk-hist{display:flex;gap:5px;overflow-x:auto;scrollbar-width:none;margin-bottom:7px;padding:2px 0;align-items:center}
 .rk-pill{font-size:11px;font-weight:800;padding:3px 8px;border-radius:8px;white-space:nowrap;background:#1c1c28;color:var(--mut);border:1px solid #ffffff14}
 .rk-pill.low{background:#2a1219;color:#ff6b7d;border-color:#ff335544}.rk-pill.mid{background:#112638;color:#5bb4ff;border-color:#2f8dff55}.rk-pill.high{background:#2d2208;color:var(--gold);border-color:#ffd54a66}
-.gcard{background:var(--card);border:1px solid #ffffff12;border-radius:18px;padding:13px;text-align:center}
-.gres{min-height:20px;margin:8px 0;font-size:12.5px;color:var(--mut)}.gres.win{color:var(--ok)}.gres.lose{color:var(--bad)}
-.gbtn{font:800 15px Rubik,sans-serif;color:#fff;background:linear-gradient(135deg,#ff3355,#d4001a);border:0;border-radius:15px;padding:12px 16px;cursor:pointer;box-shadow:0 4px 14px #ff174444;width:100%}.gbtn:active{transform:scale(.97)}.gbtn:disabled{opacity:.4;pointer-events:none}
+.gcard{background:var(--card);border:1px solid #ffffff12;border-radius:18px;padding:12px;text-align:center}
+.gres{min-height:20px;margin:8px 0;font-size:12px;color:var(--mut)}.gres.win{color:var(--ok)}.gres.lose{color:var(--bad)}
+.gbtn{font:800 15px Rubik,sans-serif;color:#fff;background:linear-gradient(135deg,#ff3355,#d4001a);border:0;border-radius:14px;padding:11px 16px;cursor:pointer;box-shadow:0 4px 14px #ff174444;width:100%}.gbtn:active{transform:scale(.97)}.gbtn:disabled{opacity:.4;pointer-events:none}
 .pair{display:flex;gap:8px}.pair .gbtn{flex:1}
 .reels{display:flex;gap:8px;justify-content:center}.reel{width:68px;height:68px;overflow:hidden;border-radius:14px;background:linear-gradient(#0a0a10,#1a1a24);border:2px solid #ffffff22;box-shadow:inset 0 0 12px #000}.strip>div{height:68px;line-height:68px;font-size:40px;text-align:center}
 .coinwrap{height:100px;display:flex;align-items:center;justify-content:center;perspective:500px}#coin{font-size:68px;filter:drop-shadow(0 6px 8px #000a)}
@@ -168,23 +140,21 @@ h3{margin:4px 0 6px;font-size:15px}
 #mul{position:absolute;left:0;right:0;top:10px;font-size:26px;font-weight:800;z-index:2;text-shadow:0 2px 10px #000}
 #rkStatus{position:absolute;left:0;right:0;top:40px;font-size:11px;color:var(--gold);z-index:2}
 #rk{position:absolute;left:50%;bottom:8px;font-size:36px;transform:translateX(-50%);z-index:2;transition:none}#rk.boom{animation:boom .6s forwards}@keyframes boom{to{transform:translateX(-50%) scale(2.8);opacity:0}}
-.rk-bets{margin-top:8px;background:#0006;border-radius:12px;padding:6px 8px;max-height:105px;overflow-y:auto;text-align:left}.rk-bet-row{display:flex;justify-content:space-between;font-size:11.5px;padding:3px 2px;border-bottom:1px solid #ffffff0a}
+.rk-bets{margin-top:8px;background:#0006;border-radius:12px;padding:6px 8px;max-height:105px;overflow-y:auto;text-align:left}.rk-bet-row{display:flex;justify-content:space-between;font-size:11px;padding:3px 2px;border-bottom:1px solid #ffffff0a}
 .mg{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;max-width:260px;margin:0 auto}.mt{aspect-ratio:1;border:0;border-radius:12px;background:linear-gradient(#2d2d3a,#1c1c26);font-size:22px;color:#fff;cursor:pointer;box-shadow:0 3px 0 #0008}.mt.ok{background:#164d2b;animation:pop .3s}.mt.bm{background:#5a1220;animation:pop .3s}.mt.ghost{opacity:.55}
 .upg-pair{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;margin-bottom:10px}
-.upg-slot-card{background:#12121c;border:1.5px solid #ffffff1c;border-radius:16px;padding:9px;display:flex;align-items:center;gap:8px;text-align:left;cursor:pointer;min-width:0}
-.upg-slot-card .tag{animation:none!important;flex:none}.upg-slot-info{min-width:0;flex:1}.upg-slot-info small{display:block;font-size:10px;color:var(--mut);font-weight:700;text-transform:uppercase}.upg-slot-info b{display:block;font-size:13.5px;margin:2px 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.upg-slot-info span{display:block;font-size:12.5px;font-weight:800;color:var(--gold)}
+.upg-slot-card{background:#12121c;border:1.5px solid #ffffff1c;border-radius:16px;padding:8px;display:flex;align-items:center;gap:8px;text-align:left;cursor:pointer;min-width:0}
+.upg-slot-card .tag{animation:none!important;flex:none}.upg-slot-info{min-width:0;flex:1}.upg-slot-info small{display:block;font-size:9.5px;color:var(--mut);font-weight:700;text-transform:uppercase}.upg-slot-info b{display:block;font-size:13px;margin:2px 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.upg-slot-info span{display:block;font-size:12px;font-weight:800;color:var(--gold)}
 .upg-wheel-box{background:radial-gradient(circle at 50% 50%,#251432,#0a0a12 75%);border:1px solid #ffffff18;border-radius:18px;padding:14px 10px;margin-bottom:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative}
 .upg-wheel-wrap{position:relative;width:142px;height:142px;display:flex;align-items:center;justify-content:center}
 .upg-pointer{position:absolute;top:-11px;left:50%;transform:translateX(-50%);z-index:6;font-size:20px;color:#ffd54a;filter:drop-shadow(0 3px 5px #000)}
 .upg-wheel{width:134px;height:134px;border-radius:50%;position:relative;border:4px solid #ffffff24;box-shadow:0 0 24px #000,inset 0 0 14px #000}
 .upg-center{position:absolute;inset:18px;border-radius:50%;background:#11111a;border:2px solid #ffffff1f;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:3}
 .upg-r-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(92px,1fr));gap:6px;margin-bottom:8px}
-.upg-r-pill{padding:8px 6px;border-radius:11px;font-size:11.5px;font-weight:800;border:1.5px solid transparent;background:#161622;color:#fff;cursor:pointer;text-align:center}.upg-r-pill.on{border-color:#fff;transform:translateY(-1px)}
-.set-card{background:var(--card);border:1px solid #ffffff14;border-radius:16px;padding:12px;margin-bottom:8px}.set-Card-done{border-color:#ffd54a88;background:linear-gradient(135deg,#2a2008,#12121a)}
-.set-nums{display:flex;gap:5px;flex-wrap:wrap;margin:7px 0}.set-num{padding:4px 8px;border-radius:8px;font-size:11.5px;font-weight:800;background:#09090f;border:1px solid #ffffff1a;color:var(--mut)}.set-num.has{background:#143d22;border-color:var(--ok);color:#fff}
-
-/* Номерок */
-.tag{--w:142px;--c:#8b93a1;--sh0:0 .05em .1em #000a;position:relative;flex:none;width:var(--w);aspect-ratio:5/8.2;font-size:calc(var(--w)/4);overflow:hidden;text-align:center;border-radius:26% 26% 6% 6%/15.5% 15.5% 3.8% 3.8%;box-shadow:var(--sh0);animation:pop .4s cubic-bezier(.2,1.4,.4,1) backwards;transition:box-shadow .4s}
+.upg-r-pill{padding:8px 6px;border-radius:11px;font-size:11px;font-weight:800;border:1.5px solid transparent;background:#161622;color:#fff;cursor:pointer;text-align:center}.upg-r-pill.on{border-color:#fff;transform:translateY(-1px)}
+.set-card{background:var(--card);border:1px solid #ffffff14;border-radius:16px;padding:11px;margin-bottom:8px}.set-Card-done{border-color:#ffd54a88;background:linear-gradient(135deg,#2a2008,#12121a)}
+.set-nums{display:flex;gap:5px;flex-wrap:wrap;margin:7px 0}.set-num{padding:4px 8px;border-radius:8px;font-size:11px;font-weight:800;background:#09090f;border:1px solid #ffffff1a;color:var(--mut)}.set-num.has{background:#143d22;border-color:var(--ok);color:#fff}
+.tag{--w:132px;--c:#8b93a1;--sh0:0 .05em .1em #000a;position:relative;flex:none;width:var(--w);aspect-ratio:5/8.2;font-size:calc(var(--w)/4);overflow:hidden;text-align:center;border-radius:26% 26% 6% 6%/15.5% 15.5% 3.8% 3.8%;box-shadow:var(--sh0);animation:pop .4s cubic-bezier(.2,1.4,.4,1) backwards;transition:box-shadow .4s}
 @keyframes pop{from{transform:scale(.6) rotate(-6deg);opacity:0}}@keyframes bob{50%{transform:translateY(-.08em) rotate(1deg)}}@keyframes revl{0%{transform:scale(.92)}55%{transform:scale(1.06)}100%{transform:scale(1)}}
 .tag.idle{animation:pop .4s cubic-bezier(.2,1.4,.4,1) backwards,bob 3.4s ease-in-out .4s infinite}
 .tag u,.tag i{position:absolute;display:block;pointer-events:none;text-decoration:none}.tag i{left:50%;transform:translateX(-50%);aspect-ratio:1;border-radius:50%}.tag .kpk{position:absolute;left:0;right:0}
@@ -207,24 +177,20 @@ h3{margin:4px 0 6px;font-size:15px}
 .rev.r5::before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,#f00,#ff0,#0f0,#0ff,#00f,#f0f,#f00) 0 0/300% 100%;mix-blend-mode:overlay;opacity:.4;animation:holo 3s linear infinite;z-index:3;pointer-events:none}
 @keyframes shine{from{background-position:150% 0}to{background-position:-100% 0}}@keyframes holo{to{background-position:300% 0}}
 </style></head><body>
+<div id="bgfx"></div>
 <div id="aura"></div>
 <div id="app">
-  <!-- Верхний бар: Профиль, Подарок, Новости, Настройки, Админка, Баланс -->
   <div id="top">
     <div class="chip" id="lv" title="Открыть профиль"><span id="lvt">👤 Ур. 1</span><i><u id="xp"></u></i></div>
+    <button class="chip" id="newsTopBtn" title="Новости игры">📰</button>
     <button class="chip" id="gb">🎁 Забрать</button>
-    <button class="chip top-ic" id="newsTopBtn" title="Новости">📰</button>
-    <button class="chip top-ic" id="setTopBtn" title="Настройки и Купоны">⚙️</button>
-    <button class="chip" id="admBtn">👑</button>
+    <button class="chip" id="admBtn">👑 Админ</button>
     <div id="bal"><small>Баланс</small><b id="bt">1 000 ₽</b></div>
   </div>
 
-  <!-- РАЗДЕЛ 0: ИГРАТЬ -->
+  <!-- 1. ИГРАТЬ -->
   <section class="s on" id="s0">
-    <div id="playSubBar">
-      <div id="activeBoosts"></div>
-      <button id="quickShopBtn">🛒 Лавка Бустов</button>
-    </div>
+    <div id="activeBoosts"></div>
     <div id="types">
       <button class="ty on" data-t="0"><b>🔴 Пластиковые</b><small>100 ₽ / шт.</small></button>
       <button class="ty" data-t="1"><b>📄 Бумажные</b><small>20 ₽ / шт.</small></button>
@@ -234,7 +200,7 @@ h3{margin:4px 0 6px;font-size:15px}
       <div id="val">—</div>
     </div>
     <div id="stage"></div>
-    <div id="lady"><em>👵</em><div><b>Добрая гардеробщица</b> <small id="lt">— удача ×2 через 100 кр.</small><div class="pb"><i id="lp"></i></div></div></div>
+    <div id="lady"><em>👵</em><div><b>Добрая гардеробщица</b> <small id="lt">— удача ×2 через 100 кр.</small><div id="ladyPb" class="pb"><i id="lp"></i></div></div></div>
     <div id="bar"><div id="info">Нажми «Крутить» или переключи режим ×1 / ×5</div></div>
     <div id="ctl">
       <button class="chip" id="cap">📦 0/40</button>
@@ -248,41 +214,22 @@ h3{margin:4px 0 6px;font-size:15px}
     </div>
   </section>
 
-  <!-- РАЗДЕЛ 1: СКЛАД + ВИЗУАЛЬНЫЕ ТРЕЙДЫ + БУСТЫ -->
+  <!-- 2. СКЛАД (Чистое хранилище) -->
   <section class="s" id="s1">
-    <div class="sub" id="stabs">
-      <button class="on" data-st="0">📦 Хранилище</button>
-      <button data-st="1" id="trTabBtn">🤝 Трейды</button>
-      <button data-st="2">🛒 Лавка Бустов</button>
-    </div>
-    <div id="storeWrap" style="display:flex;flex-direction:column;flex:1;min-height:0">
-      <div id="sinfo" style="font-size:13.5px"></div>
-      <div class="pb"><i id="pbt"></i></div>
-      <div class="chips" id="ct"></div>
-      <div class="chips" id="cr"></div>
-      <div class="chips"><button class="f" id="trash">🧹 Продать мусор (кроме 🔒 избранных)</button></div>
-      <div id="grid"></div>
-    </div>
-    <div id="tradeWrap" style="display:none;flex-direction:column;flex:1;min-height:0;overflow-y:auto"></div>
-    <div id="shopWrap" style="display:none;flex-direction:column;flex:1;min-height:0;overflow-y:auto">
-      <div class="shop-head">
-        <div>
-          <b style="font-size:14.5px;color:var(--gold)">🛒 Лавка Бустов и Кейсов</b>
-          <small id="shopTimer" style="display:block;color:#d8b4fe;font-size:11.5px">Обновление витрины через 15:00</small>
-        </div>
-        <button class="f on" id="shopRefreshBtn" style="font-size:11.5px;padding:7px 10px">🔄 Сменить (250 ₽)</button>
-      </div>
-      <div id="shopActiveBox"></div>
-      <div class="shop-grid" id="shopGrid"></div>
-    </div>
+    <div id="sinfo" style="font-size:13px"></div>
+    <div class="pb"><i id="pbt"></i></div>
+    <div class="chips" id="ct"></div>
+    <div class="chips" id="cr"></div>
+    <div class="chips"><button class="f" id="trash">🧹 Продать мусор (кроме 🔒 избранных)</button></div>
+    <div id="grid"></div>
   </section>
 
-  <!-- РАЗДЕЛ 2: ИГРЫ И АПГРЕЙДЕР -->
+  <!-- 3. ИГРЫ -->
   <section class="s" id="s2">
     <div class="sub" id="gtabs"></div>
     <div class="bet-panel" id="betPanel">
       <div class="bet-top">
-        <span style="font-size:12.5px;color:var(--mut);font-weight:700">Ставка:</span>
+        <span style="font-size:12px;color:var(--mut);font-weight:700">Ставка:</span>
         <input type="number" class="bet-inp" id="betInp" value="100" min="10">
         <button class="f" id="betHalf">÷2</button>
         <button class="f on" id="betDouble">×2</button>
@@ -301,75 +248,49 @@ h3{margin:4px 0 6px;font-size:15px}
     <div id="gm"></div>
   </section>
 
-  <!-- РАЗДЕЛ 3: ЗАЛ СЛАВЫ (ТОП, ЗАДАНИЯ, АЧИВКИ, СЕТЫ, НАВЫКИ) -->
+  <!-- 4. ТОП -->
   <section class="s" id="s3">
-    <div class="sub" id="hallTabs">
-      <button class="on" data-ht="0">🏆 Топ игроков</button>
-      <button data-ht="1">📋 Задания</button>
-      <button data-ht="2">🏅 Ачивки</button>
-      <button data-ht="3">📖 Сеты</button>
-      <button data-ht="4">🧠 Навыки</button>
+    <div class="sub">
+      <button class="on" data-t="0">💰 По балансу</button>
+      <button data-t="1">🎫 По номерку</button>
+      <button data-t="2">💎 Мои лучшие</button>
     </div>
-    <div id="hallTopSub" class="chips" style="margin-bottom:8px">
-      <button class="f on" data-t="0">💰 По балансу</button>
-      <button class="f" data-t="1">🎫 По номерку</button>
-      <button class="f" data-t="2">💎 Мои лучшие</button>
-    </div>
-    <div id="hallBody" style="flex:1;min-height:0;overflow-y:auto"></div>
+    <div id="top0"></div>
   </section>
 
-  <!-- Скрытая секция Настроек и Новостей (открывается с верхних кнопок 📰 и ⚙️) -->
-  <section class="s" id="s5">
-    <div class="sub" id="moreTabs">
-      <button class="on" data-mt="0">📰 Новости игры</button>
-      <button data-mt="1">⚙️ Настройки и Купоны</button>
-    </div>
-    <div id="newsWrap" style="display:flex;flex-direction:column;flex:1;min-height:0;overflow-y:auto"></div>
-    <div id="settingsWrap" style="display:none;flex-direction:column;flex:1;min-height:0;overflow-y:auto">
-      <div class="scard">
-        <h3>🎟️ Промокоды и Справочник</h3>
-        <div class="adm-row">
-          <input class="adm-inp" id="promoInp" placeholder="Введи промокод или купон...">
-          <button class="f on" id="promoBtn">Активировать</button>
-        </div>
-        <div id="myIdBox" style="font-size:11.5px;color:var(--mut);margin-bottom:8px"></div>
-        <button class="gbtn" id="openInfoBtn" style="padding:11px;font-size:13.5px;background:linear-gradient(135deg,#2f8dff,#1b4ed8);box-shadow:none">📘 Справочник: Шансы, Цены и Бонусы</button>
+  <!-- 5. ЕЩЁ (Меню с категориями и кнопками + подстраницы) -->
+  <section class="s" id="s4">
+    <div id="moreHub" style="display:flex;flex-direction:column;padding-bottom:10px"></div>
+    <div id="morePage" style="display:none;flex-direction:column;flex:1;min-height:0">
+      <div class="subpage-head">
+        <button class="back-btn" id="moreBackBtn">← Назад в «Ещё»</button>
+        <h3 class="subpage-title" id="morePageTitle">Раздел</h3>
       </div>
-      <div class="scard">
-        <h3>🧹 Умная авто-продажа при крутке</h3>
-        <div id="autoSellBox"></div>
-      </div>
-      <div class="scard">
-        <h3>🔊 Звук, Визуал и Интерфейс</h3>
-        <div id="sets"></div>
-      </div>
-      <div class="scard" style="border-color:#ff546833">
-        <h3 style="color:var(--bad)">⚠️ Управление аккаунтом</h3>
-        <div id="pity" style="color:var(--mut);font-size:11.5px;line-height:1.5;margin-bottom:8px"></div>
-        <button class="f" id="reset" style="width:100%;padding:11px;border-color:#ff546866;color:#ff8090">🗑️ Полностью сбросить прогресс</button>
-      </div>
+      <div id="morePageBody" style="display:flex;flex-direction:column;flex:1;min-height:0;overflow-y:auto"></div>
     </div>
   </section>
 </div>
 
-<!-- 4 крупные кнопки в нижней панели -->
+<!-- РОВНО 5 ИКОНОК СНИЗУ -->
 <nav>
   <button data-s="0" class="on"><b>▶️</b>Играть</button>
   <button data-s="1" id="navStore"><b>📦</b>Склад</button>
   <button data-s="2"><b>🎰</b>Игры</button>
-  <button data-s="3" id="navHall"><b>🏆</b>Зал славы</button>
+  <button data-s="3"><b>🏆</b>Топ</button>
+  <button data-s="4" id="navMore"><b>⊞</b>Ещё</button>
 </nav>
 <div id="md"></div><div id="fl"></div><div id="tt"></div>
 
 <script>
 (()=>{
+/* Конфигурация Админа и БД Firebase */
 const ADMIN_ID = 7646030838;
 const FIREBASE_DB_URL = 'https://nomerokkpk-default-rtdb.firebaseio.com';
 const DB_BASE = FIREBASE_DB_URL.trim().replace(/\/+$/,'');
 
 const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s),sleep=ms=>new Promise(r=>setTimeout(r,ms));
 const TG=window.Telegram&&window.Telegram.WebApp;
-if(TG){try{TG.ready();TG.expand();TG.setHeaderColor('#080811');TG.setBackgroundColor('#080811');TG.disableVerticalSwipes&&TG.disableVerticalSwipes()}catch(e){}}
+if(TG){try{TG.ready();TG.expand();TG.setHeaderColor('#07070c');TG.setBackgroundColor('#07070c');TG.disableVerticalSwipes&&TG.disableVerticalSwipes()}catch(e){}}
 const setVh=()=>document.documentElement.style.setProperty('--vh',((TG&&TG.viewportStableHeight)||innerHeight)+'px');setVh();
 
 const TG_USER = (TG && TG.initDataUnsafe && TG.initDataUnsafe.user) || {};
@@ -383,6 +304,8 @@ function cleanNick(str){
 const RAW_UNAME = cleanNick(TG_USER.username || '').toLowerCase();
 const UN = cleanNick(TG_USER.first_name || TG_USER.username) || 'Игрок_' + String(MY_UID).slice(-4);
 const MY_UNAME = RAW_UNAME || cleanNick(UN).toLowerCase().replace(/\s+/g,'_');
+
+$('#bgfx').innerHTML=Array.from({length:12},()=>`<s style="--sz:${20+Math.random()*45}px;--lf:${Math.random()*100}%;--du:${9+Math.random()*10}s;--dl:-${Math.random()*15}s"></s>`).join('');
 
 let audioCtx = null;
 function playTickSound(freq=520, dur=0.025){
@@ -398,9 +321,16 @@ function playTickSound(freq=520, dur=0.025){
   }catch(e){}
 }
 
+/* ===== Сбалансированная экономика (ценность крутки!) ===== */
 const MAX_NUM = 999;
-const RN=['Обычный','Необычный','Редкий','Эпический','Легендарный','Мифический'],RC=['#8b93a1','#3fbf5f','#2f8dff','#a855f7','#ffa51f','#ff1744'],W0=[6000,2500,1000,350,120,30],LIM=[10,40,150,500];
-const BASE=[[36,52,90,200,620,2800],[7,10,18,40,124,560]],COST0=[100,20],TN=['пластиковый','бумажный'];
+const RN=['Обычный','Необычный','Редкий','Эпический','Легендарный','Мифический'];
+const RC=['#8b93a1','#3fbf5f','#2f8dff','#a855f7','#ffa51f','#ff1744'];
+const W0=[6600,2200,820,260,95,25];
+const LIM=[12,45,160,550];
+/* Обычные и необычные окупают часть крутки, Редкие — почти в ноль, Эпик+ — хороший профит */
+const BASE=[[26,42,85,230,780,3400],[5,8,17,46,155,680]];
+const COST0=[100,20],TN=['пластиковый','бумажный'];
+
 const FIX=[
   [1,2,3,4,5,6,7,8,9,10,747,777],
   [11,22,33,44,55,66,77,99,100,111,222,333,444,555,666,888,999,123,321],
@@ -418,25 +348,25 @@ FIX.forEach((a,i)=>a.forEach(n=>{if(n<=MAX_NUM)RAR[n]=5-i}));
 }
 
 const SETS = [
-  {id:'triples', n:'🔥 Три Топора и Элита', nums:[777,888,999], rewC:120000, rewSp:3, desc:'+10% к цене продажи всех номерков навсегда', bonusType:'sell', bonusVal:0.10},
-  {id:'street', n:'😎 Уличный сленг', nums:[52,228,322,420,812], rewC:65000, rewSp:2, desc:'+5% к базовой удаче при крутках', bonusType:'luck', bonusVal:0.05},
-  {id:'top10', n:'👑 Первая Десятка', nums:[1,2,3,4,5,6,7,8,9,10], rewC:450000, rewSp:5, desc:'+15% к цене продажи и +10% к удаче', bonusType:'both', bonusVal:0.15},
-  {id:'twins', n:'🪞 Двойной Удар', nums:[11,22,33,44,55,66,77,99], rewC:95000, rewSp:2, desc:'+8% к цене продажи всех номерков', bonusType:'sell', bonusVal:0.08},
-  {id:'cyber', n:'🤖 Кибер-Клуб', nums:[100,200,300,404,500], rewC:50000, rewSp:2, desc:'+4% к шансу успеха в Апгрейдере', bonusType:'upg', bonusVal:4},
-  {id:'meme67', n:'🤪 Секрет 67', nums:[67,167,267,670,677], rewC:40000, rewSp:1, desc:'+20% к подарку гардеробщика', bonusType:'gift', bonusVal:0.20},
-  {id:'stairs', n:'🪜 Золотая Лесенка', nums:[123,234,345,456,567,678,789], rewC:80000, rewSp:2, desc:'+15% к получаемому опыту XP', bonusType:'xp', bonusVal:0.15}
+  {id:'triples', n:'🔥 Три Топора и Элита', nums:[777,888,999], rewC:45000, rewSp:2, desc:'+8% к цене продажи всех номерков навсегда', bonusType:'sell', bonusVal:0.08},
+  {id:'street', n:'😎 Уличный сленг', nums:[52,228,322,420,812], rewC:25000, rewSp:1, desc:'+4% к базовой удаче при крутках', bonusType:'luck', bonusVal:0.04},
+  {id:'top10', n:'👑 Первая Десятка', nums:[1,2,3,4,5,6,7,8,9,10], rewC:160000, rewSp:4, desc:'+12% к цене продажи и +8% к удаче', bonusType:'both', bonusVal:0.12},
+  {id:'twins', n:'🪞 Двойной Удар', nums:[11,22,33,44,55,66,77,99], rewC:38000, rewSp:2, desc:'+6% к цене продажи всех номерков', bonusType:'sell', bonusVal:0.06},
+  {id:'cyber', n:'🤖 Кибер-Клуб', nums:[100,200,300,404,500], rewC:20000, rewSp:1, desc:'+3% к шансу успеха в Апгрейдере', bonusType:'upg', bonusVal:3},
+  {id:'meme67', n:'🤪 Секрет 67', nums:[67,167,267,670,677], rewC:15000, rewSp:1, desc:'+15% к подарку гардеробщика', bonusType:'gift', bonusVal:0.15},
+  {id:'stairs', n:'🪜 Золотая Лесенка', nums:[123,234,345,456,567,678,789], rewC:30000, rewSp:2, desc:'+12% к получаемому опыту XP', bonusType:'xp', bonusVal:0.12}
 ];
 
 const KEY = 'nomerok-rng-v8-' + MY_UID;
 const PREV_KEY = 'nomerok-rng-v7-' + MY_UID;
 const LEGACY_KEY = 'nomerok-rng-v6';
-let G=null,busy=false,ty=0,spinMult=1,fT=-1,fR=-1,ttab=0,htab=0,stab=0,mtab=0,pend=[],isResetting=false;
+let G=null,busy=false,ty=0,spinMult=1,fT=-1,fR=-1,ttab=0,moreSub=null,pend=[],isResetting=false;
 
 function defaultSave(wipeTs = 0){
   return {
     uid:MY_UID,uname:MY_UNAME,c:1000,items:[],nid:1,rolls:0,p:[[0,0,0,0],[0,0,0,0]],
     up:{l:0,m:0,r:0,s:0,g:0,u:0,b:0},lv:1,xp:0,sp:1,gift:0,spent:0,earned:0,
-    st:{sold:0,bonus:0,rare:0,s67:0,upgWin:0,upgTry:0,rkWin:0,myth:0,paper:0,trades:0},
+    st:{sold:0,bonus:0,rare:0,s67:0,upgWin:0,upgTry:0,rkWin:0,myth:0,paper:0,trades:0,transfers:0},
     qt:{},ach:{},setsDone:[],bless:0,gnet:0,col:[],usedCodes:[],best:null,
     boosts:{},shopRef:0,shopBought:{},lastWipeTs:wipeTs,seenNewsTs:0,wipedHidden:false,
     updatedAt:Date.now(),
@@ -502,23 +432,23 @@ function getSetBonus(type){
   for(const s of SETS){
     if(G.setsDone.includes(s.id)){
       if(s.bonusType === type) sum += s.bonusVal;
-      else if(s.bonusType === 'both' && (type==='sell'||type==='luck')) sum += (type==='sell'?0.15:0.10);
+      else if(s.bonusType === 'both' && (type==='sell'||type==='luck')) sum += (type==='sell'?0.12:0.08);
     }
   }
   return sum;
 }
 
-const SP={300:[2.5,'🦍','Биг Бой'],812:[2,'🏙️','СПБ Yung Trappa'],228:[2.5,'😎','Блатной'],52:[2.5,'🔥','52NGG'],337:[1.5,'🎩','337'],322:[2,'😎','Блатной'],312:[2,'😎','Блатной'],13:[1.8,'😎','Блатной'],420:[1.8,'🌿','Блатной'],404:[1.5,'🤖','Not Found']};
+const SP={300:[2.4,'🦍','Биг Бой'],812:[1.9,'🏙️','СПБ Yung Trappa'],228:[2.3,'😎','Блатной'],52:[2.3,'🔥','52NGG'],337:[1.45,'🎩','337'],322:[1.9,'😎','Блатной'],312:[1.9,'😎','Блатной'],13:[1.7,'😎','Блатной'],420:[1.75,'🌿','Блатной'],404:[1.45,'🤖','Not Found']};
 function bonus(i){
   if(!i)return null;
   const n=i.n,s=String(n),L=[];
   if(SP[n])L.push(SP[n]);
-  if(n>=1&&n<=10)L.push([2,'👑','Топ-10']);
-  if(n>=11&&n<=99&&s[0]==s[1])L.push([1.8,'😎','Блатной']);
-  if(/^(\d)\1\1$/.test(s))L.push([['777','888','999'].includes(s)?3:2.2,'😎','Блатной']);
-  if(s.includes('67'))L.push([1.35,'🤪','67']);
+  if(n>=1&&n<=10)L.push([2.0,'👑','Топ-10']);
+  if(n>=11&&n<=99&&s[0]==s[1])L.push([1.7,'😎','Блатной']);
+  if(/^(\d)\1\1$/.test(s))L.push([['777','888','999'].includes(s)?2.8:2.1,'😎','Блатной']);
+  if(s.includes('67'))L.push([1.3,'🤪','67']);
   if(s.length==3&&s==[...s].reverse().join('')&&!/^(\d)\1\1$/.test(s))L.push([1.2,'🪞','Зеркальный']);
-  if(s.length==3&&('123456789'.includes(s)||'987654321'.includes(s)))L.push([1.3,'🪜','Лесенка']);
+  if(s.length==3&&('123456789'.includes(s)||'987654321'.includes(s)))L.push([1.25,'🪜','Лесенка']);
   if(n>=100&&n<1000&&n%100==0)L.push([1.2,'🧱','Круглый']);
   return L.sort((a,b)=>b[0]-a[0])[0]||null;
 }
@@ -526,20 +456,20 @@ function bonus(i){
 const price=i=>{
   if(!i)return 0;
   const b=bonus(i);
-  const boostSell = hasBoost('sell50') ? 0.50 : 0;
-  const mult = (1 + 0.02*(G.up.m||0) + getSetBonus('sell') + boostSell);
+  const boostSell = hasBoost('sell50') ? 0.35 : 0;
+  const mult = (1 + 0.015*(G.up.m||0) + getSetBonus('sell') + boostSell);
   return Math.max(1,Math.round(BASE[i.t||0][i.r||0]*(b?b[0]:1)*mult));
 };
-const cap=()=>40+10*(G.up.s||0),need=l=>12+l*10;
+const cap=()=>40+10*(G.up.s||0),need=l=>15+l*12;
 const cst=t=>{
-  const disc = hasBoost('disc35') ? 0.65 : 1;
-  return Math.max(5, Math.round(COST0[t]*(1-.015*(G.up.r||0))*disc));
+  const disc = hasBoost('disc35') ? 0.75 : 1;
+  return Math.max(8, Math.round(COST0[t]*(1-.01*(G.up.r||0))*disc));
 };
-const blessStep=()=>Math.max(50, 100 - 3*(G.up.b||0));
+const blessStep=()=>Math.max(60, 100 - 3*(G.up.b||0));
 const worth=()=>Math.max(0, Math.round((Number(G.c)||0)+G.items.reduce((a,i)=>a+price(i),0)));
 const W=bl=>{
-  const bLuck = hasBoost('luck3') ? 3 : (hasBoost('luck2') ? 2 : 1);
-  return W0.map((w,i)=>i?w*(1+.02*(G.up.l||0)+getSetBonus('luck'))*(bl?2:1)*bLuck:w);
+  const bLuck = hasBoost('luck3') ? 2.5 : (hasBoost('luck2') ? 1.75 : 1);
+  return W0.map((w,i)=>i?w*(1+.015*(G.up.l||0)+getSetBonus('luck'))*(bl?1.8:1)*bLuck:w);
 };
 const pick=w=>{let x=Math.random()*w.reduce((a,b)=>a+b),r=0;while(r<w.length-1&&x>=w[r]){x-=w[r];r++}return r};
 
@@ -599,8 +529,10 @@ function addXp(x){
   const gain = Math.round(x * (1 + getSetBonus('xp')) * xpBoost);
   G.xp += gain;
   while(G.xp>=need(G.lv)){
-    G.xp-=need(G.lv);G.lv++;G.c+=30*G.lv;G.sp++;
-    toast(`⬆️ Уровень ${G.lv}! +${30*G.lv} ₽ и 🧠1`);
+    G.xp-=need(G.lv);G.lv++;
+    const bonusC = 20 * G.lv;
+    G.c+=bonusC;G.sp++;
+    toast(`⬆️ Уровень ${G.lv}! +${fmt(bonusC)} ₽ и 🧠1`);
   }
 }
 
@@ -619,7 +551,7 @@ function roll(t,bl){
   if(r===5)G.st.myth++;
   if(t===1)G.st.paper++;
   if(String(n).includes('67'))G.st.s67++;
-  addXp(1+r*3);
+  addXp(1+r*2);
   return it;
 }
 
@@ -641,24 +573,24 @@ $('#lv').onclick=()=>{
       <div style="flex:1;min-width:0">
         <div class="prof-title">${getRankTitle(G.lv)}</div>
         <div style="font-size:17px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${UN}</div>
-        <div style="font-size:11.5px;color:var(--mut)">Юзернейм: <b style="color:#fff">@${MY_UNAME}</b></div>
+        <div style="font-size:11px;color:var(--mut)">Юзернейм: <b style="color:#fff">@${MY_UNAME}</b></div>
       </div>
       <div style="text-align:right">
         <div style="font-size:18px;font-weight:800;color:var(--ok)">Ур. ${G.lv}</div>
-        <small style="font-size:10.5px;color:var(--mut)">${G.xp}/${need(G.lv)} XP</small>
+        <small style="font-size:10px;color:var(--mut)">${G.xp}/${need(G.lv)} XP</small>
       </div>
     </div>
-    <div style="font-size:12.5px;font-weight:800;color:var(--gold);margin:0 0 6px">🏆 Лучший выбитый номерок за всё время</div>
+    <div style="font-size:12px;font-weight:800;color:var(--gold);margin:0 0 6px">🏆 Лучший выбитый номерок за всё время</div>
     ${bIt ? `<div class="prof-best">
-      ${tg(bIt, 76, false)}
+      ${tg(bIt, 74, false)}
       <div style="text-align:left;flex:1">
         <div style="font-size:16px;font-weight:800;color:${RC[bIt.r]}">${RN[bIt.r]} №${bIt.n}</div>
         <div style="font-size:12px;color:var(--mut);margin:2px 0">${TN[bIt.t]} номерок</div>
         ${bBonus ? `<div style="font-size:12px;color:var(--gold);font-weight:700">${bBonus[1]} ${bBonus[2]} ×${bBonus[0]}</div>` : ''}
         <div style="font-size:18px;font-weight:800;color:var(--gold);margin-top:4px">Оценка: ${fmt(price(bIt))} ₽</div>
       </div>
-    </div>` : `<div class="prof-best" style="color:var(--mut);font-size:12.5px;padding:18px">У тебя пока нет выбитых номерков — сделай первую крутку!</div>`}
-    <div style="font-size:12.5px;font-weight:800;margin:0 0 6px">📊 Статистика аккаунта</div>
+    </div>` : `<div class="prof-best" style="color:var(--mut);font-size:12px;padding:18px">У тебя пока нет выбитых номерков — сделай первую крутку!</div>`}
+    <div style="font-size:12px;font-weight:800;margin:0 0 6px">📊 Статистика аккаунта</div>
     <div class="prof-stats">
       <div class="pstat"><small>Чистый баланс</small><b style="color:var(--ok)">${fmt(G.c)} ₽</b></div>
       <div class="pstat"><small>Общее состояние</small><b style="color:var(--gold)">${fmt(worth())} ₽</b></div>
@@ -671,32 +603,14 @@ $('#lv').onclick=()=>{
   $('#md').classList.add('on');
 };
 
-/* Верхние кнопки Новостей и Настроек + Быстрая кнопка Лавки Бустов */
 $('#newsTopBtn').onclick = () => {
-  mtab = 0;
-  $$('nav button,.s').forEach(e=>e.classList.remove('on'));
-  $('#s5').classList.add('on');
-  more();
-};
-$('#setTopBtn').onclick = () => {
-  mtab = 1;
-  $$('nav button,.s').forEach(e=>e.classList.remove('on'));
-  $('#s5').classList.add('on');
-  more();
-};
-$('#quickShopBtn').onclick = () => {
-  stab = 2;
-  $$('nav button,.s').forEach(e=>e.classList.remove('on'));
-  $('#navStore').classList.add('on');
-  $('#s1').classList.add('on');
-  $$('#stabs button').forEach((x,i)=>x.classList.toggle('on',i===2));
-  storeTab();
+  openMoreSection('news');
 };
 
 function fit(count=1){
-  const s=$('#stage'),w=s.clientWidth||340,h=s.clientHeight||220;
-  if(count>1) return Math.max(56, Math.min(78, Math.floor((w-40)/3), Math.floor((h-24)/3.3)));
-  return Math.max(90, Math.floor(Math.min(144, w-40, (h-12)/1.64)));
+  const s=$('#stage'),w=s.clientWidth||320,h=s.clientHeight||210;
+  if(count>1) return Math.max(52, Math.min(74, Math.floor((w-40)/3), Math.floor((h-24)/3.4)));
+  return Math.max(80, Math.floor(Math.min(130, w-40, (h-12)/1.65)));
 }
 function refit(){
   if(!$('#s0').classList.contains('on'))return;
@@ -723,7 +637,7 @@ $('#multBtn').onclick=()=>{
 async function spin(){
   if(busy||pend.length)return;
   const freeSpace = cap() - G.items.length;
-  if(freeSpace <= 0){toast('📦 Хранилище заполнено — продай что-нибудь');return}
+  if(freeSpace <= 0){toast('📦 Склад заполнен — продай что-нибудь');return}
   const actualCount = Math.min(spinMult, freeSpace);
   const unitCost = cst(ty);
   const totalCost = unitCost * actualCount;
@@ -751,7 +665,7 @@ async function spin(){
   $('#rn').style.color = 'var(--mut)';
   $('#val').textContent = '—';
   $$('#seg i').forEach(i=>i.style.background='');
-  $('#info').innerHTML = usedBless ? '👵 <b>Гардеробщица помогла: удача ×2!</b>' : 'Удачи!';
+  $('#info').innerHTML = usedBless ? '👵 <b>Гардеробщица помогла: удача повышена!</b>' : 'Удачи!';
 
   const stg = $('#stage');
   stg.classList.toggle('multi', actualCount > 1);
@@ -794,7 +708,7 @@ async function spin(){
   $('#val').textContent = fmt(totalVal)+' ₽';
   $$('#seg i').forEach((s,i)=>{if(i<=best.r)setTimeout(()=>s.style.background=RC[best.r],i*90)});
   document.documentElement.style.setProperty('--ac',RC[best.r]);
-  $('#aura').style.opacity=.18+best.r*.06;
+  $('#aura').style.opacity=.15+best.r*.06;
 
   let autoSoldCount = 0, autoSoldSum = 0;
   const maxAutoR = G.set.autoMode - 1;
@@ -828,7 +742,7 @@ async function spin(){
 
   fx(best.r);
   if(best.r>=4)toast(best.r==5?'🌈 МИФИЧЕСКИЙ НОМЕРОК!!!':'🔥 Легендарный номерок!');
-  if(gotBless)setTimeout(()=>toast('👵 Добрая гардеробщица: следующая крутка с удачей ×2!'),1800);
+  if(gotBless)setTimeout(()=>toast('👵 Добрая гардеробщица: следующая крутка с повышенной удачей!'),1800);
   busy=false;
   save(true);
   hud();
@@ -888,7 +802,7 @@ function resolve(mode){
     const s = sell(list);
     msg = `Продано за <b style="color:var(--gold)">${fmt(s)} ₽</b>`;
   } else {
-    msg = list.length>1 ? `📦 Оставлено в хранилище (${list.length} шт.)` : '📦 Номерок в хранилище';
+    msg = list.length>1 ? `📦 Оставлено на складе (${list.length} шт.)` : '📦 Номерок отправлен на склад';
   }
   $('#info').innerHTML = msg;
   hap('light');save(true);hud();
@@ -897,27 +811,27 @@ $('#d1').onclick=()=>resolve('keep');
 $('#d2').onclick=()=>resolve('sell');
 $('#dJunk').onclick=()=>resolve('junk');
 
-/* ===== Магазин Бустов ===== */
+/* ===== Лавка Бустов (Сбалансированные цены!) ===== */
 const BOOST_Meta = {
-  luck2: {icon:'🍀', name:'Удача ×2'},
-  luck3: {icon:'🌈', name:'Мега-Удача ×3'},
-  sell50: {icon:'💰', name:'Продажа +50%'},
-  upg15: {icon:'⚡', name:'Апгрейд +15%'},
-  disc35: {icon:'🏷️', name:'Скидка -35%'},
+  luck2: {icon:'🍀', name:'Удача ×1.75'},
+  luck3: {icon:'🌈', name:'Мега-Удача ×2.5'},
+  sell50: {icon:'💰', name:'Продажа +35%'},
+  upg15: {icon:'⚡', name:'Апгрейд +12%'},
+  disc35: {icon:'🏷️', name:'Скидка -25%'},
   xp2: {icon:'🧠', name:'Опыт ×2'}
 };
 
 const SHOP_POOL = [
-  {id:'b_luck2', icon:'🍀', name:'Эликсир Удачи ×2', desc:'Увеличивает шанс выпадения Редких–Мифических номерков в 2 раза на 10 минут.', baseCost:1800, type:'boost', bKey:'luck2', mins:10},
-  {id:'b_luck3', icon:'🌈', name:'Мега-Удача ×3', desc:'Мощный буст! Шанс на редкие и выше увеличен в 3 раза на 5 минут.', baseCost:4200, type:'boost', bKey:'luck3', mins:5},
-  {id:'b_sell50', icon:'💰', name:'Золотой Контракт', desc:'Повышает цену продажи всех твоих номерков на +50% на 10 минут.', baseCost:2400, type:'boost', bKey:'sell50', mins:10},
-  {id:'b_upg15', icon:'⚡', name:'Стабилизатор КПК', desc:'Добавляет +15% к шансу успешной прокачки в Апгрейдере на 10 минут.', baseCost:2900, type:'boost', bKey:'upg15', mins:10},
-  {id:'b_disc35', icon:'🏷️', name:'Оптовый Пропуск', desc:'Все крутки (и ×1, и ×5) стоят на 35% дешевле в течение 10 минут.', baseCost:1600, type:'boost', bKey:'disc35', mins:10},
-  {id:'b_xp2', icon:'🧠', name:'Нейро-Стимулятор', desc:'Удваивает получаемый опыт XP за все крутки в течение 10 минут.', baseCost:1400, type:'boost', bKey:'xp2', mins:10},
-  {id:'i_case_rare', icon:'📦', name:'Секретный Кейс КПК', desc:'Мгновенно выдаёт случайный номерок от Редкого до Мифического!', baseCost:1200, type:'case', minR:2},
-  {id:'i_case_epic', icon:'🔥', name:'Элитный Кейс (Эпик+)', desc:'Гарантированный Эпический, Легендарный или Мифический номерок!', baseCost:4800, type:'case', minR:3},
-  {id:'i_bless3', icon:'👵', name:'Пирожки Гардеробщицы', desc:'Заряжает благословение (Удача ×2) сразу на 3 следующие крутки подряд!', baseCost:1500, type:'bless', count:3},
-  {id:'i_sp2', icon:'🧬', name:'Капсула Навыков', desc:'Мгновенно добавляет +2 очка навыков (🧠) для прокачки дерева.', baseCost:5500, type:'sp', count:2}
+  {id:'b_luck2', icon:'🍀', name:'Эликсир Удачи', desc:'Повышает шанс выпадения Редких–Мифических номерков в 1.75 раза на 10 минут.', baseCost:4500, type:'boost', bKey:'luck2', mins:10},
+  {id:'b_luck3', icon:'🌈', name:'Мега-Удача', desc:'Мощный буст! Шанс на редкие и выше увеличен в 2.5 раза на 5 минут.', baseCost:11000, type:'boost', bKey:'luck3', mins:5},
+  {id:'b_sell50', icon:'💰', name:'Золотой Контракт', desc:'Повышает цену продажи всех твоих номерков на +35% на 10 минут.', baseCost:6500, type:'boost', bKey:'sell50', mins:10},
+  {id:'b_upg15', icon:'⚡', name:'Стабилизатор КПК', desc:'Добавляет +12% к шансу успешной прокачки в Апгрейдере на 10 минут.', baseCost:7500, type:'boost', bKey:'upg15', mins:10},
+  {id:'b_disc35', icon:'🏷️', name:'Оптовый Пропуск', desc:'Все крутки (×1 и ×5) стоят на 25% дешевле в течение 10 минут.', baseCost:4200, type:'boost', bKey:'disc35', mins:10},
+  {id:'b_xp2', icon:'🧠', name:'Нейро-Стимулятор', desc:'Удваивает получаемый опыт XP за все крутки в течение 10 минут.', baseCost:3800, type:'boost', bKey:'xp2', mins:10},
+  {id:'i_case_rare', icon:'📦', name:'Секретный Кейс КПК', desc:'Мгновенно выдаёт случайный номерок от Редкого до Мифического!', baseCost:4800, type:'case', minR:2},
+  {id:'i_case_epic', icon:'🔥', name:'Элитный Кейс (Эпик+)', desc:'Гарантированный Эпический, Легендарный или Мифический номерок!', baseCost:16500, type:'case', minR:3},
+  {id:'i_bless3', icon:'👵', name:'Пирожки Гардеробщицы', desc:'Заряжает благословение удачи сразу на 3 следующие крутки подряд!', baseCost:3900, type:'bless', count:3},
+  {id:'i_sp2', icon:'🧬', name:'Капсула Навыков', desc:'Мгновенно добавляет +1 очко навыков (🧠) для прокачки дерева.', baseCost:14000, type:'sp', count:1}
 ];
 
 function getShopRotation(){
@@ -930,11 +844,11 @@ function getShopRotation(){
     const j = Math.floor(rnd() * (i+1));
     [pool[i], pool[j]] = [pool[j], pool[i]];
   }
-  const scale = 1 + Math.max(0, (G.lv - 1) * 0.08);
+  const scale = 1 + Math.max(0, (G.lv - 1) * 0.12);
   return pool.slice(0, 4).map((item, idx)=>{
-    const isSale = idx === 0 || rnd() < 0.35;
-    const rawCost = Math.round(item.baseCost * scale * (isSale ? 0.65 : 1));
-    const cost = Math.max(100, Math.round(rawCost / 10) * 10);
+    const isSale = idx === 0 && rnd() < 0.5;
+    const rawCost = Math.round(item.baseCost * scale * (isSale ? 0.75 : 1));
+    const cost = Math.max(500, Math.round(rawCost / 50) * 50);
     const key = `${slot15m}_${G.shopRef||0}_${item.id}`;
     return {...item, cost, isSale, buyKey: key};
   });
@@ -945,114 +859,57 @@ function renderActiveBoostsBar(){
   const active = Object.entries(BOOST_Meta).filter(([k])=>G.boosts && G.boosts[k] > now);
   const bar = $('#activeBoosts');
   if(!bar) return;
-  if(!active.length){ bar.innerHTML = `<span style="font-size:11.5px;color:var(--mut)">Нет активных бустов</span>`; return; }
+  if(!active.length){ bar.classList.remove('on'); bar.innerHTML = ''; return; }
+  bar.classList.add('on');
   bar.innerHTML = active.map(([k, m])=>{
     const leftSec = Math.max(0, Math.floor((G.boosts[k] - now)/1000));
     return `<div class="b-pill">${m.icon} ${m.name} <b>${String(Math.floor(leftSec/60)).padStart(2,'0')}:${String(leftSec%60).padStart(2,'0')}</b></div>`;
   }).join('');
 }
 
-function renderShop(){
-  const offers = getShopRotation();
-  const now = Date.now();
-  const active = Object.entries(BOOST_Meta).filter(([k])=>G.boosts && G.boosts[k] > now);
-  $('#shopActiveBox').innerHTML = active.length ? `<div class="scard" style="padding:9px 11px;margin-bottom:8px;border-color:#3fe06b55">
-    <div style="font-size:11.5px;color:var(--ok);font-weight:800;margin-bottom:4px">⚡ Активные усилители сейчас:</div>
-    <div style="display:flex;gap:6px;flex-wrap:wrap">
-      ${active.map(([k,m])=>`<span class="b-pill">${m.icon} ${m.name} (ещё ~${Math.ceil((G.boosts[k]-now)/60000)} мин)</span>`).join('')}
-    </div>
-  </div>` : '';
-
-  $('#shopGrid').innerHTML = offers.map(o=>{
-    const bought = !!(G.shopBought && G.shopBought[o.buyKey]);
-    return `<div class="shop-item ${o.isSale?'sale':''}">
-      ${o.isSale ? `<span class="sale-badge">СКИДКА -35% 🔥</span>` : ''}
-      <div>
-        <div class="shop-icon">${o.icon}</div>
-        <div class="shop-title">${o.name}</div>
-        <div class="shop-desc">${o.desc}</div>
-      </div>
-      <button class="gbtn" data-buy="${o.id}" ${bought||G.c<o.cost?'disabled':''} style="padding:10px 8px;font-size:12.5px">
-        ${bought ? '✅ Куплено' : `Купить за ${fmt(o.cost)} ₽`}
-      </button>
-    </div>`;
-  }).join('');
-}
-
-$('#shopRefreshBtn').onclick = () => {
-  if(G.c < 250) return toast('Не хватает денег на обновление лавки (250 ₽)');
-  G.c -= 250; G.shopRef = (G.shopRef || 0) + 1;
-  hap('light'); save(true); hud(); renderShop();
-  toast('🔄 Товары в лавке обновлены!');
-};
-
-$('#shopGrid').onclick = e => {
-  const btn = e.target.closest('[data-buy]'); if(!btn) return;
-  const o = getShopRotation().find(x=>x.id === btn.dataset.buy);
-  if(!o) return;
-  if(G.shopBought && G.shopBought[o.buyKey]) return toast('Этот товар уже раскуплен');
-  if(G.c < o.cost) return toast('Не хватает баланса');
-  if(o.type === 'case' && G.items.length >= cap()) return toast('📦 Освободи место на складе!');
-
-  G.c -= o.cost;
-  if(!G.shopBought) G.shopBought = {};
-  G.shopBought[o.buyKey] = 1;
-
-  if(o.type === 'boost'){
-    addBoostTime(o.bKey, o.mins);
-    toast(`⚡ Активирован буст «${o.name}» на +${o.mins} мин!`);
-  } else if(o.type === 'case'){
-    const weights = o.minR === 3 ? [0,0,0,700,240,60] : [0,0,650,250,80,20];
-    const r = pick(weights);
-    const n = P[r][Math.random()*P[r].length|0];
-    const it = {id:G.nid++, n, r, t:0};
-    G.items.push(it);
-    if(!G.col.includes(n)) G.col.push(n);
-    checkBest(it);
-    G.wipedHidden = false;
-    burst(innerWidth/2, innerHeight/2, RC[r], 40);
-    toast(`🎁 Из кейса выпал ${RN[r]} №${n} (${fmt(price(it))} ₽)!`);
-  } else if(o.type === 'bless'){
-    G.bless = (G.bless || 0) + o.count;
-    toast(`👵 Получено благословение на ${G.bless} крутки!`);
-  } else if(o.type === 'sp'){
-    G.sp += o.count;
-    toast(`🧬 Получено +${o.count} 🧠 очков навыков!`);
-  }
-  hap('heavy'); save(true); hud(); renderShop();
-};
-
 const Q=[
-  {k:'roll',n:'Сделай крутки номерков',b:20,m:2.3,r:100},
-  {k:'sold',n:'Продай номерки со склада',b:15,m:2.3,r:90},
-  {k:'bonus',n:'Выбей блатные/бонусные номера',b:3,m:2.4,r:140},
-  {k:'rare',n:'Выбей Редкие и выше',b:5,m:2.4,r:130},
-  {k:'paper',n:'Выбей бумажные номерки 📄',b:12,m:2.3,r:80},
-  {k:'upgTry',n:'Попытай удачу в Апгрейдере ⚡',b:2,m:2.2,r:150},
-  {k:'upgWin',n:'Успешно прокачай номерок в Апгрейдере',b:1,m:2.2,r:250},
-  {k:'rkWin',n:'Забери икс в общей Ракете 🚀',b:2,m:2.2,r:180},
-  {k:'s67',n:'Выбей номер с цифрами «67» 🤪',b:1,m:2.0,r:200},
-  {k:'earned',n:'Заработай на продажах (₽)',b:2500,m:2.8,r:160}
+  {k:'roll',n:'Сделай крутки номерков',b:25,m:2.3,r:180},
+  {k:'sold',n:'Продай номерки со склада',b:20,m:2.3,r:150},
+  {k:'bonus',n:'Выбей блатные/бонусные номера',b:3,m:2.4,r:260},
+  {k:'rare',n:'Выбей Редкие и выше',b:5,m:2.4,r:240},
+  {k:'paper',n:'Выбей бумажные номерки 📄',b:15,m:2.3,r:130},
+  {k:'upgTry',n:'Попытай удачу в Апгрейдере ⚡',b:2,m:2.2,r:280},
+  {k:'upgWin',n:'Успешно прокачай номерок в Апгрейдере',b:1,m:2.2,r:450},
+  {k:'rkWin',n:'Забери икс в общей Ракете 🚀',b:2,m:2.2,r:320},
+  {k:'s67',n:'Выбей номер с цифрами «67» 🤪',b:1,m:2.0,r:350},
+  {k:'earned',n:'Заработай на продажах (₽)',b:3000,m:2.7,r:300}
 ];
 const QV=q=>q.k=='earned'?G.earned:q.k=='roll'?G.rolls:(G.st[q.k]||0);
 const QT=q=>G.qt[q.k]||0;
 const QG=q=>Math.round(q.b*(q.m**QT(q)));
-const QR=q=>Math.round((q.r||100)*(1.45**QT(q)));
+const QR=q=>Math.round((q.r||150)*(1.35**QT(q)));
 
 const ACHS=[
-  {id:'r100',n:'🎲 Любитель гардероба',d:'Сделать 100 круток',c:()=>G.rolls>=100,rewC:5000,rewSp:1},
-  {id:'r1000',n:'🎰 Машина круток',d:'Сделать 1 000 круток',c:()=>G.rolls>=1000,rewC:45000,rewSp:3},
-  {id:'w50k',n:'💼 Первый капитал',d:'Накопить состояние 50 000 ₽',c:()=>worth()>=50000,rewC:7500,rewSp:1},
-  {id:'w1m',n:'🏦 Миллионер КПК',d:'Накопить состояние 1 000 000 ₽',c:()=>worth()>=1000000,rewC:150000,rewSp:5},
-  {id:'myth1',n:'🌈 Первая Легенда мифов',d:'Выбить хотя бы 1 Мифический номерок',c:()=>(G.st.myth>0||(G.best&&G.best.r===5)),rewC:25000,rewSp:2},
-  {id:'upg5',n:'⚡ Мастер Апгрейда',d:'Сделать 5 успешных апгрейдов',c:()=>G.st.upgWin>=5,rewC:20000,rewSp:2},
-  {id:'rk10',n:'🚀 Покоритель стратосферы',d:'Победить в Ракете 10 раз',c:()=>G.st.rkWin>=10,rewC:18000,rewSp:2},
-  {id:'col100',n:'📖 Архивариус (100)',d:'Собрать 100 уникальных номеров в коллекцию',c:()=>G.col.length>=100,rewC:15000,rewSp:2},
-  {id:'col500',n:'🏛️ Хранитель музея (500)',d:'Собрать 500 уникальных номеров',c:()=>G.col.length>=500,rewC:120000,rewSp:4},
-  {id:'set1',n:'🧩 Охотник за сетами',d:'Собрать хотя бы 1 тематический сет',c:()=>G.setsDone.length>=1,rewC:30000,rewSp:2},
-  {id:'tr1',n:'🤝 Деловая сделка',d:'Отправить или принять 1 трейд',c:()=>G.st.trades>=1,rewC:10000,rewSp:1},
-  {id:'lv25',n:'👑 Авторитет раздевалки',d:'Достичь 25 уровня',c:()=>G.lv>=25,rewC:50000,rewSp:3}
+  {id:'r100',n:'🎲 Любитель гардероба',d:'Сделать 100 круток',c:()=>G.rolls>=100,rewC:2500,rewSp:1},
+  {id:'r1000',n:'🎰 Машина круток',d:'Сделать 1 000 круток',c:()=>G.rolls>=1000,rewC:20000,rewSp:2},
+  {id:'w50k',n:'💼 Первый капитал',d:'Накопить состояние 50 000 ₽',c:()=>worth()>=50000,rewC:4000,rewSp:1},
+  {id:'w1m',n:'🏦 Миллионер КПК',d:'Накопить состояние 1 000 000 ₽',c:()=>worth()>=1000000,rewC:75000,rewSp:3},
+  {id:'myth1',n:'🌈 Первая Легенда мифов',d:'Выбить хотя бы 1 Мифический номерок',c:()=>(G.st.myth>0||(G.best&&G.best.r===5)),rewC:12000,rewSp:2},
+  {id:'upg5',n:'⚡ Мастер Апгрейда',d:'Сделать 5 успешных апгрейдов',c:()=>G.st.upgWin>=5,rewC:9000,rewSp:1},
+  {id:'rk10',n:'🚀 Покоритель стратосферы',d:'Победить в Ракете 10 раз',c:()=>G.st.rkWin>=10,rewC:8000,rewSp:1},
+  {id:'col100',n:'📖 Архивариус (100)',d:'Собрать 100 уникальных номеров в коллекцию',c:()=>G.col.length>=100,rewC:7500,rewSp:1},
+  {id:'col500',n:'🏛️ Хранитель музея (500)',d:'Собрать 500 уникальных номеров',c:()=>G.col.length>=500,rewC:55000,rewSp:3},
+  {id:'set1',n:'🧩 Охотник за сетами',d:'Собрать хотя бы 1 тематический сет',c:()=>G.setsDone.length>=1,rewC:12000,rewSp:1},
+  {id:'tr1',n:'🤝 Деловая сделка',d:'Отправить или принять 1 трейд',c:()=>G.st.trades>=1,rewC:3500,rewSp:1},
+  {id:'lv25',n:'👑 Авторитет раздевалки',d:'Достичь 25 уровня',c:()=>G.lv>=25,rewC:25000,rewSp:2}
 ];
+
+const UP=[
+  {k:'l',e:'🍀',n:'Удача',d:l=>`+${(l*1.5).toFixed(1)}% к шансу редких+ номерков`,m:15,baseC:1200},
+  {k:'m',e:'🤝',n:'Торговец',d:l=>`+${(l*1.5).toFixed(1)}% к цене продажи номерков`,m:15,baseC:1400},
+  {k:'r',e:'🏷️',n:'Оптовик',d:l=>`крутки дешевле на ${l}%`,m:15,baseC:1300},
+  {k:'s',e:'📦',n:'Логистика склада',d:l=>`вместимость склада ${40+10*l} шт.`,m:15,baseC:1000},
+  {k:'u',e:'⚡',n:'Инженер Апгрейда',d:l=>`+${l}% к шансу в Апгрейдере`,m:10,baseC:2200},
+  {k:'b',e:'👵',n:'Любимчик Гардеробщицы',d:l=>`благословение каждые ${100-l*3} кр.`,m:10,baseC:1900},
+  {k:'g',e:'🎁',n:'Щедрость',d:l=>`подарок по таймеру +${l*12}%`,m:15,baseC:950}
+];
+const spCost = l => 1 + Math.floor(l / 2);
+const coinCost = (u, l) => Math.round(u.baseC * (1.68 ** l));
 
 const broke=()=>G.c<cst(1)&&!G.items.length,ready=()=>Date.now()>=G.gift||broke();
 let shown=null,balTok=0;
@@ -1062,6 +919,23 @@ function setBal(v){
   const f=shown,t0=performance.now(),tok=++balTok;
   el.classList.remove('up','dn');void el.offsetWidth;el.classList.add(v>f?'up':'dn');
   (function s(n){if(tok!=balTok)return;const k=Math.min(1,(n-t0)/400);shown=f+(v-f)*k;el.textContent=fmt(shown)+' ₽';if(k<1)requestAnimationFrame(s);else shown=v})(t0);
+}
+
+let allTrades = [];
+let cloudPlayers = [];
+let cloudNews = [];
+let cloudStatus = 'Подключение к БД...';
+let cloudRestored = false;
+
+function hasMoreNotifications(){
+  const qPing = Q.some(q=>QV(q)>=QG(q));
+  const achPing = ACHS.some(a=>!G.ach[a.id]&&a.c());
+  const invNums = new Set(G.items.map(i=>i.n));
+  const setPing = SETS.some(s=>!G.setsDone.includes(s.id) && s.nums.every(n=>invNums.has(n)||G.col.includes(n)));
+  const trPing = allTrades.some(t=>t.status==='open' && (t.toUname===MY_UNAME || String(t.toUid)===String(MY_UID)));
+  const latestNewsTs = Math.max(0, ...cloudNews.map(n=>n.ts||0));
+  const newsPing = latestNewsTs > (G.seenNewsTs || 0);
+  return {qPing, achPing, setPing, trPing, newsPing, any: (qPing || achPing || setPing || trPing || newsPing)};
 }
 
 function hud(){
@@ -1077,10 +951,11 @@ function hud(){
   $$('.ty').forEach((b,i)=>{b.classList.toggle('on',i==ty);b.querySelector('small').textContent=fmt(cst(i))+' ₽ / шт.'});
   const bStep = blessStep(), lr = G.rolls % bStep;
   $('#lady').classList.toggle('on',!!G.bless);
-  $('#lt').textContent=G.bless?`— благословила (${G.bless} кр.)! Удача ×2`:`— удача ×2 через ${bStep-lr} кр.`;
+  $('#lt').textContent=G.bless?`— благословила (${G.bless} кр.)! Удача выше`:`— удача через ${bStep-lr} кр.`;
   $('#lp').style.width=(G.bless?100:(lr/bStep*100))+'%';
-  const hasGoalPing = Q.some(q=>QV(q)>=QG(q)) || ACHS.some(a=>!G.ach[a.id]&&a.c());
-  $('#navHall').classList.toggle('ping', hasGoalPing);
+  const pings = hasMoreNotifications();
+  $('#navMore').classList.toggle('ping', pings.any);
+  $('#newsTopBtn').classList.toggle('ping', pings.newsPing);
   if(window.__IS_ADMIN) $('#admBtn').style.display='inline-block';
   decUI();
 }
@@ -1094,35 +969,48 @@ $$('.ty').forEach(b=>b.onclick=()=>{
   idle();hud();
 });
 
-const view=()=>{const s=$('.s.on').id;if(s=='s0')refit();if(s=='s1')storeTab();if(s=='s2')games();if(s=='s3')renderHall();if(s=='s5')more()};
-$$('nav button').forEach(b=>b.onclick=()=>{$$('nav button,.s').forEach(e=>e.classList.remove('on'));b.classList.add('on');$('#s'+b.dataset.s).classList.add('on');view()});
-$('#go').onclick=spin;
+const view=()=>{
+  const s=$('.s.on').id;
+  if(s=='s0')refit();
+  if(s=='s1')store();
+  if(s=='s2')games();
+  if(s=='s3')board();
+  if(s=='s4')renderMore();
+};
 
-/* ===== РАЗДЕЛ 1: Склад, Визуальные Трейды, Лавка Бустов ===== */
-$$('#stabs button').forEach(b=>b.onclick=()=>{
-  stab=+b.dataset.st;
-  $$('#stabs button').forEach(x=>x.classList.toggle('on',x==b));
-  storeTab();
+$$('nav button').forEach(b=>b.onclick=()=>{
+  const targetS = b.dataset.s;
+  if(targetS === '4' && $('#s4').classList.contains('on') && moreSub !== null){
+    moreSub = null;
+    renderMore();
+    return;
+  }
+  $$('nav button,.s').forEach(e=>e.classList.remove('on'));
+  b.classList.add('on');
+  $('#s'+targetS).classList.add('on');
+  if(targetS === '4') moreSub = null;
+  view();
 });
+$('#go').onclick=spin;
+$('#cap').onclick=()=>{
+  $$('nav button,.s').forEach(e=>e.classList.remove('on'));
+  $('#navStore').classList.add('on');
+  $('#s1').classList.add('on');
+  store();
+};
 
-function storeTab(){
-  $('#storeWrap').style.display = stab===0 ? 'flex' : 'none';
-  $('#tradeWrap').style.display = stab===1 ? 'flex' : 'none';
-  $('#shopWrap').style.display = stab===2 ? 'flex' : 'none';
-  if(stab===0) store(); else if(stab===1) renderTrades(); else renderShop();
-}
-
+/* ===== 2. СКЛАД ===== */
 function store(){
   const vals=G.items.reduce((a,i)=>a+price(i),0);
-  $('#sinfo').innerHTML=`Занято <b>${G.items.length}/${cap()}</b> · стоимость <b style="color:var(--gold)">${fmt(vals)} ₽</b>`;
+  $('#sinfo').innerHTML=`Занято <b>${G.items.length}/${cap()}</b> · общая стоимость <b style="color:var(--gold)">${fmt(vals)} ₽</b>`;
   $('#pbt').style.width=Math.min(100,G.items.length/cap()*100)+'%';
   $('#ct').innerHTML=['Все','🔴 Пластик','📄 Бумага'].map((x,i)=>`<button class="f ${fT==i-1?'on':''}" data-t="${i-1}">${x}</button>`).join('');
   $('#cr').innerHTML=`<button class="f ${fR<0?'on':''}" data-r="-1">Любая</button>`+RN.map((x,i)=>`<button class="f ${fR==i?'on':''}" data-r="${i}" style="background:${RC[i]}44">${x}</button>`).join('');
   const l=G.items.filter(i=>(fT<0||i.t==fT)&&(fR<0||i.r==fR)).sort((a,b)=>price(b)-price(a));
   const gridEl = $('#grid');
   gridEl.classList.toggle('compact', !!G.set.compact);
-  const tagW = G.set.compact ? 48 : 62;
-  gridEl.innerHTML=l.length?l.map(i=>`<div class="cell" data-id="${i.id}">${i.locked?'<span class="lk">🔒</span>':''}${tg(i,tagW,false)}<small>${fmt(price(i))} ₽</small></div>`).join(''):'<p style="color:var(--mut);grid-column:1/-1;text-align:center">Здесь пока пусто</p>';
+  const tagW = G.set.compact ? 46 : 58;
+  gridEl.innerHTML=l.length?l.map(i=>`<div class="cell" data-id="${i.id}">${i.locked?'<span class="lk">🔒</span>':''}${tg(i,tagW,false)}<small>${fmt(price(i))} ₽</small></div>`).join(''):'<p style="color:var(--mut);grid-column:1/-1;text-align:center">На складе пока пусто</p>';
 }
 $('#ct').onclick=e=>{const b=e.target.closest('.f');if(b){fT=+b.dataset.t;store()}};
 $('#cr').onclick=e=>{const b=e.target.closest('.f');if(b){fR=+b.dataset.r;store()}};
@@ -1136,8 +1024,8 @@ function openMd(id){
   const i=G.items.find(x=>x.id==id);if(!i)return;
   if(pend.includes(i))return toast('Сначала заверши выбор на главном экране');
   const b=bonus(i);
-  $('#md').innerHTML=`<div class="prof-box" style="text-align:center;max-width:350px">
-    <div style="display:flex;justify-content:center">${tg(i,136,false)}</div>
+  $('#md').innerHTML=`<div class="prof-box" style="text-align:center;max-width:340px">
+    <div style="display:flex;justify-content:center">${tg(i,130,false)}</div>
     <h2 style="color:${RC[i.r]};margin:10px 0 4px">${RN[i.r]}</h2>
     <div>№${i.n} · ${TN[i.t]}</div>
     ${b?`<div style="color:var(--gold);font-weight:700;margin-top:3px">${b[1]} ${b[2]} ×${b[0]}</div>`:''}
@@ -1166,12 +1054,340 @@ $('#md').onclick=e=>{
   }
 };
 
-/* --- ВИЗУАЛЬНАЯ И ИНТУИТИВНАЯ СИСТЕМА ТРЕЙДОВ --- */
+/* ===== 5. ВКЛАДКА «ЕЩЁ» (Категории + Кнопки + Разделы) ===== */
+function openMoreSection(secKey){
+  $$('nav button,.s').forEach(e=>e.classList.remove('on'));
+  $('#navMore').classList.add('on');
+  $('#s4').classList.add('on');
+  moreSub = secKey;
+  renderMore();
+}
+
+$('#moreBackBtn').onclick = () => {
+  moreSub = null;
+  renderMore();
+};
+
+const MORE_TITLES = {
+  quests: '📋 Задания',
+  achs: '🏅 Достижения (Ачивки)',
+  sets: '📖 Сеты и Коллекция',
+  skills: '🧠 Дерево Навыков',
+  shop: '🛒 Лавка Бустов и Кейсов',
+  trades: '🤝 Трейды (Обмен КПК)',
+  transfers: '💸 Переводы по @username',
+  news: '📰 Новости проекта',
+  settings: '⚙️ Настройки и Купоны'
+};
+
+function renderMore(){
+  hud();
+  const hub = $('#moreHub');
+  const page = $('#morePage');
+
+  if(!moreSub){
+    hub.style.display = 'flex';
+    page.style.display = 'none';
+    const pings = hasMoreNotifications();
+    const incomingCnt = allTrades.filter(t=>t.status==='open' && (t.toUname===MY_UNAME || String(t.toUid)===String(MY_UID))).length;
+    const outgoingCnt = allTrades.filter(t=>t.status==='open' && String(t.fromUid)===String(MY_UID)).length;
+    const readyQuests = Q.filter(q=>QV(q)>=QG(q)).length;
+    const readyAchs = ACHS.filter(a=>!G.ach[a.id]&&a.c()).length;
+
+    hub.innerHTML = `
+      <div class="more-cat">🎯 Прогресс и Развитие</div>
+      <div class="more-grid">
+        <button class="hub-btn ${pings.qPing?'ping':''}" data-go="quests">
+          <div class="hub-icon">📋</div>
+          <div class="hub-info">
+            <b>Задания</b>
+            <small>${readyQuests ? `<span style="color:var(--ok)">Готово к сбору: ${readyQuests}!</span>` : 'Зарабатывай ₽ и 🧠'}</small>
+          </div>
+        </button>
+        <button class="hub-btn ${pings.achPing?'ping':''}" data-go="achs">
+          <div class="hub-icon">🏅</div>
+          <div class="hub-info">
+            <b>Ачивки</b>
+            <small>${readyAchs ? `<span style="color:var(--gold)">Забери награду (${readyAchs})!</span>` : `Открыто: ${Object.keys(G.ach).length}/${ACHS.length}`}</small>
+          </div>
+        </button>
+        <button class="hub-btn ${pings.setPing?'ping':''}" data-go="sets">
+          <div class="hub-icon">📖</div>
+          <div class="hub-info">
+            <b>Сеты</b>
+            <small>Собрано: ${G.setsDone.length}/${SETS.length} · ${G.col.length}/${MAX_NUM}</small>
+          </div>
+        </button>
+        <button class="hub-btn" data-go="skills">
+          <div class="hub-icon">🧠</div>
+          <div class="hub-info">
+            <b>Навыки</b>
+            <small>Доступно: <span style="color:var(--gold);font-weight:700">${G.sp} 🧠</span></small>
+          </div>
+        </button>
+      </div>
+
+      <div class="more-cat">💼 Экономика и Игроки</div>
+      <div class="more-grid">
+        <button class="hub-btn accent wide" data-go="shop">
+          <div class="hub-icon" style="background:#a855f733">🛒</div>
+          <div class="hub-info">
+            <b style="color:var(--gold)">Лавка Бустов и Кейсов</b>
+            <small>Временные усилители удачи, дохода и редкие кейсы</small>
+          </div>
+        </button>
+        <button class="hub-btn ${pings.trPing?'ping':''}" data-go="trades">
+          <div class="hub-icon">🤝</div>
+          <div class="hub-info">
+            <b>Трейды</b>
+            <small>${incomingCnt ? `<span style="color:var(--ok)">Входящих: ${incomingCnt}!</span>` : (outgoingCnt ? `Активных: ${outgoingCnt}` : 'Обмен и продажа КПК')}</small>
+          </div>
+        </button>
+        <button class="hub-btn gold-card" data-go="transfers">
+          <div class="hub-icon" style="background:#ffd54a26">💸</div>
+          <div class="hub-info">
+            <b>Переводы</b>
+            <small>Передать ₽ по @username</small>
+          </div>
+        </button>
+      </div>
+
+      <div class="more-cat">⚙️ Информация и Система</div>
+      <div class="more-grid">
+        <button class="hub-btn ${pings.newsPing?'ping':''}" data-go="news">
+          <div class="hub-icon">📰</div>
+          <div class="hub-info">
+            <b>Новости</b>
+            <small>${pings.newsPing ? '<span style="color:#ff6b7d">Новое обновление!</span>' : 'Обновления игры'}</small>
+          </div>
+        </button>
+        <button class="hub-btn" data-go="settings">
+          <div class="hub-icon">⚙️</div>
+          <div class="hub-info">
+            <b>Настройки</b>
+            <small>Купоны, авто-слив, звук</small>
+          </div>
+        </button>
+      </div>
+    `;
+
+    hub.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>{
+      hap('light');
+      moreSub = b.dataset.go;
+      renderMore();
+    });
+    return;
+  }
+
+  hub.style.display = 'none';
+  page.style.display = 'flex';
+  $('#morePageTitle').textContent = MORE_TITLES[moreSub] || 'Раздел';
+  const body = $('#morePageBody');
+
+  if(moreSub === 'quests') renderQuestsPage(body);
+  else if(moreSub === 'achs') renderAchsPage(body);
+  else if(moreSub === 'sets') renderSetsPage(body);
+  else if(moreSub === 'skills') renderSkillsPage(body);
+  else if(moreSub === 'shop') renderShopPage(body);
+  else if(moreSub === 'trades') renderTradesPage(body);
+  else if(moreSub === 'transfers') renderTransfersPage(body);
+  else if(moreSub === 'news') renderNewsPage(body);
+  else if(moreSub === 'settings') renderSettingsPage(body);
+}
+
+/* --- Подстраницы «Ещё» --- */
+function renderQuestsPage(container){
+  container.innerHTML = Q.map((q,i)=>{
+    const v=QV(q),t=QG(q);
+    return `<div class="row up">
+      <div>
+        <b>${q.n}: ${fmt(t)}</b> <small style="display:inline">· этап ${QT(q)+1}</small>
+        <div class="pb"><i style="width:${Math.min(100,v/t*100)}%"></i></div>
+        <small>${fmt(Math.min(v,t))}/${fmt(t)} · награда <b style="color:var(--gold)">${fmt(QR(q))} ₽</b> + 🧠1</small>
+      </div>
+      <button data-q="${i}" ${v>=t?'':'disabled'}>Забрать</button>
+    </div>`;
+  }).join('');
+
+  container.querySelectorAll('[data-q]').forEach(b=>b.onclick=()=>{
+    const q=Q[b.dataset.q];if(QV(q)<QG(q))return;
+    G.c+=QR(q);G.sp++;G.qt[q.k]=QT(q)+1;G.wipedHidden=false;
+    toast(`🎯 Задание выполнено: +${fmt(QR(q))} ₽ и 🧠1`);hap('medium');
+    save(true);hud();renderQuestsPage(container);
+  });
+}
+
+function renderAchsPage(container){
+  container.innerHTML = ACHS.map(a=>{
+    const done = !!G.ach[a.id], rdy = !done && a.c();
+    return `<div class="row up" style="${done?'opacity:.65;border-color:#3fe06b44':rdy?'border-color:var(--gold);background:#2a2008':''}">
+      <div>
+        <b>${a.n}</b> ${done?'<span style="color:var(--ok);font-size:11px">✓ Получено</span>':''}
+        <small>${a.d}</small>
+        <small style="color:var(--gold)">Награда: +${fmt(a.rewC)} ₽ и +${a.rewSp} 🧠</small>
+      </div>
+      <button data-ach="${a.id}" ${rdy?'':'disabled'}>${done?'Собрано':rdy?'Забрать!':'Закрыто'}</button>
+    </div>`;
+  }).join('');
+
+  container.querySelectorAll('[data-ach]').forEach(b=>b.onclick=()=>{
+    const a=ACHS.find(x=>x.id===b.dataset.ach);
+    if(!a||G.ach[a.id]||!a.c())return;
+    G.ach[a.id]=1; G.c+=a.rewC; G.sp+=a.rewSp; G.wipedHidden=false;
+    burst(innerWidth/2,innerHeight/2,'#ffd54a',30);
+    toast(`🏅 Достижение «${a.n}»: +${fmt(a.rewC)} ₽ и +${a.rewSp} 🧠!`);hap('heavy');
+    save(true);hud();renderAchsPage(container);
+  });
+}
+
+function renderSetsPage(container){
+  const invNums = new Set(G.items.map(i=>i.n)), cnt = G.col.length;
+  container.innerHTML = `
+    <div style="font-size:12px;color:var(--mut);margin-bottom:8px">Собери все номера из сета, чтобы активировать вечный бонус и получить награду!</div>
+    ${SETS.map(s=>{
+      const done = G.setsDone.includes(s.id), hasAll = s.nums.every(n=>invNums.has(n) || G.col.includes(n));
+      return `<div class="set-card ${done?'set-Card-done':''}">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <b style="font-size:14px;color:${done?'var(--gold)':'#fff'}">${s.n}</b>
+          <span style="font-size:11px;color:${done?'var(--ok)':'var(--gold)'};font-weight:800">${done?'✓ Сет активен':`+${fmt(s.rewC)} ₽ и +${s.rewSp} 🧠`}</span>
+        </div>
+        <small style="color:var(--mut);display:block;margin-top:2px">Пассивный бонус: <b style="color:#fff">${s.desc}</b></small>
+        <div class="set-nums">${s.nums.map(n=>`<span class="set-num ${(invNums.has(n)||G.col.includes(n))?'has':''}">№${n}</span>`).join('')}</div>
+        ${!done ? `<button class="gbtn" data-set="${s.id}" ${hasAll?'':'disabled'} style="padding:8px;font-size:12px;margin-top:4px">${hasAll?'✨ Активировать сет и забрать награду!':'Собери все номера сета'}</button>` : ''}
+      </div>`;
+    }).join('')}
+    <h3 style="margin-top:12px">📖 Общий альбом номеров (${cnt} / ${MAX_NUM})</h3>
+    <div class="row"><div><b>Открыто уникальных номеров: ${cnt} / ${MAX_NUM}</b><div class="pb"><i style="width:${cnt/MAX_NUM*100}%"></i></div></div></div>
+    ${RN.map((rn,r)=>{
+      const totalInR = P[r].length, gotInR = P[r].filter(n=>G.col.includes(n)).length;
+      return `<div class="row"><span class="dot" style="background:${RC[r]}"></span><div><b style="color:${RC[r]}">${rn}</b><small>Собрано: ${gotInR} из ${totalInR}</small></div><b>${Math.round(gotInR/totalInR*100)}%</b></div>`;
+    }).join('')}`;
+
+  container.querySelectorAll('[data-set]').forEach(b=>b.onclick=()=>{
+    const s=SETS.find(x=>x.id===b.dataset.set);
+    if(!s||G.setsDone.includes(s.id))return;
+    if(!s.nums.every(n=>invNums.has(n)||G.col.includes(n)))return;
+    G.setsDone.push(s.id); G.c+=s.rewC; G.sp+=s.rewSp; G.wipedHidden=false;
+    burst(innerWidth/2,innerHeight/2,null,45);
+    toast(`✨ Сет «${s.n}» собран! +${fmt(s.rewC)} ₽ и вечный бонус!`);hap('heavy');
+    save(true);hud();renderSetsPage(container);
+  });
+}
+
+function renderSkillsPage(container){
+  const exReward = 600 + G.lv * 120;
+  container.innerHTML = `<div class="row" style="background:#201b0a;border-color:#ffd54a44">
+    <div><b>Доступно очков навыков: <span style="color:var(--gold)">${G.sp} 🧠</span></b><small>Прокачка навыков требует очки 🧠 и баланс ₽</small></div>
+  </div>`+UP.map((u,i)=>{
+    const l=G.up[u.k]||0, mx=l>=u.m, sc=spCost(l), cc=coinCost(u,l), can = !mx && G.sp>=sc && G.c>=cc;
+    return`<div class="row up"><em>${u.e}</em><div><b>${u.n}</b> · ур. ${l}/${u.m}<small>${u.d(l)}${mx?'':' ➔ '+u.d(l+1)}</small>${!mx?`<small style="color:var(--gold)">Цена: ${sc} 🧠 + ${fmt(cc)} ₽</small>`:''}</div><button data-u="${i}" ${can?'':'disabled'}>${mx?'MAX':`${sc}🧠 + ${fmt(cc)}₽`}</button></div>`;
+  }).join('') + `
+  <div class="scard" style="margin-top:10px;text-align:center">
+    <h3>🔄 Обменник лишних очков навыков</h3>
+    <button class="gbtn" id="spExBtn" ${G.sp>=1?'':'disabled'} style="padding:10px;font-size:13px">Обменять 1 🧠 ➔ +${fmt(exReward)} ₽</button>
+  </div>`;
+
+  container.querySelectorAll('[data-u]').forEach(b=>b.onclick=()=>{
+    const u=UP[b.dataset.u],l=G.up[u.k]||0,sc=spCost(l),cc=coinCost(u,l);
+    if(l>=u.m||G.sp<sc||G.c<cc)return;
+    G.sp-=sc; G.c-=cc; G.up[u.k]=l+1;
+    hap('medium'); toast(`🧠 Навык «${u.n}» повышен до ур. ${l+1}!`);
+    save(true);hud();renderSkillsPage(container);
+  });
+
+  $('#spExBtn').onclick=()=>{
+    if(G.sp<1)return;
+    G.sp--; G.c += exReward; G.wipedHidden=false;
+    hap('medium'); toast(`🔄 Обменяно 1 🧠 на +${fmt(exReward)} ₽!`);
+    save(true);hud();renderSkillsPage(container);
+  };
+}
+
+function renderShopPage(container){
+  const offers = getShopRotation();
+  const now = Date.now();
+  const active = Object.entries(BOOST_Meta).filter(([k])=>G.boosts && G.boosts[k] > now);
+  const shopLeft = Math.max(0, 900 - Math.floor((now % 900000)/1000));
+
+  container.innerHTML = `
+    <div class="shop-head">
+      <div>
+        <b style="font-size:14px;color:var(--gold)">🛒 Витрина Усилителей</b>
+        <small id="shopTimer" style="display:block;color:#d8b4fe;font-size:11px">Обновление через ${String(Math.floor(shopLeft/60)).padStart(2,'0')}:${String(shopLeft%60).padStart(2,'0')}</small>
+      </div>
+      <button class="f on" id="shopRefreshBtn" style="font-size:11px;padding:7px 10px">🔄 Сменить (750 ₽)</button>
+    </div>
+    ${active.length ? `<div class="scard" style="padding:9px 11px;margin-bottom:8px;border-color:#3fe06b55">
+      <div style="font-size:11px;color:var(--ok);font-weight:800;margin-bottom:4px">⚡ Активные усилители сейчас:</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        ${active.map(([k,m])=>`<span class="b-pill">${m.icon} ${m.name} (ещё ~${Math.ceil((G.boosts[k]-now)/60000)} мин)</span>`).join('')}
+      </div>
+    </div>` : ''}
+    <div class="shop-grid" id="shopGridInner">
+      ${offers.map(o=>{
+        const bought = !!(G.shopBought && G.shopBought[o.buyKey]);
+        return `<div class="shop-item ${o.isSale?'sale':''}">
+          ${o.isSale ? `<span class="sale-badge">СКИДКА -25% 🔥</span>` : ''}
+          <div>
+            <div class="shop-icon">${o.icon}</div>
+            <div class="shop-title">${o.name}</div>
+            <div class="shop-desc">${o.desc}</div>
+          </div>
+          <button class="gbtn" data-buy="${o.id}" ${bought||G.c<o.cost?'disabled':''} style="padding:9px 8px;font-size:12px">
+            ${bought ? '✅ Куплено' : `Купить за ${fmt(o.cost)} ₽`}
+          </button>
+        </div>`;
+      }).join('')}
+    </div>
+  `;
+
+  $('#shopRefreshBtn').onclick = () => {
+    if(G.c < 750) return toast('Не хватает денег на обновление витрины (750 ₽)');
+    G.c -= 750; G.shopRef = (G.shopRef || 0) + 1;
+    hap('light'); save(true); hud(); renderShopPage(container);
+    toast('🔄 Товары в лавке обновлены!');
+  };
+
+  $('#shopGridInner').onclick = e => {
+    const btn = e.target.closest('[data-buy]'); if(!btn) return;
+    const o = getShopRotation().find(x=>x.id === btn.dataset.buy);
+    if(!o) return;
+    if(G.shopBought && G.shopBought[o.buyKey]) return toast('Этот товар уже раскуплен');
+    if(G.c < o.cost) return toast('Не хватает баланса');
+    if(o.type === 'case' && G.items.length >= cap()) return toast('📦 Освободи место на складе!');
+
+    G.c -= o.cost;
+    if(!G.shopBought) G.shopBought = {};
+    G.shopBought[o.buyKey] = 1;
+
+    if(o.type === 'boost'){
+      addBoostTime(o.bKey, o.mins);
+      toast(`⚡ Активирован буст «${o.name}» на +${o.mins} мин!`);
+    } else if(o.type === 'case'){
+      const weights = o.minR === 3 ? [0,0,0,740,210,50] : [0,0,680,230,70,20];
+      const r = pick(weights);
+      const n = P[r][Math.random()*P[r].length|0];
+      const it = {id:G.nid++, n, r, t:0};
+      G.items.push(it);
+      if(!G.col.includes(n)) G.col.push(n);
+      checkBest(it);
+      G.wipedHidden = false;
+      burst(innerWidth/2, innerHeight/2, RC[r], 40);
+      toast(`🎁 Из кейса выпал ${RN[r]} №${n} (${fmt(price(it))} ₽)!`);
+    } else if(o.type === 'bless'){
+      G.bless = (G.bless || 0) + o.count;
+      toast(`👵 Получено благословение на ${G.bless} крутки!`);
+    } else if(o.type === 'sp'){
+      G.sp += o.count;
+      toast(`🧬 Получено +${o.count} 🧠 очко навыков!`);
+    }
+    hap('heavy'); save(true); hud(); renderShopPage(container);
+  };
+}
+
+/* ===== ИСПРАВЛЕННЫЕ ТРЕЙДЫ (Защита от дюпа при покупке/отмене) ===== */
 let trSelectedIds = new Set();
-let trSubTab = 0; // 0 = Создать, 1 = Входящие, 2 = Отправленные
-let trDealType = 'gift'; // 'gift' или 'sell'
-let trToUser = '';
-let allTrades = [];
+let trActionBusy = false;
 
 async function fetchTrades(){
   if(!DB_BASE) return [];
@@ -1180,112 +1396,99 @@ async function fetchTrades(){
     const d = await r.json();
     if(d && !d.error && typeof d === 'object'){
       allTrades = Object.values(d).filter(t=>t && t.id && t.status === 'open');
-      const incoming = allTrades.filter(t=>t.toUname === MY_UNAME || String(t.toUid) === String(MY_UID));
-      $('#navStore').classList.toggle('ping', incoming.length > 0);
-      $('#trTabBtn').textContent = incoming.length ? `🤝 Трейды (${incoming.length})` : '🤝 Трейды';
     } else { allTrades = []; }
+    hud();
   }catch(e){}
   return allTrades;
 }
 
-async function renderTrades(){
-  const wrap = $('#tradeWrap');
+async function renderTradesPage(container){
+  container.innerHTML = `<div style="text-align:center;color:var(--mut);padding:20px">Синхронизация трейдов с сервером…</div>`;
+  await syncCloud();
   await loadLeaderboard();
   await fetchTrades();
 
-  const availItems = G.items.filter(i=>!i.locked && !pend.includes(i)).sort((a,b)=>price(b)-price(a));
+  const availItems = G.items.filter(i=>!i.locked && !pend.includes(i));
   trSelectedIds.forEach(id=>{if(!availItems.some(x=>x.id===id)) trSelectedIds.delete(id)});
 
   const incoming = allTrades.filter(t=>t.toUname === MY_UNAME || String(t.toUid) === String(MY_UID));
   const outgoing = allTrades.filter(t=>String(t.fromUid) === String(MY_UID));
-  const selWorth = availItems.filter(i=>trSelectedIds.has(i.id)).reduce((a,i)=>a+price(i),0);
-  const otherPlayers = cloudPlayers.filter(p=>String(p.uid)!==String(MY_UID) && p.uname);
 
-  wrap.innerHTML = `
-    <div class="seg-Group" style="grid-template-columns:repeat(3,1fr);margin-bottom:10px">
-      <button class="seg-btn ${trSubTab===0?'on':''}" data-tst="0">➕ Создать</button>
-      <button class="seg-btn ${trSubTab===1?'on':''}" data-tst="1">📥 Входящие (${incoming.length})</button>
-      <button class="seg-btn ${trSubTab===2?'on':''}" data-tst="2">⏳ Активные (${outgoing.length})</button>
+  container.innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <span style="font-size:11px;color:var(--mut)">Все сделки проверяются на сервере в реальном времени</span>
+      <button class="f" id="trRefreshBtn">🔄 Обновить</button>
     </div>
-    <div id="trBody"></div>
-  `;
 
-  wrap.querySelectorAll('[data-tst]').forEach(b=>b.onclick=()=>{trSubTab=+b.dataset.tst;renderTrades()});
-  const body = $('#trBody');
-
-  if(trSubTab === 0){
-    body.innerHTML = `
-      <div class="tr-step">
-        <div class="tr-step-hd"><b>1. Выбери получателя</b><small style="color:var(--mut)">Нажми на карточку или введи @ник</small></div>
-        ${otherPlayers.length ? `<div class="tr-users-bar">
-          ${otherPlayers.slice(0,12).map(p=>`<div class="tr-u-chip ${trToUser===p.uname?'on':''}" data-picku="${p.uname}">
-            <div class="tr-u-ava">${cleanNick(p.n).charAt(0).toUpperCase()}</div>
-            <div><b style="font-size:12px;display:block">${cleanNick(p.n)}</b><small style="color:var(--gold);font-size:10px">@${p.uname}</small></div>
-          </div>`).join('')}
-        </div>` : ''}
-        <input class="adm-inp" id="trTo" placeholder="Введи @username игрока..." value="${trToUser?'@'+trToUser:''}" style="width:100%">
+    <div class="scard">
+      <h3>📤 Создать трейд / Продать номерок другу</h3>
+      <div class="adm-row">
+        <input class="adm-inp" id="trTo" placeholder="@username получателя">
+        <select class="adm-inp" id="trQuickUser" style="flex:0.8">
+          <option value="">Из топа...</option>
+          ${cloudPlayers.filter(p=>String(p.uid)!==String(MY_UID)&&p.uname).map(p=>`<option value="${p.uname}">@${p.uname} (${cleanNick(p.n)})</option>`).join('')}
+        </select>
       </div>
+      <div style="font-size:11px;color:var(--mut);margin-bottom:4px">Выбери номерки со склада (${trSelectedIds.size} выбр.):</div>
+      <div class="chips" id="trItemPicker" style="padding:4px 0">
+        ${availItems.length ? availItems.map(i=>`<button class="f ${trSelectedIds.has(i.id)?'on':''}" data-tid="${i.id}" style="border-color:${trSelectedIds.has(i.id)?RC[i.r]:'transparent'}">№${i.n} (${RN[i.r].slice(0,4)}. · ${fmt(price(i))}₽)</button>`).join('') : '<span style="font-size:11px;color:var(--mut)">Нет свободных номерков на складе</span>'}
+      </div>
+      <div class="adm-row" style="margin-top:6px">
+        <input class="adm-inp" id="trAskCoins" type="number" placeholder="Цена выкупа ₽ (0 = бесплатно в подарок)" min="0">
+      </div>
+      <button class="gbtn" id="trSendBtn" style="padding:10px;font-size:13px">🤝 Отправить трейд</button>
+    </div>
 
-      <div class="tr-step">
-        <div class="tr-step-hd">
-          <b>2. Выбери свои номерки (${trSelectedIds.size} шт.)</b>
-          <span style="font-size:12px;color:var(--gold);font-weight:800">Оценка: ${fmt(selWorth)} ₽</span>
+    <div class="scard">
+      <h3>📥 Входящие трейды (${incoming.length})</h3>
+      ${incoming.length ? incoming.map(t=>`<div class="row" style="flex-direction:column;align-items:stretch;gap:6px">
+        <div style="display:flex;justify-content:space-between;font-size:12px">
+          <b>От: <span style="color:var(--gold)">@${t.fromUname}</span> (${cleanNick(t.fromName)})</b>
+          <span style="color:${t.askCoins>0?'var(--gold)':'var(--ok)'};font-weight:800">${t.askCoins>0?`К оплате: ${fmt(t.askCoins)} ₽`:'🎁 Подарок'}</span>
         </div>
-        ${availItems.length ? `<div class="tr-inv-grid" id="trItemPicker">
-          ${availItems.map(i=>`<div class="tr-pick-cell ${trSelectedIds.has(i.id)?'sel':''}" data-tid="${i.id}">
-            <span class="chk">✓</span>
-            ${tg(i, 52, false)}
-            <small style="display:block;margin-top:3px;font-size:10px;color:var(--gold);font-weight:800">${fmt(price(i))} ₽</small>
-          </div>`).join('')}
-        </div>` : `<div style="text-align:center;color:var(--mut);padding:16px;font-size:12px">На складе нет свободных номерков (сними 🔒 замок или покрути новые)</div>`}
-      </div>
-
-      <div class="tr-step">
-        <div class="tr-step-hd"><b>3. Тип сделки</b></div>
-        <div class="seg-Group">
-          <button class="seg-btn ${trDealType==='gift'?'on':''}" data-dtype="gift">🎁 Подарок / Доплата</button>
-          <button class="seg-btn ${trDealType==='sell'?'on':''}" data-dtype="sell">💰 Продажа за ₽</button>
+        <div style="font-size:12px;color:#fff">
+          ${(t.items&&t.items.length)?`Номерки: `+t.items.map(i=>`<b style="color:${RC[i.r]}">№${i.n} (${RN[i.r]})</b>`).join(', '):''}
+          ${t.sendCoins>0?`<div>💸 + Доплата: <b style="color:var(--ok)">${fmt(t.sendCoins)} ₽</b></div>`:''}
         </div>
-        ${trDealType==='gift' ? `
-          <div style="font-size:11.5px;color:var(--mut);margin-bottom:6px">Можешь приложить к номеркам рубли со своего баланса (или оставить 0 для бесплатного подарка):</div>
-          <input class="adm-inp" id="trSendCoins" type="number" placeholder="Сумма доплаты ₽ (0 = бесплатно)" min="0" style="width:100%">
-        ` : `
-          <div style="font-size:11.5px;color:var(--mut);margin-bottom:6px">Укажи цену выкупа. Игрок получит твои номерки только после оплаты этой суммы тебе:</div>
-          <input class="adm-inp" id="trAskCoins" type="number" placeholder="Цена продажи в ₽ (например, 15000)" min="10" style="width:100%">
-        `}
-      </div>
+        <div style="display:flex;gap:6px">
+          <button class="f on" data-tr-acc="${t.id}" style="flex:1;background:#143d22;border-color:var(--ok)">✅ ${t.askCoins>0?`Купить за ${fmt(t.askCoins)} ₽`:'Принять'}</button>
+          <button class="f" data-tr-dec="${t.id}" style="flex:1;color:var(--bad)">❌ Отклонить</button>
+        </div>
+      </div>`).join('') : '<div style="font-size:12px;color:var(--mut)">Входящих предложений нет</div>'}
+    </div>
 
-      <button class="gbtn" id="trSendBtn">🤝 Отправить сделку</button>
-    `;
+    <div class="scard">
+      <h3>⏳ Мои активные отправленные (${outgoing.length})</h3>
+      ${outgoing.length ? outgoing.map(t=>`<div class="row">
+        <div>
+          <b>Для @${t.toUname}</b>
+          <small>${(t.items||[]).map(i=>`№${i.n} (${RN[i.r].slice(0,4)}.)`).join(', ')||'Без номерков'} · ${t.askCoins?`Цена: ${fmt(t.askCoins)} ₽`:'Подарок'}</small>
+        </div>
+        <button class="f" data-tr-cancel="${t.id}" style="color:var(--gold)">↩️ Отменить</button>
+      </div>`).join('') : '<div style="font-size:12px;color:var(--mut)">Нет активных отправленных трейдов (если друг купил номерок, сделка автоматически закрыта)</div>'}
+    </div>`;
 
-    body.querySelectorAll('[data-picku]').forEach(el=>el.onclick=()=>{
-      trToUser = el.dataset.picku;
-      renderTrades();
-    });
-    $('#trTo').oninput = e => { trToUser = e.target.value.replace(/^@/,'').trim().toLowerCase(); };
-    body.querySelectorAll('[data-dtype]').forEach(b=>b.onclick=()=>{
-      trDealType = b.dataset.dtype;
-      renderTrades();
-    });
-    const picker = $('#trItemPicker');
-    if(picker) picker.onclick = e => {
-      const cell = e.target.closest('[data-tid]'); if(!cell) return;
-      const id = +cell.dataset.tid;
-      if(trSelectedIds.has(id)) trSelectedIds.delete(id); else trSelectedIds.add(id);
-      renderTrades();
-    };
+  $('#trRefreshBtn').onclick = () => renderTradesPage(container);
+  $('#trQuickUser').onchange = e => { if(e.target.value) $('#trTo').value = '@' + e.target.value; };
+  $('#trItemPicker').onclick = e => {
+    const b = e.target.closest('[data-tid]'); if(!b) return;
+    const id = +b.dataset.tid;
+    if(trSelectedIds.has(id)) trSelectedIds.delete(id); else trSelectedIds.add(id);
+    renderTradesPage(container);
+  };
 
-    $('#trSendBtn').onclick = async () => {
-      const toU = ($('#trTo').value || trToUser).replace(/^@/,'').trim().toLowerCase();
-      if(!toU) return toast('Выбери получателя или введи его @username');
-      if(toU === MY_UNAME) return toast('Нельзя отправить трейд самому себе');
-      const sendC = trDealType==='gift' ? Math.max(0, Math.floor(Number($('#trSendCoins')&&$('#trSendCoins').value||0))) : 0;
-      const askC = trDealType==='sell' ? Math.max(0, Math.floor(Number($('#trAskCoins')&&$('#trAskCoins').value||0))) : 0;
-      const selItems = G.items.filter(i=>trSelectedIds.has(i.id) && !i.locked);
-      if(!selItems.length && sendC <= 0) return toast('Выбери хотя бы 1 номерок на витрине или укажи сумму ₽');
-      if(trDealType==='sell' && (!selItems.length || askC <= 0)) return toast('Для продажи выбери номерки и укажи цену выкупа ₽');
-      if(sendC > G.c) return toast('Недостаточно баланса для отправки');
+  $('#trSendBtn').onclick = async () => {
+    if(trActionBusy) return;
+    const toU = $('#trTo').value.replace(/^@/,'').trim().toLowerCase();
+    if(!toU) return toast('Введи @username получателя');
+    if(toU === MY_UNAME) return toast('Нельзя отправить трейд самому себе');
+    const askC = Math.max(0, Math.floor(Number($('#trAskCoins').value||0)));
+    const selItems = G.items.filter(i=>trSelectedIds.has(i.id) && !i.locked);
+    if(!selItems.length) return toast('Выбери хотя бы 1 номерок для отправки');
 
+    trActionBusy = true;
+    $('#trSendBtn').disabled = true;
+    try{
       const targetPlayer = cloudPlayers.find(p=>(p.uname&&p.uname.toLowerCase()===toU) || cleanNick(p.n).toLowerCase()===toU);
       const trId = 'tr_' + Date.now() + '_' + Math.floor(Math.random()*1000);
       const trObj = {
@@ -1293,10 +1496,9 @@ async function renderTrades(){
         fromUid: MY_UID, fromUname: MY_UNAME, fromName: UN,
         toUid: targetPlayer ? targetPlayer.uid : '', toUname: toU,
         items: selItems.map(i=>({n:i.n, r:i.r, t:i.t})),
-        sendCoins: sendC, askCoins: askC
+        sendCoins: 0, askCoins: askC
       };
 
-      G.c -= sendC;
       G.items = G.items.filter(i=>!trSelectedIds.has(i.id));
       G.st.trades++;
       trSelectedIds.clear();
@@ -1305,110 +1507,351 @@ async function renderTrades(){
       await fetch(`${DB_BASE}/trades/${trId}.json`, {
         method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify(trObj)
       });
-      toast(`🤝 Сделка отправлена игроку @${toU}!`);
-      trSubTab = 2;
-      renderTrades();
-    };
+      toast(`🤝 Трейд отправлен для @${toU}!`);
+    }finally{
+      trActionBusy = false;
+      renderTradesPage(container);
+    }
+  };
 
-  } else if(trSubTab === 1){
-    body.innerHTML = incoming.length ? incoming.map(t=>`<div class="tr-offer-card">
-      <div class="tr-offer-top">
-        <div style="display:flex;align-items:center;gap:8px">
-          <div class="tr-u-ava">${cleanNick(t.fromName).charAt(0).toUpperCase()}</div>
-          <div>
-            <b style="font-size:13.5px">${cleanNick(t.fromName)}</b>
-            <small style="display:block;color:var(--gold);font-size:11px">@${t.fromUname}</small>
-          </div>
-        </div>
-        <span class="chip" style="background:${t.askCoins>0?'#3a121c':'#143d22'};border-color:${t.askCoins>0?'var(--bad)':'var(--ok)'}">
-          ${t.askCoins>0 ? `💰 Купить за ${fmt(t.askCoins)} ₽` : '🎁 Подарок тебе'}
-        </span>
-      </div>
-      ${(t.items&&t.items.length) ? `<div class="tr-offer-items">
-        ${t.items.map(i=>`<div style="text-align:center">${tg(i, 52, false)}<small style="display:block;font-size:10px;color:${RC[i.r]};font-weight:700;margin-top:3px">№${i.n}</small></div>`).join('')}
-      </div>` : ''}
-      ${t.sendCoins>0 ? `<div style="margin:6px 0;font-size:13px;color:var(--ok);font-weight:800">💸 Приложен баланс: +${fmt(t.sendCoins)} ₽</div>` : ''}
-      <div style="display:flex;gap:8px;margin-top:10px">
-        <button class="gbtn" data-tr-acc="${t.id}" style="flex:1;padding:10px;font-size:13px;background:linear-gradient(135deg,#25b852,#137a33)">✅ Принять ${t.askCoins>0?`(${fmt(t.askCoins)} ₽)`:''}</button>
-        <button class="f" data-tr-dec="${t.id}" style="padding:10px 14px;color:var(--bad);border-color:#ff546844">❌ Отклонить</button>
-      </div>
-    </div>`).join('') : `<div class="scard" style="text-align:center;color:var(--mut);padding:24px">📥 Входящих предложений пока нет</div>`;
-
-  } else {
-    body.innerHTML = outgoing.length ? outgoing.map(t=>`<div class="tr-offer-card">
-      <div class="tr-offer-top">
-        <div>
-          <b style="font-size:13.5px">Получатель: <span style="color:var(--gold)">@${t.toUname}</span></b>
-          <small style="display:block;color:var(--mut);font-size:11px">${t.askCoins>0?`Продажа за ${fmt(t.askCoins)} ₽`:'Подарок / Перевод'}</small>
-        </div>
-        <button class="f" data-tr-cancel="${t.id}" style="color:var(--gold);border-color:#ffd54a55">↩️ Отменить и вернуть</button>
-      </div>
-      ${(t.items&&t.items.length) ? `<div class="tr-offer-items">
-        ${t.items.map(i=>`<div style="text-align:center">${tg(i, 48, false)}<small style="display:block;font-size:10px;color:${RC[i.r]};margin-top:2px">№${i.n}</small></div>`).join('')}
-      </div>` : ''}
-      ${t.sendCoins>0 ? `<div style="font-size:12px;color:var(--ok);margin-top:4px">💸 Приложено: ${fmt(t.sendCoins)} ₽</div>` : ''}
-    </div>`).join('') : `<div class="scard" style="text-align:center;color:var(--mut);padding:24px">⏳ У тебя нет активных отправленных сделок</div>`;
-  }
-
-  body.querySelectorAll('[data-tr-acc]').forEach(btn=>btn.onclick=async()=>{
+  /* Принятие / Покупка трейда с проверкой на сервере */
+  container.querySelectorAll('[data-tr-acc]').forEach(btn=>btn.onclick=async()=>{
+    if(trActionBusy) return;
     const id = btn.dataset.trAcc;
-    const t = allTrades.find(x=>x.id===id); if(!t) return;
-    if(t.askCoins > 0 && G.c < t.askCoins) return toast('Не хватает денег для выкупа этого трейда');
-    if(t.items && (G.items.length + t.items.length > cap())) return toast('Не хватает места на складе!');
-
+    trActionBusy = true;
     btn.disabled = true;
-    await fetch(`${DB_BASE}/trades/${id}.json`, {method:'DELETE'});
+    try{
+      /* СВЕЖАЯ ПРОВЕРКА СЕРВЕРА перед покупкой! */
+      const checkRes = await fetch(`${DB_BASE}/trades/${id}.json`);
+      const liveTrade = await checkRes.json();
+      if(!liveTrade || liveTrade.error || liveTrade.status !== 'open'){
+        toast('⚠️ Этот трейд уже был отменён или закрыт!');
+        await fetchTrades();
+        renderTradesPage(container);
+        return;
+      }
 
-    if(t.askCoins > 0){
-      G.c -= t.askCoins;
-      await fetch(`${DB_BASE}/commands/${t.fromUid}.json`, {
-        method:'PUT', headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({ts:Date.now(), addCoins: t.askCoins, note:`Игрок @${MY_UNAME} купил твой трейд за +${fmt(t.askCoins)} ₽!`})
-      });
+      if(liveTrade.askCoins > 0 && G.c < liveTrade.askCoins){
+        toast('Не хватает денег для покупки этого трейда');
+        btn.disabled = false;
+        return;
+      }
+      if(liveTrade.items && (G.items.length + liveTrade.items.length > cap())){
+        toast('📦 Не хватает места на складе!');
+        btn.disabled = false;
+        return;
+      }
+
+      /* Немедленно закрываем и удаляем трейд в БД */
+      await fetch(`${DB_BASE}/trades/${id}.json`, {method:'DELETE'});
+
+      if(liveTrade.askCoins > 0){
+        G.c -= liveTrade.askCoins;
+        const cmdId = 'cmd_' + Date.now() + '_' + Math.floor(Math.random()*999);
+        await fetch(`${DB_BASE}/commands/${liveTrade.fromUid}.json`, {
+          method:'PUT', headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({ts:Date.now(), cmdId, addCoins: liveTrade.askCoins, note:`Игрок @${MY_UNAME} купил твой номерок за ${fmt(liveTrade.askCoins)} ₽!`})
+        });
+      }
+      if(liveTrade.sendCoins > 0) G.c += Number(liveTrade.sendCoins);
+      if(Array.isArray(liveTrade.items)){
+        liveTrade.items.forEach(raw=>{
+          const it = {id:G.nid++, n:raw.n, r:raw.r, t:raw.t};
+          G.items.push(it);
+          if(!G.col.includes(it.n)) G.col.push(it.n);
+          checkBest(it);
+        });
+      }
+      G.st.trades++; G.wipedHidden = false;
+      save(true); hud();
+      toast('✅ Сделка успешно завершена!');
+    }finally{
+      trActionBusy = false;
+      renderTradesPage(container);
     }
-    if(t.sendCoins > 0) G.c += Number(t.sendCoins);
-    if(Array.isArray(t.items)){
-      t.items.forEach(raw=>{
-        const it = {id:G.nid++, n:raw.n, r:raw.r, t:raw.t};
-        G.items.push(it);
-        if(!G.col.includes(it.n)) G.col.push(it.n);
-        checkBest(it);
-      });
-    }
-    G.st.trades++; G.wipedHidden = false;
-    save(true); hud();
-    toast('✅ Сделка успешно принята!');
-    renderTrades();
   });
 
-  body.querySelectorAll('[data-tr-dec],[data-tr-cancel]').forEach(btn=>btn.onclick=async()=>{
+  /* Отмена или Отклонение с ЖЁСТКОЙ серверной защитой от возврата уже купленного номерка! */
+  container.querySelectorAll('[data-tr-dec],[data-tr-cancel]').forEach(btn=>btn.onclick=async()=>{
+    if(trActionBusy) return;
     const id = btn.dataset.trDec || btn.dataset.trCancel;
-    const t = allTrades.find(x=>x.id===id); if(!t) return;
+    trActionBusy = true;
     btn.disabled = true;
-    await fetch(`${DB_BASE}/trades/${id}.json`, {method:'DELETE'});
+    try{
+      /* ПРОВЕРЯЕМ НА СЕРВЕРЕ: существует ли ещё этот трейд и не куплен ли он уже! */
+      const checkRes = await fetch(`${DB_BASE}/trades/${id}.json`);
+      const liveTrade = await checkRes.json();
 
-    if(String(t.fromUid) === String(MY_UID)){
-      if(t.sendCoins > 0) G.c += Number(t.sendCoins);
-      if(Array.isArray(t.items)){
-        t.items.forEach(raw=>G.items.push({id:G.nid++, n:raw.n, r:raw.r, t:raw.t}));
+      if(!liveTrade || liveTrade.error || liveTrade.status !== 'open'){
+        /* Трейд уже купили! Никакого возврата номерка! Синхронизируем деньги */
+        await syncCloud(true);
+        toast('⚠️ Сделка уже завершена покупателем! Отмена невозможна.');
+        renderTradesPage(container);
+        return;
       }
-      save(true); hud();
-      toast('↩️ Трейд отменён, вещи возвращены на склад');
-    } else {
-      await fetch(`${DB_BASE}/commands/${t.fromUid}.json`, {
-        method:'PUT', headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({ts:Date.now(), addCoins: t.sendCoins||0, returnItems: t.items||[], note:`Игрок @${MY_UNAME} отклонил трейд, вещи возвращены`})
-      });
-      toast('❌ Трейд отклонён');
+
+      /* Удаляем трейд с сервера */
+      await fetch(`${DB_BASE}/trades/${id}.json`, {method:'DELETE'});
+
+      if(String(liveTrade.fromUid) === String(MY_UID)){
+        if(liveTrade.sendCoins > 0) G.c += Number(liveTrade.sendCoins);
+        if(Array.isArray(liveTrade.items)){
+          liveTrade.items.forEach(raw=>G.items.push({id:G.nid++, n:raw.n, r:raw.r, t:raw.t}));
+        }
+        save(true); hud();
+        toast('↩️ Трейд отменён, номерки возвращены на склад');
+      } else {
+        await fetch(`${DB_BASE}/commands/${liveTrade.fromUid}.json`, {
+          method:'PUT', headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({ts:Date.now(), addCoins: liveTrade.sendCoins||0, returnItems: liveTrade.items||[], note:`Игрок @${MY_UNAME} отклонил твой трейд (вещи возвращены)`})
+        });
+        toast('❌ Трейд отклонён');
+      }
+    }finally{
+      trActionBusy = false;
+      renderTradesPage(container);
     }
-    renderTrades();
   });
 }
 
+/* ===== НОВАЯ ВКЛАДКА «ПЕРЕВОДЫ» (Передача денег по @username) ===== */
+let payBusy = false;
+
+async function renderTransfersPage(container){
+  container.innerHTML = `<div style="text-align:center;color:var(--mut);padding:20px">Загрузка списка игроков…</div>`;
+  await loadLeaderboard();
+
+  container.innerHTML = `
+    <div class="scard" style="background:linear-gradient(145deg,#241c08,#12121a);border-color:#ffd54a55">
+      <h3>💸 Мгновенный перевод по @username</h3>
+      <div style="font-size:11.5px;color:var(--mut);margin-bottom:10px">
+        Передавай деньги друзьям напрямую по юзернейму. Комиссия гардероба за перевод составляет <b>5%</b> (минимум 100 ₽).
+      </div>
+      <div class="adm-row">
+        <input class="adm-inp" id="payToInp" placeholder="@username получателя">
+        <select class="adm-inp" id="payQuickSelect" style="flex:0.85">
+          <option value="">Выбрать игрока...</option>
+          ${cloudPlayers.filter(p=>String(p.uid)!==String(MY_UID)&&p.uname).map(p=>`<option value="${p.uname}">@${p.uname} (${cleanNick(p.n)})</option>`).join('')}
+        </select>
+      </div>
+      <div class="adm-row">
+        <input class="adm-inp" id="payAmountInp" type="number" placeholder="Сумма перевода (мин. 100 ₽)" min="100">
+      </div>
+      <div class="chips" style="margin-bottom:8px">
+        <button class="f" data-pa="500">500 ₽</button>
+        <button class="f" data-pa="2500">2 500 ₽</button>
+        <button class="f" data-pa="10000">10 000 ₽</button>
+        <button class="f" data-pa="50000">50 000 ₽</button>
+      </div>
+      <div class="adm-row">
+        <input class="adm-inp" id="payCommentInp" placeholder="Комментарий к переводу (необязательно)" maxlength="40">
+      </div>
+      <div id="payCalcInfo" style="font-size:11.5px;color:var(--mut);margin:6px 0 10px">Введи сумму, чтобы увидеть расчёт с учётом комиссии 5%.</div>
+      <button class="gbtn" id="paySendBtn" style="padding:11px;font-size:14px">💸 Отправить перевод</button>
+    </div>
+
+    <div class="scard">
+      <h3>ℹ️ Как работают переводы?</h3>
+      <div style="font-size:11.5px;color:var(--mut);line-height:1.45">
+        • Твой юзернейм для получения переводов: <b style="color:var(--gold);user-select:all">@${MY_UNAME}</b><br>
+        • Деньги зачисляются получателю автоматически в течение нескольких секунд.<br>
+        • Всего отправлено переводов: <b style="color:#fff">${G.st.transfers || 0}</b>
+      </div>
+    </div>
+  `;
+
+  const updCalc = () => {
+    const amt = Math.max(0, Math.floor(Number($('#payAmountInp').value || 0)));
+    const getAmt = Math.floor(amt * 0.95);
+    $('#payCalcInfo').innerHTML = amt >= 100
+      ? `Спишется с баланса: <b style="color:#fff">${fmt(amt)} ₽</b> · Друг получит: <b style="color:var(--ok)">${fmt(getAmt)} ₽</b> (комиссия 5%)`
+      : `Минимальная сумма перевода — 100 ₽`;
+  };
+
+  $('#payQuickSelect').onchange = e => { if(e.target.value) $('#payToInp').value = '@' + e.target.value; };
+  $('#payAmountInp').oninput = updCalc;
+  container.querySelectorAll('[data-pa]').forEach(b=>b.onclick=()=>{
+    $('#payAmountInp').value = b.dataset.pa;
+    updCalc();
+  });
+
+  $('#paySendBtn').onclick = async () => {
+    if(payBusy) return;
+    const toU = $('#payToInp').value.replace(/^@/,'').trim().toLowerCase();
+    if(!toU) return toast('Укажи @username получателя');
+    if(toU === MY_UNAME) return toast('Нельзя перевести деньги самому себе');
+
+    const amt = Math.floor(Number($('#payAmountInp').value || 0));
+    if(amt < 100) return toast('Минимальная сумма перевода — 100 ₽');
+    if(amt > G.c) return toast('Недостаточно средств на балансе');
+
+    const getAmt = Math.floor(amt * 0.95);
+    const comment = cleanNick($('#payCommentInp').value || '');
+    const targetPlayer = cloudPlayers.find(p=>(p.uname&&p.uname.toLowerCase()===toU) || cleanNick(p.n).toLowerCase()===toU);
+
+    payBusy = true;
+    $('#paySendBtn').disabled = true;
+    try{
+      G.c -= amt;
+      G.st.transfers = (G.st.transfers || 0) + 1;
+      save(true); hud();
+
+      const noteStr = `💸 Перевод +${fmt(getAmt)} ₽ от @${MY_UNAME}` + (comment ? ` («${comment}»)` : '');
+      const cmdPayload = {ts: Date.now() + Math.floor(Math.random()*999), addCoins: getAmt, note: noteStr};
+
+      await fetch(`${DB_BASE}/commands/${encodeURIComponent(toU)}.json`, {
+        method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify(cmdPayload)
+      });
+      if(targetPlayer && targetPlayer.uid){
+        await fetch(`${DB_BASE}/commands/${targetPlayer.uid}.json`, {
+          method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify(cmdPayload)
+        });
+      }
+
+      burst(innerWidth/2, innerHeight/2, '#3fe06b', 25);
+      toast(`✅ Перевод ${fmt(getAmt)} ₽ отправлен для @${toU}!`);
+      $('#payAmountInp').value = '';
+      $('#payCommentInp').value = '';
+      updCalc();
+    }catch(e){
+      toast('❌ Ошибка сети при отправке перевода');
+    }finally{
+      payBusy = false;
+      $('#paySendBtn').disabled = false;
+    }
+  };
+}
+
+async function renderNewsPage(container){
+  await fetchNews();
+  const latestTs = Math.max(0, ...cloudNews.map(n=>n.ts||0));
+  if(latestTs > (G.seenNewsTs||0)){
+    G.seenNewsTs = latestTs;
+    save(false); hud();
+  }
+  container.innerHTML = cloudNews.map(n=>`<div class="news-card ${n.pinned?'pinned':''}">
+    <div class="news-meta">
+      <span>${n.pinned?'📌 Закреплено':'📢 Новость проекта'}</span>
+      <span>${new Date(n.ts||Date.now()).toLocaleDateString('ru-RU')}</span>
+    </div>
+    <div class="news-title">${n.title}</div>
+    <div class="news-body">${n.body}</div>
+  </div>`).join('');
+}
+
+function renderSettingsPage(container){
+  const modes = [[0, '🚫 Выключена'],[1, '⚪ Только Обычные'],[2, '🟢 Обычн. + Необычн.'],[3, '🔵 До Редких включ.']];
+  const net = G.earned+G.items.reduce((a,i)=>a+price(i),0)-G.spent;
+
+  container.innerHTML = `
+    <div class="scard">
+      <h3>🎟️ Промокоды и Справочник</h3>
+      <div class="adm-row">
+        <input class="adm-inp" id="promoInp" placeholder="Введи промокод или купон...">
+        <button class="f on" id="promoBtn">Активировать</button>
+      </div>
+      <div style="font-size:11px;color:var(--mut);margin-bottom:8px">Твой юзернейм: <b style="color:#fff;user-select:all">@${MY_UNAME}</b> · ID: <b style="color:#fff;user-select:all">${MY_UID}</b></div>
+      <button class="gbtn" id="openInfoBtn" style="padding:10px;font-size:13px;background:linear-gradient(135deg,#2f8dff,#1b4ed8);box-shadow:none">📘 Справочник: Шансы, Цены и Бонусы</button>
+    </div>
+    <div class="scard">
+      <h3>🧹 Умная авто-продажа при крутке</h3>
+      <div id="autoSellBox">
+        <div class="seg-Group">${modes.map(([m, label])=>`<button class="seg-btn ${G.set.autoMode===m?'on':''}" data-am="${m}">${label}</button>`).join('')}</div>
+        <div class="row" style="margin-bottom:5px;padding:7px 10px">
+          <div><b>😎 Сохранять блатные/бонусные</b><small>Не продавать номера с множителем цены</small></div>
+          <button class="f ${G.set.keepBonus?'on':''}" data-ak="keepBonus">${G.set.keepBonus?'Да':'Нет'}</button>
+        </div>
+        <div class="row" style="margin-bottom:0;padding:7px 10px">
+          <div><b>📖 Сохранять новые для коллекции</b><small>Не продавать номер, если он выпал впервые</small></div>
+          <button class="f ${G.set.keepNew?'on':''}" data-ak="keepNew">${G.set.keepNew?'Да':'Нет'}</button>
+        </div>
+      </div>
+    </div>
+    <div class="scard">
+      <h3>🔊 Звук, Визуал и Интерфейс</h3>
+      <div id="sets">
+        ${[
+          ['hap','📳 Тактильная отдача (вибрация)'],
+          ['snd','🔊 Звуковые щелчки при крутке'],
+          ['fast','⏩ Турбо-крутка (ускоренная анимация)'],
+          ['compact','📐 Компактная сетка номерков на складе'],
+          ['shake','💥 Тряска экрана при выпадении Легендарки/Мифика']
+        ].map(([k,n])=>`<div class="row" style="padding:7px 10px"><div>${n}</div><button class="f ${G.set[k]?'on':''}" data-k="${k}">${G.set[k]?'Вкл':'Выкл'}</button></div>`).join('')}
+      </div>
+    </div>
+    <div class="scard" style="border-color:#ff546833">
+      <h3 style="color:var(--bad)">⚠️ Управление аккаунтом</h3>
+      <div style="color:var(--mut);font-size:11px;line-height:1.5;margin-bottom:8px">
+        Гарант (${ty?'бумага':'пластик'}): редкий+ через ${LIM[0]-G.p[ty][0]}, эпик+ через ${LIM[1]-G.p[ty][1]}, лега+ через ${LIM[2]-G.p[ty][2]}, мифик через ${LIM[3]-G.p[ty][3]} кр.<br>
+        Круток: ${G.rolls} · Потрачено: ${fmt(G.spent)} ₽ · Продано: ${fmt(G.earned)} ₽ · Профит: <b style="color:${net>=0?'var(--ok)':'var(--bad)'}">${sg(net)} ₽</b>
+      </div>
+      <button class="f" id="reset" style="width:100%;padding:10px;border-color:#ff546866;color:#ff8090">🗑️ Полностью сбросить прогресс</button>
+    </div>
+  `;
+
+  $('#promoBtn').onclick = () => redeemCoupon($('#promoInp').value);
+  $('#openInfoBtn').onclick = openReferenceModal;
+
+  $('#autoSellBox').onclick = e => {
+    const am = e.target.closest('[data-am]');
+    if(am){ G.set.autoMode = +am.dataset.am; save(true); renderSettingsPage(container); return; }
+    const ak = e.target.closest('[data-ak]');
+    if(ak){ const k = ak.dataset.ak; G.set[k] = G.set[k]?0:1; save(true); renderSettingsPage(container); }
+  };
+
+  $('#sets').onclick = e => {
+    const b = e.target.closest('[data-k]'); if(!b) return;
+    G.set[b.dataset.k] = G.set[b.dataset.k]?0:1;
+    save(true); renderSettingsPage(container);
+  };
+
+  let rc = 0;
+  $('#reset').onclick = e => {
+    if(!rc){
+      rc=1;
+      e.target.textContent='⚠️ Точно сбросить ВСЁ? Нажми ещё раз';
+      setTimeout(()=>{rc=0;if($('#reset'))$('#reset').textContent='🗑️ Полностью сбросить прогресс'},3500);
+    } else {
+      e.target.disabled = true;
+      e.target.textContent = '⏳ Сброс данных...';
+      performFullReset();
+    }
+  };
+}
+
+function openReferenceModal(){
+  const w=W(false),t=w.reduce((a,b)=>a+b);
+  $('#md').innerHTML = `<div class="adm-box">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <h3 style="margin:0">📘 Справочник КПК (Номера 1–999)</h3>
+      <button class="f" onclick="document.getElementById('md').classList.remove('on')">✕</button>
+    </div>
+    <h3>🎲 Таблица редкостей и базовых цен</h3>
+    <table>
+      <tr><th>Редкость</th><th>Шанс</th><th>🔴 Пластик</th><th>📄 Бумага</th></tr>
+      ${RN.map((x,i)=>`<tr><td><span class="dot" style="background:${RC[i]}"></span>${x}</td><td>${(w[i]/t*100).toFixed(2)}%</td><td>${fmt(BASE[0][i])} ₽</td><td>${fmt(BASE[1][i])} ₽</td></tr>`).join('')}
+    </table>
+    <h3>🔥 Множители за блатные и бонусные номера</h3>
+    <table>
+      <tr><th>Номер / Категория</th><th>Бонус к цене</th><th>Редкость</th></tr>
+      <tr><td>😎 777 / 888 / 999</td><td><b style="color:var(--gold)">×2.8</b></td><td>Миф. / Легенд.</td></tr>
+      <tr><td>🦍 300 · 😎 228 · 🔥 52</td><td><b style="color:var(--gold)">×2.3–2.4</b></td><td>Эпический</td></tr>
+      <tr><td>😎 111…666 (Триплы)</td><td><b style="color:var(--gold)">×2.1</b></td><td>Легендарный</td></tr>
+      <tr><td>👑 1–10 (Первая десятка)</td><td><b style="color:var(--gold)">×2.0</b></td><td>Мифический</td></tr>
+      <tr><td>🏙️ 812 · 😎 322, 312</td><td><b style="color:var(--gold)">×1.9</b></td><td>Редкий</td></tr>
+      <tr><td>😎 11…99 · 🌿 420 · 😎 13</td><td><b style="color:var(--gold)">×1.7–1.75</b></td><td>Лег. / Эпич. / Ред.</td></tr>
+      <tr><td>🎩 337 · 🤖 404</td><td><b style="color:var(--gold)">×1.45</b></td><td>Редкий</td></tr>
+      <tr><td>🤪 Номера с «67»</td><td><b style="color:var(--gold)">×1.3</b></td><td>Любая</td></tr>
+      <tr><td>🪜 Лесенка · 🪞 Зеркальные</td><td><b style="color:var(--gold)">×1.25 / ×1.2</b></td><td>Любая</td></tr>
+    </table>
+  </div>`;
+  $('#md').classList.add('on');
+}
+
 /* ===== Мини-игры + Апгрейдер ===== */
-const SY=['🍒','🍋','🔔','💎','7️⃣'],SW=[32,26,20,14,8],SPAY=[5,8,15,40,120],GN=['🚀 Ракета','⚡ Апгрейд','🎰 Слоты','🪙 Монета','💣 Мины'];
+const SY=['🍒','🍋','🔔','💎','7️⃣'],SW=[34,27,19,13,7],SPAY=[4,7,14,35,100],GN=['🚀 Ракета','⚡ Апгрейд','🎰 Слоты','🪙 Монета','💣 Мины'];
 let gt=0,gbusy=false,mn=null;
-const MN=16,MM=3,mmult=k=>{let m=.95;for(let i=0;i<k;i++)m*=(MN-i)/(MN-MM-i);return m};
+const MN=16,MM=3,mmult=k=>{let m=.94;for(let i=0;i<k;i++)m*=(MN-i)/(MN-MM-i);return m};
 
 function getBet(){
   const b = Math.floor(Number($('#betInp').value||0));
@@ -1440,7 +1883,7 @@ let rkLoopId = 0, myRkBet = null, liveRkBets = {}, lastRkFetch = 0, lastFetchedR
 function getRoundCrash(roundId){
   let h = Math.imul(roundId ^ 0x5bd1e995, 1540483477);
   h = ((h ^ (h >>> 13)) >>> 0) / 4294967296;
-  return h < 0.06 ? 1.00 : Math.min(25.0, Math.max(1.02, Math.floor((0.94 / (1 - h * 0.94)) * 100) / 100));
+  return h < 0.08 ? 1.00 : Math.min(20.0, Math.max(1.02, Math.floor((0.92 / (1 - h * 0.92)) * 100) / 100));
 }
 
 function getGlobalRocketState(now = Date.now()){
@@ -1559,7 +2002,7 @@ function tickGlobalRocket(){
     }
   } else if(st.phase === 'fly'){
     rkEl.className = '';
-    const k = Math.min(1, Math.log(st.mul) / Math.log(25));
+    const k = Math.min(1, Math.log(st.mul) / Math.log(20));
     rkEl.style.transform = `translate(calc(-50% + ${k*55+Math.sin(st.flyTime*9)*3}px),${-k*84}px) rotate(${k*8}deg)`;
     mulEl.textContent = st.mul.toFixed(2) + '×';
     mulEl.style.color = 'var(--ok)';
@@ -1590,7 +2033,7 @@ function tickGlobalRocket(){
   const betsArr = Object.values(liveRkBets).filter(x=>x && x.n && x.b);
   if(myRkBet && !liveRkBets[MY_UID]) betsArr.unshift(myRkBet);
   if(betsArr.length){
-    listEl.innerHTML = `<div style="font-size:10.5px;color:var(--mut);margin-bottom:3px">Ставки игроков в раунде (${betsArr.length}):</div>` +
+    listEl.innerHTML = `<div style="font-size:10px;color:var(--mut);margin-bottom:3px">Ставки игроков в раунде (${betsArr.length}):</div>` +
       betsArr.map(x=>{
         let status = `<span style="color:var(--gold)">В полёте (${fmt(x.b)} ₽)</span>`;
         if(x.cashed) status = `<span style="color:var(--ok)">×${Number(x.cashed).toFixed(2)} (+${fmt(x.win)} ₽)</span>`;
@@ -1598,7 +2041,7 @@ function tickGlobalRocket(){
         return `<div class="rk-bet-row"><b>${cleanNick(x.n)}</b>${status}</div>`;
       }).join('');
   } else {
-    listEl.innerHTML = `<div style="color:var(--mut);font-size:11.5px;text-align:center">Ставок в этом раунде пока нет — будь первым!</div>`;
+    listEl.innerHTML = `<div style="color:var(--mut);font-size:11px;text-align:center">Ставок в этом раунде пока нет — будь первым!</div>`;
   }
   rkLoopId = requestAnimationFrame(tickGlobalRocket);
 }
@@ -1612,7 +2055,7 @@ function gUpgrader(){
     $('#gm').innerHTML = `<div class="gcard" style="padding:24px 14px">
       <div style="font-size:42px;margin-bottom:8px">⚡</div>
       <h3 style="margin:0 0 6px">Нет доступных номерков для апгрейда</h3>
-      <p style="color:var(--mut);font-size:12.5px;margin:0">Выбей любой номерок ниже Мифического (и убедись, что на нём не стоит замок 🔒 на складе).</p>
+      <p style="color:var(--mut);font-size:12px;margin:0">Выбей любой номерок ниже Мифического (и убедись, что на нём не стоит замок 🔒 на складе).</p>
     </div>`;
     return;
   }
@@ -1621,16 +2064,16 @@ function gUpgrader(){
   if(upgTargetR <= src.r || upgTargetR > 5) upgTargetR = src.r + 1;
 
   const srcPrice = price(src);
-  const dstBasePrice = Math.round(BASE[src.t][upgTargetR] * (1 + 0.02 * (G.up.m||0) + getSetBonus('sell') + (hasBoost('sell50')?0.5:0)));
-  const boostUpg = hasBoost('upg15') ? 15 : 0;
-  const skillBonus = (G.up.u || 0) * 1.5 + getSetBonus('upg') + boostUpg;
-  const rawChance = (srcPrice / dstBasePrice) * 90 + skillBonus;
-  const chance = Math.min(85, Math.max(5, Number(rawChance.toFixed(1))));
+  const dstBasePrice = Math.round(BASE[src.t][upgTargetR] * (1 + 0.015 * (G.up.m||0) + getSetBonus('sell') + (hasBoost('sell50')?0.35:0)));
+  const boostUpg = hasBoost('upg15') ? 12 : 0;
+  const skillBonus = (G.up.u || 0) * 1.0 + getSetBonus('upg') + boostUpg;
+  const rawChance = (srcPrice / dstBasePrice) * 82 + skillBonus;
+  const chance = Math.min(80, Math.max(4, Number(rawChance.toFixed(1))));
 
   $('#gm').innerHTML = `<div class="gcard">
     <div class="upg-pair">
       <div class="upg-slot-card" id="upgPickItem" title="Нажми для смены номерка">
-        ${tg(src, 48, false)}
+        ${tg(src, 46, false)}
         <div class="upg-slot-info">
           <small>Твой КПК ▾</small>
           <b style="color:${RC[src.r]}">№${src.n}</b>
@@ -1639,7 +2082,7 @@ function gUpgrader(){
       </div>
       <div style="font-size:18px;color:var(--gold);font-weight:800">⚡➔</div>
       <div class="upg-slot-card" style="cursor:default">
-        ${tg({id:0,n:'???',r:upgTargetR,t:src.t}, 48, false)}
+        ${tg({id:0,n:'???',r:upgTargetR,t:src.t}, 46, false)}
         <div class="upg-slot-info">
           <small>Цель</small>
           <b style="color:${RC[upgTargetR]}">${RN[upgTargetR]}</b>
@@ -1658,10 +2101,10 @@ function gUpgrader(){
           </div>
         </div>
       </div>
-      ${boostUpg?`<div style="font-size:10.5px;color:#d8b4fe;margin-top:6px">⚡ Активен Стабилизатор (+15% к шансу)</div>`:''}
+      ${boostUpg?`<div style="font-size:10px;color:#d8b4fe;margin-top:6px">⚡ Активен Стабилизатор (+12% к шансу)</div>`:''}
     </div>
 
-    <div style="font-size:11.5px;color:var(--mut);margin-bottom:5px;text-align:left">Выбери целевую редкость:</div>
+    <div style="font-size:11px;color:var(--mut);margin-bottom:5px;text-align:left">Выбери целевую редкость:</div>
     <div class="upg-r-grid">
       ${RN.map((rn,r)=>r>src.r?`<button class="upg-r-pill ${r===upgTargetR?'on':''}" data-ur="${r}" style="background:${RC[r]}33;border-color:${r===upgTargetR?RC[r]:'transparent'}">${rn}</button>`:'').join('')}
     </div>
@@ -1748,8 +2191,8 @@ async function playSlots(){if(gbusy)return;const b=getBet();if(!b)return;gbusy=t
 await sleep((2.1*F)*1000+150);const[a,c,d]=res;
 if(a==c&&c==d)fin(b,b*SPAY[a],`🎉 ДЖЕКПОТ ×${SPAY[a]}!`);else if(a==c||c==d||a==d)fin(b,Math.floor(b/2),'Пара — половина ставки назад');else fin(b,0,'Мимо…')}
 
-function gCoin(){cancelAnimationFrame(rkLoopId);$('#gm').innerHTML=`<div class="gcard"><div class="coinwrap"><div id="coin">🪙</div></div><div class="gres" id="gres">Угадай сторону — выплата ×2 (шанс 48%)</div><div class="pair"><button class="gbtn" data-s="0">🦅 Орёл</button><button class="gbtn" data-s="1">👑 Решка</button></div></div>`;$$('#gm .pair button').forEach(x=>x.onclick=()=>playCoin(+x.dataset.s))}
-async function playCoin(ch){if(gbusy)return;const b=getBet();if(!b)return;gbusy=true;G.c-=b;hud();const win=Math.random()<.48,face=win?ch:1-ch,c=$('#coin');c.textContent='🪙';$('#gres').className='gres';
+function gCoin(){cancelAnimationFrame(rkLoopId);$('#gm').innerHTML=`<div class="gcard"><div class="coinwrap"><div id="coin">🪙</div></div><div class="gres" id="gres">Угадай сторону — выплата ×2 (шанс 47%)</div><div class="pair"><button class="gbtn" data-s="0">🦅 Орёл</button><button class="gbtn" data-s="1">👑 Решка</button></div></div>`;$$('#gm .pair button').forEach(x=>x.onclick=()=>playCoin(+x.dataset.s))}
+async function playCoin(ch){if(gbusy)return;const b=getBet();if(!b)return;gbusy=true;G.c-=b;hud();const win=Math.random()<.47,face=win?ch:1-ch,c=$('#coin');c.textContent='🪙';$('#gres').className='gres';
 try{await c.animate([{transform:'translateY(0) rotateY(0)'},{transform:'translateY(-60px) rotateY(900deg)',offset:.5},{transform:'translateY(0) rotateY(1800deg)'}],{duration:1200/(G.set.fast?1.6:1),easing:'ease-in-out'}).finished}catch(e){await sleep(800)}
 c.textContent=face?'👑':'🦅';fin(b,win?b*2:0,win?'Угадал!':'Не угадал…')}
 
@@ -1764,28 +2207,19 @@ function minesTap(e){const t=e.target.closest('.mt');if(!t||!mn||!mn.on)return;c
 if(mn.mines.has(i)){mn.on=0;mReveal(i);$('#gplay').textContent='💣 Новая игра';hap('heavy');fin(mn.b,0,'💥 Бабах!');return}
 mn.open.add(i);t.textContent='💎';t.className='mt ok';hap('light');if(mn.open.size==MN-MM)mCash();else mUpd()}
 
-/* ===== Облачная БД, Глобальный Вайп и ИСПРАВЛЕННЫЕ НОВОСТИ (через открытую ветку commands) ===== */
+/* ===== Облачная БД, Вайп, Новости и Топ ===== */
 function isValidPlayer(x){
   return !!(x && typeof x === 'object' && !x.error && !x.banned && !x.wiped && typeof x.n === 'string' && cleanNick(x.n).length > 0 && cleanNick(x.n) !== 'Игрок' && Number.isFinite(Number(x.r)) && Number(x.r) > 0);
 }
 
-let cloudPlayers = [];
-let cloudNews = [];
-let cloudStatus = 'Подключение к БД...';
-let cloudRestored = false;
-
 const DEFAULT_NEWS = [
-  {id:'n_def3', title:'🛒 Обновление: Визуальные Трейды, Лавка Бустов и Сеты!', body:'• Нижнее меню стало крупным и удобным (4 основных раздела).\n• Трейды теперь полностью визуальные — выбирай карточки номерков прямо с витрины!\n• Добавлена Лавка временных бустов и тематические Сеты номеров.', ts: 1729760000000, pinned: true}
+  {id:'n_def4', title:'🔥 Крупное обновление: Новый интерфейс, Переводы и Баланс!', body:'• Нижнее меню стало чистым и удобным (5 главных разделов).\n• В разделе «Ещё» все функции разложены по категориям.\n• Добавлены прямые «Переводы» по @username.\n• Полностью защищены Трейды и сбалансирована экономика круток!', ts: 1729790000000, pinned: true}
 ];
-
-/* Храним глобальный вайп и новости в открытой ветке /commands/ чтобы работало при любых правилах Firebase */
-const WIPE_URL = `${DB_BASE}/commands/__GLOBAL_WIPE__.json`;
-const NEWS_URL = `${DB_BASE}/commands/__NEWS_FEED__.json`;
 
 async function checkGlobalWipe(){
   if(!DB_BASE) return false;
   try{
-    const r = await fetch(WIPE_URL);
+    const r = await fetch(`${DB_BASE}/server/wipe.json`);
     const w = await r.json();
     if(w && !w.error && w.ts && Number(w.ts) > Number(G.lastWipeTs || 0)){
       if(w.mode === 'money'){
@@ -1806,15 +2240,13 @@ async function checkGlobalWipe(){
 async function fetchNews(){
   if(!DB_BASE){ cloudNews = DEFAULT_NEWS; return; }
   try{
-    const r = await fetch(NEWS_URL);
+    const r = await fetch(`${DB_BASE}/news.json`);
     const d = await r.json();
     if(d && !d.error && typeof d === 'object'){
-      const arr = Object.values(d).filter(x=>x && typeof x === 'object' && x.title);
+      const arr = Object.values(d).filter(x=>x && x.title);
       cloudNews = [...arr, ...DEFAULT_NEWS].sort((a,b)=>(b.pinned?1:0)-(a.pinned?1:0) || (b.ts||0)-(a.ts||0));
     } else { cloudNews = DEFAULT_NEWS; }
-    const latestTs = Math.max(0, ...cloudNews.map(n=>n.ts||0));
-    const unread = latestTs > (G.seenNewsTs || 0);
-    $('#newsTopBtn').classList.toggle('ping', unread);
+    hud();
   }catch(e){ cloudNews = DEFAULT_NEWS; }
 }
 
@@ -1852,8 +2284,9 @@ async function syncCloud(force=false){
     for(const key of keysToCheck){
       const cmdRes = await fetch(`${DB_BASE}/commands/${encodeURIComponent(key)}.json`);
       const cmd = await cmdRes.json();
-      if(cmd && !cmd.error && cmd.ts && !G.usedCodes.includes('cmd_'+cmd.ts)){
-        G.usedCodes.push('cmd_'+cmd.ts);
+      const cmdKey = cmd && (cmd.cmdId || ('cmd_' + cmd.ts));
+      if(cmd && !cmd.error && cmd.ts && !G.usedCodes.includes(cmdKey)){
+        G.usedCodes.push(cmdKey);
         await fetch(`${DB_BASE}/commands/${encodeURIComponent(key)}.json`, {method:'DELETE'});
 
         if(cmd.wipeAccount){ await performFullReset(); return; }
@@ -1909,7 +2342,7 @@ async function syncCloud(force=false){
       method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload)
     });
     const data = await res.json();
-    cloudStatus = (data && data.error) ? '⚠️ Ошибка Firebase Rules!' : '🟢 Облачная БД синхронизирована';
+    cloudStatus = (data && data.error) ? '⚠️ Ошибка Firebase Rules: открой доступ!' : '🟢 Облачная БД синхронизирована';
   }catch(e){ cloudStatus = '⚠️ Нет связи с Firebase'; }
 }
 
@@ -1925,146 +2358,40 @@ async function loadLeaderboard(){
   }catch(e){}
 }
 
-/* ===== РАЗДЕЛ 3: ЗАЛ СЛАВЫ (ТОП, ЗАДАНИЯ, АЧИВКИ, СЕТЫ, НАВЫКИ) ===== */
-const UP=[
-  {k:'l',e:'🍀',n:'Удача',d:l=>`+${l*2}% к шансу редких+ номерков`,m:15,baseC:500},
-  {k:'m',e:'🤝',n:'Торговец',d:l=>`+${l*2}% к цене продажи номерков`,m:15,baseC:600},
-  {k:'r',e:'🏷️',n:'Оптовик',d:l=>`крутки дешевле на ${(l*1.5).toFixed(1)}%`,m:15,baseC:550},
-  {k:'s',e:'📦',n:'Логистика склада',d:l=>`вместимость склада ${40+10*l} шт.`,m:15,baseC:450},
-  {k:'u',e:'⚡',n:'Инженер Апгрейда',d:l=>`+${(l*1.5).toFixed(1)}% к шансу в Апгрейдере`,m:10,baseC:900},
-  {k:'b',e:'👵',n:'Любимчик Гардеробщицы',d:l=>`благословение каждые ${100-l*3} кр.`,m:10,baseC:850},
-  {k:'g',e:'🎁',n:'Щедрость',d:l=>`подарок по таймеру +${l*15}%`,m:15,baseC:400}
-];
-const spCost = l => 1 + Math.floor(l / 2);
-const coinCost = (u, l) => Math.round(u.baseC * (1.55 ** l));
+$$('#s3 .sub button').forEach(b=>b.onclick=()=>{ttab=+b.dataset.t;$$('#s3 .sub button').forEach(x=>x.classList.toggle('on',x==b));board()});
 
-$$('#hallTabs button').forEach(b=>b.onclick=()=>{
-  htab = +b.dataset.ht;
-  $$('#hallTabs button').forEach(x=>x.classList.toggle('on',x==b));
-  renderHall();
-});
-$$('#hallTopSub button').forEach(b=>b.onclick=()=>{
-  ttab = +b.dataset.t;
-  $$('#hallTopSub button').forEach(x=>x.classList.toggle('on',x==b));
-  renderHall();
-});
+async function board(){
+  if(ttab === 2){
+    const l=[...G.items].sort((a,b)=>price(b)-price(a)).slice(0,15);
+    $('#top0').innerHTML=l.length?l.map((i,k)=>`<div class="row"><b class="n">${k+1}</b>${tg(i,38,false)}<div><b style="color:${RC[i.r]}">${RN[i.r]} №${i.n}</b><small>${TN[i.t]}</small></div><b style="color:var(--gold)">${fmt(price(i))} ₽</b></div>`).join(''):'<p style="color:var(--mut)">Склад пуст — покрути номерки!</p>';
+    return;
+  }
+  await syncCloud();
+  await loadLeaderboard();
+  G.items.forEach(checkBest);
 
-async function renderHall(){
-  hud();
-  $('#hallTopSub').style.display = htab === 0 ? 'flex' : 'none';
-  const box = $('#hallBody');
+  const me={uid:MY_UID, uname:MY_UNAME, n:UN, c:G.c, r:worth(), lv:G.lv, best:G.best, me:1, wiped: !!(G.wipedHidden || worth()<=0)};
+  const validCloud = cloudPlayers.filter(x=>String(x.uid)!==String(MY_UID));
+  const pool = [...validCloud.map(x=>({...x, n:cleanNick(x.n), me:0}))];
+  if(!me.wiped) pool.push(me);
 
-  if(htab === 0){
-    if(ttab === 2){
-      const l=[...G.items].sort((a,b)=>price(b)-price(a)).slice(0,15);
-      box.innerHTML=l.length?l.map((i,k)=>`<div class="row"><b class="n">${k+1}</b>${tg(i,38,false)}<div><b style="color:${RC[i.r]}">${RN[i.r]} №${i.n}</b><small>${TN[i.t]}</small></div><b style="color:var(--gold)">${fmt(price(i))} ₽</b></div>`).join(''):'<p style="color:var(--mut)">Хранилище пусто — покрути номерки!</p>';
-      return;
-    }
-    await syncCloud();
-    await loadLeaderboard();
-    G.items.forEach(checkBest);
+  const admHint = window.__IS_ADMIN ? `<div style="font-size:10px;color:var(--gold);margin-bottom:6px">${cloudStatus}</div>` : '';
 
-    const me={uid:MY_UID, uname:MY_UNAME, n:UN, c:G.c, r:worth(), lv:G.lv, best:G.best, me:1, wiped: !!(G.wipedHidden || worth()<=0)};
-    const validCloud = cloudPlayers.filter(x=>String(x.uid)!==String(MY_UID));
-    const pool = [...validCloud.map(x=>({...x, n:cleanNick(x.n), me:0}))];
-    if(!me.wiped) pool.push(me);
+  if(ttab === 0){
+    const all = pool.filter(x=>x.r > 0 && !x.wiped).sort((a,b)=>b.r - a.r);
+    const rk = all.indexOf(me);
+    const row=(x,i)=>`<div class="row leader-row ${x.me?'me':''}"><b class="n">${['🥇','🥈','🥉'][i]||i+1}</b><div><span class="nick">${x.n}</span><small>Ур. ${x.lv||1} · баланс ${fmt(x.c ?? x.r)} ₽ · состояние ${fmt(x.r)} ₽</small></div></div>`;
+    $('#top0').innerHTML=`<p style="color:var(--mut);font-size:11px;margin:0 0 4px">Рейтинг активных богачей (обнулённые игроки скрыты).</p>`+admHint+(all.length?all.slice(0,15).map(row).join('')+(rk>=15?`<div style="text-align:center;color:var(--mut)">⋮</div>`+row(me,rk):''):'<p style="color:var(--mut)">В топе пока никого нет — сделай крутку!</p>');
+  } else if(ttab === 1){
+    const withBest = pool.filter(x=>!x.wiped && x.best && x.best.n && x.best.n <= MAX_NUM).map(x=>{
+      const bp = x.best.p || price(x.best);
+      return {...x, bestPrice: bp};
+    }).sort((a,b)=>b.bestPrice - a.bestPrice || (b.best.r - a.best.r));
 
-    const admHint = window.__IS_ADMIN ? `<div style="font-size:10.5px;color:var(--gold);margin-bottom:6px">${cloudStatus}</div>` : '';
-
-    if(ttab === 0){
-      const all = pool.filter(x=>x.r > 0 && !x.wiped).sort((a,b)=>b.r - a.r);
-      const rk = all.indexOf(me);
-      const row=(x,i)=>`<div class="row leader-row ${x.me?'me':''}"><b class="n">${['🥇','🥈','🥉'][i]||i+1}</b><div><span class="nick">${x.n}</span><small>Ур. ${x.lv||1} · баланс ${fmt(x.c ?? x.r)} ₽ · состояние ${fmt(x.r)} ₽</small></div></div>`;
-      box.innerHTML=`<p style="color:var(--mut);font-size:11.5px;margin:0 0 5px">Рейтинг активных богачей (обнулённые игроки скрыты).</p>`+admHint+(all.length?all.slice(0,15).map(row).join('')+(rk>=15?`<div style="text-align:center;color:var(--mut)">⋮</div>`+row(me,rk):''):'<p style="color:var(--mut)">В топе пока никого нет — сделай крутку!</p>');
-    } else if(ttab === 1){
-      const withBest = pool.filter(x=>!x.wiped && x.best && x.best.n && x.best.n <= MAX_NUM).map(x=>{
-        const bp = x.best.p || price(x.best);
-        return {...x, bestPrice: bp};
-      }).sort((a,b)=>b.bestPrice - a.bestPrice || (b.best.r - a.best.r));
-
-      const row=(x,i)=>`<div class="row leader-row ${x.me?'me':''}"><b class="n">${['🥇','🥈','🥉'][i]||i+1}</b>${tg(x.best,36,false)}<div><span class="nick">${x.n}</span><small style="color:${RC[x.best.r||0]}">${RN[x.best.r||0]} №${x.best.n}</small></div><b style="color:var(--gold);font-size:13.5px">${fmt(x.bestPrice)} ₽</b></div>`;
-      box.innerHTML=`<p style="color:var(--mut);font-size:11.5px;margin:0 0 5px">Рейтинг самых дорогих выбитых номерков среди игроков.</p>`+admHint+(withBest.length?withBest.slice(0,15).map(row).join(''):'<p style="color:var(--mut)">Пока никто не выбил номерки</p>');
-    }
-  } else if(htab === 1){
-    box.innerHTML=Q.map((q,i)=>{const v=QV(q),t=QG(q);return`<div class="row up"><div><b>${q.n}: ${fmt(t)}</b> <small style="display:inline">· этап ${QT(q)+1}</small><div class="pb"><i style="width:${Math.min(100,v/t*100)}%"></i></div><small>${fmt(Math.min(v,t))}/${fmt(t)} · награда <b style="color:var(--gold)">${fmt(QR(q))} ₽</b> + 🧠1</small></div><button data-q="${i}" ${v>=t?'':'disabled'}>Забрать</button></div>`}).join('');
-  } else if(htab === 2){
-    box.innerHTML=ACHS.map(a=>{
-      const done = !!G.ach[a.id], rdy = !done && a.c();
-      return `<div class="row up" style="${done?'opacity:.65;border-color:#3fe06b44':rdy?'border-color:var(--gold);background:#2a2008':''}">
-        <div><b>${a.n}</b> ${done?'<span style="color:var(--ok);font-size:11px">✓ Получено</span>':''}<small>${a.d}</small><small style="color:var(--gold)">Награда: +${fmt(a.rewC)} ₽ и +${a.rewSp} 🧠</small></div>
-        <button data-ach="${a.id}" ${rdy?'':'disabled'}>${done?'Собрано':rdy?'Забрать!':'Закрыто'}</button>
-      </div>`;
-    }).join('');
-  } else if(htab === 3){
-    const invNums = new Set(G.items.map(i=>i.n)), cnt = G.col.length;
-    box.innerHTML = `
-      <div style="font-size:12px;color:var(--mut);margin-bottom:8px">Собери все номера из сета, чтобы активировать вечный бонус и получить крупный куш!</div>
-      ${SETS.map(s=>{
-        const done = G.setsDone.includes(s.id), hasAll = s.nums.every(n=>invNums.has(n) || G.col.includes(n));
-        return `<div class="set-card ${done?'set-Card-done':''}">
-          <div style="display:flex;justify-content:space-between;align-items:center">
-            <b style="font-size:14px;color:${done?'var(--gold)':'#fff'}">${s.n}</b>
-            <span style="font-size:11.5px;color:${done?'var(--ok)':'var(--gold)'};font-weight:800">${done?'✓ Сет активен':`+${fmt(s.rewC)} ₽ и +${s.rewSp} 🧠`}</span>
-          </div>
-          <small style="color:var(--mut);display:block;margin-top:2px">Пассивный бонус: <b style="color:#fff">${s.desc}</b></small>
-          <div class="set-nums">${s.nums.map(n=>`<span class="set-num ${(invNums.has(n)||G.col.includes(n))?'has':''}">№${n}</span>`).join('')}</div>
-          ${!done ? `<button class="gbtn" data-set="${s.id}" ${hasAll?'':'disabled'} style="padding:9px;font-size:12.5px;margin-top:4px">${hasAll?'✨ Активировать сет и забрать награду!':'Собери все номера сета'}</button>` : ''}
-        </div>`;
-      }).join('')}
-      <h3 style="margin-top:12px">📖 Общий альбом номеров (${cnt} / ${MAX_NUM})</h3>
-      <div class="row"><div><b>Открыто уникальных номеров: ${cnt} / ${MAX_NUM}</b><div class="pb"><i style="width:${cnt/MAX_NUM*100}%"></i></div></div></div>
-      ${RN.map((rn,r)=>{
-        const totalInR = P[r].length, gotInR = P[r].filter(n=>G.col.includes(n)).length;
-        return `<div class="row"><span class="dot" style="background:${RC[r]}"></span><div><b style="color:${RC[r]}">${rn}</b><small>Собрано: ${gotInR} из ${totalInR}</small></div><b>${Math.round(gotInR/totalInR*100)}%</b></div>`;
-      }).join('')}`;
-  } else {
-    const exReward = 1500 + G.lv * 250;
-    box.innerHTML=`<div class="row" style="background:#201b0a;border-color:#ffd54a44">
-      <div><b>Доступно очков навыков: <span style="color:var(--gold)">${G.sp} 🧠</span></b><small>Прокачка навыков требует очки 🧠 и баланс ₽</small></div>
-    </div>`+UP.map((u,i)=>{
-      const l=G.up[u.k]||0, mx=l>=u.m, sc=spCost(l), cc=coinCost(u,l), can = !mx && G.sp>=sc && G.c>=cc;
-      return`<div class="row up"><em>${u.e}</em><div><b>${u.n}</b> · ур. ${l}/${u.m}<small>${u.d(l)}${mx?'':' ➔ '+u.d(l+1)}</small>${!mx?`<small style="color:var(--gold)">Цена: ${sc} 🧠 + ${fmt(cc)} ₽</small>`:''}</div><button data-u="${i}" ${can?'':'disabled'}>${mx?'MAX':`${sc}🧠 + ${fmt(cc)}₽`}</button></div>`;
-    }).join('') + `
-    <div class="scard" style="margin-top:10px;text-align:center">
-      <h3>🔄 Обменник лишних очков навыков</h3>
-      <button class="gbtn" data-sp-ex="1" ${G.sp>=1?'':'disabled'} style="padding:10px;font-size:13px">Обменять 1 🧠 ➔ +${fmt(exReward)} ₽</button>
-    </div>`;
+    const row=(x,i)=>`<div class="row leader-row ${x.me?'me':''}"><b class="n">${['🥇','🥈','🥉'][i]||i+1}</b>${tg(x.best,34,false)}<div><span class="nick">${x.n}</span><small style="color:${RC[x.best.r||0]}">${RN[x.best.r||0]} №${x.best.n}</small></div><b style="color:var(--gold);font-size:13px">${fmt(x.bestPrice)} ₽</b></div>`;
+    $('#top0').innerHTML=`<p style="color:var(--mut);font-size:11px;margin:0 0 4px">Рейтинг самых дорогих выбитых номерков среди игроков.</p>`+admHint+(withBest.length?withBest.slice(0,15).map(row).join(''):'<p style="color:var(--mut)">Пока никто не выбил номерки</p>');
   }
 }
-
-$('#hallBody').onclick=e=>{
-  const b=e.target.closest('button');if(!b)return;
-  if(b.dataset.q!=null){
-    const q=Q[b.dataset.q];if(QV(q)<QG(q))return;
-    G.c+=QR(q);G.sp++;G.qt[q.k]=QT(q)+1;G.wipedHidden=false;
-    toast(`🎯 Задание выполнено: +${fmt(QR(q))} ₽ и 🧠1`);hap('medium');
-  } else if(b.dataset.ach!=null){
-    const a=ACHS.find(x=>x.id===b.dataset.ach);
-    if(!a||G.ach[a.id]||!a.c())return;
-    G.ach[a.id]=1; G.c+=a.rewC; G.sp+=a.rewSp; G.wipedHidden=false;
-    burst(innerWidth/2,innerHeight/2,'#ffd54a',30);
-    toast(`🏅 Достижение «${a.n}»: +${fmt(a.rewC)} ₽ и +${a.rewSp} 🧠!`);hap('heavy');
-  } else if(b.dataset.set!=null){
-    const s=SETS.find(x=>x.id===b.dataset.set);
-    if(!s||G.setsDone.includes(s.id))return;
-    const invNums = new Set(G.items.map(i=>i.n));
-    if(!s.nums.every(n=>invNums.has(n)||G.col.includes(n)))return;
-    G.setsDone.push(s.id); G.c+=s.rewC; G.sp+=s.rewSp; G.wipedHidden=false;
-    burst(innerWidth/2,innerHeight/2,null,45);
-    toast(`✨ Сет «${s.n}» собран! +${fmt(s.rewC)} ₽ и вечный бонус!`);hap('heavy');
-  } else if(b.dataset.u!=null){
-    const u=UP[b.dataset.u],l=G.up[u.k]||0,sc=spCost(l),cc=coinCost(u,l);
-    if(l>=u.m||G.sp<sc||G.c<cc)return;
-    G.sp-=sc; G.c-=cc; G.up[u.k]=l+1;
-    hap('medium'); toast(`🧠 Навык «${u.n}» повышен до ур. ${l+1}!`);
-  } else if(b.dataset.spEx!=null){
-    if(G.sp<1)return;
-    const rew = 1500 + G.lv * 250;
-    G.sp--; G.c += rew; G.wipedHidden=false;
-    hap('medium'); toast(`🔄 Обменяно 1 🧠 на +${fmt(rew)} ₽!`);
-  }
-  save(true);renderHall();hud();
-};
 
 /* ===== Защищённая Активация Купонов ===== */
 let couponBusy = false;
@@ -2072,7 +2399,7 @@ const sessionPendingCodes = new Set();
 
 async function redeemCoupon(raw){
   if(couponBusy) return;
-  const code = raw.trim().toUpperCase();
+  const code = (raw||'').trim().toUpperCase();
   if(!code) return;
   if(G.usedCodes.includes('cp_'+code) || sessionPendingCodes.has(code)){
     return toast('❌ Этот купон уже активирован!');
@@ -2080,8 +2407,8 @@ async function redeemCoupon(raw){
 
   couponBusy = true;
   sessionPendingCodes.add(code);
-  const btn = $('#promoBtn'), oldTxt = btn.textContent;
-  btn.disabled = true; btn.textContent = '⏳...';
+  const btn = $('#promoBtn'), oldTxt = btn ? btn.textContent : 'Активировать';
+  if(btn){ btn.disabled = true; btn.textContent = '⏳...'; }
 
   try{
     const r = await fetch(`${DB_BASE}/coupons/${encodeURIComponent(code)}.json`);
@@ -2130,18 +2457,18 @@ async function redeemCoupon(raw){
       G.lv += lvAdd; G.sp += lvAdd;
       toast(`🎟️ Купон активирован: +${lvAdd} к уровню и 🧠!`);
     }
-    $('#promoInp').value = '';
+    if($('#promoInp')) $('#promoInp').value = '';
     save(true); hud();
   }catch(e){
     sessionPendingCodes.delete(code);
     toast('❌ Ошибка сети при проверке купона');
   }finally{
-    couponBusy = false; btn.disabled = false; btn.textContent = oldTxt;
+    couponBusy = false;
+    if(btn){ btn.disabled = false; btn.textContent = oldTxt; }
   }
 }
-$('#promoBtn').onclick=()=>redeemCoupon($('#promoInp').value);
 
-/* ===== Админ-панель (с исправленной публикацией Новостей) ===== */
+/* ===== Админ-панель ===== */
 let admTab = 0, admSearch = '';
 $('#admBtn').onclick = () => { if(window.__IS_ADMIN) renderAdminModal(); };
 
@@ -2182,7 +2509,7 @@ async function renderAdminModal(){
       </div>
       <div class="adm-row">
         <button class="f" id="admLvUp">+5 Ур. и 🧠</button>
-        <button class="f" id="admBless">👵 +5 Удачи ×2</button>
+        <button class="f" id="admBless">👵 +5 Удачи</button>
         <button class="f" id="admUnlockAll">📖 Вся коллекция</button>
       </div>`;
     $('#admAddC').onclick=()=>{G.c+=Number($('#admCoins').value||0);G.wipedHidden=false;save(true);hud();toast('✅ Баланс пополнен')};
@@ -2194,7 +2521,7 @@ async function renderAdminModal(){
       G.wipedHidden=false; save(true);hud();toast(`✅ Выдан №${n} (${RN[RAR[n]]})`);
     };
     $('#admLvUp').onclick=()=>{G.lv+=5;G.sp+=5;save(true);hud();toast('✅ +5 уровней и 🧠')};
-    $('#admBless').onclick=()=>{G.bless=(G.bless||0)+5;save(true);hud();toast('✅ +5 зарядов удачи ×2')};
+    $('#admBless').onclick=()=>{G.bless=(G.bless||0)+5;save(true);hud();toast('✅ +5 зарядов удачи')};
     $('#admUnlockAll').onclick=()=>{G.col=Array.from({length:MAX_NUM},(_,i)=>i+1);save(true);toast('✅ Вся коллекция открыта')};
 
   } else if(admTab === 1){
@@ -2269,7 +2596,7 @@ async function renderAdminModal(){
       if(!wConfirm1){ wConfirm1=1; e.target.textContent='⚠️ Точно? Нажми ещё раз'; return; }
       e.target.disabled = true; e.target.textContent = '⏳ Вайп...';
       const ts = Date.now();
-      await fetch(WIPE_URL, {method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ts, mode:'money'})});
+      await fetch(`${DB_BASE}/server/wipe.json`, {method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ts, mode:'money'})});
       await fetch(`${DB_BASE}/players.json`, {method:'DELETE'});
       await fetch(`${DB_BASE}/trades.json`, {method:'DELETE'});
       G.c = 0; G.items = []; G.best = null; G.wipedHidden = true; G.lastWipeTs = ts;
@@ -2282,7 +2609,7 @@ async function renderAdminModal(){
       if(!wConfirm2){ wConfirm2=1; e.target.textContent='☢️ ТОЧНО СБРОСИТЬ ВСЁ?'; return; }
       e.target.disabled = true; e.target.textContent = '⏳ Полный вайп...';
       const ts = Date.now();
-      await fetch(WIPE_URL, {method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ts, mode:'full'})});
+      await fetch(`${DB_BASE}/server/wipe.json`, {method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ts, mode:'full'})});
       await fetch(`${DB_BASE}/players.json`, {method:'DELETE'});
       await fetch(`${DB_BASE}/trades.json`, {method:'DELETE'});
       G = defaultSave(ts); G.wipedHidden = true;
@@ -2302,7 +2629,7 @@ async function renderAdminModal(){
       cloudPlayers = cloudPlayers.filter(x=>String(x.uid)!==String(uid));
       toast('💸 Деньги игрока стёрты, он скрыт из топа!');
       renderAdminModal();
-      if($('#s3').classList.contains('on')) renderHall();
+      if($('#s3').classList.contains('on')) board();
     });
 
     body.querySelectorAll('[data-del-uid]').forEach(btn=>btn.onclick=async()=>{
@@ -2313,7 +2640,7 @@ async function renderAdminModal(){
       cloudPlayers = cloudPlayers.filter(x=>String(x.uid)!==String(uid));
       toast('🗑️ Аккаунт игрока полностью стёрт');
       renderAdminModal();
-      if($('#s3').classList.contains('on')) renderHall();
+      if($('#s3').classList.contains('on')) board();
     });
 
   } else if(admTab === 3){
@@ -2388,16 +2715,14 @@ async function renderAdminModal(){
     });
 
   } else if(admTab === 4){
-    /* ИСПРАВЛЕННАЯ ПУБЛИКАЦИЯ НОВОСТЕЙ (пишет в открытую ветку commands/__NEWS_FEED__) */
-    const customNews = cloudNews.filter(n=>n && n.id && !n.id.startsWith('n_def'));
     body.innerHTML = `
       <h3>📰 Опубликовать новость для всех игроков</h3>
-      <div class="adm-row"><input class="adm-inp" id="nwTitle" placeholder="Заголовок новости (напр. Раздача купонов!)"></div>
+      <div class="adm-row"><input class="adm-inp" id="nwTitle" placeholder="Заголовок новости (напр. Новый сезон!)"></div>
       <div class="adm-row"><textarea class="adm-inp" id="nwBody" rows="3" placeholder="Текст новости или список обновлений..."></textarea></div>
       <button class="gbtn" id="nwPubBtn" style="padding:10px;font-size:13px;margin-bottom:10px">📢 Опубликовать в ленту</button>
-      <h3>Опубликованные новости (${customNews.length})</h3>
+      <h3>Опубликованные новости</h3>
       <div style="max-height:150px;overflow-y:auto">
-        ${customNews.map(n=>`<div class="row" style="padding:6px 8px;margin-bottom:4px">
+        ${cloudNews.filter(n=>!n.id.startsWith('n_def')).map(n=>`<div class="row" style="padding:6px 8px;margin-bottom:4px">
           <div><b>${n.title}</b><small>${new Date(n.ts||Date.now()).toLocaleDateString('ru-RU')}</small></div>
           <button class="f" data-delnw="${n.id}" style="color:var(--bad)">🗑️</button>
         </div>`).join('') || '<div style="color:var(--mut);font-size:12px">Пользовательских новостей пока нет</div>'}
@@ -2406,128 +2731,18 @@ async function renderAdminModal(){
     $('#nwPubBtn').onclick = async () => {
       const title = $('#nwTitle').value.trim(), text = $('#nwBody').value.trim();
       if(!title || !text) return toast('Заполни заголовок и текст новости');
-      const btn = $('#nwPubBtn');
-      btn.disabled = true; btn.textContent = '⏳ Публикация...';
       const id = 'nw_' + Date.now();
-      const postObj = {id, title, body:text, author:MY_UNAME, ts:Date.now()};
-      try{
-        const res = await fetch(`${DB_BASE}/commands/__NEWS_FEED__/${id}.json`, {
-          method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify(postObj)
-        });
-        const d = await res.json();
-        if(d && d.error) return toast('❌ Ошибка доступа БД: ' + d.error);
-        await fetchNews();
-        toast('📢 Новость успешно опубликована!');
-        renderAdminModal();
-        if($('#s5').classList.contains('on')) more();
-      }catch(e){
-        toast('❌ Ошибка сети при отправке новости');
-      }finally{
-        btn.disabled = false; btn.textContent = '📢 Опубликовать в ленту';
-      }
+      await fetch(`${DB_BASE}/news/${id}.json`, {method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify({id, title, body:text, author:MY_UNAME, ts:Date.now()})});
+      toast('📢 Новость опубликована!');
+      renderAdminModal();
     };
     body.querySelectorAll('[data-delnw]').forEach(btn=>btn.onclick=async()=>{
-      const id = btn.dataset.delnw;
-      await fetch(`${DB_BASE}/commands/__NEWS_FEED__/${id}.json`, {method:'DELETE'});
-      await fetchNews();
+      await fetch(`${DB_BASE}/news/${btn.dataset.delnw}.json`, {method:'DELETE'});
       toast('🗑️ Новость удалена');
       renderAdminModal();
-      if($('#s5').classList.contains('on')) more();
     });
   }
 }
-
-$('#openInfoBtn').onclick = () => {
-  const w=W(false),t=w.reduce((a,b)=>a+b);
-  $('#md').innerHTML = `<div class="adm-box">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-      <h3 style="margin:0">📘 Справочник КПК (Номера 1–999)</h3>
-      <button class="f" onclick="document.getElementById('md').classList.remove('on')">✕</button>
-    </div>
-    <h3>🎲 Таблица редкостей и базовых цен</h3>
-    <table>
-      <tr><th>Редкость</th><th>Шанс</th><th>🔴 Пластик</th><th>📄 Бумага</th></tr>
-      ${RN.map((x,i)=>`<tr><td><span class="dot" style="background:${RC[i]}"></span>${x}</td><td>${(w[i]/t*100).toFixed(2)}%</td><td>${fmt(BASE[0][i])} ₽</td><td>${fmt(BASE[1][i])} ₽</td></tr>`).join('')}
-    </table>
-    <h3>🔥 Множители за блатные и бонусные номера</h3>
-    <table>
-      <tr><th>Номер / Категория</th><th>Бонус к цене</th><th>Редкость</th></tr>
-      <tr><td>😎 777 / 888 / 999</td><td><b style="color:var(--gold)">×3.0</b></td><td>Миф. / Легенд.</td></tr>
-      <tr><td>🦍 300 · 😎 228 · 🔥 52</td><td><b style="color:var(--gold)">×2.5</b></td><td>Эпический</td></tr>
-      <tr><td>😎 111…666 (Триплы)</td><td><b style="color:var(--gold)">×2.2</b></td><td>Легендарный</td></tr>
-      <tr><td>👑 1–10 (Первая десятка)</td><td><b style="color:var(--gold)">×2.0</b></td><td>Мифический</td></tr>
-      <tr><td>🏙️ 812 · 😎 322, 312</td><td><b style="color:var(--gold)">×2.0</b></td><td>Редкий</td></tr>
-      <tr><td>😎 11…99 · 🌿 420 · 😎 13</td><td><b style="color:var(--gold)">×1.8</b></td><td>Лег. / Эпич. / Ред.</td></tr>
-      <tr><td>🎩 337 · 🤖 404</td><td><b style="color:var(--gold)">×1.5</b></td><td>Редкий</td></tr>
-      <tr><td>🤪 Номера с «67»</td><td><b style="color:var(--gold)">×1.35</b></td><td>Любая</td></tr>
-      <tr><td>🪜 Лесенка · 🪞 Зеркальные</td><td><b style="color:var(--gold)">×1.3 / ×1.2</b></td><td>Любая</td></tr>
-    </table>
-  </div>`;
-  $('#md').classList.add('on');
-};
-
-$$('#moreTabs button').forEach(b=>b.onclick=()=>{
-  mtab = +b.dataset.mt;
-  $$('#moreTabs button').forEach(x=>x.classList.toggle('on',x==b));
-  more();
-});
-
-async function more(){
-  $$('#moreTabs button').forEach((x,i)=>x.classList.toggle('on',i===mtab));
-  $('#newsWrap').style.display = mtab===0 ? 'flex' : 'none';
-  $('#settingsWrap').style.display = mtab===1 ? 'flex' : 'none';
-
-  if(mtab === 0){
-    await fetchNews();
-    const latestTs = Math.max(0, ...cloudNews.map(n=>n.ts||0));
-    if(latestTs > (G.seenNewsTs||0)){
-      G.seenNewsTs = latestTs;
-      $('#newsTopBtn').classList.remove('ping');
-      save(false);
-    }
-    $('#newsWrap').innerHTML = cloudNews.map(n=>`<div class="news-card ${n.pinned?'pinned':''}">
-      <div class="news-meta">
-        <span>${n.pinned?'📌 Закреплено':'📢 Новость проекта'} ${n.author?'· @'+n.author:''}</span>
-        <span>${new Date(n.ts||Date.now()).toLocaleDateString('ru-RU')}</span>
-      </div>
-      <div class="news-title">${n.title}</div>
-      <div class="news-body">${n.body}</div>
-    </div>`).join('');
-    return;
-  }
-
-  $('#myIdBox').innerHTML=`Твой юзернейм: <b style="color:#fff;user-select:all">@${MY_UNAME}</b> · ID: <b style="color:#fff;user-select:all">${MY_UID}</b>`;
-  const modes = [[0, '🚫 Выключена'],[1, '⚪ Только Обычные'],[2, '🟢 Обычн. + Необычн.'],[3, '🔵 До Редких включ.']];
-  $('#autoSellBox').innerHTML = `
-    <div class="seg-Group">${modes.map(([m, label])=>`<button class="seg-btn ${G.set.autoMode===m?'on':''}" data-am="${m}">${label}</button>`).join('')}</div>
-    <div class="row" style="margin-bottom:5px;padding:8px 11px">
-      <div><b>😎 Сохранять блатные/бонусные</b><small>Не продавать номера с множителем цены</small></div>
-      <button class="f ${G.set.keepBonus?'on':''}" data-ak="keepBonus">${G.set.keepBonus?'Да':'Нет'}</button>
-    </div>
-    <div class="row" style="margin-bottom:0;padding:8px 11px">
-      <div><b>📖 Сохранять новые для коллекции</b><small>Не продавать номер, если он выпал впервые</small></div>
-      <button class="f ${G.set.keepNew?'on':''}" data-ak="keepNew">${G.set.keepNew?'Да':'Нет'}</button>
-    </div>`;
-
-  $('#sets').innerHTML=[
-    ['hap','📳 Тактильная отдача (вибрация)'],
-    ['snd','🔊 Звуковые щелчки при крутке'],
-    ['fast','⏩ Турбо-крутка (ускоренная анимация)'],
-    ['compact','📐 Компактная сетка номерков на складе'],
-    ['shake','💥 Тряска экрана при выпадении Легендарки/Мифика']
-  ].map(([k,n])=>`<div class="row" style="padding:8px 11px"><div>${n}</div><button class="f ${G.set[k]?'on':''}" data-k="${k}">${G.set[k]?'Вкл':'Выкл'}</button></div>`).join('');
-
-  const net=G.earned+G.items.reduce((a,i)=>a+price(i),0)-G.spent;
-  $('#pity').innerHTML=`Гарант (${ty?'бумага':'пластик'}): редкий+ через ${LIM[0]-G.p[ty][0]}, эпик+ через ${LIM[1]-G.p[ty][1]}, лега+ через ${LIM[2]-G.p[ty][2]}, мифик через ${LIM[3]-G.p[ty][3]} кр.<br>Круток: ${G.rolls} · Потрачено: ${fmt(G.spent)} ₽ · Продано: ${fmt(G.earned)} ₽ · Профит: <b style="color:${net>=0?'var(--ok)':'var(--bad)'}">${sg(net)} ₽</b>`;
-}
-
-$('#autoSellBox').onclick=e=>{
-  const am = e.target.closest('[data-am]');
-  if(am){ G.set.autoMode = +am.dataset.am; save(true); more(); return; }
-  const ak = e.target.closest('[data-ak]');
-  if(ak){ const k = ak.dataset.ak; G.set[k] = G.set[k]?0:1; save(true); more(); }
-};
-$('#sets').onclick=e=>{const b=e.target.closest('[data-k]');if(!b)return;G.set[b.dataset.k]=G.set[b.dataset.k]?0:1;save(true);more()};
 
 async function performFullReset(){
   isResetting = true;
@@ -2543,23 +2758,10 @@ async function performFullReset(){
   location.reload();
 }
 
-let rc=0;
-$('#reset').onclick=e=>{
-  if(!rc){
-    rc=1;
-    e.target.textContent='⚠️ Точно сбросить ВСЁ? Нажми ещё раз';
-    setTimeout(()=>{rc=0;e.target.textContent='🗑️ Полностью сбросить прогресс'},3500);
-  } else {
-    e.target.disabled = true;
-    e.target.textContent = '⏳ Сброс данных...';
-    performFullReset();
-  }
-};
-
 $('#gb').onclick=e=>{
   if(!ready())return;
-  const g=Math.round((60+6*G.lv)*(1+.15*(G.up.g||0)+getSetBonus('gift')));
-  G.c+=g;G.gift=Date.now()+240000;G.wipedHidden=false;
+  const g=Math.round((45+5*G.lv)*(1+.12*(G.up.g||0)+getSetBonus('gift')));
+  G.c+=g;G.gift=Date.now()+360000;G.wipedHidden=false;
   toast(`🎁 Подарок гардеробщика: +${fmt(g)} ₽`);
   burst(e.clientX||innerWidth/2,e.clientY||40,'#ffd54a',18);
   hap('medium');hud();save(true);
@@ -2577,14 +2779,14 @@ setInterval(()=>{
   const curSlot = Math.floor(now / 900000);
   const shopLeft = Math.max(0, 900 - Math.floor((now % 900000)/1000));
   const stEl = $('#shopTimer');
-  if(stEl) stEl.textContent = `Обновление витрины через ${String(Math.floor(shopLeft/60)).padStart(2,'0')}:${String(shopLeft%60).padStart(2,'0')}`;
+  if(stEl) stEl.textContent = `Обновление через ${String(Math.floor(shopLeft/60)).padStart(2,'0')}:${String(shopLeft%60).padStart(2,'0')}`;
   if(curSlot !== lastShopSlot){
     lastShopSlot = curSlot;
-    if($('#s1').classList.contains('on') && stab === 2) renderShop();
+    if($('#s4').classList.contains('on') && moreSub === 'shop') renderShopPage($('#morePageBody'));
   }
 }, 500);
 
-setInterval(()=>{save(false);fetchTrades()}, 8000);
+setInterval(()=>{save(false);fetchTrades()}, 7000);
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')save(true)});
 
 idle();hud();initCloudRecovery();
