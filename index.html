@@ -210,6 +210,43 @@ h3{margin:4px 0 6px;font-size:15px}
 .rev.r2::after,.rev.r3::after,.rev.r4::after,.rev.r5::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,#fff7 50%,transparent 70%) 0 0/250% 100%;animation:shine 2.6s infinite;pointer-events:none;z-index:3}
 .rev.r5::before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,#f00,#ff0,#0f0,#0ff,#00f,#f0f,#f00) 0 0/300% 100%;mix-blend-mode:overlay;opacity:.4;animation:holo 3s linear infinite;z-index:3;pointer-events:none}
 @keyframes shine{from{background-position:150% 0}to{background-position:-100% 0}}@keyframes holo{to{background-position:300% 0}}
+
+/* ===== Удача: золотая кнопка ===== */
+#go.lucky{background:linear-gradient(135deg,#ffe680,#ffb300 55%,#ff8f00);color:#2b1900;box-shadow:0 5px 22px #ffb300aa,0 0 0 1.5px #ffe58a;animation:luckyGlow 1.1s ease-in-out infinite alternate}
+#go.lucky small{background:#00000030;color:#2b1900}
+#go.lucky:disabled{animation:none}
+@keyframes luckyGlow{to{box-shadow:0 5px 32px #ffc400ee,0 0 0 2px #fff3b0;transform:scale(1.02)}}
+/* ===== Трейды ===== */
+.tr-seg{grid-template-columns:repeat(4,minmax(0,1fr))}.tr-seg button{font-size:11px;padding:8px 2px}.tr-seg b{color:var(--gold);margin-left:2px}
+.tr-card{background:var(--card);border:1px solid #ffffff14;border-radius:16px;padding:11px;margin-bottom:9px}
+.tr-card.in{border-color:#3fe06b55;background:linear-gradient(150deg,#0f2418,#12121a)}
+.tr-who{display:flex;align-items:center;gap:9px;margin-bottom:9px}
+.tr-ava{width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,#ff3355,#ff9100);display:flex;align-items:center;justify-content:center;font-weight:800;flex:none}
+.tr-who small{display:block;color:var(--mut);font-size:10.5px}
+.tr-items{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:9px}
+.tr-it{display:flex;flex-direction:column;align-items:center;gap:2px;background:#0000003a;border:1px solid color-mix(in srgb,var(--c) 55%,transparent);border-radius:12px;padding:8px 6px 5px;min-width:62px}
+.tr-it b{font-size:11px}.tr-it small{font-size:9.5px;color:var(--gold);font-weight:800}
+.tr-sum{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:7px}
+.tr-sum div{background:#ffffff0a;border-radius:11px;padding:7px 9px}.tr-sum small{display:block;font-size:10px;color:var(--mut)}.tr-sum b{font-size:14px}
+.tr-verdict{font-size:11.5px;border-radius:10px;padding:6px 9px;margin-bottom:8px;line-height:1.35}
+.tr-verdict.good{background:#143d2288;color:var(--ok)}.tr-verdict.bad{background:#3d141a88;color:#ff8896}.tr-verdict.mid{background:#ffffff0d;color:var(--mut)}
+.tr-btns{display:flex;gap:6px}.tr-btns .f{flex:1;text-align:center;padding:10px 6px;font-size:12.5px}
+.tr-step{display:flex;align-items:center;gap:8px;margin:0 0 8px}
+.tr-step i{width:22px;height:22px;border-radius:50%;background:var(--gold);color:#000;font-style:normal;font-weight:800;font-size:12px;display:flex;align-items:center;justify-content:center;flex:none}
+.tr-step b{font-size:13px}
+.tr-pl{display:flex;gap:5px;overflow-x:auto;scrollbar-width:none;margin:7px 0}.tr-pl button{flex:none}
+.tr-pick{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;max-height:230px;overflow-y:auto;padding:2px}
+.tr-p{position:relative;display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 2px 5px;border-radius:12px;background:linear-gradient(165deg,color-mix(in srgb,var(--c) 22%,#15151d),#101017 75%);border:1.5px solid color-mix(in srgb,var(--c) 40%,transparent);cursor:pointer;font:inherit;color:#fff;min-width:0}
+.tr-p b{font-size:10.5px}.tr-p small{font-size:9.5px;color:var(--gold);font-weight:800}
+.tr-p.sel{border-color:var(--ok);box-shadow:0 0 0 1.5px var(--ok);background:#143d22}
+.tr-p.sel::after{content:"✓";position:absolute;top:2px;right:5px;font-size:12px;color:var(--ok);font-weight:800}
+.tr-mode{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px}
+.tr-mode button{padding:10px 6px;border-radius:13px;border:1.5px solid #ffffff1a;background:#0b0b12;color:var(--mut);font:700 12px Rubik,sans-serif;cursor:pointer;line-height:1.3}
+.tr-mode button.on{border-color:var(--gold);background:#2a2008;color:#fff}
+.tr-mode small{display:block;font-size:10px;font-weight:500;margin-top:2px}
+.tr-preview{background:linear-gradient(135deg,#1d1730,#12121b);border:1px solid #a855f755;border-radius:14px;padding:10px 12px;margin:2px 0 10px;font-size:12px;line-height:1.55}
+.tr-empty{text-align:center;color:var(--mut);padding:22px 10px;font-size:12.5px;line-height:1.5}.tr-empty b{display:block;font-size:30px;margin-bottom:4px}
+.tr-log{font-size:11.5px;display:flex;justify-content:space-between;gap:8px;padding:7px 2px;border-bottom:1px solid #ffffff0f}.tr-log small{color:var(--mut);flex:none}
 </style></head><body>
 <div id="bgfx"></div>
 <div id="aura"></div>
@@ -218,7 +255,7 @@ h3{margin:4px 0 6px;font-size:15px}
     <div class="chip" id="lv" title="Открыть профиль"><span id="lvt">👤 Ур. 1</span><i><u id="xp"></u></i></div>
     <button class="chip" id="gb">🎁 Забрать</button>
     <button class="chip" id="admBtn">👑 Админ</button>
-    <div id="bal"><small>Баланс</small><b id="bt">1 000 ₽</b></div>
+    <div id="bal" style="cursor:pointer"><small id="syncDot">Баланс 🔄</small><b id="bt">1 000 ₽</b></div>
   </div>
 
   <!-- 1. ИГРАТЬ -->
@@ -318,7 +355,7 @@ h3{margin:4px 0 6px;font-size:15px}
   <button data-s="1" id="navStore"><b>📦</b>Склад</button>
   <button data-s="2"><b>🎰</b>Игры</button>
   <button data-s="3"><b>🏆</b>Топ</button>
-  <button data-s="4" id="navMore"><b>⊞</b>Ещё</button>
+  <button data-s="4" id="navMore"><b>⚙️</b>Ещё</button>
 </nav>
 <div id="md"></div><div id="fl"></div><div id="tt"></div>
 
@@ -412,7 +449,7 @@ function defaultSave(wipeTs = 0){
     up:{l:0,m:0,r:0,s:0,g:0,u:0,b:0},lv:1,xp:0,sp:1,gift:0,spent:0,earned:0,
     st:{sold:0,bonus:0,rare:0,s67:0,upgWin:0,upgTry:0,rkWin:0,myth:0,paper:0,trades:0,transfers:0},
     qt:{},ach:{},setsDone:[],bless:0,gnet:0,col:[],usedCodes:[],best:null,
-    boosts:{},shopRef:0,shopBought:{},lastWipeTs:wipeTs,seenNewsTs:0,wipedHidden:false,
+    boosts:{},shopRef:0,shopBought:{},lastWipeTs:wipeTs,seenNewsTs:0,wipedHidden:false,baseRev:0,syncedHash:'',trLog:[],
     updatedAt:Date.now(),
     set:{hap:1,shake:1,fast:0,autoMode:0,keepBonus:1,keepNew:1,snd:1,compact:0}
   };
@@ -438,6 +475,9 @@ function sanitizeSave(raw){
   d.lastWipeTs = Number(raw.lastWipeTs) || 0;
   d.seenNewsTs = Number(raw.seenNewsTs) || 0;
   d.wipedHidden = !!raw.wipedHidden;
+  d.baseRev = Math.max(0, Number(raw.baseRev) || 0);
+  d.syncedHash = String(raw.syncedHash || '');
+  d.trLog = toArr(raw.trLog).filter(x=>x && typeof x==='object' && x.t).slice(-30);
   d.updatedAt = Number(raw.updatedAt) || Date.now();
   d.items = toArr(raw.items).filter(i=>i && typeof i==='object' && i.n>=1 && i.n<=MAX_NUM).map(i=>({id:i.id||(d.nid++), n:Number(i.n), r:RAR[i.n]??0, t:Number(i.t)||0, locked:i.locked?1:0}));
   d.col = [...new Set(toArr(raw.col).map(Number).filter(n=>n>=1 && n<=MAX_NUM))];
@@ -485,6 +525,8 @@ function getSetBonus(type){
 /* ===== Бонусы за красивые номерки: теперь они СКЛАДЫВАЮТСЯ между собой ===== */
 const SP={300:[2.4,'🦍','Биг Бой'],812:[1.9,'🏙️','СПБ Yung Trappa'],228:[2.3,'😎','Блатной'],52:[2.3,'🔥','52NGG'],337:[1.45,'🎩','337'],322:[1.9,'😎','Блатной'],312:[1.9,'😎','Блатной'],13:[1.7,'😎','Блатной'],420:[1.75,'🌿','Блатной'],404:[1.45,'🤖','Not Found'],303:[1.5,'🆘','SOS'],911:[1.5,'🚨','Спасатель']};
 const FIB=new Set([13,21,34,55,89,144,233,377,610,987]),POW2=new Set([16,32,64,128,256,512]);
+const SQ=new Set(Array.from({length:31},(_,i)=>(i+1)**2)),CUBE=new Set([8,27,64,125,216,343,512,729]);
+Object.assign(SP,{7:[1.5,'🕶️','Агент 007'],21:[1.5,'🃏','Очко'],42:[2.0,'🌌','Ответ на всё'],6:[1.4,'✨','Совершенное'],28:[1.4,'✨','Совершенное'],496:[1.6,'✨','Совершенное'],314:[1.9,'🥧','Число Пи'],271:[1.5,'🧮','Число e'],161:[1.5,'🌻','Золотое сечение'],365:[1.4,'📅','Год'],360:[1.35,'⭕','Круг'],101:[1.5,'🚒','Спасатель'],102:[1.5,'🚓','Полиция'],103:[1.5,'🚑','Скорая'],112:[1.5,'📞','Служба 112'],666:[1.5,'😈','Дьявольский'],369:[1.4,'🔮','Тесла'],451:[1.5,'🔥','451° F'],505:[1.5,'🆘','SOS'],707:[1.5,'🛬','Боинг 707'],747:[1.9,'✈️','Боинг 747']});
 const BONUS_CAP=6,FLAT_404=404;
 const bonusCache=new Map();
 /* Возвращает null или {mult, flat, x, label, e, n, parts:[[множитель,эмодзи,название],…], big}.
@@ -509,6 +551,11 @@ function bonus(i){
   if(s.length==3&&('123456789'.includes(s)||'987654321'.includes(s)))L.push([1.25,'🪜','Лесенка']);
   if(FIB.has(n))L.push([1.35,'🐚','Фибоначчи']);
   if(POW2.has(n))L.push([1.25,'💾','Степень двойки']);
+  if(s.length==3&&!tri){const dd=s.charCodeAt(1)-s.charCodeAt(0);if(Math.abs(dd)>=2&&s.charCodeAt(2)-s.charCodeAt(1)===dd)L.push([1.3,'📐','Прогрессия'])}
+  if(n>=50&&n%100===50)L.push([1.2,'💵','Полтинник']);
+  if(SQ.has(n))L.push([1.2,'🟦','Квадрат']);
+  if(CUBE.has(n))L.push([1.5,'🧊','Куб']);
+  if(n>=10&&!tri&&/^[01]+$/.test(s))L.push([1.3,'💻','Двоичный']);
   let r=null;
   if(L.length){
     L.sort((a,b)=>b[0]-a[0]);
@@ -554,22 +601,33 @@ function checkBest(it){
 }
 G.items.forEach(checkBest);
 
-let saveTimer = null;
+/* ===== Локальное сохранение + отслеживание изменений для облака ===== */
+let DEV='dev';
+try{DEV=localStorage.getItem('nomerok-dev')||'';if(!DEV){DEV=Math.random().toString(36).slice(2,10);localStorage.setItem('nomerok-dev',DEV)}}catch(e){DEV=Math.random().toString(36).slice(2,10)}
+/* что НЕ уходит в облако: настройки устройства и служебные поля синхронизации */
+const NOSYNC=new Set(['set','updatedAt','baseRev','syncedHash','uid','uname']);
+function snapOf(g){
+  const o={};
+  for(const k in g){if(!NOSYNC.has(k))o[k]=g[k]}
+  if(o.best)o.best={id:o.best.id,n:o.best.n,r:o.best.r,t:o.best.t};
+  return JSON.stringify(o);
+}
+const snapStr=()=>snapOf(G);
+function hashStr(s){let h=5381;for(let i=0;i<s.length;i++)h=((h<<5)+h+s.charCodeAt(i))|0;return h+':'+s.length}
+let lastHash=hashStr(snapStr());
+let saveTimer=null;
+function persistLocal(){try{localStorage.setItem(KEY,JSON.stringify(G))}catch(e){}}
 function save(syncNow=false){
-  if(isResetting) return;
-  G.updatedAt = Date.now();
-  G.uname = MY_UNAME;
-  if(G.best) G.best.p = price(G.best);
-  try{
-    const raw = JSON.stringify(G);
-    localStorage.setItem(KEY, raw);
-  }catch(e){}
-  if(syncNow){
-    syncCloud();
-  } else {
-    clearTimeout(saveTimer);
-    saveTimer = setTimeout(()=>syncCloud(), 1800);
-  }
+  if(isResetting)return;
+  G.uname=MY_UNAME;
+  if(G.best)G.best.p=price(G.best);
+  const h=hashStr(snapStr());
+  if(h!==lastHash){lastHash=h;G.updatedAt=Date.now()}
+  persistLocal();
+  if(h===G.syncedHash)return;           /* в облаке уже то же самое */
+  clearTimeout(saveTimer);
+  if(syncNow)syncCloud();
+  else saveTimer=setTimeout(()=>syncCloud(),1800);
 }
 
 function sell(list){
@@ -1014,8 +1072,10 @@ function hud(){
   const free = Math.max(1, Math.min(spinMult, cap()-G.items.length));
   const c = spinCost(ty) * (spinMult===5 ? free : 1);
   $('#cap').textContent=`📦 ${G.items.length}/${cap()}`;
-  $('#go').innerHTML=`Крутить ${spinMult>1?'×'+free:''} <small>${fmt(c)} ₽</small>`;
-  $('#go').disabled=busy||G.c<c||G.items.length>=cap();
+  const lucky=!!G.bless||hasBoost('luck2')||hasBoost('luck3');
+  $('#go').classList.toggle('lucky',lucky);
+  $('#go').innerHTML=`${lucky?'✨ ':''}Крутить ${spinMult>1?'×'+free:''} <small>${fmt(c)} ₽</small>`;
+  $('#go').disabled=busy||G.c<c||G.items.length>=cap()||!cloudReady;
   $$('.ty').forEach((b,i)=>{b.classList.toggle('on',i==ty);b.querySelector('small').textContent=fmt(cst(i))+' ₽ / шт.'});
   $$('.gr').forEach((b,i)=>{b.classList.toggle('on',i==gm);b.querySelector('small').textContent=fmt(Math.max(8,Math.round(cst(ty)*GUAR[i].k)))+' ₽'});
   const bStep = blessStep(), lr = G.rolls % bStep;
@@ -1557,212 +1617,248 @@ async function putJson(url, obj, tries=3){
 }
 const tradeErr = c => c.err === 'rules' ? '❌ Firebase не даёт изменить трейд — проверь Rules' : '❌ Нет связи с сервером, попробуй ещё раз';
 
+/* ===== ТРЕЙДЫ: понятный пошаговый интерфейс ===== */
+let trTab='in',trTo='',trAsk='',trMode='gift';
+const trAgo=ts=>{const s=Math.max(1,Math.floor((Date.now()-(ts||Date.now()))/1000));if(s<60)return s+' с назад';if(s<3600)return Math.floor(s/60)+' мин назад';if(s<86400)return Math.floor(s/3600)+' ч назад';return Math.floor(s/86400)+' дн назад'};
+const trItems=t=>Array.isArray(t.items)?t.items:Object.values(t.items||{});
+const trPrice=it=>price({id:0,n:it.n,r:it.r,t:it.t});
+const trMarket=items=>items.reduce((a,i)=>a+trPrice(i),0);
+const trThumbs=(items,w)=>`<div class="tr-items">${items.map(it=>`<div class="tr-it" style="--c:${RC[it.r]}">${tg({id:0,n:it.n,r:it.r,t:it.t},w,false)}<b>№${it.n}</b><small>${fmt(trPrice(it))} ₽</small></div>`).join('')}</div>`;
+const trIsMine=t=>t.toUname===MY_UNAME||String(t.toUid)===String(MY_UID);
+
 async function renderTradesPage(container){
-  container.innerHTML = `<div style="text-align:center;color:var(--mut);padding:20px">Синхронизация трейдов с сервером…</div>`;
+  container.innerHTML=`<div class="tr-empty"><b>🔄</b>Синхронизация трейдов…</div>`;
   await syncCloud();
-  await loadLeaderboard();
-  await fetchTrades();
+  await Promise.all([loadLeaderboard(),fetchTrades()]);
+  if(moreSub!=='trades')return;
+  if(trTab==='in'&&!allTrades.some(trIsMine))trTab='new';
+  drawTrades(container);
+}
 
-  const availItems = G.items.filter(i=>!i.locked && !pend.includes(i));
-  trSelectedIds.forEach(id=>{if(!availItems.some(x=>x.id===id)) trSelectedIds.delete(id)});
+function trToStateHTML(u){
+  if(!u)return'Введи @username или выбери друга из списка активных игроков.';
+  if(u===MY_UNAME)return'⚠️ Это ты сам — выбери другого игрока.';
+  const p=cloudPlayers.find(x=>x.uname&&x.uname.toLowerCase()===u);
+  return p?`✅ Игрок найден: <b style="color:#fff">${esc(cleanNick(p.n))}</b> · Ур. ${p.lv||1}`:`⚠️ Такого игрока нет в списке — проверь написание. Предложение дойдёт, когда он зайдёт в игру.`;
+}
 
-  const incoming = allTrades.filter(t=>t.toUname === MY_UNAME || String(t.toUid) === String(MY_UID));
-  const outgoing = allTrades.filter(t=>String(t.fromUid) === String(MY_UID));
+function trInCard(t){
+  const items=trItems(t),mk=trMarket(items),ask=Number(t.askCoins)||0,gift=ask<=0;
+  let verdict;
+  if(gift)verdict=`<div class="tr-verdict good">🎁 Это подарок — платить ничего не нужно. Ты получаешь номерки на ${fmt(mk)} ₽.</div>`;
+  else if(ask<=mk*0.9)verdict=`<div class="tr-verdict good">✅ Выгодно: дешевле рынка на ${fmt(mk-ask)} ₽ — потом можно продать дороже.</div>`;
+  else if(ask<=mk*1.1)verdict=`<div class="tr-verdict mid">⚖️ Цена близка к рыночной.</div>`;
+  else verdict=`<div class="tr-verdict bad">⚠️ Дороже рынка на ${fmt(ask-mk)} ₽ (+${Math.round((ask/mk-1)*100)}%). Подумай, стоит ли.</div>`;
+  const noRoom=G.items.length+items.length>cap(),noMoney=!gift&&G.c<ask;
+  return `<div class="tr-card in">
+    <div class="tr-who"><div class="tr-ava">${esc(String(t.fromUname||'?').charAt(0).toUpperCase())}</div><div><b>@${esc(t.fromUname)}</b><small>${esc(cleanNick(t.fromName))} · ${trAgo(t.ts)}</small></div></div>
+    ${trThumbs(items,40)}
+    <div class="tr-sum"><div><small>Рыночная цена</small><b style="color:var(--gold)">${fmt(mk)} ₽</b></div><div><small>${gift?'Ты платишь':'Ты платишь'}</small><b style="color:${gift?'var(--ok)':'#fff'}">${gift?'0 ₽':fmt(ask)+' ₽'}</b></div></div>
+    ${verdict}
+    ${noRoom?`<div class="tr-verdict bad">📦 На складе не хватит места (нужно ${items.length}, свободно ${Math.max(0,cap()-G.items.length)}). Продай что-нибудь.</div>`:''}
+    <div class="tr-btns"><button class="f on" data-tr-acc="${esc(t.id)}" style="background:#143d22;border-color:var(--ok)" ${noRoom||noMoney?'disabled':''}>${noMoney?'Не хватает ₽':gift?'🎁 Принять':`✅ Купить за ${fmt(ask)} ₽`}</button><button class="f" data-tr-dec="${esc(t.id)}" style="color:var(--bad)">❌ Отклонить</button></div>
+  </div>`;
+}
 
-  container.innerHTML = `
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-      <span style="font-size:11px;color:var(--mut)">Все сделки проверяются на сервере в реальном времени</span>
-      <button class="f" id="trRefreshBtn">🔄 Обновить</button>
+function trOutCard(t){
+  const items=trItems(t),ask=Number(t.askCoins)||0;
+  return `<div class="tr-card">
+    <div class="tr-who"><div class="tr-ava" style="background:#2a2a3b">⏳</div><div><b>Для @${esc(t.toUname)}</b><small>Ждёт ответа · ${trAgo(t.ts)}</small></div></div>
+    ${trThumbs(items,34)}
+    <div class="tr-sum"><div><small>Рыночная цена</small><b style="color:var(--gold)">${fmt(trMarket(items))} ₽</b></div><div><small>Условия</small><b>${ask>0?'Продажа '+fmt(ask)+' ₽':'🎁 Подарок'}</b></div></div>
+    <div class="tr-btns"><button class="f" data-tr-cancel="${esc(t.id)}" style="color:var(--gold)">↩️ Отменить и забрать назад</button></div>
+  </div>`;
+}
+
+function trSelItems(){return G.items.filter(i=>trSelectedIds.has(i.id)&&!i.locked)}
+function trPreviewHTML(){
+  const sel=trSelItems(),mk=sel.reduce((a,i)=>a+price(i),0),toU=trTo.replace(/^@/,'').trim().toLowerCase();
+  if(!sel.length)return`<div style="color:var(--mut)">Выбери номерки на шаге 2 — здесь появится итог сделки.</div>`;
+  const ask=trMode==='sell'?Math.max(0,Math.floor(Number(trAsk)||0)):0;
+  let get;
+  if(trMode==='gift')get='<b>ничего</b> — это подарок 🎁';
+  else if(!ask)get='<span style="color:var(--mut)">укажи цену на шаге 3</span>';
+  else get=`<b style="color:var(--ok)">${fmt(ask)} ₽</b> <span style="color:var(--mut)">${ask>mk*1.15?'(выше рынка — друг может отказаться)':ask<mk*.85?'(ниже рынка)':'(близко к рынку)'}</span>`;
+  return `<b>Итог сделки</b><br>Получатель: <b>${toU?'@'+esc(toU):'—'}</b><br>Ты отдаёшь: <b>${sel.length} шт.</b> · рынок ${fmt(mk)} ₽<br>Ты получишь: ${get}<br><span style="color:var(--mut);font-size:11px">Номерки «замораживаются» в сделке. Пока друг не ответил, ты можешь отменить её во вкладке «Мои» и всё вернётся.</span>`;
+}
+
+function trNewHTML(avail){
+  const toU=trTo.replace(/^@/,'').trim().toLowerCase();
+  const players=cloudPlayers.filter(p=>String(p.uid)!==String(MY_UID)&&p.uname).sort((a,b)=>(b.r||0)-(a.r||0)).slice(0,14);
+  const sel=trSelItems(),mk=sel.reduce((a,i)=>a+price(i),0);
+  return `
+  <div class="scard"><div class="tr-step"><i>1</i><b>Кому отправить?</b></div>
+    <input class="adm-inp" id="trTo" placeholder="@username друга" value="${esc(trTo)}" autocomplete="off" autocapitalize="off" style="width:100%">
+    <div class="tr-pl">${players.map(p=>`<button class="f ${toU===p.uname.toLowerCase()?'on':''}" data-trpl="${esc(p.uname)}">@${esc(p.uname)}</button>`).join('')}</div>
+    <div id="trToState" style="font-size:11px;color:var(--mut)">${trToStateHTML(toU)}</div>
+  </div>
+  <div class="scard"><div class="tr-step"><i>2</i><b>Что отдаёшь?</b></div>
+    <div id="trSelInfo" style="font-size:11px;color:var(--mut);margin-bottom:6px">${sel.length?`Выбрано: <b style="color:#fff">${sel.length}</b> · рынок <b style="color:var(--gold)">${fmt(mk)} ₽</b>`:'Нажимай на номерки, чтобы выбрать (до 10 шт.). Защищённые 🔒 не показаны.'}</div>
+    ${avail.length?`<div class="tr-pick">${avail.map(i=>`<button class="tr-p ${trSelectedIds.has(i.id)?'sel':''}" data-tid="${i.id}" style="--c:${RC[i.r]}">${tg(i,38,false)}<b>№${i.n}</b><small>${fmt(price(i))} ₽</small></button>`).join('')}</div>`:'<div class="tr-empty" style="padding:10px">На складе нет свободных номерков</div>'}
+  </div>
+  <div class="scard"><div class="tr-step"><i>3</i><b>На каких условиях?</b></div>
+    <div class="tr-mode">
+      <button class="${trMode==='gift'?'on':''}" data-trmode="gift">🎁 Подарок<small>Друг ничего не платит</small></button>
+      <button class="${trMode==='sell'?'on':''}" data-trmode="sell">💰 Продажа<small>Друг платит тебе ₽</small></button>
     </div>
+    ${trMode==='sell'?`<input class="adm-inp" id="trAsk" type="number" min="1" placeholder="Цена в ₽" value="${esc(trAsk)}" style="width:100%">
+    <div class="chips" style="margin-top:6px"><button class="f" data-trask="1">По рынку</button><button class="f" data-trask="0.85">−15%</button><button class="f" data-trask="1.15">+15%</button></div>`:''}
+  </div>
+  <div class="tr-preview" id="trPreview">${trPreviewHTML()}</div>
+  <button class="gbtn" id="trSendBtn" style="padding:12px;font-size:14px;margin-bottom:8px">🤝 Отправить предложение</button>`;
+}
 
-    <div class="scard">
-      <h3>📤 Создать трейд / Продать номерок другу</h3>
-      <div class="adm-row">
-        <input class="adm-inp" id="trTo" placeholder="@username получателя">
-        <select class="adm-inp" id="trQuickUser" style="flex:0.8">
-          <option value="">Из топа...</option>
-          ${cloudPlayers.filter(p=>String(p.uid)!==String(MY_UID)&&p.uname).map(p=>`<option value="${p.uname}">@${p.uname} (${cleanNick(p.n)})</option>`).join('')}
-        </select>
-      </div>
-      <div style="font-size:11px;color:var(--mut);margin-bottom:4px">Выбери номерки со склада (${trSelectedIds.size} выбр.):</div>
-      <div class="chips" id="trItemPicker" style="padding:4px 0">
-        ${availItems.length ? availItems.map(i=>`<button class="f ${trSelectedIds.has(i.id)?'on':''}" data-tid="${i.id}" style="border-color:${trSelectedIds.has(i.id)?RC[i.r]:'transparent'}">№${i.n} (${RN[i.r].slice(0,4)}. · ${fmt(price(i))}₽)</button>`).join('') : '<span style="font-size:11px;color:var(--mut)">Нет свободных номерков на складе</span>'}
-      </div>
-      <div class="adm-row" style="margin-top:6px">
-        <input class="adm-inp" id="trAskCoins" type="number" placeholder="Цена выкупа ₽ (0 = бесплатно в подарок)" min="0">
-      </div>
-      <button class="gbtn" id="trSendBtn" style="padding:10px;font-size:13px">🤝 Отправить трейд</button>
-    </div>
+function drawTrades(container){
+  const incoming=allTrades.filter(trIsMine).sort((a,b)=>(b.ts||0)-(a.ts||0));
+  const outgoing=allTrades.filter(t=>String(t.fromUid)===String(MY_UID)).sort((a,b)=>(b.ts||0)-(a.ts||0));
+  const avail=G.items.filter(i=>!i.locked&&!pend.includes(i)).sort((a,b)=>price(b)-price(a));
+  [...trSelectedIds].forEach(id=>{if(!avail.some(x=>x.id===id))trSelectedIds.delete(id)});
+  const tabs=[['in','📥 Входящие',incoming.length],['new','✏️ Создать',0],['out','⏳ Мои',outgoing.length],['log','📜 История',0]];
+  let body='';
+  if(trTab==='in')body=incoming.length?incoming.map(trInCard).join(''):`<div class="tr-empty"><b>📭</b>Входящих предложений нет.<br>Когда друг отправит тебе номерок — он появится здесь.</div>`;
+  else if(trTab==='new')body=trNewHTML(avail);
+  else if(trTab==='out')body=outgoing.length?outgoing.map(trOutCard).join(''):`<div class="tr-empty"><b>📤</b>Активных предложений нет.<br>Создай трейд во вкладке «Создать».</div>`;
+  else{const lg=(G.trLog||[]).slice().reverse();body=lg.length?lg.map(x=>`<div class="tr-log"><span>${esc(x.t)}</span><small>${trAgo(x.ts)}</small></div>`).join(''):`<div class="tr-empty"><b>📜</b>История пока пуста.</div>`}
+  const prevPick=container.querySelector('.tr-pick'),pst=prevPick?prevPick.scrollTop:0,cst=container.scrollTop;
+  container.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px;gap:8px"><span style="font-size:11px;color:var(--mut)">Каждая сделка проверяется сервером — дюп невозможен</span><button class="f" id="trRefreshBtn">🔄</button></div>
+    <div class="st-seg tr-seg">${tabs.map(([k,n,c])=>`<button class="${trTab===k?'on':''}" data-trtab="${k}">${n}${c?`<b>${c}</b>`:''}</button>`).join('')}</div>${body}`;
+  container.scrollTop=cst;
+  const np=container.querySelector('.tr-pick');if(np)np.scrollTop=pst;
+  bindTrades(container);
+}
 
-    <div class="scard">
-      <h3>📥 Входящие трейды (${incoming.length})</h3>
-      ${incoming.length ? incoming.map(t=>`<div class="row" style="flex-direction:column;align-items:stretch;gap:6px">
-        <div style="display:flex;justify-content:space-between;font-size:12px">
-          <b>От: <span style="color:var(--gold)">@${t.fromUname}</span> (${cleanNick(t.fromName)})</b>
-          <span style="color:${t.askCoins>0?'var(--gold)':'var(--ok)'};font-weight:800">${t.askCoins>0?`К оплате: ${fmt(t.askCoins)} ₽`:'🎁 Подарок'}</span>
-        </div>
-        <div style="font-size:12px;color:#fff">
-          ${(t.items&&t.items.length)?`Номерки: `+t.items.map(i=>`<b style="color:${RC[i.r]}">№${i.n} (${RN[i.r]})</b>`).join(', '):''}
-          ${t.sendCoins>0?`<div>💸 + Доплата: <b style="color:var(--ok)">${fmt(t.sendCoins)} ₽</b></div>`:''}
-        </div>
-        <div style="display:flex;gap:6px">
-          <button class="f on" data-tr-acc="${t.id}" style="flex:1;background:#143d22;border-color:var(--ok)">✅ ${t.askCoins>0?`Купить за ${fmt(t.askCoins)} ₽`:'Принять'}</button>
-          <button class="f" data-tr-dec="${t.id}" style="flex:1;color:var(--bad)">❌ Отклонить</button>
-        </div>
-      </div>`).join('') : '<div style="font-size:12px;color:var(--mut)">Входящих предложений нет</div>'}
-    </div>
-
-    <div class="scard">
-      <h3>⏳ Мои активные отправленные (${outgoing.length})</h3>
-      ${outgoing.length ? outgoing.map(t=>`<div class="row">
-        <div>
-          <b>Для @${t.toUname}</b>
-          <small>${(t.items||[]).map(i=>`№${i.n} (${RN[i.r].slice(0,4)}.)`).join(', ')||'Без номерков'} · ${t.askCoins?`Цена: ${fmt(t.askCoins)} ₽`:'Подарок'}</small>
-        </div>
-        <button class="f" data-tr-cancel="${t.id}" style="color:var(--gold)">↩️ Отменить</button>
-      </div>`).join('') : '<div style="font-size:12px;color:var(--mut)">Нет активных отправленных трейдов (если друг купил номерок, сделка автоматически закрыта)</div>'}
-    </div>`;
-
-  $('#trRefreshBtn').onclick = () => renderTradesPage(container);
-  $('#trQuickUser').onchange = e => { if(e.target.value) $('#trTo').value = '@' + e.target.value; };
-  $('#trItemPicker').onclick = e => {
-    const b = e.target.closest('[data-tid]'); if(!b) return;
-    const id = +b.dataset.tid;
-    if(trSelectedIds.has(id)) trSelectedIds.delete(id); else trSelectedIds.add(id);
-    renderTradesPage(container);
+function bindTrades(container){
+  const redraw=()=>drawTrades(container),refresh=()=>renderTradesPage(container);
+  const toI=container.querySelector('#trTo');
+  if(toI)toI.oninput=ev=>{
+    trTo=ev.target.value;const u=trTo.replace(/^@/,'').trim().toLowerCase();
+    container.querySelector('#trToState').innerHTML=trToStateHTML(u);
+    container.querySelectorAll('[data-trpl]').forEach(b=>b.classList.toggle('on',b.dataset.trpl.toLowerCase()===u));
+    container.querySelector('#trPreview').innerHTML=trPreviewHTML();
   };
+  const askI=container.querySelector('#trAsk');
+  if(askI)askI.oninput=ev=>{trAsk=ev.target.value;container.querySelector('#trPreview').innerHTML=trPreviewHTML()};
 
-  $('#trSendBtn').onclick = async () => {
-    if(trActionBusy) return;
-    const toU = $('#trTo').value.replace(/^@/,'').trim().toLowerCase();
-    if(!toU) return toast('Введи @username получателя');
-    if(toU === MY_UNAME) return toast('Нельзя отправить трейд самому себе');
-    const askC = Math.max(0, Math.floor(Number($('#trAskCoins').value||0)));
-    const selItems = G.items.filter(i=>trSelectedIds.has(i.id) && !i.locked);
-    if(!selItems.length) return toast('Выбери хотя бы 1 номерок для отправки');
+  container.onclick=async e=>{
+    const b=e.target.closest('button');if(!b)return;
+    const d=b.dataset;
+    if(d.trtab){trTab=d.trtab;redraw();return}
+    if(b.id==='trRefreshBtn'){refresh();return}
+    if(d.trpl){trTo='@'+d.trpl;redraw();return}
+    if(d.trmode){trMode=d.trmode;redraw();return}
+    if(d.trask){
+      const mk=trSelItems().reduce((a,i)=>a+price(i),0);
+      if(!mk)return toast('Сначала выбери номерки на шаге 2');
+      trAsk=String(Math.max(1,Math.round(mk*Number(d.trask))));
+      redraw();return;
+    }
+    if(d.tid){
+      const id=+d.tid;
+      if(trSelectedIds.has(id))trSelectedIds.delete(id);
+      else if(trSelectedIds.size>=10)return toast('Максимум 10 номерков в одном трейде');
+      else trSelectedIds.add(id);
+      b.classList.toggle('sel',trSelectedIds.has(id));
+      const sel=trSelItems(),mk=sel.reduce((a,i)=>a+price(i),0);
+      container.querySelector('#trSelInfo').innerHTML=sel.length?`Выбрано: <b style="color:#fff">${sel.length}</b> · рынок <b style="color:var(--gold)">${fmt(mk)} ₽</b>`:'Нажимай на номерки, чтобы выбрать (до 10 шт.).';
+      container.querySelector('#trPreview').innerHTML=trPreviewHTML();
+      return;
+    }
 
-    trActionBusy = true;
-    $('#trSendBtn').disabled = true;
-    try{
-      const targetPlayer = cloudPlayers.find(p=>(p.uname&&p.uname.toLowerCase()===toU) || cleanNick(p.n).toLowerCase()===toU);
-      const trId = 'tr_' + Date.now() + '_' + Math.floor(Math.random()*1000);
-      const trObj = {
-        id: trId, status: 'open', ts: Date.now(),
-        fromUid: MY_UID, fromUname: MY_UNAME, fromName: UN,
-        toUid: targetPlayer ? targetPlayer.uid : '', toUname: toU,
-        items: selItems.map(i=>({n:i.n, r:i.r, t:i.t})),
-        sendCoins: 0, askCoins: askC
-      };
-
-      G.items = G.items.filter(i=>!trSelectedIds.has(i.id));
-      G.st.trades++;
-      trSelectedIds.clear();
-      save(true); hud();
-
-      const posted = await putJson(`${DB_BASE}/trades/${trId}.json`, trObj);
-      if(!posted){
-        /* сервер не принял трейд — возвращаем номерки, ничего не теряется */
-        G.items.push(...selItems); G.st.trades--;
-        save(true); hud();
-        toast('❌ Трейд не отправился — номерки возвращены на склад');
-      } else {
-        toast(`🤝 Трейд отправлен для @${toU}!`);
+    /* ---- отправка ---- */
+    if(b.id==='trSendBtn'){
+      if(trActionBusy)return;
+      const toU=trTo.replace(/^@/,'').trim().toLowerCase();
+      if(!toU)return toast('Шаг 1: укажи получателя');
+      if(toU===MY_UNAME)return toast('Нельзя отправить трейд самому себе');
+      const sel=trSelItems();
+      if(!sel.length)return toast('Шаг 2: выбери хотя бы один номерок');
+      const ask=trMode==='sell'?Math.max(0,Math.floor(Number(trAsk)||0)):0;
+      if(trMode==='sell'&&ask<1)return toast('Шаг 3: укажи цену продажи');
+      trActionBusy=true;b.disabled=true;
+      let ok=false;
+      try{
+        const tp=cloudPlayers.find(p=>p.uname&&p.uname.toLowerCase()===toU);
+        const trId='tr_'+Date.now()+'_'+Math.floor(Math.random()*1000);
+        const trObj={id:trId,status:'open',ts:Date.now(),fromUid:MY_UID,fromUname:MY_UNAME,fromName:UN,toUid:tp?tp.uid:'',toUname:toU,items:sel.map(i=>({n:i.n,r:i.r,t:i.t})),sendCoins:0,askCoins:ask};
+        const ids=new Set(sel.map(i=>i.id));
+        G.items=G.items.filter(i=>!ids.has(i.id));
+        G.st.trades++;
+        save(true);hud();
+        const posted=await putJson(`${DB_BASE}/trades/${trId}.json`,trObj);
+        if(!posted){
+          G.items.push(...sel);G.st.trades--;save(true);hud();
+          toast('❌ Трейд не отправился — номерки возвращены на склад');
+        }else{
+          ok=true;
+          logTr(`📤 Отправил @${toU}: ${sel.length} шт. · ${ask>0?'продажа за '+fmt(ask)+' ₽':'подарок'}`);
+          save(true);
+          toast(`🤝 Предложение отправлено @${toU}!`);
+        }
+      }finally{
+        trActionBusy=false;
+        if(ok){trTab='out';trSelectedIds.clear();trTo='';trAsk='';trMode='gift'}
+        refresh();
       }
-    }finally{
-      trActionBusy = false;
-      renderTradesPage(container);
+      return;
+    }
+
+    /* ---- принять / купить ---- */
+    if(d.trAcc){
+      if(trActionBusy)return;
+      const id=d.trAcc;trActionBusy=true;b.disabled=true;
+      try{
+        const pre=await(await fetch(`${DB_BASE}/trades/${encodeURIComponent(id)}.json`,{cache:'no-store'})).json();
+        if(!pre||pre.error||pre.status!=='open')return toast('⚠️ Этот трейд уже отменён или закрыт!');
+        if(!trIsMine(pre))return toast('⚠️ Этот трейд адресован не тебе');
+        if(pre.askCoins>0&&G.c<pre.askCoins)return toast('Не хватает денег для покупки');
+        if(G.items.length+trItems(pre).length>cap())return toast('📦 Не хватает места на складе!');
+        const cl=await claimTrade(id);
+        if(cl.err)return toast(tradeErr(cl));
+        if(cl.gone)return toast('⚠️ Этот трейд уже отменён или закрыт!');
+        const lt=cl.trade,items=trItems(lt);
+        if(lt.askCoins>0){
+          const paid=await sendCommand([lt.fromUid,lt.fromUname],{addCoins:lt.askCoins,note:`@${MY_UNAME} купил твои номерки за ${fmt(lt.askCoins)} ₽!`,log:`💰 @${MY_UNAME} купил у тебя ${items.length} шт. за ${fmt(lt.askCoins)} ₽`});
+          if(!paid){
+            await putJson(`${DB_BASE}/trades/${encodeURIComponent(id)}.json`,lt);
+            return toast('❌ Сделка не прошла (нет связи), попробуй ещё раз');
+          }
+          G.c-=lt.askCoins;
+        }
+        items.forEach(raw=>{const it={id:G.nid++,n:raw.n,r:raw.r,t:raw.t};G.items.push(it);if(!G.col.includes(it.n))G.col.push(it.n);checkBest(it)});
+        G.st.trades++;G.wipedHidden=false;
+        logTr(`📥 ${lt.askCoins>0?'Купил':'Получил в подарок'} ${items.length} шт. у @${lt.fromUname}${lt.askCoins>0?' за '+fmt(lt.askCoins)+' ₽':''}`);
+        save(true);hud();
+        burst(innerWidth/2,innerHeight/2,'#3fe06b',30);
+        toast('✅ Сделка завершена! Номерки на складе');
+      }catch(err){toast('❌ Ошибка сети — сделка не проведена')}
+      finally{trActionBusy=false;refresh()}
+      return;
+    }
+
+    /* ---- отклонить (получатель) / отменить (отправитель) ---- */
+    if(d.trDec||d.trCancel){
+      if(trActionBusy)return;
+      const id=d.trDec||d.trCancel;trActionBusy=true;b.disabled=true;
+      try{
+        const cl=await claimTrade(id);
+        if(cl.err)return toast(tradeErr(cl));
+        if(cl.gone){await syncCloud();return toast('⚠️ Сделка уже завершена! Отмена невозможна.')}
+        const lt=cl.trade,items=trItems(lt);
+        if(String(lt.fromUid)===String(MY_UID)){
+          items.forEach(raw=>G.items.push({id:G.nid++,n:raw.n,r:raw.r,t:raw.t}));
+          logTr(`↩️ Отменил трейд для @${lt.toUname}`);
+          save(true);hud();
+          toast('↩️ Трейд отменён, номерки вернулись на склад');
+        }else{
+          const back=await sendCommand([lt.fromUid,lt.fromUname],{returnItems:items,note:`@${MY_UNAME} отклонил твой трейд — номерки вернулись`,log:`❌ @${MY_UNAME} отклонил твой трейд`});
+          if(!back){await putJson(`${DB_BASE}/trades/${encodeURIComponent(id)}.json`,lt);return toast('❌ Не удалось отклонить (нет связи), попробуй ещё раз')}
+          logTr(`❌ Отклонил трейд от @${lt.fromUname}`);save(true);
+          toast('❌ Трейд отклонён');
+        }
+      }catch(err){toast('❌ Ошибка сети — попробуй ещё раз')}
+      finally{trActionBusy=false;refresh()}
     }
   };
-
-  /* Покупка / принятие трейда */
-  container.querySelectorAll('[data-tr-acc]').forEach(btn=>btn.onclick=async()=>{
-    if(trActionBusy) return;
-    const id = btn.dataset.trAcc;
-    trActionBusy = true;
-    btn.disabled = true;
-    try{
-      /* Предпроверка (деньги, место) — ничего не списывает */
-      const pre = await (await fetch(`${DB_BASE}/trades/${encodeURIComponent(id)}.json`, {cache:'no-store'})).json();
-      if(!pre || pre.error || pre.status !== 'open') return toast('⚠️ Этот трейд уже был отменён или закрыт!');
-      if(!(pre.toUname === MY_UNAME || String(pre.toUid) === String(MY_UID))) return toast('⚠️ Этот трейд адресован не тебе');
-      if(pre.askCoins > 0 && G.c < pre.askCoins) return toast('Не хватает денег для покупки этого трейда');
-      if(pre.items && (G.items.length + pre.items.length > cap())) return toast('📦 Не хватает места на складе!');
-
-      /* Атомарно забираем трейд. Если отправитель успел отменить — claim вернёт gone и ничего не выдастся */
-      const cl = await claimTrade(id);
-      if(cl.err) return toast(tradeErr(cl));
-      if(cl.gone) return toast('⚠️ Этот трейд уже был отменён или закрыт!');
-      const liveTrade = cl.trade;
-
-      if(liveTrade.askCoins > 0){
-        const cmdId = 'cmd_' + Date.now() + '_' + Math.floor(Math.random()*999);
-        const paid = await putJson(`${DB_BASE}/commands/${encodeURIComponent(liveTrade.fromUid)}.json`,
-          {ts:Date.now(), cmdId, addCoins: liveTrade.askCoins, note:`Игрок @${MY_UNAME} купил твой номерок за ${fmt(liveTrade.askCoins)} ₽!`});
-        if(!paid){
-          /* продавец не получил бы деньги — откатываем: возвращаем трейд на место, покупатель ничего не теряет */
-          await putJson(`${DB_BASE}/trades/${encodeURIComponent(id)}.json`, liveTrade);
-          return toast('❌ Сделка не прошла (нет связи), попробуй ещё раз');
-        }
-        G.c -= liveTrade.askCoins;
-      }
-      if(liveTrade.sendCoins > 0) G.c += Number(liveTrade.sendCoins);
-      if(Array.isArray(liveTrade.items)){
-        liveTrade.items.forEach(raw=>{
-          const it = {id:G.nid++, n:raw.n, r:raw.r, t:raw.t};
-          G.items.push(it);
-          if(!G.col.includes(it.n)) G.col.push(it.n);
-          checkBest(it);
-        });
-      }
-      G.st.trades++; G.wipedHidden = false;
-      save(true); hud();
-      toast('✅ Сделка успешно завершена!');
-    }catch(e){
-      toast('❌ Ошибка сети — сделка не проведена');
-    }finally{
-      trActionBusy = false;
-      renderTradesPage(container);
-    }
-  });
-
-  /* Отмена (отправитель) / отклонение (получатель): номерок вернётся только тому, кто реально забрал трейд с сервера */
-  container.querySelectorAll('[data-tr-dec],[data-tr-cancel]').forEach(btn=>btn.onclick=async()=>{
-    if(trActionBusy) return;
-    const id = btn.dataset.trDec || btn.dataset.trCancel;
-    trActionBusy = true;
-    btn.disabled = true;
-    try{
-      const cl = await claimTrade(id);
-      if(cl.err) return toast(tradeErr(cl));
-      if(cl.gone){
-        await syncCloud();
-        return toast('⚠️ Сделка уже завершена покупателем! Отмена невозможна.');
-      }
-      const liveTrade = cl.trade;
-
-      if(String(liveTrade.fromUid) === String(MY_UID)){
-        if(liveTrade.sendCoins > 0) G.c += Number(liveTrade.sendCoins);
-        if(Array.isArray(liveTrade.items)){
-          liveTrade.items.forEach(raw=>G.items.push({id:G.nid++, n:raw.n, r:raw.r, t:raw.t}));
-        }
-        save(true); hud();
-        toast('↩️ Трейд отменён, номерки возвращены на склад');
-      } else {
-        const back = await putJson(`${DB_BASE}/commands/${encodeURIComponent(liveTrade.fromUid)}.json`,
-          {ts:Date.now(), cmdId:'cmd_' + Date.now() + '_' + Math.floor(Math.random()*999), addCoins: liveTrade.sendCoins||0, returnItems: liveTrade.items||[], note:`Игрок @${MY_UNAME} отклонил твой трейд (вещи возвращены)`});
-        if(!back){
-          await putJson(`${DB_BASE}/trades/${encodeURIComponent(id)}.json`, liveTrade);
-          return toast('❌ Не удалось отклонить (нет связи), попробуй ещё раз');
-        }
-        toast('❌ Трейд отклонён');
-      }
-    }catch(e){
-      toast('❌ Ошибка сети — попробуй ещё раз');
-    }finally{
-      trActionBusy = false;
-      renderTradesPage(container);
-    }
-  });
 }
 
 /* ===== НОВАЯ ВКЛАДКА «ПЕРЕВОДЫ» (Передача денег по @username) ===== */
@@ -1848,16 +1944,9 @@ async function renderTransfersPage(container){
       save(true); hud();
 
       const noteStr = `💸 Перевод +${fmt(getAmt)} ₽ от @${MY_UNAME}` + (comment ? ` («${comment}»)` : '');
-      const cmdPayload = {ts: Date.now() + Math.floor(Math.random()*999), addCoins: getAmt, note: noteStr};
+      const sent = await sendCommand([toU, targetPlayer && targetPlayer.uid], {addCoins:getAmt, note:noteStr});
+      if(!sent){ G.c += amt; G.st.transfers--; save(true); hud(); return toast('❌ Не удалось отправить перевод — деньги возвращены'); }
 
-      await fetch(`${DB_BASE}/commands/${encodeURIComponent(toU)}.json`, {
-        method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify(cmdPayload)
-      });
-      if(targetPlayer && targetPlayer.uid){
-        await fetch(`${DB_BASE}/commands/${targetPlayer.uid}.json`, {
-          method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify(cmdPayload)
-        });
-      }
 
       burst(innerWidth/2, innerHeight/2, '#3fe06b', 25);
       toast(`✅ Перевод ${fmt(getAmt)} ₽ отправлен для @${toU}!`);
@@ -1940,6 +2029,15 @@ function renderSettingsPage(container){
         ].map(([k,n])=>`<div class="row" style="padding:7px 10px"><div>${n}</div><button class="f ${G.set[k]?'on':''}" data-k="${k}">${G.set[k]?'Вкл':'Выкл'}</button></div>`).join('')}
       </div>
     </div>
+    <div class="scard">
+      <h3>☁️ Синхронизация устройств</h3>
+      <div id="syncInfo" style="font-size:12px;line-height:1.6;color:var(--mut)"></div>
+      <button class="gbtn" id="syncNow" style="padding:10px;font-size:13px;margin-top:8px">🔄 Синхронизировать сейчас</button>
+      <details style="margin-top:8px"><summary style="font-size:11px;color:var(--mut);cursor:pointer">Балансы всё ещё разные?</summary>
+        <div style="font-size:11px;color:var(--mut);margin:6px 0">На устройстве с ПРАВИЛЬНЫМ балансом нажми «Залить в облако», на другом — «Загрузить из облака».</div>
+        <div class="pair"><button class="f" id="syncPull" style="flex:1">⬇️ Загрузить из облака</button><button class="f" id="syncPush" style="flex:1">⬆️ Залить в облако</button></div>
+      </details>
+    </div>
     <div class="scard" style="border-color:#ff546833">
       <h3 style="color:var(--bad)">⚠️ Управление аккаунтом</h3>
       <div style="color:var(--mut);font-size:11px;line-height:1.5;margin-bottom:8px">
@@ -1963,6 +2061,16 @@ function renderSettingsPage(container){
     save(true); renderSettingsPage(container);
   };
 
+  const si=()=>{const e=$('#syncInfo');if(e)e.innerHTML=`${SYNC_TXT[syncState][0]} <b style="color:#fff">${SYNC_TXT[syncState][1]}</b><br>Последняя синхронизация: ${lastSyncOk?new Date(lastSyncOk).toLocaleTimeString('ru-RU'):'—'}<br>Версия в облаке: ${G.baseRev||0} · устройство: ${DEV}`};
+  si();
+  $('#syncNow').onclick=async()=>{$('#syncNow').disabled=true;toast(await forceSync(null));if($('#syncNow'))$('#syncNow').disabled=false;si()};
+  [['syncPull','⬇️ Загрузить из облака','pull'],['syncPush','⬆️ Залить в облако','push']].forEach(([id,label,mode])=>{
+    let armed=0;
+    $('#'+id).onclick=async e=>{
+      if(!armed){armed=1;e.target.textContent='Точно? Нажми ещё раз';setTimeout(()=>{armed=0;const x=$('#'+id);if(x)x.textContent=label},3500);return}
+      armed=0;toast(await forceSync(mode));renderSettingsPage(container);
+    };
+  });
   let rc = 0;
   $('#reset').onclick = e => {
     if(!rc){
@@ -2010,6 +2118,13 @@ function openReferenceModal(){
       <tr><td>🪜 Лесенка · 💾 Степени двойки (16…512)</td><td><b style="color:var(--gold)">×1.25</b></td></tr>
       <tr><td>🪞 Зеркальные · 🧱 Круглые сотни</td><td><b style="color:var(--gold)">×1.2</b></td></tr>
       <tr><td>🔟 Десятичный (оканчивается на 0)</td><td><b style="color:var(--gold)">×1.15</b></td></tr>
+      <tr><td>🌌 42 · 🥧 314 (Пи) · ✈️ 747</td><td><b style="color:var(--gold)">×1.9–2.0</b></td></tr>
+      <tr><td>✨ 496 · 🕶️ 7 · 🃏 21 · 🚒🚓🚑📞 101, 102, 103, 112</td><td><b style="color:var(--gold)">×1.4–1.6</b></td></tr>
+      <tr><td>🧮 271 · 🌻 161 · 🔥 451 · 🆘 505 · 🛬 707 · 😈 666 (+к тройке)</td><td><b style="color:var(--gold)">+×0.5</b></td></tr>
+      <tr><td>🔮 369 · 📅 365 · ⭕ 360 · ✨ 6, 28</td><td><b style="color:var(--gold)">×1.35–1.4</b></td></tr>
+      <tr><td>🧊 Кубы: 8, 27, 64, 125, 216, 343, 512, 729</td><td><b style="color:var(--gold)">×1.5</b></td></tr>
+      <tr><td>📐 Прогрессия (135, 246, 357, 147, 258, 963, 840…) · 💻 Двоичный (10, 11, 100, 101, 110)</td><td><b style="color:var(--gold)">×1.3</b></td></tr>
+      <tr><td>🟦 Квадраты (4, 9, 16, 25… 961) · 💵 Полтинник (50, 150… 950)</td><td><b style="color:var(--gold)">×1.2</b></td></tr>
     </table>
     <h3>🎯 Гарант-крутки</h3>
     <table>
@@ -2089,6 +2204,7 @@ async function postRocketBet(roundId, betObj){
     await fetch(`${DB_BASE}/rocket_bets/${roundId}/${MY_UID}.json`, {
       method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify(betObj)
     });
+    fetch(`${DB_BASE}/rocket_bets/${roundId-6}/${MY_UID}.json`, {method:'DELETE'}).catch(()=>{});
   }catch(e){}
 }
 
@@ -2393,22 +2509,28 @@ const DEFAULT_NEWS = [
   {id:'n_def4', title:'🔥 Крупное обновление: Новый интерфейс, Переводы и Баланс!', body:'• Нижнее меню стало чистым и удобным (5 главных разделов).\n• В разделе «Ещё» все функции разложены по категориям.\n• Добавлены прямые «Переводы» по @username.\n• Полностью защищены Трейды и сбалансирована экономика круток!', ts: 1792843200000, pinned: true}
 ];
 
+let knownWipeTs=0;
 async function checkGlobalWipe(){
   if(!DB_BASE) return false;
   try{
-    const r = await fetch(`${DB_BASE}/server/wipe.json`);
+    const r = await fetch(`${DB_BASE}/server/wipe.json`,{cache:'no-store'});
     const w = await r.json();
-    if(w && !w.error && w.ts && Number(w.ts) > Number(G.lastWipeTs || 0)){
-      if(w.mode === 'money'){
-        G.c = 0; G.items = []; G.best = null; G.wipedHidden = true; G.lastWipeTs = Number(w.ts);
-        save(false); hud();
-        toast('💸 Администратор провёл глобальный вайп экономики!');
-      } else {
-        G = defaultSave(Number(w.ts)); G.c = 1000; G.wipedHidden = true;
-        save(false); hud();
-        toast('☢️ Проведён глобальный вайп сезона!');
+    if(w && !w.error && w.ts){
+      knownWipeTs = Math.max(knownWipeTs, Number(w.ts));
+      if(Number(w.ts) > Number(G.lastWipeTs || 0)){
+        if(w.mode === 'money'){
+          G.c = 0; G.items = []; G.best = null; G.wipedHidden = true; G.lastWipeTs = Number(w.ts);
+          toast('💸 Администратор провёл глобальный вайп экономики!');
+        } else {
+          const keep = G.set;
+          G = defaultSave(Number(w.ts)); G.c = 1000; G.wipedHidden = true; G.set = keep;
+          toast('☢️ Проведён глобальный вайп сезона!');
+        }
+        lastHash = hashStr(snapStr());
+        G.updatedAt = Date.now();
+        persistLocal(); hud();
+        return true;
       }
-      return true;
     }
   }catch(e){}
   return false;
@@ -2427,100 +2549,228 @@ async function fetchNews(){
   }catch(e){ cloudNews = DEFAULT_NEWS; }
 }
 
-async function initCloudRecovery(){
-  if(!DB_BASE || cloudRestored || isResetting) return;
-  cloudRestored = true;
+/* ===== СИНХРОНИЗАЦИЯ УСТРОЙСТВ ===== */
+const SYNC_TXT={
+  ok:['☁️','Синхронизировано с облаком'],
+  busy:['🔄','Синхронизация…'],
+  offline:['📡','Нет связи — прогресс сохранён на устройстве и уйдёт в облако позже'],
+  denied:['🔒','Firebase закрыт правилами (Rules) — вставь правила из инструкции, иначе баланс не синхронизируется']
+};
+let syncState='busy',lastSyncOk=0,deniedWarned=false,cloudReady=false,forceMode=null,syncLock=null,syncAgain=false,lastProfHash='',lastProfTs=0;
+function setSync(s){
+  syncState=s;
+  if(s==='ok')lastSyncOk=Date.now();
+  const el=$('#syncDot');if(el)el.textContent='Баланс '+SYNC_TXT[s][0];
+  if(s==='denied'&&!deniedWarned){deniedWarned=true;toast('🔒 '+SYNC_TXT.denied[1])}
+  if(s==='denied')cloudStatus='⚠️ Ошибка Firebase Rules: открой доступ!';
+  else if(s==='offline')cloudStatus='⚠️ Нет связи с Firebase';
+}
+$('#bal').onclick=async()=>{toast('🔄 Синхронизация…');await syncCloud();toast(SYNC_TXT[syncState][0]+' '+SYNC_TXT[syncState][1])};
+
+function logTr(t){
+  if(!Array.isArray(G.trLog))G.trLog=[];
+  G.trLog.push({ts:Date.now(),t:String(t).slice(0,140)});
+  if(G.trLog.length>30)G.trLog=G.trLog.slice(-30);
+}
+
+/* Атомарно «забирает» узел: из двух устройств удалить успеет только одно (ETag/If-Match) */
+async function claimNode(url){
+  const u=url+'.json';
+  let etag=null,data=null;
   try{
-    const wipedNow = await checkGlobalWipe();
-    if(!wipedNow){
-      const r = await fetch(`${DB_BASE}/players/${MY_UID}.json`);
-      const d = await r.json();
-      if(d && !d.error && d.save && typeof d.save === 'object' && !d.wiped){
-        const cloudSave = sanitizeSave(d.save);
-        const localWorth = worth();
-        const cloudWorth = cloudSave.c + cloudSave.items.length * 50;
-        if((G.rolls === 0 && cloudSave.rolls > 0) || (cloudSave.updatedAt > G.updatedAt) || (G.lv === 1 && localWorth <= 1000 && (cloudSave.lv > 1 || cloudWorth > 1200))){
-          G = cloudSave;
-          save(false); hud();
-          toast('☁️ Прогресс синхронизирован с облаком!');
-        }
-      }
+    const r=await fetch(u,{headers:{'X-Firebase-ETag':'true'},cache:'no-store'});
+    etag=r.headers.get('ETag');data=await r.json();
+  }catch(e){return{err:1}}
+  if(!data||data.error)return{gone:1};
+  try{
+    const d=await fetch(u,{method:'DELETE',headers:etag?{'if-match':etag}:{}});
+    if(d.ok)return{data};
+    return d.status===412?{gone:1}:{err:1};
+  }catch(e){return{err:1}}
+}
+
+/* Очередь команд: commands/<ключ>/<cmdId>. Каждая команда — отдельный узел, ничего не перезаписывается */
+async function sendCommand(keys,cmd){
+  const id=cmd.cmdId||('cmd_'+Date.now()+'_'+Math.floor(Math.random()*1e6));
+  const body={...cmd,cmdId:id,ts:cmd.ts||Date.now()};
+  let ok=false;
+  for(const k of [...new Set((keys||[]).filter(x=>x!==undefined&&x!==null&&x!=='').map(String))]){
+    if(await putJson(`${DB_BASE}/commands/${encodeURIComponent(k)}/${encodeURIComponent(id)}.json`,body))ok=true;
+  }
+  return ok;
+}
+
+function applyCommand(cmd){
+  if(cmd.wipeAccount){performFullReset();return'reset'}
+  G.wipedHidden=false;
+  if(cmd.wipeMoney){G.c=0;G.items=[];G.best=null;G.wipedHidden=true;toast('💸 Администратор обнулил твой баланс и склад')}
+  if(cmd.addCoins)G.c=Math.max(0,G.c+Number(cmd.addCoins));
+  if(cmd.setCoins!==undefined){G.c=Math.max(0,Number(cmd.setCoins));G.wipedHidden=(G.c===0&&G.items.length===0)}
+  if(cmd.addLv){G.lv=Math.max(1,G.lv+Number(cmd.addLv));G.sp+=Number(cmd.addLv)}
+  if(cmd.giveNum){
+    const num=Math.min(MAX_NUM,Math.max(1,Number(cmd.giveNum)));
+    const it={id:G.nid++,n:num,r:RAR[num]||0,t:cmd.giveType||0};
+    G.items.push(it);if(!G.col.includes(num))G.col.push(num);checkBest(it);
+  }
+  if(Array.isArray(cmd.returnItems)){
+    cmd.returnItems.forEach(raw=>{const it={id:G.nid++,n:raw.n,r:raw.r,t:raw.t};G.items.push(it);if(!G.col.includes(it.n))G.col.push(it.n)});
+  }
+  if(cmd.log)logTr(cmd.log);
+  if(!cmd.wipeMoney)toast(cmd.note?`⚡ ${cmd.note}`:'⚡ Получена выдача от Администратора!');
+  return'ok';
+}
+
+async function processCommands(){
+  let applied=0;
+  const keys=[...new Set([String(MY_UID),MY_UNAME,cleanNick(UN).toLowerCase()].filter(Boolean))];
+  for(const key of keys){
+    const base=`${DB_BASE}/commands/${encodeURIComponent(key)}`;
+    let q;
+    try{q=await(await fetch(base+'.json',{cache:'no-store'})).json()}catch(e){continue}
+    if(!q||typeof q!=='object'||q.error)continue;
+    const legacy=typeof q.ts==='number'||typeof q.cmdId==='string';
+    const list=legacy?[[null,q]]:Object.entries(q).filter(([,v])=>v&&typeof v==='object');
+    for(const[id,c0]of list){
+      const got=await claimNode(id===null?base:`${base}/${encodeURIComponent(id)}`);
+      if(!got.data)continue;
+      const c=got.data,ck=c.cmdId||id||('cmd_'+c.ts);
+      if(G.usedCodes.includes(ck))continue;
+      G.usedCodes.push(ck);
+      const cp=G.usedCodes.filter(x=>x.startsWith('cp_')),rest=G.usedCodes.filter(x=>!x.startsWith('cp_')).slice(-200);
+      G.usedCodes=[...cp,...rest];
+      if(applyCommand(c)==='reset')return applied;
+      applied++;
     }
-    syncCloud();
-    fetchTrades();
-    fetchNews();
+  }
+  return applied;
+}
+
+const canAdopt=()=>!busy&&!gbusy&&!pend.length&&!(mn&&mn.on);
+
+function adoptCloud(cloud,asLegacy){
+  let raw;try{raw=JSON.parse(cloud.data)}catch(e){return false}
+  const ns=sanitizeSave(raw);
+  ns.set=G.set;ns.uname=MY_UNAME;
+  ns.updatedAt=Number(cloud.ts)||Date.now();
+  ns.baseRev=asLegacy?0:(Number(cloud.rev)||0);
+  G=ns;
+  if(G.best)G.best.p=price(G.best);
+  lastHash=hashStr(snapStr());
+  G.syncedHash=asLegacy?'':lastHash;
+  trSelectedIds.clear();upgItemId=null;
+  persistLocal();hud();
+  const s=$('.s.on').id;
+  if(s==='s1')store();
+  else if(s==='s0')refit();
+  else if(s==='s4'&&!['trades','transfers','coupons'].includes(moreSub))renderMore();
+  toast('☁️ Данные обновлены с другого устройства');
+  return true;
+}
+
+async function syncSave(){
+  const force=forceMode;forceMode=null;
+  const base=`${DB_BASE}/saves/${MY_UID}`;
+  const h=hashStr(snapStr());
+  const dirty=h!==G.syncedHash;
+  let cloudRev=0;
+  try{
+    const rr=await fetch(base+'/rev.json',{cache:'no-store'});
+    const rj=await rr.json();
+    if(!rr.ok||(rj&&rj.error))return setSync('denied');
+    cloudRev=Number(rj)||0;
+  }catch(e){return setSync('offline')}
+  if(!force&&cloudRev===(G.baseRev||0)&&!dirty&&cloudRev>0){setSync('ok');return}
+
+  let r,cloud=null,etag=null;
+  try{
+    r=await fetch(base+'.json',{headers:{'X-Firebase-ETag':'true'},cache:'no-store'});
+    etag=r.headers.get('ETag');cloud=await r.json();
+  }catch(e){return setSync('offline')}
+  if(!r.ok||(cloud&&cloud.error))return setSync('denied');
+
+  const hasCloud=!!(cloud&&cloud.data&&cloud.rev);
+  if(hasCloud){
+    const obsolete=Number(cloud.wts||0)<knownWipeTs&&force!=='pull';
+    if(!obsolete&&(force==='pull'||(force!=='push'&&Number(cloud.rev)!==(G.baseRev||0)))){
+      let take=true;
+      if(force!=='pull'){
+        if(!G.baseRev){
+          const lr=Number(G.rolls)||0,cr=Number(cloud.rolls)||0;
+          take=!(lr>cr||(lr===cr&&G.updatedAt>(Number(cloud.ts)||0)));
+        }else take=!dirty||(Number(cloud.ts)||0)>=G.updatedAt;
+      }
+      if(take){if(canAdopt())adoptCloud(cloud);setSync('ok');return}
+    }
+  }else if(!G.baseRev&&(Number(G.rolls)||0)===0&&force!=='push'){
+    /* новое устройство, а в облаке пусто — пробуем старое сохранение из players/<id>/save */
+    try{
+      const lp=await(await fetch(`${DB_BASE}/players/${MY_UID}.json`,{cache:'no-store'})).json();
+      if(lp&&!lp.error&&!lp.wiped&&lp.save&&Number(lp.save.rolls)>0&&Number(lp.save.lastWipeTs||0)>=knownWipeTs){
+        if(canAdopt()&&adoptCloud({data:JSON.stringify(lp.save),ts:lp.save.updatedAt||lp.ts},true))return;
+      }
+    }catch(e){}
+  }
+
+  /* отправка: условный PUT — если за это время кто-то успел записать, сервер вернёт 412 */
+  const snap=snapStr(),hh=hashStr(snap);
+  const newRev=Math.max(Number(cloud&&cloud.rev)||0,G.baseRev||0)+1;
+  const body={rev:newRev,dev:DEV,ts:G.updatedAt||Date.now(),wts:Number(G.lastWipeTs||0),rolls:G.rolls,lv:G.lv,data:snap};
+  let pr;
+  try{
+    pr=await fetch(base+'.json',{method:'PUT',headers:Object.assign({'Content-Type':'application/json'},etag?{'if-match':etag}:{}),body:JSON.stringify(body)});
+  }catch(e){return setSync('offline')}
+  if(pr.status===412){syncAgain=true;return}
+  if(!pr.ok)return setSync('denied');
+  G.baseRev=newRev;G.syncedHash=hh;persistLocal();setSync('ok');
+}
+
+async function pushProfile(){
+  const totalW=worth(),isWiped=!!(G.wipedHidden||totalW<=0);
+  const prof={uid:MY_UID,uname:MY_UNAME,n:UN,c:Math.round(Number(G.c)||0),r:isWiped?0:totalW,wiped:isWiped,lv:G.lv,rolls:G.rolls,best:isWiped?null:(G.best||null),ts:0};
+  const ph=hashStr(JSON.stringify(prof));
+  if(ph===lastProfHash&&Date.now()-lastProfTs<60000)return;
+  prof.ts=Date.now();
+  try{
+    const res=await fetch(`${DB_BASE}/players/${MY_UID}.json`,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(prof)});
+    if(res.ok){lastProfHash=ph;lastProfTs=Date.now()}else setSync('denied');
   }catch(e){}
 }
 
-async function syncCloud(){
-  if(!DB_BASE || isResetting) return;
-  try{
-    await checkGlobalWipe();
+async function syncOnce(){
+  G.items.forEach(checkBest);
+  await checkGlobalWipe();
+  await syncSave();
+  if(syncState==='denied'||syncState==='offline')return;
+  const applied=await processCommands();
+  if(applied){save(false);await syncSave()}
+  await pushProfile();
+}
 
-    const keysToCheck = [...new Set([String(MY_UID), MY_UNAME, cleanNick(UN).toLowerCase()].filter(Boolean))];
-    for(const key of keysToCheck){
-      const cmdRes = await fetch(`${DB_BASE}/commands/${encodeURIComponent(key)}.json`);
-      const cmd = await cmdRes.json();
-      const cmdKey = cmd && (cmd.cmdId || ('cmd_' + cmd.ts));
-      if(cmd && !cmd.error && cmd.ts && !G.usedCodes.includes(cmdKey)){
-        G.usedCodes.push(cmdKey);
-        await fetch(`${DB_BASE}/commands/${encodeURIComponent(key)}.json`, {method:'DELETE'});
+function syncCloud(){
+  if(!DB_BASE||isResetting)return Promise.resolve();
+  if(syncLock){syncAgain=true;return syncLock}
+  syncLock=(async()=>{
+    try{
+      let n=0;
+      do{syncAgain=false;await syncOnce();n++}while(syncAgain&&!isResetting&&n<4);
+    }catch(e){setSync('offline')}
+    finally{syncLock=null}
+  })();
+  return syncLock;
+}
 
-        if(cmd.wipeAccount){ await performFullReset(); return; }
-        if(cmd.wipeMoney){
-          G.c = 0; G.items = []; G.best = null; G.wipedHidden = true;
-          save(false); hud();
-          toast('💸 Администратор обнулил твой баланс и склад');
-        }
-        if(cmd.addCoins){ G.c = Math.max(0, G.c + Number(cmd.addCoins)); G.wipedHidden = false; }
-        if(cmd.setCoins !== undefined){
-          G.c = Math.max(0, Number(cmd.setCoins));
-          G.wipedHidden = (G.c === 0 && G.items.length === 0);
-        }
-        if(cmd.addLv) { G.lv = Math.max(1, G.lv + Number(cmd.addLv)); G.sp += Number(cmd.addLv); }
-        if(cmd.giveNum){
-          const num = Math.min(MAX_NUM, Math.max(1, Number(cmd.giveNum)));
-          const it = {id:G.nid++, n:num, r:RAR[num]||0, t:cmd.giveType||0};
-          G.items.push(it); if(!G.col.includes(num)) G.col.push(num); checkBest(it);
-          G.wipedHidden = false;
-        }
-        if(Array.isArray(cmd.returnItems)){
-          cmd.returnItems.forEach(raw=>G.items.push({id:G.nid++, n:raw.n, r:raw.r, t:raw.t}));
-        }
-        save(false); hud();
-        if(!cmd.wipeMoney) toast(cmd.note ? `⚡ ${cmd.note}` : '⚡ Получена выдача от Администратора!');
-      }
-    }
+async function forceSync(mode){
+  forceMode=mode;setSync('busy');
+  await syncCloud();
+  return SYNC_TXT[syncState][0]+' '+SYNC_TXT[syncState][1];
+}
 
-    G.items.forEach(checkBest);
-    const totalW = worth();
-    const isWiped = !!(G.wipedHidden || totalW <= 0);
-
-    const payload = {
-      uid: MY_UID, uname: MY_UNAME, n: UN,
-      c: Math.round(Number(G.c)||0),
-      r: isWiped ? 0 : totalW,
-      wiped: isWiped,
-      lv: G.lv, rolls: G.rolls,
-      best: isWiped ? null : (G.best || null),
-      ts: Date.now(),
-      save: {
-        c: G.c, items: G.items.slice(0, 140), nid: G.nid, rolls: G.rolls,
-        p: G.p, up: G.up, lv: G.lv, xp: G.xp, sp: G.sp, gift: G.gift,
-        spent: G.spent, earned: G.earned, st: G.st, qt: G.qt, ach: G.ach,
-        setsDone: G.setsDone, bless: G.bless, gnet: G.gnet, col: G.col,
-        usedCodes: G.usedCodes, best: G.best, boosts: G.boosts,
-        shopRef: G.shopRef, shopBought: G.shopBought,
-        lastWipeTs: G.lastWipeTs, seenNewsTs: G.seenNewsTs, wipedHidden: G.wipedHidden,
-        updatedAt: G.updatedAt || Date.now(), set: G.set
-      }
-    };
-    const res = await fetch(`${DB_BASE}/players/${MY_UID}.json`, {
-      method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload)
-    });
-    const data = await res.json();
-    cloudStatus = (data && data.error) ? '⚠️ Ошибка Firebase Rules: открой доступ!' : '🟢 Облачная БД синхронизирована';
-  }catch(e){ cloudStatus = '⚠️ Нет связи с Firebase'; }
+async function initCloudRecovery(){
+  if(!DB_BASE){cloudReady=true;hud();return}
+  const t=setTimeout(()=>{if(!cloudReady){cloudReady=true;hud()}},3500);
+  try{await syncCloud()}catch(e){}
+  clearTimeout(t);cloudReady=true;hud();
+  fetchTrades();fetchNews();
 }
 
 async function loadLeaderboard(){
@@ -2646,6 +2896,16 @@ async function redeemCoupon(raw){
 }
 
 /* ===== Админ-панель ===== */
+const ADM_KEY_LS='nomerok-adm-key';
+const admKey=()=>{try{return localStorage.getItem(ADM_KEY_LS)||''}catch(e){return ''}};
+function admUrl(p){const k=admKey();return `${DB_BASE}/${p}.json`+(k?`?auth=${encodeURIComponent(k)}`:'')}
+async function admWrite(p,method,obj){
+  if(!admKey()){const e=new Error('🔑 Сначала сохрани ключ админа (вкладка «Себе»)');e.adm=1;throw e}
+  const r=await fetch(admUrl(p),{method,headers:{'Content-Type':'application/json'},body:obj===undefined?undefined:JSON.stringify(obj)});
+  if(!r.ok){const e=new Error('🔑 Firebase отклонил операцию ('+r.status+') — проверь ключ админа');e.adm=1;throw e}
+  return r;
+}
+addEventListener('unhandledrejection',ev=>{if(ev.reason&&ev.reason.adm){ev.preventDefault();toast(ev.reason.message);if(window.__IS_ADMIN&&$('#md').classList.contains('on'))renderAdminModal()}});
 let admTab = 0, admSearch = '';
 $('#admBtn').onclick = () => { if(window.__IS_ADMIN) renderAdminModal(); };
 
@@ -2673,6 +2933,9 @@ async function renderAdminModal(){
 
   if(admTab === 0){
     body.innerHTML = `
+      <div class="scard" style="padding:9px 11px"><h3 style="margin:0 0 4px">🔑 Ключ админа</h3>
+        <div style="font-size:10.5px;color:var(--mut);margin-bottom:6px">Database Secret из Firebase (Project settings → Service accounts → Database secrets). Нужен для вайпа, новостей и купонов. Хранится только на этом устройстве.</div>
+        <div class="adm-row" style="margin-bottom:2px"><input class="adm-inp" id="admKeyInp" type="password" placeholder="${admKey()?'••••••• (сохранён)':'Вставь ключ'}"><button class="f on" id="admKeySave">Сохранить</button></div></div>
       <h3>Быстрое управление своим аккаунтом</h3>
       <div class="adm-row">
         <input class="adm-inp" id="admCoins" type="number" placeholder="Сумма ₽" value="50000">
@@ -2699,6 +2962,7 @@ async function renderAdminModal(){
     };
     $('#admLvUp').onclick=()=>{G.lv+=5;G.sp+=5;save(true);hud();toast('✅ +5 уровней и 🧠')};
     $('#admBless').onclick=()=>{G.bless=(G.bless||0)+5;save(true);hud();toast('✅ +5 зарядов удачи')};
+    $('#admKeySave').onclick=()=>{const v=$('#admKeyInp').value.trim();if(!v)return toast('Вставь ключ');try{localStorage.setItem(ADM_KEY_LS,v)}catch(e){};toast('🔑 Ключ админа сохранён');renderAdminModal()};
     $('#admUnlockAll').onclick=()=>{G.col=Array.from({length:MAX_NUM},(_,i)=>i+1);save(true);toast('✅ Вся коллекция открыта')};
 
   } else if(admTab === 1){
@@ -2728,11 +2992,8 @@ async function renderAdminModal(){
       if(!rawU) return toast('Введи @username или выбери игрока из списка');
       const act = $('#tAct').value, val = Number($('#tVal').value||0);
       const found = cloudPlayers.find(p=>(p.uname && p.uname.toLowerCase() === rawU) || (cleanNick(p.n).toLowerCase() === rawU) || (String(p.uid) === rawU));
-      const cmdObj = {ts: Date.now(), [act]: val};
-      await fetch(`${DB_BASE}/commands/${encodeURIComponent(rawU)}.json`, {method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify(cmdObj)});
-      if(found && found.uid){
-        await fetch(`${DB_BASE}/commands/${found.uid}.json`, {method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify(cmdObj)});
-      }
+      const okSend = await sendCommand([rawU, found && found.uid], {[act]: val});
+      if(!okSend) return toast('❌ Не удалось отправить выдачу');
       toast(`✅ Выдача отправлена для @${rawU}!`);
     };
 
@@ -2773,9 +3034,9 @@ async function renderAdminModal(){
       if(!wConfirm1){ wConfirm1=1; e.target.textContent='⚠️ Точно? Нажми ещё раз'; return; }
       e.target.disabled = true; e.target.textContent = '⏳ Вайп...';
       const ts = Date.now();
-      await fetch(`${DB_BASE}/server/wipe.json`, {method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ts, mode:'money'})});
-      await fetch(`${DB_BASE}/players.json`, {method:'DELETE'});
-      await fetch(`${DB_BASE}/trades.json`, {method:'DELETE'});
+      await admWrite('server/wipe','PUT',{ts, mode:'money'});
+      await admWrite('players','DELETE'); await admWrite('saves','DELETE');
+      await admWrite('trades','DELETE');
       G.c = 0; G.items = []; G.best = null; G.wipedHidden = true; G.lastWipeTs = ts;
       save(true); hud();
       toast('💸 Деньги и склады ВСЕХ игроков обнулены и убраны из топа!');
@@ -2786,9 +3047,9 @@ async function renderAdminModal(){
       if(!wConfirm2){ wConfirm2=1; e.target.textContent='☢️ ТОЧНО СБРОСИТЬ ВСЁ?'; return; }
       e.target.disabled = true; e.target.textContent = '⏳ Полный вайп...';
       const ts = Date.now();
-      await fetch(`${DB_BASE}/server/wipe.json`, {method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ts, mode:'full'})});
-      await fetch(`${DB_BASE}/players.json`, {method:'DELETE'});
-      await fetch(`${DB_BASE}/trades.json`, {method:'DELETE'});
+      await admWrite('server/wipe','PUT',{ts, mode:'full'});
+      await admWrite('players','DELETE'); await admWrite('saves','DELETE');
+      await admWrite('trades','DELETE');
       G = defaultSave(ts); G.wipedHidden = true;
       save(true); hud();
       toast('☢️ Полный вайп сервера выполнен!');
@@ -2800,8 +3061,8 @@ async function renderAdminModal(){
     body.querySelectorAll('[data-zero-uid]').forEach(btn=>btn.onclick=async()=>{
       const uid = btn.dataset.zeroUid; if(!uid) return;
       btn.disabled = true; btn.textContent = '⏳';
-      await fetch(`${DB_BASE}/players/${uid}.json`, {method:'PATCH', headers:{'Content-Type':'application/json'}, body:JSON.stringify({c:0, r:0, best:null, wiped:true, save:null})});
-      await fetch(`${DB_BASE}/commands/${uid}.json`, {method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ts:Date.now(), wipeMoney:1})});
+      await admWrite('players/'+uid,'PATCH',{c:0, r:0, best:null, wiped:true}); await admWrite('saves/'+uid,'DELETE');
+      await sendCommand([uid],{wipeMoney:1});
       if(String(uid) === String(MY_UID)){ G.c = 0; G.items = []; G.best = null; G.wipedHidden = true; save(false); hud(); }
       cloudPlayers = cloudPlayers.filter(x=>String(x.uid)!==String(uid));
       toast('💸 Деньги игрока стёрты, он скрыт из топа!');
@@ -2812,8 +3073,8 @@ async function renderAdminModal(){
     body.querySelectorAll('[data-del-uid]').forEach(btn=>btn.onclick=async()=>{
       const uid = btn.dataset.delUid; if(!uid) return;
       btn.disabled = true; btn.textContent = '⏳';
-      await fetch(`${DB_BASE}/players/${uid}.json`, {method:'DELETE'});
-      await fetch(`${DB_BASE}/commands/${uid}.json`, {method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ts:Date.now(), wipeAccount:1})});
+      await admWrite('players/'+uid,'DELETE'); await admWrite('saves/'+uid,'DELETE');
+      await sendCommand([uid],{wipeAccount:1});
       cloudPlayers = cloudPlayers.filter(x=>String(x.uid)!==String(uid));
       toast('🗑️ Аккаунт игрока полностью стёрт');
       renderAdminModal();
@@ -2823,7 +3084,7 @@ async function renderAdminModal(){
   } else if(admTab === 3){
     let couponsList = [];
     try{
-      const r = await fetch(`${DB_BASE}/coupons.json`);
+      const r = await fetch(admUrl('coupons'));
       const d = await r.json();
       if(d && !d.error) couponsList = Object.values(d).filter(c=>c&&c.code);
     }catch(e){}
@@ -2880,13 +3141,13 @@ async function renderAdminModal(){
         targetUser: $('#cpTarget').value.replace(/^@/,'').trim().toLowerCase(),
         createdAt: Date.now()
       };
-      await fetch(`${DB_BASE}/coupons/${encodeURIComponent(code)}.json`, {method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify(cpObj)});
+      await admWrite('coupons/'+encodeURIComponent(code),'PUT',cpObj);
       navigator.clipboard && navigator.clipboard.writeText(code);
       toast(`🎟️ Купон ${code} создан и скопирован!`);
       renderAdminModal();
     };
     body.querySelectorAll('[data-delcp]').forEach(btn=>btn.onclick=async()=>{
-      await fetch(`${DB_BASE}/coupons/${encodeURIComponent(btn.dataset.delcp)}.json`, {method:'DELETE'});
+      await admWrite('coupons/'+encodeURIComponent(btn.dataset.delcp),'DELETE');
       toast('🗑️ Купон удалён');
       renderAdminModal();
     });
@@ -2912,7 +3173,7 @@ async function renderAdminModal(){
       btn.disabled = true; btn.textContent = '⏳ Отправляю…';
       const id = 'nw_' + Date.now();
       try{
-        const res = await fetch(`${DB_BASE}/news/${id}.json`, {method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify({id, title, body:text, author:MY_UNAME, ts:Date.now()})});
+        const res = await fetch(admUrl('news/'+id), {method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify({id, title, body:text, author:MY_UNAME, ts:Date.now()})});
         const data = await res.json().catch(()=>null);
         if(!res.ok || (data && data.error)){
           btn.disabled = false; btn.textContent = '📢 Опубликовать в ленту';
@@ -2927,7 +3188,7 @@ async function renderAdminModal(){
     };
     body.querySelectorAll('[data-delnw]').forEach(btn=>btn.onclick=async()=>{
       try{
-        const res = await fetch(`${DB_BASE}/news/${btn.dataset.delnw}.json`, {method:'DELETE'});
+        const res = await fetch(admUrl('news/'+btn.dataset.delnw), {method:'DELETE'});
         if(!res.ok) return toast('❌ Не удалось удалить новость (проверь Rules)');
       }catch(err){ return toast('❌ Нет связи с Firebase'); }
       toast('🗑️ Новость удалена');
@@ -2940,11 +3201,17 @@ async function performFullReset(){
   isResetting = true;
   clearTimeout(saveTimer);
   try{
-    localStorage.removeItem(KEY);
     localStorage.removeItem(PREV_KEY);
     localStorage.removeItem(LEGACY_KEY);
+    localStorage.setItem(KEY, JSON.stringify(defaultSave(knownWipeTs)));
   }catch(e){}
   if(DB_BASE){
+    try{
+      let rev=0;
+      try{rev=Number(await(await fetch(`${DB_BASE}/saves/${MY_UID}/rev.json`,{cache:'no-store'})).json())||0}catch(e){}
+      const body={rev:rev+1,dev:DEV,ts:Date.now(),wts:knownWipeTs,rolls:0,lv:1,data:snapOf(defaultSave(knownWipeTs))};
+      await fetch(`${DB_BASE}/saves/${MY_UID}.json`,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+    }catch(e){}
     try{ await fetch(`${DB_BASE}/players/${MY_UID}.json`, {method:'DELETE'}); }catch(e){}
   }
   location.reload();
@@ -2978,8 +3245,12 @@ setInterval(()=>{
   }
 }, 500);
 
-setInterval(()=>{save(false);fetchTrades()}, 7000);
-document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')save(true)});
+setInterval(()=>{if(document.visibilityState==='visible')syncCloud()}, 6000);
+setInterval(()=>{if(document.visibilityState==='visible')fetchTrades()}, 12000);
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')save(true);else syncCloud()});
+addEventListener('focus',()=>syncCloud());
+addEventListener('online',()=>syncCloud());
+if(TG&&TG.onEvent)try{TG.onEvent('activated',()=>syncCloud())}catch(e){}
 
 idle();hud();initCloudRecovery();
 setTimeout(()=>{if(!busy&&!pend.length)idle()},250);
