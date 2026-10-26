@@ -10,14 +10,14 @@
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;height:var(--vh,100dvh);overflow:hidden;background:var(--bg);color:#fff;font-family:Rubik,system-ui,sans-serif;user-select:none;-webkit-user-select:none;overscroll-behavior:none}
 button,input,select,textarea{font-family:inherit}
-#bgfx{position:fixed;inset:0;overflow:hidden;pointer-events:none}
+#bgfx{position:fixed;inset:0;overflow:hidden;pointer-events:none;display:none}body.fxon #bgfx{display:block}
 #bgfx s{position:absolute;bottom:-80px;left:var(--lf);width:var(--sz);height:var(--sz);border-radius:50%;background:radial-gradient(circle at 30% 30%,#ffffff24,#ffffff00 70%);animation:rise var(--du) linear infinite;animation-delay:var(--dl)}
 @keyframes rise{to{transform:translate(30px,-115vh);opacity:.15}}
-#aura{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse 80% 45% at 50% 38%,var(--ac),transparent 70%);opacity:.18;transition:background 1s,opacity 1s;animation:aur 5s ease-in-out infinite}
+#aura{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse 80% 45% at 50% 38%,var(--ac),transparent 70%);opacity:.18;transition:background 1s,opacity 1s}
 @keyframes aur{50%{transform:scale(1.1)}}
 #app{position:relative;height:100%;width:100%;min-width:0;overflow-x:hidden;max-width:500px;margin:0 auto;display:flex;flex-direction:column;padding:calc(6px + env(safe-area-inset-top,0px)) 10px calc(66px + env(safe-area-inset-bottom,0px))}
 #top{display:flex;gap:5px;align-items:center;margin-bottom:6px;flex:none}
-.chip{background:var(--card);border:1px solid #ffffff14;border-radius:14px;padding:6px 9px;font-weight:800;font-size:12px;white-space:nowrap;color:#fff;backdrop-filter:blur(8px)}
+.chip{background:var(--card);border:1px solid #ffffff14;border-radius:14px;padding:6px 9px;font-weight:800;font-size:12px;white-space:nowrap;color:#fff}
 #lv{flex:1;min-width:86px;display:flex;align-items:center;gap:6px;padding:6px 9px;cursor:pointer;transition:transform .12s}
 #lv:active{transform:scale(.96)}
 #lv i{flex:1;height:6px;border-radius:4px;background:#ffffff1f;overflow:hidden}#lv u{display:block;height:100%;background:linear-gradient(90deg,var(--ok),#9dff6b);width:0;transition:width .5s;border-radius:4px}
@@ -26,7 +26,7 @@ nav .ping::after{top:3px;right:22%}
 #gb{cursor:pointer;font-size:12px;padding:6px 8px}
 #gb.rdy{background:#3a0b14;border-color:#ff3355;animation:pl 1s infinite alternate}
 #admBtn{background:linear-gradient(135deg,#ffd54a,#ff9100);color:#000;border:0;cursor:pointer;padding:6px 8px;font-size:12px;display:none}
-@keyframes pl{to{box-shadow:0 0 15px #ff1744aa;transform:scale(1.03)}}
+@keyframes pl{to{transform:scale(1.03);opacity:.8}}
 #bal{text-align:right;line-height:1.05;padding-left:2px}#bal small{display:block;color:var(--mut);font-size:10px;font-weight:500}#bal b{font-size:15px;display:inline-block;white-space:nowrap}
 #bt.up{animation:bup .6s}#bt.dn{animation:bdn .6s}@keyframes bup{40%{color:var(--ok);transform:scale(1.12)}}@keyframes bdn{40%{color:var(--bad);transform:scale(.92)}}
 .s{display:none;min-width:0}.s.on{display:flex;flex-direction:column;flex:1;min-height:0;min-width:0;overflow-x:hidden;overflow-y:auto;animation:fin .22s ease-out}#s0.on{overflow:hidden}
@@ -61,12 +61,12 @@ input,textarea,select{user-select:text;-webkit-user-select:text}
 #multBtn{background:#252533;border:1.5px solid #ffffff26;color:var(--gold);font-weight:800;font-size:14px;min-width:52px;transition:.2s}
 #multBtn.x5{background:#3a1824;border-color:#ff3355;color:#fff;box-shadow:0 0 12px #ff174455}
 #go{position:relative;overflow:hidden;flex:1;font:inherit;font-weight:800;font-size:16px;color:#fff;background:linear-gradient(135deg,#ff3355,#d4001a);border:0;border-radius:15px;padding:12px 8px;cursor:pointer;box-shadow:0 5px 18px #ff174455;transition:transform .12s;display:flex;align-items:center;justify-content:center;gap:6px}
-#go::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,#ffffff55,transparent);transform:skewX(-20deg);animation:sw 2.8s infinite}@keyframes sw{to{left:140%}}
+#go::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,#ffffff55,transparent);transform:skewX(-20deg);animation:sw 2.8s infinite;display:none}#go.lucky::after{display:block}@keyframes sw{to{left:140%}}
 #go small{background:#0005;border-radius:10px;padding:2px 8px;font-size:13px}#go:active{transform:scale(.97)}#go:disabled{filter:grayscale(1) brightness(.55)}#go:disabled::after{display:none}
 #dec{display:none;gap:6px;flex:none}
 .dbt{flex:1;font:800 13px/1.15 Rubik,sans-serif;color:#fff;background:var(--card2);border:1.5px solid #ffffff2a;border-radius:14px;padding:11px 6px;cursor:pointer;animation:fin .2s}
 .dbt.gold{background:var(--gold);color:#000;border:0}.dbt.junk{background:#2b1922;border-color:#ff546866;color:#ff99a6;flex:0.8}
-nav{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(6px + env(safe-area-inset-bottom,0px));width:min(490px,calc(100% - 12px));background:#16161cf2;backdrop-filter:blur(14px);border-radius:22px;padding:4px;display:flex;z-index:20;border:1px solid #ffffff14}
+nav{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(6px + env(safe-area-inset-bottom,0px));width:min(490px,calc(100% - 12px));background:#16161cf2;border-radius:22px;padding:4px;display:flex;z-index:20;border:1px solid #ffffff14}
 nav button{flex:1;position:relative;background:0;border:0;color:var(--mut);font:700 10.5px Rubik,sans-serif;padding:5px 0;border-radius:16px;cursor:pointer;transition:.2s}
 nav button b{display:block;font-size:17px;font-weight:400;line-height:1.15;transition:transform .2s}
 nav button.on{background:#ffffff1c;color:var(--ok)}nav button.on b{transform:translateY(-1px) scale(1.1)}
@@ -91,10 +91,10 @@ nav button.on{background:#ffffff1c;color:var(--ok)}nav button.on b{transform:tra
 .st-rar button em{font-style:normal;color:var(--mut);font-weight:600}
 .st-rar button.on{border-color:var(--c,#fff);background:#ffffff1a}
 .st-rar button.zero{opacity:.35}
-.st-tools{flex:none;display:flex;gap:6px;margin-bottom:8px}.st-tools .f{flex:1;font-size:11.5px;text-align:center}
+.st-tools{flex:none;display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}.st-tools .f{flex:1;font-size:11.5px;text-align:center}
 #grid{flex:1;min-height:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;overflow-y:auto;overflow-x:hidden;padding:2px 0 8px;align-content:start;-webkit-overflow-scrolling:touch}
 #grid.compact{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
-.cell{position:relative;min-width:0;display:flex;flex-direction:column;align-items:center;text-align:center;cursor:pointer;padding:12px 4px 9px;border-radius:16px;background:linear-gradient(165deg,color-mix(in srgb,var(--c) 26%,#15151d),#101017 75%);border:1px solid color-mix(in srgb,var(--c) 50%,transparent);box-shadow:0 4px 14px #0006,inset 0 1px 0 #ffffff12;transition:transform .15s}
+.cell{position:relative;min-width:0;display:flex;flex-direction:column;align-items:center;text-align:center;cursor:pointer;padding:12px 4px 9px;border-radius:16px;background:linear-gradient(165deg,color-mix(in srgb,var(--c) 26%,#15151d),#101017 75%);border:1px solid color-mix(in srgb,var(--c) 50%,transparent);box-shadow:0 2px 6px #0005;transition:transform .15s}
 .cell:active{transform:scale(.95)}
 .cell.fav{box-shadow:0 0 0 1.5px #ffd54a88,0 4px 14px #0006}
 .cell .cn{margin-top:8px;font-size:12px;font-weight:800;line-height:1;color:#fff}
@@ -138,7 +138,7 @@ table{width:100%;border-collapse:collapse;font-size:12px;margin:4px 0 10px}td,th
 .shop-icon{font-size:30px;margin-bottom:4px}.shop-title{font-weight:800;font-size:13px;line-height:1.2;margin-bottom:4px}.shop-desc{font-size:10.5px;color:var(--mut);line-height:1.3;margin-bottom:8px;flex:1}
 .news-card{background:var(--card);border:1px solid #ffffff16;border-radius:16px;padding:12px;margin-bottom:8px}.news-card.pinned{border-color:#ff335588;background:linear-gradient(145deg,#240d15,#12121a)}
 .news-meta{display:flex;justify-content:space-between;font-size:10px;color:var(--mut);margin-bottom:4px}.news-title{font-weight:800;font-size:14px;color:var(--gold);margin-bottom:5px}.news-body{font-size:12px;color:#e2e2ee;line-height:1.45;white-space:pre-line}
-#md{position:fixed;inset:0;z-index:90;background:#000d;display:none;align-items:center;justify-content:center;text-align:center;backdrop-filter:blur(6px);padding:14px}#md.on{display:flex}#md .f{margin:4px;font-size:13px;padding:9px 14px}
+#md{position:fixed;inset:0;z-index:90;background:#000d;display:none;align-items:center;justify-content:center;text-align:center;padding:14px}#md.on{display:flex}#md .f{margin:4px;font-size:13px;padding:9px 14px}
 .adm-box,.prof-box{overflow-x:hidden;background:#14141d;border:1px solid #ffffff22;border-radius:20px;padding:14px;width:100%;max-width:450px;max-height:86vh;overflow-y:auto;text-align:left;box-shadow:0 12px 34px #000c;animation:fin .2s ease-out}
 .adm-box h3{margin:10px 0 6px;color:var(--gold);font-size:14px}.adm-row{display:flex;gap:6px;margin-bottom:7px;align-items:center;flex-wrap:wrap}.adm-row>.adm-inp{flex:1 1 120px}
 .adm-inp{flex:1;background:#09090f;border:1px solid #ffffff26;color:#fff;border-radius:10px;padding:8px 10px;font-size:12px;min-width:0}
@@ -152,7 +152,6 @@ table{width:100%;border-collapse:collapse;font-size:12px;margin:4px 0 10px}td,th
 #fl{position:fixed;inset:0;z-index:80;pointer-events:none;opacity:0}
 #tt{position:fixed;left:50%;top:calc(12px + env(safe-area-inset-top,0px));transform:translateX(-50%);z-index:95;background:#111118f5;border:1px solid #ffffff33;border-radius:12px;padding:8px 14px;opacity:0;pointer-events:none;transition:.25s;text-align:center;font-size:13px;max-width:92%;box-shadow:0 6px 20px #000a}#tt.on{opacity:1}
 h3{margin:4px 0 6px;font-size:15px}
-#gnet{font-size:11px;color:var(--mut);margin:0 0 6px}
 .bet-panel{background:var(--card);border:1px solid #ffffff14;border-radius:15px;padding:8px;margin-bottom:8px;flex:none}
 .bet-top{display:flex;gap:6px;margin-bottom:6px;align-items:center}.bet-inp{flex:1;background:#08080d;border:1.5px solid #ffffff24;border-radius:11px;color:var(--gold);font:800 15px Rubik,sans-serif;padding:7px 10px;min-width:0}
 .bet-quick{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}.bet-quick button{flex:1;background:#ffffff0e;border:1px solid #ffffff18;color:#fff;font:700 11px Rubik,sans-serif;padding:6px 8px;border-radius:9px;cursor:pointer;white-space:nowrap}
@@ -169,7 +168,7 @@ h3{margin:4px 0 6px;font-size:15px}
 #sky::before{content:"";position:absolute;inset:0;background:radial-gradient(#fff 1px,transparent 1.4px) 0 0/34px 34px,radial-gradient(#fff8 1px,transparent 1.4px) 17px 17px/34px 34px;opacity:.35;animation:stars 3s linear infinite}@keyframes stars{to{background-position:0 34px,17px 51px}}
 #mul{position:absolute;left:0;right:0;top:10px;font-size:26px;font-weight:800;z-index:2;text-shadow:0 2px 10px #000}
 #rkStatus{position:absolute;left:0;right:0;top:40px;font-size:11px;color:var(--gold);z-index:2}
-#rk{position:absolute;left:50%;bottom:8px;font-size:36px;transform:translateX(-50%);z-index:2;transition:none}#rk.boom{animation:boom .6s forwards}@keyframes boom{to{transform:translateX(-50%) scale(2.8);opacity:0}}
+#rk{position:absolute;left:50%;bottom:8px;font-size:36px;transform:translateX(-50%);z-index:2;transition:transform .08s linear}#rk.boom{animation:boom .6s forwards}@keyframes boom{to{transform:translateX(-50%) scale(2.8);opacity:0}}
 .rk-bets{margin-top:8px;background:#0006;border-radius:12px;padding:6px 8px;max-height:105px;overflow-y:auto;text-align:left}.rk-bet-row{display:flex;justify-content:space-between;font-size:11px;padding:3px 2px;border-bottom:1px solid #ffffff0a}
 .mg{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;max-width:260px;margin:0 auto}.mt{aspect-ratio:1;border:0;border-radius:12px;background:linear-gradient(#2d2d3a,#1c1c26);font-size:22px;color:#fff;cursor:pointer;box-shadow:0 3px 0 #0008}.mt.ok{background:#164d2b;animation:pop .3s}.mt.bm{background:#5a1220;animation:pop .3s}.mt.ghost{opacity:.55}
 .upg-pair{display:grid;grid-template-columns:minmax(0,1fr) 28px minmax(0,1fr);align-items:center;gap:6px;margin-bottom:10px}
@@ -204,10 +203,10 @@ h3{margin:4px 0 6px;font-size:15px}
 .pp i{top:6%;width:30%;background:radial-gradient(circle,#0a0a0d 0 56%,#a9a395 59%,#fff 70%,transparent 72%)}
 .pp .kpk{top:42%;font:700 1.25em/1 Georgia,'Times New Roman',serif;color:#16161a;letter-spacing:.04em}.pp .digits{bottom:10%;font-size:1.4em;color:#16161a}
 .pp .gloss{inset:0;border-radius:inherit;z-index:2;background:linear-gradient(90deg,transparent 0 33%,#ffffffaa 33% 34%,#00000026 34% 35%,transparent 35% 66%,#ffffffaa 66% 67%,#00000026 67% 68%,transparent 68%),linear-gradient(104deg,#ffffff66 0 8%,transparent 24% 58%,#ffffff33 65%,transparent 80%),linear-gradient(#fff7d52a,#fff7d51a)}
-.tag.rev:not(.r0){box-shadow:var(--sh0),0 0 0 .05em var(--c),0 0 var(--g,0px) var(--c)}.r2{--g:8px}.r3{--g:14px}.r4{--g:20px}.r5{--g:30px}
-.rev.r3,.rev.r4,.rev.r5{animation:revl .45s cubic-bezier(.2,1.5,.4,1),bob 3.2s ease-in-out .5s infinite}
-.rev:not(.r0):not(.r3):not(.r4):not(.r5):not(.idle){animation:revl .45s cubic-bezier(.2,1.5,.4,1)}
-.rev.r2::after,.rev.r3::after,.rev.r4::after,.rev.r5::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,#fff7 50%,transparent 70%) 0 0/250% 100%;animation:shine 2.6s infinite;pointer-events:none;z-index:3}
+.tag.rev:not(.r0){box-shadow:var(--sh0),0 0 0 .05em var(--c),0 0 var(--g,0px) var(--c)}.r2{--g:8px}.r3{--g:14px}.r4{--g:20px}.r5{--g:30px}.r6{--g:42px}
+.rev.r3,.rev.r4,.rev.r5,.rev.r6{animation:revl .45s cubic-bezier(.2,1.5,.4,1),bob 3.2s ease-in-out .5s infinite}
+.rev:not(.r0):not(.r3):not(.r4):not(.r5):not(.r6):not(.idle){animation:revl .45s cubic-bezier(.2,1.5,.4,1)}
+.rev.r2::after,.rev.r3::after,.rev.r4::after,.rev.r5::after,.rev.r6::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,#fff7 50%,transparent 70%) 0 0/250% 100%;animation:shine 2.6s infinite;pointer-events:none;z-index:3}
 .rev.r5::before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,#f00,#ff0,#0f0,#0ff,#00f,#f0f,#f00) 0 0/300% 100%;mix-blend-mode:overlay;opacity:.4;animation:holo 3s linear infinite;z-index:3;pointer-events:none}
 @keyframes shine{from{background-position:150% 0}to{background-position:-100% 0}}@keyframes holo{to{background-position:300% 0}}
 
@@ -215,7 +214,7 @@ h3{margin:4px 0 6px;font-size:15px}
 #go.lucky{background:linear-gradient(135deg,#ffe680,#ffb300 55%,#ff8f00);color:#2b1900;box-shadow:0 5px 22px #ffb300aa,0 0 0 1.5px #ffe58a;animation:luckyGlow 1.1s ease-in-out infinite alternate}
 #go.lucky small{background:#00000030;color:#2b1900}
 #go.lucky:disabled{animation:none}
-@keyframes luckyGlow{to{box-shadow:0 5px 32px #ffc400ee,0 0 0 2px #fff3b0;transform:scale(1.02)}}
+@keyframes luckyGlow{to{transform:scale(1.02)}}
 /* ===== Трейды ===== */
 .tr-seg{grid-template-columns:repeat(4,minmax(0,1fr))}.tr-seg button{font-size:11px;padding:8px 2px}.tr-seg b{color:var(--gold);margin-left:2px}
 .tr-card{background:var(--card);border:1px solid #ffffff14;border-radius:16px;padding:11px;margin-bottom:9px}
@@ -247,6 +246,22 @@ h3{margin:4px 0 6px;font-size:15px}
 .tr-preview{background:linear-gradient(135deg,#1d1730,#12121b);border:1px solid #a855f755;border-radius:14px;padding:10px 12px;margin:2px 0 10px;font-size:12px;line-height:1.55}
 .tr-empty{text-align:center;color:var(--mut);padding:22px 10px;font-size:12.5px;line-height:1.5}.tr-empty b{display:block;font-size:30px;margin-bottom:4px}
 .tr-log{font-size:11.5px;display:flex;justify-content:space-between;gap:8px;padding:7px 2px;border-bottom:1px solid #ffffff0f}.tr-log small{color:var(--mut);flex:none}
+
+/* ===== Оптимизация: статичные номерки (склад, топ, трейды) ===== */
+body.hid *,body.hid *::before,body.hid *::after{animation-play-state:paused!important}
+.cell{content-visibility:auto;contain-intrinsic-size:auto 120px}
+.tag.static{animation:none!important}
+.tag.static::before,.tag.static::after{display:none!important}
+.tag.static.rev:not(.r0){box-shadow:var(--sh0),0 0 0 .05em var(--c)}
+.pl.static .face{background:radial-gradient(ellipse at 30% 10%,#ff2b2b,#e0061c 45%,#b50010)}
+.pp.static .face{background:linear-gradient(170deg,#fffdf6,#eae5d3)}
+.pp.static .gloss{background:linear-gradient(104deg,#ffffff55 0 8%,transparent 24%)}
+/* ===== Секретная редкость ===== */
+.pl.r6 .face,.pl.r6.static .face{background:radial-gradient(ellipse at 30% 10%,#8ffbff,#00b4d8 45%,#004e72)}
+.pl.r6{--sh0:0 .07em 0 #9fe9f5,0 .13em .22em #000b,inset 0 .03em 0 #fff}
+.rev.r6::before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,#00e5ff,#fff,#7c4dff,#00e5ff,#fff) 0 0/300% 100%;mix-blend-mode:overlay;opacity:.55;animation:holo 2.4s linear infinite;z-index:3;pointer-events:none}
+.adm-page{max-height:none;overflow:visible;border:0;background:none;box-shadow:none;padding:0;max-width:none}
+.adm-page .adm-tabs button{flex:none;padding:7px 10px}
 </style></head><body>
 <div id="bgfx"></div>
 <div id="aura"></div>
@@ -254,7 +269,7 @@ h3{margin:4px 0 6px;font-size:15px}
   <div id="top">
     <div class="chip" id="lv" title="Открыть профиль"><span id="lvt">👤 Ур. 1</span><i><u id="xp"></u></i></div>
     <button class="chip" id="gb">🎁 Забрать</button>
-    <button class="chip" id="admBtn">👑 Админ</button>
+    
     <div id="bal" style="cursor:pointer"><small id="syncDot">Баланс 🔄</small><b id="bt">1 000 ₽</b></div>
   </div>
 
@@ -272,7 +287,7 @@ h3{margin:4px 0 6px;font-size:15px}
       <button class="gr" data-m="3" style="--gc:#a855f7"><b>🟣 Эпик+</b><small>1 200 ₽</small></button>
     </div>
     <div id="head">
-      <div style="min-width:0"><div id="rn" style="color:var(--mut)">Выбери тип и крути</div><div id="seg"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+      <div style="min-width:0"><div id="rn" style="color:var(--mut)">Выбери тип и крути</div><div id="seg"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
       <div id="val">—</div>
     </div>
     <div id="stage"></div>
@@ -298,6 +313,7 @@ h3{margin:4px 0 6px;font-size:15px}
     <div class="st-tools">
       <button class="f" id="sortBtn">↕️ Сортировка</button>
       <button class="f" id="trash">🧹 Продать мусор</button>
+      <button class="f" id="sellAll" style="flex:1 1 100%;border-color:#ffd54a66;color:var(--gold)">💰 Продать всё</button>
     </div>
     <div id="grid"></div>
   </section>
@@ -322,7 +338,7 @@ h3{margin:4px 0 6px;font-size:15px}
         <button data-qp="100" style="color:var(--gold)">🔥 MAX</button>
       </div>
     </div>
-    <div id="gnet"></div>
+    
     <div id="gm"></div>
   </section>
 
@@ -372,8 +388,8 @@ if(TG){try{TG.ready();TG.expand();TG.setHeaderColor('#07070c');TG.setBackgroundC
 const setVh=()=>document.documentElement.style.setProperty('--vh',((TG&&TG.viewportStableHeight)||innerHeight)+'px');setVh();
 
 const TG_USER = (TG && TG.initDataUnsafe && TG.initDataUnsafe.user) || {};
-const MY_UID = TG_USER.id || ADMIN_ID;
-window.__IS_ADMIN = (Number(MY_UID) === ADMIN_ID) || location.hash === '#' + ADMIN_ID;
+const MY_UID = TG_USER.id || (()=>{try{let g=localStorage.getItem('nomerok-guest');if(!g){g='g'+Math.floor(Math.random()*1e9);localStorage.setItem('nomerok-guest',g)}return g}catch(e){return 'g0'}})();
+window.__IS_ADMIN = !!TG_USER.id && Number(TG_USER.id) === ADMIN_ID;
 
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function cleanNick(str){
@@ -384,7 +400,7 @@ const RAW_UNAME = cleanNick(TG_USER.username || '').toLowerCase();
 const UN = cleanNick(TG_USER.first_name || TG_USER.username) || 'Игрок_' + String(MY_UID).slice(-4);
 const MY_UNAME = RAW_UNAME || cleanNick(UN).toLowerCase().replace(/\s+/g,'_');
 
-$('#bgfx').innerHTML=Array.from({length:12},()=>`<s style="--sz:${20+Math.random()*45}px;--lf:${Math.random()*100}%;--du:${9+Math.random()*10}s;--dl:-${Math.random()*15}s"></s>`).join('');
+$('#bgfx').innerHTML=Array.from({length:8},()=>`<s style="--sz:${20+Math.random()*45}px;--lf:${Math.random()*100}%;--du:${9+Math.random()*10}s;--dl:-${Math.random()*15}s"></s>`).join('');
 
 let audioCtx = null;
 function playTickSound(freq=520, dur=0.025){
@@ -401,13 +417,16 @@ function playTickSound(freq=520, dur=0.025){
 }
 
 /* ===== Сбалансированная экономика (ценность крутки!) ===== */
-const MAX_NUM = 999;
-const RN=['Обычный','Необычный','Редкий','Эпический','Легендарный','Мифический'];
-const RC=['#8b93a1','#3fbf5f','#2f8dff','#a855f7','#ffa51f','#ff1744'];
+const MAX_NUM = 1000;
+/* Секретные номерки: 215, 300 и XXX (внутренний номер 1000). Только из круток, шанс ~1/3500 */
+const SECRET=[215,300,1000],SECRET_NAME={215:'Кабинет Котова',300:'Кабинет математики',1000:'XXX'},SECM={1000:2.5},SECRET_P=1/3500;
+const L=n=>n===1000?'XXX':n;
+const RN=['Обычный','Необычный','Редкий','Эпический','Легендарный','Мифический','Секретный'];
+const RC=['#8b93a1','#3fbf5f','#2f8dff','#a855f7','#ffa51f','#ff1744','#00e5ff'];
 const W0=[6600,2200,820,260,95,25];
 const LIM=[12,45,160,550];
 /* Обычные и необычные окупают часть крутки, Редкие — почти в ноль, Эпик+ — хороший профит */
-const BASE=[[26,42,85,230,780,3400],[5,8,17,46,155,680]];
+const BASE=[[26,42,85,230,780,3400,100000],[5,8,17,46,155,680,20000]];
 const COST0=[100,20],TN=['пластиковый','бумажный'];
 /* Гарант-крутки: минимальная редкость в обмен на повышенную цену (цена = базовая × k) */
 const GUAR=[{r:0,k:1},{r:1,k:2.5},{r:2,k:5},{r:3,k:12}];
@@ -418,14 +437,14 @@ const FIX=[
   [200,300,400,500,600,700,800,900,228,52,420],
   [812,322,312,13,337,404]
 ];
-const RAR=Array(MAX_NUM+1).fill(-1),P=[[],[],[],[],[],[]];
+const RAR=Array(MAX_NUM+1).fill(-1),P=[[],[],[],[],[],[],[]];
 FIX.forEach((a,i)=>a.forEach(n=>{if(n<=MAX_NUM)RAR[n]=5-i}));
 {
   let rest=[],sd=1337;const rnd=()=>(sd=sd*16807%2147483647)/2147483647;
-  for(let n=1;n<=MAX_NUM;n++)if(RAR[n]<0)rest.push(n);
+  for(let n=1;n<=999;n++)if(RAR[n]<0)rest.push(n);
   for(let i=rest.length-1;i>0;i--){const j=Math.floor(rnd()*(i+1));[rest[i],rest[j]]=[rest[j],rest[i]]}
   rest.forEach((n,i)=>RAR[n]=i<27?3:i<141?2:i<391?1:0);
-  for(let n=1;n<=MAX_NUM;n++)P[RAR[n]].push(n);
+  SECRET.forEach(n=>{RAR[n]=6});for(let n=1;n<=MAX_NUM;n++)P[RAR[n]].push(n);
 }
 
 const SETS = [
@@ -433,7 +452,7 @@ const SETS = [
   {id:'street', n:'😎 Уличный сленг', nums:[52,228,322,420,812], rewC:25000, rewSp:1, desc:'+4% к базовой удаче при крутках', bonusType:'luck', bonusVal:0.04},
   {id:'top10', n:'👑 Первая Десятка', nums:[1,2,3,4,5,6,7,8,9,10], rewC:160000, rewSp:4, desc:'+12% к цене продажи и +8% к удаче', bonusType:'both', bonusVal:0.12},
   {id:'twins', n:'🪞 Двойной Удар', nums:[11,22,33,44,55,66,77,99], rewC:38000, rewSp:2, desc:'+6% к цене продажи всех номерков', bonusType:'sell', bonusVal:0.06},
-  {id:'cyber', n:'🤖 Кибер-Клуб', nums:[100,200,300,404,500], rewC:20000, rewSp:1, desc:'+3% к шансу успеха в Апгрейдере', bonusType:'upg', bonusVal:3},
+  {id:'cyber', n:'🤖 Кибер-Клуб', nums:[100,200,600,404,500], rewC:20000, rewSp:1, desc:'+3% к шансу успеха в Апгрейдере', bonusType:'upg', bonusVal:3},
   {id:'meme67', n:'🤪 Секрет 67', nums:[67,167,267,670,677], rewC:15000, rewSp:1, desc:'+15% к подарку гардеробщика', bonusType:'gift', bonusVal:0.15},
   {id:'stairs', n:'🪜 Золотая Лесенка', nums:[123,234,345,456,567,678,789], rewC:30000, rewSp:2, desc:'+12% к получаемому опыту XP', bonusType:'xp', bonusVal:0.12}
 ];
@@ -451,7 +470,7 @@ function defaultSave(wipeTs = 0){
     qt:{},ach:{},setsDone:[],bless:0,gnet:0,col:[],usedCodes:[],best:null,
     boosts:{},shopRef:0,shopBought:{},lastWipeTs:wipeTs,seenNewsTs:0,wipedHidden:false,baseRev:0,syncedHash:'',trLog:[],
     updatedAt:Date.now(),
-    set:{hap:1,shake:1,fast:0,autoMode:0,keepBonus:1,keepNew:1,snd:1,compact:0}
+    set:{hap:1,shake:1,fast:0,autoMode:0,keepBonus:1,keepNew:1,snd:1,compact:0,bg:0,fx:0}
   };
 }
 
@@ -500,6 +519,21 @@ try{
   G = sanitizeSave(loaded);
 }catch(e){ G = defaultSave(); }
 
+const BGS=[
+  ['🌑 Классика','#07070c','#07070c'],
+  ['🌊 Океан','linear-gradient(160deg,#04101f,#0b2d52 55%,#06121f)','#04101f'],
+  ['🌲 Лес','linear-gradient(160deg,#04120a,#0b3320 55%,#05100a)','#04120a'],
+  ['🌇 Закат','linear-gradient(160deg,#1a0a14,#4a1630 55%,#1a0a10)','#1a0a14'],
+  ['🌌 Космос','linear-gradient(160deg,#08051a,#1d1050 55%,#080418)','#08051a'],
+  ['✨ Золото','linear-gradient(160deg,#120d03,#3a2a08 55%,#120c03)','#120d03'],
+  ['⚫ AMOLED','#000','#000']
+];
+function applyBg(){
+  const b=BGS[G.set.bg]||BGS[0];
+  document.documentElement.style.background=b[1];document.body.style.background=b[1];
+  document.body.classList.toggle('fxon',!!G.set.fx);
+  try{TG&&TG.setBackgroundColor(b[2]);TG&&TG.setHeaderColor(b[2])}catch(e){}
+}
 const hap=t=>{if(!G.set.hap)return;try{TG.HapticFeedback.impactOccurred(t)}catch(e){}};
 const fmt=n=>{const v=Number(n);if(!Number.isFinite(v))return '0';return v>=1e6?(v/1e6).toFixed(2).replace('.',',')+' млн':Math.floor(v).toLocaleString('ru-RU')};
 const sg=n=>{const v=Number(n)||0;return(v>=0?'+':'−')+fmt(Math.abs(v))};
@@ -534,6 +568,7 @@ const bonusCache=new Map();
 function bonus(i){
   if(!i)return null;
   const n=i.n;
+  if(RAR[n]===6)return null;
   if(bonusCache.has(n))return bonusCache.get(n);
   const s=String(n),L=[],tri=/^(\d)\1\1$/.test(s);
   if(SP[n])L.push(SP[n]);
@@ -575,7 +610,7 @@ const price=i=>{
   const boostSell = hasBoost('sell50') ? 0.35 : 0;
   const mult = (1 + 0.015*(G.up.m||0) + getSetBonus('sell') + boostSell);
   const flat = b ? Math.round(b.flat*(i.t?.2:1)) : 0;
-  return Math.max(1,Math.round(BASE[i.t||0][i.r||0]*(b?b.mult:1)*mult)+flat);
+  return Math.max(1,Math.round(BASE[i.t||0][i.r||0]*(b?b.mult:1)*(SECM[i.n]||1)*mult)+flat);
 };
 const cap=()=>40+10*(G.up.s||0),need=l=>15+l*12;
 const cst=t=>{
@@ -639,17 +674,17 @@ function sell(list){
   hap('light');save(true);return s;
 }
 
-const tg=(i,w,sp,x='')=>`<div class="tag ${i.t?'pp':'pl'} r${i.r}${sp?'':' rev'} ${x}" data-id="${i.id}" style="--w:${w}px;--c:${RC[i.r]}"><u class="face"></u><u class="gloss"></u><i></i><b class="kpk">КПК</b><div class="digits">${sp?String(i.n).split('').map(d=>`<div class="col"><div class="st" data-d="${d}"></div></div>`).join(''):i.n}</div></div>`;
+const tg=(i,w,sp,x='')=>`<div class="tag ${i.t?'pp':'pl'} r${i.r}${sp?'':' rev'}${!sp&&w<=80?' static':''} ${x}" data-id="${i.id}" style="--w:${w}px;--c:${RC[i.r]}"><u class="face"></u><u class="gloss"></u><i></i><b class="kpk">КПК</b><div class="digits">${sp?String(L(i.n)).split('').map(d=>`<div class="col"><div class="st" data-d="${d}"></div></div>`).join(''):L(i.n)}</div></div>`;
 
 function toast(t){const e=$('#tt');e.textContent=t;e.classList.add('on');clearTimeout(toast.k);toast.k=setTimeout(()=>e.classList.remove('on'),2600)}
 function burst(x,y,c,n){for(let i=0;i<n;i++){const s=document.createElement('s');s.style.cssText=`position:fixed;left:${x}px;top:${y}px;width:7px;height:7px;border-radius:2px;background:${c||`hsl(${Math.random()*360} 100% 60%)`};pointer-events:none;z-index:85`;document.body.append(s);const a=Math.random()*6.28,d=50+Math.random()*160;s.animate([{transform:'none',opacity:1},{transform:`translate(${Math.cos(a)*d}px,${Math.sin(a)*d+50}px) rotate(${Math.random()*720}deg)`,opacity:0}],{duration:850+Math.random()*450,easing:'ease-out'}).onfinish=()=>s.remove()}}
 function fx(r){
-  const f=$('#fl');f.style.background=r==5?'conic-gradient(#f00,#ff0,#0f0,#0ff,#00f,#f0f,#f00)':`radial-gradient(circle,${RC[r]},transparent 70%)`;
-  f.animate([{opacity:r>=3?.45:.12},{opacity:0}],{duration:r==5?1400:650});
+  const f=$('#fl');f.style.background=r>=5?'conic-gradient(#f00,#ff0,#0f0,#0ff,#00f,#f0f,#f00)':`radial-gradient(circle,${RC[r]},transparent 70%)`;
+  f.animate([{opacity:r>=3?.45:.12},{opacity:0}],{duration:r>=5?1400:650});
   const b=$('#stage').getBoundingClientRect();
-  burst(b.x+b.width/2,b.y+b.height/2,r==5?null:RC[r],[0,5,12,24,40,85][r]);
+  burst(b.x+b.width/2,b.y+b.height/2,r==5?null:RC[r],[0,4,8,16,26,45,60][r]);
   hap(r>=4?'heavy':r>=2?'medium':'light');
-  if(r>=4&&G.set.shake)document.body.animate([{transform:'translate(-5px,3px)'},{transform:'translate(5px,-3px)'},{transform:'translate(-3px,0)'},{transform:'none'}],{duration:r==5?650:320,iterations:r==5?2:1});
+  if(r>=4&&G.set.shake)document.body.animate([{transform:'translate(-5px,3px)'},{transform:'translate(5px,-3px)'},{transform:'translate(-3px,0)'},{transform:'none'}],{duration:r>=5?650:320,iterations:r>=5?2:1});
 }
 function addXp(x){
   const xpBoost = hasBoost('xp2') ? 2 : 1;
@@ -657,7 +692,7 @@ function addXp(x){
   G.xp += gain;
   while(G.xp>=need(G.lv)){
     G.xp-=need(G.lv);G.lv++;
-    const bonusC = 20 * G.lv;
+    const bonusC = 600 + 300 * G.lv;
     G.c+=bonusC;G.sp++;
     toast(`⬆️ Уровень ${G.lv}! +${fmt(bonusC)} ₽ и 🧠1`);
   }
@@ -668,7 +703,7 @@ function roll(t,bl,minR=0){
   for(let j=0;j<minR;j++)w[j]=0;
   let r=pick(w);
   const p=G.p[t];
-  for(let j=3;j>=0;j--)if(p[j]>=LIM[j]-1&&r<j+2){r=j+2;break}
+  if(Math.random()<SECRET_P*(GUAR[minR]?GUAR[minR].k:1))r=6;else for(let j=3;j>=0;j--)if(p[j]>=LIM[j]-1&&r<j+2){r=j+2;break}
   for(let j=0;j<4;j++)p[j]=r>=j+2?0:p[j]+1;
   const n=P[r][Math.random()*P[r].length|0],it={id:G.nid++,n,r,t,wasNew:!G.col.includes(n)};
   G.items.push(it);G.rolls++;
@@ -713,7 +748,7 @@ $('#lv').onclick=()=>{
     ${bIt ? `<div class="prof-best">
       ${tg(bIt, 74, false)}
       <div style="text-align:left;flex:1">
-        <div style="font-size:16px;font-weight:800;color:${RC[bIt.r]}">${RN[bIt.r]} №${bIt.n}</div>
+        <div style="font-size:16px;font-weight:800;color:${RC[bIt.r]}">${RN[bIt.r]} №${L(bIt.n)}</div>
         <div style="font-size:12px;color:var(--mut);margin:2px 0">${TN[bIt.t]} номерок</div>
         ${bBonus ? `<div style="font-size:12px;color:var(--gold);font-weight:700">${bBonus.e} ${bBonus.n} ${bBonus.label}</div>` : ''}
         <div style="font-size:18px;font-weight:800;color:var(--gold);margin-top:4px">Оценка: ${fmt(price(bIt))} ₽</div>
@@ -808,7 +843,7 @@ async function spin(){
     const it = rolled[idx];
     const big = it.r >= 4;
     tEl.querySelectorAll('.st').forEach((st,ci,all)=>{
-      const d=+st.dataset.d,arr=[];
+      const d=st.dataset.d,arr=[];
       for(let i=0;i<20+ci*4+idx*2;i++)arr.push(Math.floor(Math.random()*10));
       arr.push(d);
       st.innerHTML=arr.map(x=>`<div>${x}</div>`).join('');
@@ -829,7 +864,7 @@ async function spin(){
   const best = [...rolled].sort((a,b)=>price(b)-price(a) || b.r-a.r)[0];
   const totalVal = rolled.reduce((a,i)=>a+price(i),0);
 
-  $('#rn').textContent = actualCount>1 ? `Лучший: ${RN[best.r]} №${best.n}` : RN[best.r];
+  $('#rn').textContent = actualCount>1 ? `Лучший: ${RN[best.r]} №${L(best.n)}` : RN[best.r];
   $('#rn').style.color = RC[best.r];
   $('#val').textContent = fmt(totalVal)+' ₽';
   $$('#seg i').forEach((s,i)=>{if(i<=best.r)setTimeout(()=>s.style.background=RC[best.r],i*90)});
@@ -861,13 +896,13 @@ async function spin(){
   if(actualCount === 1){
     const it = rolled[0], bb = bonus(it);
     const bt = bb ? ` · <b style="color:var(--gold)">${bb.e} ${bb.n} ${bb.label}</b>` : '';
-    $('#info').innerHTML = `<b>№${it.n}</b> · ${TN[it.t]}${bt} · Цена <b style="color:var(--gold)">${fmt(totalVal)} ₽</b> (<b style="color:${col}">${sg(df)} ₽</b>)` + (autoSoldCount?`<br><span style="color:var(--ok)">🧹 Авто-продано за ${fmt(autoSoldSum)} ₽</span>`:'');
+    $('#info').innerHTML = `<b>№${L(it.n)}</b> · ${TN[it.t]}${bt} · Цена <b style="color:var(--gold)">${fmt(totalVal)} ₽</b> (<b style="color:${col}">${sg(df)} ₽</b>)` + (autoSoldCount?`<br><span style="color:var(--ok)">🧹 Авто-продано за ${fmt(autoSoldSum)} ₽</span>`:'');
   } else {
     $('#info').innerHTML = `Выпало <b>${actualCount} шт.</b> на <b style="color:var(--gold)">${fmt(totalVal)} ₽</b> (<b style="color:${col}">${sg(df)} ₽</b>)` + (autoSoldCount?` · 🧹 Авто-продано ${autoSoldCount} шт. (+${fmt(autoSoldSum)} ₽)`:' · <i>Нажми на номерок, чтобы продать отдельно</i>');
   }
 
   fx(best.r);
-  if(best.r>=4)toast(best.r==5?'🌈 МИФИЧЕСКИЙ НОМЕРОК!!!':'🔥 Легендарный номерок!');
+  if(best.r>=4)toast(best.r==6?'🔮 СЕКРЕТНЫЙ НОМЕРОК!!!':best.r==5?'🌈 МИФИЧЕСКИЙ НОМЕРОК!!!':'🔥 Легендарный номерок!');
   if(gotBless)setTimeout(()=>toast('👵 Добрая гардеробщица: следующая крутка с повышенной удачей!'),1800);
   busy=false;
   save(true);
@@ -884,7 +919,7 @@ $('#stage').onclick=e=>{
   const s = sell([it]);
   pend = pend.filter(x=>x.id!==id);
   mw.classList.add('sold');
-  toast(`Продано №${it.n} за +${fmt(s)} ₽`);
+  toast(`Продано №${L(it.n)} за +${fmt(s)} ₽`);
   hud();
 };
 
@@ -987,10 +1022,11 @@ function renderActiveBoostsBar(){
   if(!bar) return;
   if(!active.length){ bar.classList.remove('on'); bar.innerHTML = ''; return; }
   bar.classList.add('on');
-  bar.innerHTML = active.map(([k, m])=>{
+  const _h = active.map(([k, m])=>{
     const leftSec = Math.max(0, Math.floor((G.boosts[k] - now)/1000));
     return `<div class="b-pill">${m.icon} ${m.name} <b>${String(Math.floor(leftSec/60)).padStart(2,'0')}:${String(leftSec%60).padStart(2,'0')}</b></div>`;
   }).join('');
+  if(bar._h!==_h){bar._h=_h;bar.innerHTML=_h}
 }
 
 const Q=[
@@ -1084,7 +1120,6 @@ function hud(){
   $('#lp').style.width=(G.bless?100:(lr/bStep*100))+'%';
   const pings = hasMoreNotifications();
   $('#navMore').classList.toggle('ping', pings.any);
-  if(window.__IS_ADMIN) $('#admBtn').style.display='inline-block';
   decUI();
 }
 
@@ -1158,9 +1193,9 @@ function store(){
   gridEl.innerHTML=l.length?l.map(i=>{
     const bn=bonus(i);
     return `<div class="cell ${i.locked?'fav':''}" data-id="${i.id}" style="--c:${RC[i.r]}">
-      ${bn?`<span class="bn">${bn.e}${bn.label}</span>`:''}${i.locked?'<span class="lk">🔒</span>':''}
+      ${i.locked?'<span class="lk">🔒</span>':''}
       ${tg(i,tagW,false)}
-      <div class="cn">№${i.n}</div><div class="cr">${RN[i.r]}</div><div class="cp">${fmt(price(i))} ₽</div>
+      <div class="cn">№${L(i.n)}</div><div class="cr">${RN[i.r]}</div><div class="cp">${fmt(price(i))} ₽</div>
     </div>`;}).join(''):'<div class="st-empty"><b>📭</b>Здесь пока пусто</div>';
 }
 $('#ct').onclick=e=>{const b=e.target.closest('button');if(b){fT=+b.dataset.t;store()}};
@@ -1172,6 +1207,17 @@ $('#trash').onclick=()=>{
   const s=sell(l);toast(`Продано ${l.length} шт. за ${fmt(s)} ₽`);hud();store();
 };
 
+let sellAllT=0;
+function resetSellAll(){clearTimeout(sellAllT);sellAllT=0;const b=$('#sellAll');if(b)b.textContent='💰 Продать всё'}
+$('#sellAll').onclick=()=>{
+  const l=G.items.filter(i=>!i.locked&&!pend.includes(i));
+  if(!l.length)return toast('Нечего продавать (склад пуст или всё в избранном 🔒)');
+  const sum=l.reduce((a,i)=>a+price(i),0);
+  if(!sellAllT){$('#sellAll').textContent=`⚠️ Продать ${l.length} шт. за ${fmt(sum)} ₽? Нажми ещё раз`;sellAllT=setTimeout(resetSellAll,4000);return}
+  resetSellAll();
+  const s=sell(l);toast(`💰 Продано ${l.length} шт. за ${fmt(s)} ₽`);hud();store();
+};
+
 function openMd(id){
   const i=G.items.find(x=>x.id==id);if(!i)return;
   if(pend.includes(i))return toast('Сначала заверши выбор на главном экране');
@@ -1179,7 +1225,7 @@ function openMd(id){
   $('#md').innerHTML=`<div class="prof-box" style="text-align:center;max-width:340px">
     <div style="display:flex;justify-content:center">${tg(i,130,false)}</div>
     <h2 style="color:${RC[i.r]};margin:10px 0 4px">${RN[i.r]}</h2>
-    <div>№${i.n} · ${TN[i.t]}</div>
+    <div>№${L(i.n)} · ${TN[i.t]}</div>${SECRET_NAME[i.n]&&i.n!==1000?`<div style="color:${RC[6]};font-weight:700;margin-top:2px">🔮 ${SECRET_NAME[i.n]}</div>`:''}
     ${b?`<div style="color:var(--gold);font-weight:700;margin-top:3px">${b.e} ${b.n} ${b.label}</div><div style="color:var(--mut);font-size:11px;margin-top:2px">${b.parts.map(p=>`${p[1]} ${p[2]} ×${p[0]}`).join(' · ')}${b.flat?` · доплата +${b.flat} ₽`:''}</div>`:''}
     <div style="color:var(--gold);font-size:22px;font-weight:800;margin:6px 0">${fmt(price(i))} ₽</div>
     <div style="display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:8px">
@@ -1222,7 +1268,8 @@ const MORE_TITLES = {
   transfers: '💸 Переводы по @username',
   news: '📰 Новости проекта',
   coupons: '🎟️ Купоны и промокоды',
-  settings: '⚙️ Настройки'
+  settings: '⚙️ Настройки',
+  admin: '👑 Админ-панель'
 };
 
 let lastMoreSub = null;
@@ -1329,6 +1376,13 @@ function renderMore(){
           </div>
         </button>
       </div>
+      ${window.__IS_ADMIN?`<div class="more-cat">👑 Администратор</div>
+      <div class="more-grid">
+        <button class="hub-btn gold-card wide" data-go="admin">
+          <div class="hub-icon" style="background:#ffd54a26">👑</div>
+          <div class="hub-info"><b style="color:var(--gold)">Админ-панель</b><small>Выдача, рассылка, статистика, вайп, купоны</small></div>
+        </button>
+      </div>`:''}
     `;
 
     hub.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>{
@@ -1361,6 +1415,7 @@ function renderMore(){
   else if(moreSub === 'news') renderNewsPage(body);
   else if(moreSub === 'coupons') renderCouponsPage(body);
   else if(moreSub === 'settings') renderSettingsPage(body);
+  else if(moreSub === 'admin' && window.__IS_ADMIN) renderAdminModal();
 }
 
 /* --- Подстраницы «Ещё» --- */
@@ -1420,7 +1475,7 @@ function renderSetsPage(container){
           <span style="font-size:11px;color:${done?'var(--ok)':'var(--gold)'};font-weight:800">${done?'✓ Сет активен':`+${fmt(s.rewC)} ₽ и +${s.rewSp} 🧠`}</span>
         </div>
         <small style="color:var(--mut);display:block;margin-top:2px">Пассивный бонус: <b style="color:#fff">${s.desc}</b></small>
-        <div class="set-nums">${s.nums.map(n=>`<span class="set-num ${(invNums.has(n)||G.col.includes(n))?'has':''}">№${n}</span>`).join('')}</div>
+        <div class="set-nums">${s.nums.map(n=>`<span class="set-num ${(invNums.has(n)||G.col.includes(n))?'has':''}">№${L(n)}</span>`).join('')}</div>
         ${!done ? `<button class="gbtn" data-set="${s.id}" ${hasAll?'':'disabled'} style="padding:8px;font-size:12px;margin-top:4px">${hasAll?'✨ Активировать сет и забрать награду!':'Собери все номера сета'}</button>` : ''}
       </div>`;
     }).join('')}
@@ -1541,7 +1596,7 @@ function renderShopPage(container){
       checkBest(it);
       G.wipedHidden = false;
       burst(innerWidth/2, innerHeight/2, RC[r], 40);
-      toast(`🎁 Из кейса выпал ${RN[r]} №${n} (${fmt(price(it))} ₽)!`);
+      toast(`🎁 Из кейса выпал ${RN[r]} №${L(n)} (${fmt(price(it))} ₽)!`);
     } else if(o.type === 'bless'){
       G.bless = (G.bless || 0) + o.count;
       toast(`👵 Получено благословение на ${G.bless} крутки!`);
@@ -1623,7 +1678,7 @@ const trAgo=ts=>{const s=Math.max(1,Math.floor((Date.now()-(ts||Date.now()))/100
 const trItems=t=>Array.isArray(t.items)?t.items:Object.values(t.items||{});
 const trPrice=it=>price({id:0,n:it.n,r:it.r,t:it.t});
 const trMarket=items=>items.reduce((a,i)=>a+trPrice(i),0);
-const trThumbs=(items,w)=>`<div class="tr-items">${items.map(it=>`<div class="tr-it" style="--c:${RC[it.r]}">${tg({id:0,n:it.n,r:it.r,t:it.t},w,false)}<b>№${it.n}</b><small>${fmt(trPrice(it))} ₽</small></div>`).join('')}</div>`;
+const trThumbs=(items,w)=>`<div class="tr-items">${items.map(it=>`<div class="tr-it" style="--c:${RC[it.r]}">${tg({id:0,n:it.n,r:it.r,t:it.t},w,false)}<b>№${L(it.n)}</b><small>${fmt(trPrice(it))} ₽</small></div>`).join('')}</div>`;
 const trIsMine=t=>t.toUname===MY_UNAME||String(t.toUid)===String(MY_UID);
 
 async function renderTradesPage(container){
@@ -1694,7 +1749,7 @@ function trNewHTML(avail){
   </div>
   <div class="scard"><div class="tr-step"><i>2</i><b>Что отдаёшь?</b></div>
     <div id="trSelInfo" style="font-size:11px;color:var(--mut);margin-bottom:6px">${sel.length?`Выбрано: <b style="color:#fff">${sel.length}</b> · рынок <b style="color:var(--gold)">${fmt(mk)} ₽</b>`:'Нажимай на номерки, чтобы выбрать (до 10 шт.). Защищённые 🔒 не показаны.'}</div>
-    ${avail.length?`<div class="tr-pick">${avail.map(i=>`<button class="tr-p ${trSelectedIds.has(i.id)?'sel':''}" data-tid="${i.id}" style="--c:${RC[i.r]}">${tg(i,38,false)}<b>№${i.n}</b><small>${fmt(price(i))} ₽</small></button>`).join('')}</div>`:'<div class="tr-empty" style="padding:10px">На складе нет свободных номерков</div>'}
+    ${avail.length?`<div class="tr-pick">${avail.map(i=>`<button class="tr-p ${trSelectedIds.has(i.id)?'sel':''}" data-tid="${i.id}" style="--c:${RC[i.r]}">${tg(i,38,false)}<b>№${L(i.n)}</b><small>${fmt(price(i))} ₽</small></button>`).join('')}</div>`:'<div class="tr-empty" style="padding:10px">На складе нет свободных номерков</div>'}
   </div>
   <div class="scard"><div class="tr-step"><i>3</i><b>На каких условиях?</b></div>
     <div class="tr-mode">
@@ -2018,14 +2073,15 @@ function renderSettingsPage(container){
       </div>
     </div>
     <div class="scard">
-      <h3>🔊 Звук, Визуал и Интерфейс</h3>
+      <h3>🎨 Фон приложения</h3><div class="seg-Group" id="bgBox">${BGS.map((b,k)=>`<button class="seg-btn ${(G.set.bg||0)===k?'on':''}" data-bg="${k}">${b[0]}</button>`).join('')}</div></div><div class="scard"><h3>🔊 Звук, Визуал и Интерфейс</h3>
       <div id="sets">
         ${[
           ['hap','📳 Тактильная отдача (вибрация)'],
           ['snd','🔊 Звуковые щелчки при крутке'],
           ['fast','⏩ Турбо-крутка (ускоренная анимация)'],
           ['compact','📐 Компактная сетка номерков на складе'],
-          ['shake','💥 Тряска экрана при выпадении Легендарки/Мифика']
+          ['shake','💥 Тряска экрана при выпадении Легендарки/Мифика'],
+          ['fx','✨ Падающие частицы на фоне (греют телефон)']
         ].map(([k,n])=>`<div class="row" style="padding:7px 10px"><div>${n}</div><button class="f ${G.set[k]?'on':''}" data-k="${k}">${G.set[k]?'Вкл':'Выкл'}</button></div>`).join('')}
       </div>
     </div>
@@ -2057,7 +2113,7 @@ function renderSettingsPage(container){
 
   $('#sets').onclick = e => {
     const b = e.target.closest('[data-k]'); if(!b) return;
-    G.set[b.dataset.k] = G.set[b.dataset.k]?0:1;
+    G.set[b.dataset.k] = G.set[b.dataset.k]?0:1;applyBg();
     save(true); renderSettingsPage(container);
   };
 
@@ -2071,6 +2127,7 @@ function renderSettingsPage(container){
       armed=0;toast(await forceSync(mode));renderSettingsPage(container);
     };
   });
+  $('#bgBox').onclick=e=>{const b=e.target.closest('[data-bg]');if(!b)return;G.set.bg=+b.dataset.bg;applyBg();save(false);renderSettingsPage(container)};
   let rc = 0;
   $('#reset').onclick = e => {
     if(!rc){
@@ -2095,14 +2152,14 @@ function openReferenceModal(){
     <h3>🎲 Таблица редкостей и базовых цен</h3>
     <table>
       <tr><th>Редкость</th><th>Шанс</th><th>🔴 Пластик</th><th>📄 Бумага</th></tr>
-      ${RN.map((x,i)=>`<tr><td><span class="dot" style="background:${RC[i]}"></span>${x}</td><td>${(w[i]/t*100).toFixed(2)}%</td><td>${fmt(BASE[0][i])} ₽</td><td>${fmt(BASE[1][i])} ₽</td></tr>`).join('')}
+      ${RN.map((x,i)=>`<tr><td><span class="dot" style="background:${RC[i]}"></span>${x}</td><td>${i<6?(w[i]/t*100).toFixed(2)+'%':(SECRET_P*100).toFixed(3)+'%'}</td><td>${fmt(BASE[0][i])} ₽</td><td>${fmt(BASE[1][i])} ₽</td></tr>`).join('')}
     </table>
-    <h3>🔥 Бонусы за красивые номера</h3>
+    <div style="font-size:11px;color:var(--mut);margin:-4px 0 8px">🔮 Секретные: №215 «Кабинет Котова», №300 «Кабинет математики» (~100 000 ₽) и «XXX» (~250 000 ₽). Выпадают только из круток (на гарантах шанс выше: ×2.5 / ×5 / ×12) — в Апгрейдере и кейсах недоступны.</div><h3>🔥 Бонусы за красивые номера</h3>
     <div style="font-size:11px;color:var(--mut);margin-bottom:6px">Бонусы складываются: 550 = 🔟 Десятичный (+0.15) и 👯 Парный (+0.3) → ×1.45. Максимум ×6.</div>
     <table>
       <tr><th>Номер / Категория</th><th>Бонус к цене</th></tr>
       <tr><td>😎 777 / 888 / 999</td><td><b style="color:var(--gold)">×2.8</b></td></tr>
-      <tr><td>🦍 300 · 😎 228 · 🔥 52</td><td><b style="color:var(--gold)">×2.3–2.4</b></td></tr>
+      <tr><td>😎 228 · 🔥 52</td><td><b style="color:var(--gold)">×2.3–2.4</b></td></tr>
       <tr><td>😎 111…666 (триплы)</td><td><b style="color:var(--gold)">×2.1</b></td></tr>
       <tr><td>👑 1–10 (Первая десятка)</td><td><b style="color:var(--gold)">×2.0</b></td></tr>
       <tr><td>🏙️ 812 · 😎 322, 312</td><td><b style="color:var(--gold)">×1.9</b></td></tr>
@@ -2140,7 +2197,7 @@ function openReferenceModal(){
 /* ===== Мини-игры + Апгрейдер ===== */
 const SY=['🍒','🍋','🔔','💎','7️⃣'],SW=[34,27,19,13,7],SPAY=[4,7,14,35,100],GN=['🚀 Ракета','⚡ Апгрейд','🎰 Слоты','🪙 Монета','💣 Мины'];
 let gt=0,gbusy=false,mn=null;
-const MN=16,MM=3,mmult=k=>{let m=.94;for(let i=0;i<k;i++)m*=(MN-i)/(MN-MM-i);return m};
+const MN=16,MMS=[1,2,3,5,8,12];let MM=3;const mmult=k=>{let m=.92;for(let i=0;i<k;i++)m*=Math.pow((MN-i)/(MN-MM-i),.78);return m};
 
 function getBet(){
   const b = Math.floor(Number($('#betInp').value||0));
@@ -2264,6 +2321,9 @@ function onRocketBtn(){
 
 function tickGlobalRocket(){
   if(!$('#s2').classList.contains('on') || gt !== 0) return;
+  const _t=performance.now();
+  if(_t-(tickGlobalRocket._l||0)<60){rkLoopId=requestAnimationFrame(tickGlobalRocket);return}
+  tickGlobalRocket._l=_t;
   const st = getGlobalRocketState();
   fetchRocketBets(st.roundId);
 
@@ -2336,7 +2396,8 @@ function tickGlobalRocket(){
   rkLoopId = requestAnimationFrame(tickGlobalRocket);
 }
 
-let upgItemId = null, upgTargetR = 1;
+let upgItemId = null, upgTargetR = 1, upgExtra = 0;
+const UPG_EXTRA = [0, .1, .25, .5];
 
 function gUpgrader(){
   cancelAnimationFrame(rkLoopId);
@@ -2358,9 +2419,12 @@ function gUpgrader(){
   const boostUpg = hasBoost('upg15') ? 12 : 0;
   const skillBonus = (G.up.u || 0) * 1.0 + getSetBonus('upg') + boostUpg;
   const dstPriceOf = r => Math.round(BASE[src.t][r] * sellMult);
-  const chanceOf = r => Math.min(80, Math.max(4, Number(((srcPrice / dstPriceOf(r)) * 82 + skillBonus).toFixed(1))));
+  const extraOf = r => Math.round(dstPriceOf(r) * UPG_EXTRA[upgExtra]);
+  const chanceOf = r => Math.min(85, Math.max(4, Number((((srcPrice + extraOf(r)) / dstPriceOf(r)) * 82 + skillBonus).toFixed(1))));
   const dstBasePrice = dstPriceOf(upgTargetR);
   const chance = chanceOf(upgTargetR);
+  const comp = Math.round(srcPrice * 0.15);
+  const totalCost = extraOf(upgTargetR);
   const fmtCh = v => String(v).replace(/\.0$/,'');
 
   $('#gm').innerHTML = `<div class="gcard">
@@ -2369,7 +2433,7 @@ function gUpgrader(){
         ${tg(src, 58, false)}
         <div class="upg-slot-info">
           <small>Твой КПК ▾</small>
-          <b style="color:${RC[src.r]}">№${src.n}</b>
+          <b style="color:${RC[src.r]}">№${L(src.n)}</b>
           <span>${fmt(srcPrice)} ₽</span>
         </div>
       </div>
@@ -2394,19 +2458,25 @@ function gUpgrader(){
           <small>ШАНС УСПЕХА</small>
         </div>
       </div>
-      ${boostUpg?`<div style="font-size:10px;color:#d8b4fe;margin-top:10px">⚡ Активен Стабилизатор (+12% к шансу)</div>`:''}
+      <div style="font-size:10.5px;color:var(--mut);margin-top:10px">🩹 При провале вернём ${fmt(comp)} ₽ (15% цены)${boostUpg ? ' · ⚡ Стабилизатор +12%' : ''}</div>
     </div>
 
     <div style="font-size:11px;color:var(--mut);margin-bottom:5px;text-align:left">Выбери целевую редкость:</div>
     <div class="upg-r-grid">
-      ${RN.map((rn,r)=>r>src.r?`<button class="upg-r-pill ${r===upgTargetR?'on':''}" data-ur="${r}" style="background:${RC[r]}${r===upgTargetR?'55':'26'};border-color:${r===upgTargetR?RC[r]:'transparent'}">${rn}<small>${fmtCh(chanceOf(r))}%</small></button>`:'').join('')}
+      ${RN.map((rn,r)=>r>src.r&&r<=5?`<button class="upg-r-pill ${r===upgTargetR?'on':''}" data-ur="${r}" style="background:${RC[r]}${r===upgTargetR?'55':'26'};border-color:${r===upgTargetR?RC[r]:'transparent'}">${rn}<small>${fmtCh(chanceOf(r))}%</small></button>`:'').join('')}
+    </div>
+
+    <div style="font-size:11px;color:var(--mut);margin-bottom:5px;text-align:left">💰 Доплата ₽ — повышает шанс:</div>
+    <div class="upg-r-grid">
+      ${UPG_EXTRA.map((k,idx)=>`<button class="upg-r-pill ${idx===upgExtra?'on':''}" data-ux="${idx}" style="flex:1 1 20%;background:${idx===upgExtra?'#ffd54a33':'#161622'};border-color:${idx===upgExtra?'#ffd54a':'transparent'}">${k?'+'+Math.round(k*100)+'%':'Без'}<small>${k?fmt(Math.round(dstBasePrice*k))+' ₽':'доплаты'}</small></button>`).join('')}
     </div>
 
     <div class="gres" id="gres" style="margin:6px 0">Зелёная зона под стрелкой ▼ — успешный апгрейд!</div>
-    <button class="gbtn" id="upgGo">⚡ Прокачать номерок (${fmtCh(chance)}%)</button>
+    <button class="gbtn" id="upgGo">⚡ Прокачать номерок (${fmtCh(chance)}%)${totalCost?` · −${fmt(totalCost)} ₽`:''}</button>
   </div>`;
 
-  $$('.upg-r-pill').forEach(b=>b.onclick=()=>{if(!gbusy){upgTargetR=+b.dataset.ur;gUpgrader()}});
+  $$('.upg-r-pill[data-ur]').forEach(b=>b.onclick=()=>{if(!gbusy){upgTargetR=+b.dataset.ur;gUpgrader()}});
+  $$('.upg-r-pill[data-ux]').forEach(b=>b.onclick=()=>{if(!gbusy){upgExtra=+b.dataset.ux;gUpgrader()}});
 
   $('#upgPickItem').onclick=()=>{
     if(gbusy) return;
@@ -2418,7 +2488,7 @@ function gUpgrader(){
       <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;max-height:60vh;overflow-y:auto;padding:6px">
         ${avail.map(i=>`<div class="cell" data-uid="${i.id}" style="--c:${RC[i.r]};${i.id===src.id?'box-shadow:0 0 0 2px #ff3355;':''}">
           ${tg(i, 46, false)}
-          <div class="cn">№${i.n}</div><div class="cp">${fmt(price(i))} ₽</div>
+          <div class="cn">№${L(i.n)}</div><div class="cp">${fmt(price(i))} ₽</div>
         </div>`).join('')}
       </div>
     </div>`;
@@ -2432,8 +2502,11 @@ function gUpgrader(){
 
   $('#upgGo').onclick = async () => {
     if(gbusy) return;
+    if(G.c < totalCost) return toast('Не хватает ₽ на доплату');
     gbusy = true;
     $('#upgGo').disabled = true;
+    G.c -= totalCost; G.spent += totalCost;
+    hud();
     hap('medium');
 
     const win = (Math.random() * 100) < chance;
@@ -2467,10 +2540,11 @@ function gUpgrader(){
       upgItemId = newIt.id;
       burst(innerWidth/2, innerHeight/2, RC[upgTargetR], 45);
       hap('heavy');
-      toast(`⚡ АПГРЕЙД УСПЕШЕН! Выпал ${RN[upgTargetR]} №${newNum}!`);
+      toast(`⚡ АПГРЕЙД УСПЕШЕН! Выпал ${RN[upgTargetR]} №${L(newNum)}!`);
     } else {
       hap('light');
-      toast('💥 Стрелка мимо зелёной зоны — номерок сгорел…');
+      G.c += comp; G.wipedHidden = false;
+      toast(`💥 Номерок сгорел… компенсация +${fmt(comp)} ₽`);
     }
     await sleep(1100);
     gbusy = false;
@@ -2489,7 +2563,7 @@ async function playCoin(ch){if(gbusy)return;const b=getBet();if(!b)return;gbusy=
 try{await c.animate([{transform:'translateY(0) rotateY(0)'},{transform:'translateY(-60px) rotateY(900deg)',offset:.5},{transform:'translateY(0) rotateY(1800deg)'}],{duration:1200/(G.set.fast?1.6:1),easing:'ease-in-out'}).finished}catch(e){await sleep(800)}
 c.textContent=face?'👑':'🦅';fin(b,win?b*2:0,win?'Угадал!':'Не угадал…')}
 
-function gMines(){cancelAnimationFrame(rkLoopId);mn=null;$('#gm').innerHTML=`<div class="gcard"><div class="mg" id="mg">${Array.from({length:MN},(_,i)=>`<button class="mt" data-i="${i}"></button>`).join('')}</div><div class="gres" id="gres">3 мины из 16. Открывай алмазы и забирай вовремя</div><button class="gbtn" id="gplay">💣 Начать</button></div>`;$('#gplay').onclick=minesBtn;$('#mg').onclick=minesTap}
+function gMines(){cancelAnimationFrame(rkLoopId);mn=null;$('#gm').innerHTML=`<div class="gcard"><div style="font-size:11px;color:var(--mut);margin-bottom:5px">Количество мин — чем больше, тем выше иксы:</div><div class="chips" id="mmSel" style="justify-content:center;margin-bottom:8px">${MMS.map(m=>`<button class="f ${m===MM?'on':''}" data-mm="${m}">💣 ${m}</button>`).join('')}</div><div class="mg" id="mg">${Array.from({length:MN},(_,i)=>`<button class="mt" data-i="${i}"></button>`).join('')}</div><div class="gres" id="gres">Мин: ${MM} из 16 · первый алмаз ×${mmult(1).toFixed(2)}, максимум ×${mmult(MN-MM).toFixed(1)}</div><button class="gbtn" id="gplay">💣 Начать</button></div>`;$('#gplay').onclick=minesBtn;$('#mg').onclick=minesTap;$('#mmSel').onclick=e=>{const b=e.target.closest('[data-mm]');if(!b)return;if(gbusy||(mn&&mn.on))return toast('Сначала закончи игру');MM=+b.dataset.mm;gMines()}}
 function mUpd(){const k=mn.open.size,m=mmult(k),nx=mmult(k+1);$('#gplay').textContent=k?`💸 Забрать ${fmt(Math.floor(mn.b*m))} ₽ (×${m.toFixed(2)})`:'Открой клетку';$('#gres').className='gres';$('#gres').textContent=`Следующий алмаз: ×${nx.toFixed(2)}`}
 function mReveal(hit){$$('#mg .mt').forEach(t=>{const i=+t.dataset.i;if(mn.mines.has(i)){t.textContent='💣';t.className='mt bm'+(i==hit?'':' ghost')}})}
 function minesBtn(){if(mn&&mn.on){if(!mn.open.size)return toast('Открой хотя бы одну клетку');mCash();return}
@@ -2607,6 +2681,9 @@ function applyCommand(cmd){
   if(cmd.addCoins)G.c=Math.max(0,G.c+Number(cmd.addCoins));
   if(cmd.setCoins!==undefined){G.c=Math.max(0,Number(cmd.setCoins));G.wipedHidden=(G.c===0&&G.items.length===0)}
   if(cmd.addLv){G.lv=Math.max(1,G.lv+Number(cmd.addLv));G.sp+=Number(cmd.addLv)}
+  if(cmd.addSp)G.sp+=Number(cmd.addSp);
+  if(cmd.addBless)G.bless=(G.bless||0)+Number(cmd.addBless);
+  if(cmd.giveBoost)Object.keys(BOOST_Meta).forEach(k=>addBoostTime(k,Number(cmd.giveBoost)));
   if(cmd.giveNum){
     const num=Math.min(MAX_NUM,Math.max(1,Number(cmd.giveNum)));
     const it={id:G.nid++,n:num,r:RAR[num]||0,t:cmd.giveType||0};
@@ -2662,7 +2739,7 @@ function adoptCloud(cloud,asLegacy){
   const s=$('.s.on').id;
   if(s==='s1')store();
   else if(s==='s0')refit();
-  else if(s==='s4'&&!['trades','transfers','coupons'].includes(moreSub))renderMore();
+  else if(s==='s4'&&!['trades','transfers','coupons','admin'].includes(moreSub))renderMore();
   toast('☁️ Данные обновлены с другого устройства');
   return true;
 }
@@ -2790,7 +2867,7 @@ $$('#s3 .sub button').forEach(b=>b.onclick=()=>{ttab=+b.dataset.t;$$('#s3 .sub b
 async function board(){
   if(ttab === 2){
     const l=[...G.items].sort((a,b)=>price(b)-price(a)).slice(0,15);
-    $('#top0').innerHTML=l.length?l.map((i,k)=>`<div class="row"><b class="n">${k+1}</b>${tg(i,38,false)}<div><b style="color:${RC[i.r]}">${RN[i.r]} №${i.n}</b><small>${TN[i.t]}</small></div><b style="color:var(--gold)">${fmt(price(i))} ₽</b></div>`).join(''):'<p style="color:var(--mut)">Склад пуст — покрути номерки!</p>';
+    $('#top0').innerHTML=l.length?l.map((i,k)=>`<div class="row"><b class="n">${k+1}</b>${tg(i,38,false)}<div><b style="color:${RC[i.r]}">${RN[i.r]} №${L(i.n)}</b><small>${TN[i.t]}</small></div><b style="color:var(--gold)">${fmt(price(i))} ₽</b></div>`).join(''):'<p style="color:var(--mut)">Склад пуст — покрути номерки!</p>';
     return;
   }
   await syncCloud();
@@ -2815,7 +2892,7 @@ async function board(){
       return {...x, bestPrice: bp};
     }).sort((a,b)=>b.bestPrice - a.bestPrice || (b.best.r - a.best.r));
 
-    const row=(x,i)=>`<div class="row leader-row ${x.me?'me':''}"><b class="n">${['🥇','🥈','🥉'][i]||i+1}</b>${tg(x.best,34,false)}<div><span class="nick">${x.n}</span><small style="color:${RC[x.best.r||0]}">${RN[x.best.r||0]} №${x.best.n}</small></div><b style="color:var(--gold);font-size:13px">${fmt(x.bestPrice)} ₽</b></div>`;
+    const row=(x,i)=>`<div class="row leader-row ${x.me?'me':''}"><b class="n">${['🥇','🥈','🥉'][i]||i+1}</b>${tg(x.best,34,false)}<div><span class="nick">${x.n}</span><small style="color:${RC[x.best.r||0]}">${RN[x.best.r||0]} №${L(x.best.n)}</small></div><b style="color:var(--gold);font-size:13px">${fmt(x.bestPrice)} ₽</b></div>`;
     $('#top0').innerHTML=`<p style="color:var(--mut);font-size:11px;margin:0 0 4px">Рейтинг самых дорогих выбитых номерков среди игроков.</p>`+admHint+(withBest.length?withBest.slice(0,15).map(row).join(''):'<p style="color:var(--mut)">Пока никто не выбил номерки</p>');
   }
 }
@@ -2878,7 +2955,7 @@ async function redeemCoupon(raw){
       const num = Math.min(MAX_NUM, Math.max(1, Number(cp.val||777)));
       const it = {id:G.nid++, n:num, r:RAR[num]||0, t:Number(cp.extra)||0};
       G.items.push(it); if(!G.col.includes(num)) G.col.push(num); checkBest(it);
-      toast(`🎟️ Купон активирован: получен №${num} (${RN[it.r]})!`);
+      toast(`🎟️ Купон активирован: получен №${L(num)} (${RN[it.r]})!`);
     } else if(cp.kind === 'L'){
       const lvAdd = Number(cp.val||1);
       G.lv += lvAdd; G.sp += lvAdd;
@@ -2905,28 +2982,18 @@ async function admWrite(p,method,obj){
   if(!r.ok){const e=new Error('🔑 Firebase отклонил операцию ('+r.status+') — проверь ключ админа');e.adm=1;throw e}
   return r;
 }
-addEventListener('unhandledrejection',ev=>{if(ev.reason&&ev.reason.adm){ev.preventDefault();toast(ev.reason.message);if(window.__IS_ADMIN&&$('#md').classList.contains('on'))renderAdminModal()}});
+addEventListener('unhandledrejection',ev=>{if(ev.reason&&ev.reason.adm){ev.preventDefault();toast(ev.reason.message);if(window.__IS_ADMIN&&moreSub==='admin')renderAdminModal()}});
 let admTab = 0, admSearch = '';
-$('#admBtn').onclick = () => { if(window.__IS_ADMIN) renderAdminModal(); };
 
 async function renderAdminModal(){
+  if(!window.__IS_ADMIN||moreSub!=='admin')return;
   await loadLeaderboard();
   await fetchNews();
-  $('#md').innerHTML = `<div class="adm-box">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-      <h3 style="margin:0">👑 Админ-панель (@${MY_UNAME})</h3>
-      <button class="f" onclick="document.getElementById('md').classList.remove('on')">✕</button>
-    </div>
-    <div class="adm-tabs">
-      <button class="${admTab===0?'on':''}" data-at="0">⚡ Себе</button>
-      <button class="${admTab===1?'on':''}" data-at="1">🎁 Выдача</button>
-      <button class="${admTab===2?'on':''}" data-at="2">☢️ Вайп/База</button>
-      <button class="${admTab===3?'on':''}" data-at="3">🎟️ Купоны</button>
-      <button class="${admTab===4?'on':''}" data-at="4">📰 Новости</button>
-    </div>
+  if(moreSub!=='admin')return;
+  $('#morePageBody').innerHTML = `<div class="adm-box adm-page">
+    <div class="adm-tabs">${[[0,'⚡ Себе'],[1,'🎁 Выдача'],[5,'📣 Рассылка'],[6,'📊 Статистика'],[2,'☢️ Вайп/База'],[3,'🎟️ Купоны'],[4,'📰 Новости']].map(([k,n])=>`<button class="${admTab===k?'on':''}" data-at="${k}">${n}</button>`).join('')}</div>
     <div id="admBody"></div>
   </div>`;
-  $('#md').classList.add('on');
 
   $$('.adm-tabs button').forEach(b=>b.onclick=()=>{admTab=+b.dataset.at;renderAdminModal()});
   const body = $('#admBody');
@@ -2951,6 +3018,25 @@ async function renderAdminModal(){
         <button class="f" id="admLvUp">+5 Ур. и 🧠</button>
         <button class="f" id="admBless">👵 +5 Удачи</button>
         <button class="f" id="admUnlockAll">📖 Вся коллекция</button>
+      </div>
+      <div class="adm-row">
+        <button class="f" id="admSp">🧠 +50 очков</button>
+        <button class="f" id="admGiftReset">🎁 Сброс таймера</button>
+        <button class="f" id="admMaxSkills">🔝 Макс. навыки</button>
+      </div>
+      <div class="adm-row">
+        <button class="f" id="admBoostAll">⚡ Все бусты 30 мин</button>
+        <button class="f" id="admSecrets">🔮 Выдать секретки</button>
+      </div>
+      <div class="adm-row">
+        <select class="adm-inp" id="admRandR" style="flex:.9">${RN.map((n,i)=>`<option value="${i}">${n}</option>`).join('')}</select>
+        <input class="adm-inp" id="admRandN" type="number" value="10" style="flex:.5">
+        <button class="f on" id="admRand">🎲 Случайные</button>
+      </div>
+      <div class="adm-row">
+        <input class="adm-inp" id="admLvSet" type="number" placeholder="Уровень" style="flex:.6">
+        <button class="f" id="admLvSetBtn">⬆️ Задать ур.</button>
+        <button class="f" id="admClearItems" style="color:var(--bad)">📦 Очистить склад</button>
       </div>`;
     $('#admAddC').onclick=()=>{G.c+=Number($('#admCoins').value||0);G.wipedHidden=false;save(true);hud();toast('✅ Баланс пополнен')};
     $('#admSetC').onclick=()=>{G.c=Math.max(0,Number($('#admCoins').value||0));G.wipedHidden=(G.c===0&&!G.items.length);save(true);hud();toast('✅ Баланс установлен')};
@@ -2958,12 +3044,28 @@ async function renderAdminModal(){
       const n=Math.min(MAX_NUM,Math.max(1,Number($('#admNum').value||777))), t=Number($('#admType').value||0);
       const it={id:G.nid++,n,r:RAR[n]??5,t};
       G.items.push(it); if(!G.col.includes(n))G.col.push(n); checkBest(it);
-      G.wipedHidden=false; save(true);hud();toast(`✅ Выдан №${n} (${RN[RAR[n]]})`);
+      G.wipedHidden=false; save(true);hud();toast(`✅ Выдан №${L(n)} (${RN[RAR[n]]})`);
     };
     $('#admLvUp').onclick=()=>{G.lv+=5;G.sp+=5;save(true);hud();toast('✅ +5 уровней и 🧠')};
     $('#admBless').onclick=()=>{G.bless=(G.bless||0)+5;save(true);hud();toast('✅ +5 зарядов удачи')};
     $('#admKeySave').onclick=()=>{const v=$('#admKeyInp').value.trim();if(!v)return toast('Вставь ключ');try{localStorage.setItem(ADM_KEY_LS,v)}catch(e){};toast('🔑 Ключ админа сохранён');renderAdminModal()};
     $('#admUnlockAll').onclick=()=>{G.col=Array.from({length:MAX_NUM},(_,i)=>i+1);save(true);toast('✅ Вся коллекция открыта')};
+    const give=n=>{const it={id:G.nid++,n,r:RAR[n]??0,t:0};G.items.push(it);if(!G.col.includes(n))G.col.push(n);checkBest(it)};
+    $('#admSp').onclick=()=>{G.sp+=50;save(true);hud();toast('✅ +50 🧠')};
+    $('#admGiftReset').onclick=()=>{G.gift=0;save(true);hud();toast('✅ Таймер подарка сброшен')};
+    $('#admMaxSkills').onclick=()=>{UP.forEach(u=>{G.up[u.k]=u.m});save(true);hud();toast('✅ Все навыки на максимуме')};
+    $('#admBoostAll').onclick=()=>{Object.keys(BOOST_Meta).forEach(k=>addBoostTime(k,30));save(true);hud();toast('✅ Все бусты на 30 минут')};
+    $('#admSecrets').onclick=()=>{SECRET.forEach(give);G.wipedHidden=false;save(true);hud();toast('🔮 Выданы все секретки')};
+    $('#admRand').onclick=()=>{
+      const r=+$('#admRandR').value,k=Math.min(200,Math.max(1,Number($('#admRandN').value||1)));
+      for(let i=0;i<k;i++)give(P[r][Math.random()*P[r].length|0]);
+      G.wipedHidden=false;save(true);hud();toast(`✅ Выдано ${k} шт. (${RN[r]})`);
+    };
+    $('#admLvSetBtn').onclick=()=>{const v=Math.max(1,Math.floor(Number($('#admLvSet').value||0)));if(!v)return toast('Укажи уровень');G.lv=v;G.xp=0;save(true);hud();toast(`✅ Уровень ${v}`)};
+    $('#admClearItems').onclick=e=>{
+      if(!e.target._c){e.target._c=1;e.target.textContent='Точно? Ещё раз';return}
+      G.items=[];save(true);hud();toast('📦 Склад очищен');renderAdminModal();
+    };
 
   } else if(admTab === 1){
     body.innerHTML = `
@@ -2981,20 +3083,90 @@ async function renderAdminModal(){
           <option value="setCoins">💰 Установить баланс (=₽)</option>
           <option value="giveNum">🎫 Выдать номерок (№1-999)</option>
           <option value="addLv">⬆️ Прибавить уровни (+Ур)</option>
+          <option value="addSp">🧠 Прибавить очки навыков</option>
+          <option value="addBless">👵 Прибавить заряды удачи</option>
+          <option value="giveBoost">⚡ Выдать все бусты (значение = минуты)</option>
+          <option value="giveSecret">🔮 Секретка (1 = Кабинет Котова, 2 = Кабинет математики, 3 = XXX)</option>
         </select>
         <input class="adm-inp" id="tVal" type="number" placeholder="Значение" value="25000" style="flex:0.7">
       </div>
-      <button class="gbtn" id="tSend" style="padding:10px;font-size:13px">🚀 Выдать игроку</button>`;
+      <button class="gbtn" id="tSend" style="padding:10px;font-size:13px">🚀 Выдать игроку</button>
+      <button class="f" id="tSendAll" style="width:100%;margin-top:8px;padding:10px;border-color:#ffd54a66;color:var(--gold)">📣 Выдать ВСЕМ игрокам в топе</button>`;
 
     $('#tQuickPick').onchange = e => { if(e.target.value) $('#tUname').value = '@' + e.target.value; };
+    const mkPayload = () => {
+      const act = $('#tAct').value, val = Number($('#tVal').value||0);
+      return act === 'giveSecret' ? {giveNum:[215,300,1000][val-1]||1000} : {[act]: val};
+    };
     $('#tSend').onclick = async () => {
       const rawU = $('#tUname').value.replace(/^@/,'').trim().toLowerCase();
       if(!rawU) return toast('Введи @username или выбери игрока из списка');
-      const act = $('#tAct').value, val = Number($('#tVal').value||0);
       const found = cloudPlayers.find(p=>(p.uname && p.uname.toLowerCase() === rawU) || (cleanNick(p.n).toLowerCase() === rawU) || (String(p.uid) === rawU));
-      const okSend = await sendCommand([rawU, found && found.uid], {[act]: val});
-      if(!okSend) return toast('❌ Не удалось отправить выдачу');
-      toast(`✅ Выдача отправлена для @${rawU}!`);
+      const okSend = await sendCommand([rawU, found && found.uid], mkPayload());
+      toast(okSend ? `✅ Выдача отправлена для @${rawU}!` : '❌ Не удалось отправить выдачу');
+    };
+    $('#tSendAll').onclick = async e => {
+      if(!cloudPlayers.length) return toast('В топе пока нет игроков');
+      if(!e.target._c){e.target._c=1;e.target.textContent=`⚠️ Выдать ${cloudPlayers.length} игрокам? Нажми ещё раз`;return}
+      e.target.disabled = true;
+      const pl = mkPayload();
+      let n = 0;
+      for(const p of cloudPlayers){ if(await sendCommand([p.uname, p.uid], pl)) n++; }
+      toast(`✅ Выдача отправлена ${n} игрокам`);
+      renderAdminModal();
+    };
+
+  } else if(admTab === 5){
+    body.innerHTML = `
+      <h3>📣 Сообщение всем игрокам</h3>
+      <div style="font-size:11px;color:var(--mut);margin-bottom:6px">Игроки увидят всплывающее уведомление при следующей синхронизации (до ~10 сек, если приложение открыто, или при входе).</div>
+      <div class="adm-row"><textarea class="adm-inp" id="bcText" rows="3" maxlength="120" placeholder="Текст уведомления (до 120 символов)…"></textarea></div>
+      <button class="gbtn" id="bcSend" style="padding:10px;font-size:13px">📣 Отправить всем (${cloudPlayers.length})</button>`;
+    $('#bcSend').onclick = async e => {
+      const text = $('#bcText').value.trim();
+      if(!text) return toast('Введи текст сообщения');
+      if(!cloudPlayers.length) return toast('В топе пока нет игроков');
+      e.target.disabled = true; e.target.textContent = '⏳ Отправляю…';
+      let n = 0;
+      for(const p of cloudPlayers){ if(await sendCommand([p.uname, p.uid], {note:text})) n++; }
+      toast(`✅ Сообщение отправлено ${n} игрокам`);
+      renderAdminModal();
+    };
+
+  } else if(admTab === 6){
+    await fetchTrades();
+    if(moreSub !== 'admin') return;
+    const pl = cloudPlayers, sum = f => pl.reduce((a,p)=>a+(Number(p[f])||0),0);
+    const top = [...pl].sort((a,b)=>b.r-a.r).slice(0,5);
+    body.innerHTML = `
+      <div class="prof-stats">
+        <div class="pstat"><small>Игроков в топе</small><b>${pl.length}</b></div>
+        <div class="pstat"><small>Открытых трейдов</small><b>${allTrades.length}</b></div>
+        <div class="pstat"><small>Всего ₽ на балансах</small><b style="color:var(--gold)">${fmt(sum('c'))} ₽</b></div>
+        <div class="pstat"><small>Общее состояние</small><b style="color:var(--ok)">${fmt(sum('r'))} ₽</b></div>
+        <div class="pstat"><small>Всего круток</small><b>${fmt(sum('rolls'))}</b></div>
+        <div class="pstat"><small>Средний уровень</small><b>${pl.length?(sum('lv')/pl.length).toFixed(1):'—'}</b></div>
+      </div>
+      <h3>🏆 Топ-5 по состоянию</h3>
+      ${top.map((p,i)=>`<div class="row" style="padding:7px 9px;margin-bottom:5px"><b class="n">${i+1}</b><div><b>${esc(cleanNick(p.n))}</b> <small style="display:inline;color:var(--gold)">@${esc(p.uname||'без_ника')}</small><small>Ур. ${p.lv||1} · ${fmt(p.r)} ₽</small></div></div>`).join('') || '<div style="color:var(--mut);font-size:12px">Пока пусто</div>'}
+      <div class="adm-row" style="margin-top:8px">
+        <button class="f" id="admStRefresh">🔄 Обновить</button>
+        <button class="f" id="admTrReturn" style="color:var(--gold);border-color:#ffd54a44">↩️ Вернуть и закрыть все трейды</button>
+      </div>`;
+    $('#admStRefresh').onclick = () => renderAdminModal();
+    $('#admTrReturn').onclick = async e => {
+      if(!allTrades.length) return toast('Открытых трейдов нет');
+      if(!e.target._c){e.target._c=1;e.target.textContent=`⚠️ Вернуть ${allTrades.length} трейдов? Ещё раз`;return}
+      e.target.disabled = true;
+      let n = 0;
+      for(const t of [...allTrades]){
+        await admWrite('trades/'+encodeURIComponent(t.id),'DELETE');
+        await sendCommand([t.fromUid, t.fromUname], {returnItems:trItems(t), note:'Админ закрыл твой трейд — номерки вернулись на склад'});
+        n++;
+      }
+      allTrades = [];
+      toast(`↩️ Закрыто и возвращено трейдов: ${n}`);
+      renderAdminModal();
     };
 
   } else if(admTab === 2){
@@ -3228,6 +3400,7 @@ $('#gb').onclick=e=>{
 
 let lastShopSlot = Math.floor(Date.now() / 900000);
 setInterval(()=>{
+  if(document.hidden)return;
   const now = Date.now();
   const left=G.gift-now,b=$('#gb'),r=ready();
   b.classList.toggle('rdy',r);
@@ -3243,16 +3416,16 @@ setInterval(()=>{
     lastShopSlot = curSlot;
     if($('#s4').classList.contains('on') && moreSub === 'shop') renderShopPage($('#morePageBody'));
   }
-}, 500);
+}, 1000);
 
-setInterval(()=>{if(document.visibilityState==='visible')syncCloud()}, 6000);
-setInterval(()=>{if(document.visibilityState==='visible')fetchTrades()}, 12000);
-document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')save(true);else syncCloud()});
+setInterval(()=>{if(document.visibilityState==='visible')syncCloud()}, 10000);
+setInterval(()=>{if(document.visibilityState==='visible')fetchTrades()}, 20000);
+document.addEventListener('visibilitychange',()=>{document.body.classList.toggle('hid',document.visibilityState==='hidden');if(document.visibilityState==='hidden')save(true);else syncCloud()});
 addEventListener('focus',()=>syncCloud());
 addEventListener('online',()=>syncCloud());
 if(TG&&TG.onEvent)try{TG.onEvent('activated',()=>syncCloud())}catch(e){}
 
-idle();hud();initCloudRecovery();
+applyBg();idle();hud();initCloudRecovery();
 setTimeout(()=>{if(!busy&&!pend.length)idle()},250);
 })();
 </script></body></html>
