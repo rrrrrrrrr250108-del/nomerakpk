@@ -262,6 +262,59 @@ body.hid *,body.hid *::before,body.hid *::after{animation-play-state:paused!impo
 .rev.r6::before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,#00e5ff,#fff,#7c4dff,#00e5ff,#fff) 0 0/300% 100%;mix-blend-mode:overlay;opacity:.55;animation:holo 2.4s linear infinite;z-index:3;pointer-events:none}
 .adm-page{max-height:none;overflow:visible;border:0;background:none;box-shadow:none;padding:0;max-width:none}
 .adm-page .adm-tabs button{flex:none;padding:7px 10px}
+.cs-win{position:relative;height:104px;overflow:hidden;border-radius:16px;background:#0b0b12;border:1px solid #ffffff1a;margin-bottom:8px}
+.cs-win::after{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;background:var(--gold);transform:translateX(-1px);z-index:3;box-shadow:0 0 8px var(--gold)}
+.cs-strip{display:flex;height:100%;will-change:transform}
+.cs-it{flex:none;width:80px;display:flex;align-items:center;justify-content:center;border-bottom:3px solid var(--c);background:linear-gradient(180deg,transparent,color-mix(in srgb,var(--c) 22%,transparent))}
+.jk-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:8px}
+.jk-grid .cell svg{margin:0 auto}
+
+/* ===== v2 дизайн ===== */
+nav{background:#12121ad9;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:26px;padding:5px;box-shadow:0 10px 34px #000b,inset 0 1px 0 #ffffff14;border:1px solid #ffffff1a}
+nav button{font-size:10px;border-radius:20px;padding:6px 0}
+nav button b{font-size:18px}
+nav button.on{background:linear-gradient(165deg,#ffffff2a,#ffffff0a);color:#fff;box-shadow:inset 0 0 0 1px #ffffff26,0 0 16px #3fe06b22}
+nav button.on b{filter:drop-shadow(0 0 6px #3fe06b99)}
+.chip{background:linear-gradient(165deg,#ffffff16,#ffffff08);border:1px solid #ffffff1a;box-shadow:0 2px 8px #0005}
+#bt{background:linear-gradient(90deg,#fff,#ffe9a8);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.ty,.gr,#head,#lady,#bar,.row,.scard,.set-card,.tr-card,.shop-item,.news-card,.bet-panel,.gcard,.st-head{background:linear-gradient(165deg,#ffffff10,#ffffff05);border:1px solid #ffffff16;box-shadow:0 4px 16px #0004}
+.ty{border-radius:16px;padding:7px 6px}
+.ty.on{background:linear-gradient(165deg,#3a1220,#1d0b14);border-color:#ff3355;box-shadow:0 6px 20px #ff174440}
+.gr.on{background:linear-gradient(165deg,#ffffff1f,#ffffff0a)}
+#go{border-radius:18px;padding:14px 8px;font-size:17px;background:linear-gradient(135deg,#ff4d6d,#d4001a);box-shadow:0 8px 26px #ff174466,inset 0 1px 0 #ffffff44}
+.gbtn{border-radius:16px;background:linear-gradient(135deg,#ff4d6d,#d4001a);box-shadow:0 6px 18px #ff174444,inset 0 1px 0 #ffffff33}
+.f,.sub button{border-radius:14px;background:linear-gradient(165deg,#ffffff14,#ffffff08);border:1.5px solid #ffffff14}
+.f.on,.sub button.on{border-color:#ffffffcc;background:#ffffff22}
+.cell{border-radius:18px;box-shadow:0 6px 16px #0006,inset 0 1px 0 #ffffff14}
+.hub-btn{border-radius:18px;background:linear-gradient(165deg,#ffffff12,#ffffff05);box-shadow:0 4px 14px #0004}
+.hub-icon{border-radius:14px;background:linear-gradient(165deg,#ffffff1a,#ffffff08)}
+.more-cat{color:#c9c9dc;letter-spacing:.08em}
+.st-seg{background:#ffffff0c;border:1px solid #ffffff10;border-radius:15px}
+.st-seg button{border-radius:12px}
+.st-seg button.on{background:linear-gradient(165deg,#ffffff2a,#ffffff10)}
+.st-val,.prof-title{text-shadow:0 0 14px #ffd54a55}
+/* кейсы */
+.cs-hero{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px;padding:12px 14px;border-radius:18px;background:linear-gradient(135deg,#2e230a,#15121c);border:1px solid #ffd54a44;box-shadow:0 6px 20px #0005}
+.cs-hero b{display:block;font-size:15px;color:var(--gold)}
+.cs-hero small{display:block;font-size:10.5px;color:var(--mut);margin-top:3px;line-height:1.3}
+.cs-hero .f{flex:none}
+.cs-stage{padding:10px;text-align:center;min-height:64px}
+.cs-intro{color:var(--mut);font-size:12px;padding:14px 4px;line-height:1.5}
+.case-card{--c:#fff;display:grid;grid-template-columns:76px minmax(0,1fr);gap:10px 12px;align-items:center;padding:12px;margin-bottom:10px;border-radius:20px;background:linear-gradient(150deg,color-mix(in srgb,var(--c) 18%,#16161e),#0e0e15 72%);border:1.5px solid color-mix(in srgb,var(--c) 55%,transparent);box-shadow:0 8px 22px color-mix(in srgb,var(--c) 16%,transparent)}
+.case-ico{width:76px;height:76px;border-radius:20px;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 42%,color-mix(in srgb,var(--c) 38%,transparent),#0a0a10 78%);border:1px solid color-mix(in srgb,var(--c) 45%,transparent)}
+.case-name{font-weight:800;font-size:15px}
+.case-desc{font-size:11px;color:var(--mut);margin:2px 0 6px;line-height:1.3}
+.cs-chips{display:flex;gap:4px;flex-wrap:wrap}
+.cs-chip{font-size:9.5px;font-weight:800;padding:2px 6px;border-radius:7px;color:var(--c);background:#0007;border:1px solid color-mix(in srgb,var(--c) 45%,transparent)}
+.case-open{grid-column:1/-1;font:800 14px Rubik,sans-serif;color:#fff;background:linear-gradient(135deg,var(--c),color-mix(in srgb,var(--c) 50%,#000));border:0;border-radius:15px;padding:12px;cursor:pointer;display:flex;justify-content:center;align-items:center;gap:8px;box-shadow:0 5px 16px color-mix(in srgb,var(--c) 38%,transparent),inset 0 1px 0 #ffffff44;text-shadow:0 1px 2px #0008}
+.case-open small{background:#0006;border-radius:9px;padding:2px 9px;font-size:12.5px;color:var(--gold);text-shadow:none}
+.case-open:active{transform:scale(.98)}
+.case-open:disabled{filter:grayscale(1) brightness(.5);pointer-events:none}
+/* гардероб курток */
+.jk-tools{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px}
+.jk-act{white-space:normal;text-align:left;padding:9px 10px;line-height:1.25}
+.jk-act b{display:block;font-size:12px}
+.jk-act small{display:block;color:var(--mut);font-size:10px;font-weight:500;margin-top:3px;line-height:1.3}
 </style></head><body>
 <div id="bgfx"></div>
 <div id="aura"></div>
@@ -307,6 +360,8 @@ body.hid *,body.hid *::before,body.hid *::after{animation-play-state:paused!impo
 
   <!-- 2. СКЛАД -->
   <section class="s" id="s1">
+    <div class="st-seg" id="stMode" style="grid-template-columns:repeat(2,minmax(0,1fr))"></div>
+    <div id="jkWard" style="display:none"></div>
     <div id="stHead" class="st-head"></div>
     <div class="st-seg" id="ct"></div>
     <div class="st-rar" id="cr"></div>
@@ -342,6 +397,9 @@ body.hid *,body.hid *::before,body.hid *::after{animation-play-state:paused!impo
     <div id="gm"></div>
   </section>
 
+  <!-- КЕЙСЫ -->
+  <section class="s" id="s5"><div id="casesBody"></div></section>
+
   <!-- 4. ТОП -->
   <section class="s" id="s3">
     <div class="sub">
@@ -370,6 +428,7 @@ body.hid *,body.hid *::before,body.hid *::after{animation-play-state:paused!impo
   <button data-s="0" class="on"><b>▶️</b>Играть</button>
   <button data-s="1" id="navStore"><b>📦</b>Склад</button>
   <button data-s="2"><b>🎰</b>Игры</button>
+  <button data-s="5" id="navCases"><b>🧥</b>Кейсы</button>
   <button data-s="3"><b>🏆</b>Топ</button>
   <button data-s="4" id="navMore"><b>⚙️</b>Ещё</button>
 </nav>
@@ -421,6 +480,7 @@ const MAX_NUM = 1000;
 /* Секретные номерки: 215, 300 и XXX (внутренний номер 1000). Только из круток, шанс ~1/3500 */
 const SECRET=[215,300,1000],SECRET_NAME={215:'Кабинет Котова',300:'Кабинет математики',1000:'XXX'},SECM={1000:2.5},SECRET_P=1/3500;
 const L=n=>n===1000?'XXX':n;
+const TWO_MULT=2.2;
 const RN=['Обычный','Необычный','Редкий','Эпический','Легендарный','Мифический','Секретный'];
 const RC=['#8b93a1','#3fbf5f','#2f8dff','#a855f7','#ffa51f','#ff1744','#00e5ff'];
 const W0=[6600,2200,820,260,95,25];
@@ -440,10 +500,12 @@ const FIX=[
 const RAR=Array(MAX_NUM+1).fill(-1),P=[[],[],[],[],[],[],[]];
 FIX.forEach((a,i)=>a.forEach(n=>{if(n<=MAX_NUM)RAR[n]=5-i}));
 {
-  let rest=[],sd=1337;const rnd=()=>(sd=sd*16807%2147483647)/2147483647;
-  for(let n=1;n<=999;n++)if(RAR[n]<0)rest.push(n);
-  for(let i=rest.length-1;i>0;i--){const j=Math.floor(rnd()*(i+1));[rest[i],rest[j]]=[rest[j],rest[i]]}
+  let rest=[],two=[],sd=1337;const rnd=()=>(sd=sd*16807%2147483647)/2147483647;
+  for(let n=1;n<=999;n++)if(RAR[n]<0)(n>=10&&n<=99?two:rest).push(n);
+  const shuf=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(rnd()*(i+1));[a[i],a[j]]=[a[j],a[i]]}};shuf(rest);shuf(two);
+  two.forEach((n,i)=>RAR[n]=i<12?3:2);
   rest.forEach((n,i)=>RAR[n]=i<27?3:i<141?2:i<391?1:0);
+  for(let n=10;n<=99;n++)if(RAR[n]<2)RAR[n]=2;
   SECRET.forEach(n=>{RAR[n]=6});for(let n=1;n<=MAX_NUM;n++)P[RAR[n]].push(n);
 }
 
@@ -457,6 +519,62 @@ const SETS = [
   {id:'stairs', n:'🪜 Золотая Лесенка', nums:[123,234,345,456,567,678,789], rewC:30000, rewSp:2, desc:'+12% к получаемому опыту XP', bonusType:'xp', bonusVal:0.12}
 ];
 
+/* ===== Куртки и кейсы ===== */
+const JK_V=[4000,14000,50000,170000,650000,2500000,20000000];
+const JK=[
+ {k:'plush',n:'Плюшевая',kind:'plush',r:0,p:{m:'#2b2b33',d:'#17171d',a:'#c9c9d6'}},
+ {k:'alaska_khaki',n:'Аляска Хаки',kind:'alaska',r:0,p:{m:'#5d6a3d',d:'#3b4526',a:'#b9c28c',f:'#9b8264'}},
+ {k:'alaska_black',n:'Аляска Блэк',kind:'alaska',r:1,p:{m:'#1c1c22',d:'#0d0d11',a:'#8a8a96',f:'#5b5560'}},
+ {k:'china_dark',n:'Китайская Тёмная',kind:'china',r:1,p:{m:'#26262e',d:'#15151a',a:'#e9dcc0'}},
+ {k:'glossy_black',n:'Глянец Чёрный',kind:'puffer',r:2,p:{m:'#15151b',d:'#050508',a:'#6c6c7a'}},
+ {k:'china_red',n:'Китайская Красная',kind:'china',r:2,p:{m:'#c0282d',d:'#8a161b',a:'#f1e6cf'}},
+ {k:'racer',n:'Гоночная',kind:'racer',r:3,p:{m:'#17171c',d:'#0b0b0e',a:'#e53245'}},
+ {k:'glossy_wine',n:'Глянец Бордо',kind:'puffer',r:3,p:{m:'#6e1426',d:'#3d0713',a:'#d7788a'}},
+ {k:'redan',n:'Редан',kind:'bomber',r:4,p:{m:'#a31d2b',d:'#5f0f19',a:'#f0c8c8'}},
+ {k:'china_gold',n:'Китайская Золотая',kind:'china',r:4,p:{m:'#c79a2a',d:'#85651a',a:'#fff1c4'}},
+ {k:'glossy_chrome',n:'Глянец Хром',kind:'puffer',r:5,p:{m:'#a9b6c9',d:'#6d7b92',a:'#ffffff'}},
+ {k:'alaska_white',n:'Аляска Полярная',kind:'alaska',r:5,p:{m:'#e8ecf2',d:'#aeb6c4',a:'#7e8aa0',f:'#ffffff'}},
+ {k:'cupid',n:'Куртка Купидона',kind:'coat',r:6,p:{m:'#b8862d',d:'#7a5418',a:'#f3d27a'}}
+];
+const JKD={};JK.forEach(j=>JKD[j.k]=j);
+const CASES=[
+ {id:'street',e:'📦',n:'Уличный кейс',cost:35000,w:[48,32,15,4.7,.3,0],d:'Базовые куртки, есть шанс на Эпик+'},
+ {id:'prem',e:'🎁',n:'Премиум кейс',cost:110000,w:[0,40,38,17,4.6,.4],d:'Без Обычных, Редкие и выше'},
+ {id:'elite',e:'💼',n:'Элитный кейс',cost:270000,w:[0,0,45,38,15,2],d:'От Редкого, хороший шанс на Эпик/Легенду'},
+ {id:'legend',e:'👑',n:'Легендарный кейс',cost:700000,w:[0,0,0,50,40,10],d:'Только Эпик и выше, 10% на Мифик'}
+];
+function jkPrice(j){
+  const d=JKD[j.k];if(!d)return 0;
+  const mult=1+0.015*(G.up.m||0)+getSetBonus('sell')+(hasBoost('sell50')?0.35:0);
+  return Math.max(1,Math.round(JK_V[d.r]*mult));
+}
+function jkSvg(d,px,dim){
+  const p=d.p,B='M30 18L42 12Q50 17 58 12L70 18L90 62L78 68L72 50L72 86Q50 90 28 86L28 50L22 68L10 62Z';
+  const C='M32 12L43 8Q50 13 57 8L68 12L88 52L77 58L72 40L78 94Q50 98 22 94L28 40L23 58L12 52Z';
+  let g='';
+  switch(d.kind){
+    case 'puffer':
+      g=`<ellipse cx="50" cy="12" rx="16" ry="9" fill="${p.d}"/><path d="${B}" fill="${p.m}"/><path d="M29 34H71M28 46H72M28 58H72M28 70H72M22 38L29 40M17 50L27 52M78 38L71 40M83 50L73 52" stroke="${p.d}" stroke-width="1.5" opacity=".55" fill="none"/><path d="M50 17V86" stroke="${p.a}" stroke-width="1.3" opacity=".75"/><path d="M33 24L40 22L35 80L30 80Z" fill="#fff" opacity=".24"/><path d="M42 12Q50 17 58 12L57 19Q50 23 43 19Z" fill="${p.d}"/>`;break;
+    case 'alaska':
+      g=`<ellipse cx="50" cy="12" rx="19" ry="11" fill="${p.f}"/><ellipse cx="50" cy="13" rx="12" ry="7" fill="${p.d}"/><path d="${B}" fill="${p.m}"/><path d="M37 15Q50 28 63 15" stroke="${p.f}" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M50 24V86" stroke="${p.a}" stroke-width="1.3" opacity=".7"/><path d="M28 60Q50 65 72 60" stroke="${p.d}" stroke-width="1.6" fill="none"/><rect x="32" y="66" width="11" height="10" rx="2" fill="none" stroke="${p.d}" stroke-width="1.4"/><rect x="57" y="66" width="11" height="10" rx="2" fill="none" stroke="${p.d}" stroke-width="1.4"/>`;break;
+    case 'china':
+      g=`<path d="${B}" fill="${p.m}"/><path d="M33 19L14 61M36 21L18 63M67 19L86 61M64 21L82 63" stroke="${p.a}" stroke-width="1.8" fill="none" opacity=".9"/><path d="M41 10H59V19Q50 22 41 19Z" fill="${p.d}"/><path d="M50 20V86" stroke="${p.d}" stroke-width="1" opacity=".6"/><path d="M43 30H57M43 42H57M43 54H57M43 66H57" stroke="${p.a}" stroke-width="2.6" stroke-linecap="round"/><g fill="${p.a}"><circle cx="50" cy="30" r="2"/><circle cx="50" cy="42" r="2"/><circle cx="50" cy="54" r="2"/><circle cx="50" cy="66" r="2"/></g>`;break;
+    case 'racer':
+      g=`<path d="${B}" fill="${p.m}"/><path d="M33 19L14 61M67 19L86 61" stroke="${p.a}" stroke-width="2.4" fill="none"/><path d="M36 21L18 63M64 21L82 63" stroke="#fff" stroke-width="1.4" fill="none" opacity=".9"/><rect x="28" y="79" width="44" height="7" rx="2" fill="${p.d}"/><path d="M40 12L50 26L60 12L56 10Q50 15 44 10Z" fill="${p.d}"/><path d="M50 26V79" stroke="#fff" stroke-width="1.2" opacity=".6"/><rect x="33" y="34" width="12" height="6" rx="1.2" fill="${p.a}"/><rect x="55" y="34" width="12" height="6" rx="1.2" fill="#fff" opacity=".85"/><rect x="34" y="46" width="9" height="3.5" rx="1" fill="#fff" opacity=".5"/>`;break;
+    case 'plush':{
+      let dots='';for(let i=0;i<26;i++)dots+=`<circle cx="${30+(i*37)%41}" cy="${22+(i*53)%60}" r="1" fill="#fff" opacity=".14"/>`;
+      g=`<path d="${B}" fill="${p.m}"/>${dots}<path d="M41 10H59V19Q50 22 41 19Z" fill="${p.d}"/><path d="M50 20V86" stroke="${p.a}" stroke-width="1" opacity=".5"/><circle cx="62" cy="38" r="4.2" fill="none" stroke="${p.a}" stroke-width="1.2"/><circle cx="63.6" cy="37" r="3.4" fill="${p.m}"/><path d="M34 82L37 62L40 82M37 62V52" stroke="${p.a}" stroke-width="1" fill="none" opacity=".5"/>`;break}
+    case 'bomber':
+      g=`<path d="${B}" fill="${p.m}"/><rect x="28" y="79" width="44" height="7" rx="2" fill="${p.d}"/><path d="M10 62L22 68L20 72L8 66Z M90 62L78 68L80 72L92 66Z" fill="${p.d}"/><path d="M38 14Q50 22 62 14L60 10Q50 16 40 10Z" fill="${p.d}"/><path d="M50 21V79" stroke="${p.a}" stroke-width="1.3" opacity=".75"/><path d="M33 20L40 19L36 72L31 72Z" fill="#fff" opacity=".12"/><path d="M34 44H44M56 44H66" stroke="${p.a}" stroke-width="1.4" opacity=".6"/>`;break;
+    case 'coat':
+      g=`<path d="${C}" fill="${p.m}"/><path d="M22 88Q50 94 78 88L78 94Q50 98 22 94Z" fill="${p.d}"/><path d="M43 8L50 34L33 20Z M57 8L50 34L67 20Z" fill="${p.d}"/><path d="M27 58H73V64H27Z" fill="${p.d}"/><rect x="47" y="57" width="6" height="8" rx="1" fill="${p.a}"/><g fill="${p.a}"><circle cx="50" cy="46" r="1.6"/><circle cx="50" cy="73" r="1.6"/><circle cx="50" cy="84" r="1.6"/></g><path d="M36 30c-2-3-6 0-3 3l3 3l3-3c3-3-1-6-3-3z" fill="#ff8aa0"/><path d="M34 22L28 40M66 22L72 40" stroke="${p.a}" stroke-width="1" opacity=".5"/>`;break;
+  }
+  let fl='';
+  if(dim)fl='filter:grayscale(1) brightness(.35);';
+  else if(d.r===6)fl='filter:drop-shadow(0 0 5px #ffd54acc);';
+  return `<svg viewBox="0 0 100 100" width="${px}" height="${px}" style="display:block;${fl}">${g}</svg>`;
+}
+
 const KEY = 'nomerok-rng-v8-' + MY_UID;
 const PREV_KEY = 'nomerok-rng-v7-' + MY_UID;
 const LEGACY_KEY = 'nomerok-rng-v6';
@@ -466,8 +584,8 @@ function defaultSave(wipeTs = 0){
   return {
     uid:MY_UID,uname:MY_UNAME,c:1000,items:[],nid:1,rolls:0,p:[[0,0,0,0],[0,0,0,0]],
     up:{l:0,m:0,r:0,s:0,g:0,u:0,b:0},lv:1,xp:0,sp:1,gift:0,spent:0,earned:0,
-    st:{sold:0,bonus:0,rare:0,s67:0,upgWin:0,upgTry:0,rkWin:0,myth:0,paper:0,trades:0,transfers:0},
-    qt:{},ach:{},setsDone:[],bless:0,gnet:0,col:[],usedCodes:[],best:null,
+    st:{sold:0,bonus:0,rare:0,s67:0,upgWin:0,upgTry:0,rkWin:0,myth:0,paper:0,trades:0,transfers:0,cases:0},
+    qt:{},ach:{},setsDone:[],bless:0,gnet:0,col:[],jk:[],jc:[],usedCodes:[],best:null,
     boosts:{},shopRef:0,shopBought:{},lastWipeTs:wipeTs,seenNewsTs:0,wipedHidden:false,baseRev:0,syncedHash:'',trLog:[],
     updatedAt:Date.now(),
     set:{hap:1,shake:1,fast:0,autoMode:0,keepBonus:1,keepNew:1,snd:1,compact:0,bg:0,fx:0}
@@ -500,6 +618,8 @@ function sanitizeSave(raw){
   d.updatedAt = Number(raw.updatedAt) || Date.now();
   d.items = toArr(raw.items).filter(i=>i && typeof i==='object' && i.n>=1 && i.n<=MAX_NUM).map(i=>({id:i.id||(d.nid++), n:Number(i.n), r:RAR[i.n]??0, t:Number(i.t)||0, locked:i.locked?1:0}));
   d.col = [...new Set(toArr(raw.col).map(Number).filter(n=>n>=1 && n<=MAX_NUM))];
+  d.jk = toArr(raw.jk).filter(x=>x&&typeof x==='object'&&JKD[x.k]).map(x=>({id:x.id||(d.nid++),k:x.k}));
+  d.jc = [...new Set(toArr(raw.jc).filter(k=>JKD[k]))];
   d.usedCodes = toArr(raw.usedCodes).map(String);
   d.setsDone = toArr(raw.setsDone).map(String);
   if(Array.isArray(raw.p) && Array.isArray(raw.p[0]) && Array.isArray(raw.p[1])) d.p = raw.p;
@@ -520,7 +640,7 @@ try{
 }catch(e){ G = defaultSave(); }
 
 const BGS=[
-  ['🌑 Классика','#07070c','#07070c'],
+  ['🌑 Классика','radial-gradient(ellipse 120% 60% at 50% -8%,#25123d,#0a0912 55%,#07070c)','#0a0912'],
   ['🌊 Океан','linear-gradient(160deg,#04101f,#0b2d52 55%,#06121f)','#04101f'],
   ['🌲 Лес','linear-gradient(160deg,#04120a,#0b3320 55%,#05100a)','#04120a'],
   ['🌇 Закат','linear-gradient(160deg,#1a0a14,#4a1630 55%,#1a0a10)','#1a0a14'],
@@ -610,7 +730,7 @@ const price=i=>{
   const boostSell = hasBoost('sell50') ? 0.35 : 0;
   const mult = (1 + 0.015*(G.up.m||0) + getSetBonus('sell') + boostSell);
   const flat = b ? Math.round(b.flat*(i.t?.2:1)) : 0;
-  return Math.max(1,Math.round(BASE[i.t||0][i.r||0]*(b?b.mult:1)*(SECM[i.n]||1)*mult)+flat);
+  return Math.max(1,Math.round(BASE[i.t||0][i.r||0]*(b?b.mult:1)*(SECM[i.n]||1)*(i.n>=10&&i.n<=99?TWO_MULT:1)*mult)+flat);
 };
 const cap=()=>40+10*(G.up.s||0),need=l=>15+l*12;
 const cst=t=>{
@@ -619,7 +739,7 @@ const cst=t=>{
 };
 const blessStep=()=>Math.max(60, 100 - 3*(G.up.b||0));
 const spinCost=t=>Math.max(8,Math.round(cst(t)*GUAR[gm].k));
-const worth=()=>Math.max(0, Math.round((Number(G.c)||0)+G.items.reduce((a,i)=>a+price(i),0)));
+const worth=()=>Math.max(0, Math.round((Number(G.c)||0)+G.items.reduce((a,i)=>a+price(i),0)+(G.jk||[]).reduce((a,j)=>a+jkPrice(j),0)));
 const W=bl=>{
   const bLuck = hasBoost('luck3') ? 2.5 : (hasBoost('luck2') ? 1.75 : 1);
   return W0.map((w,i)=>i?w*(1+.015*(G.up.l||0)+getSetBonus('luck'))*(bl?1.8:1)*bLuck:w);
@@ -703,7 +823,7 @@ function roll(t,bl,minR=0){
   for(let j=0;j<minR;j++)w[j]=0;
   let r=pick(w);
   const p=G.p[t];
-  if(Math.random()<SECRET_P*(GUAR[minR]?GUAR[minR].k:1))r=6;else for(let j=3;j>=0;j--)if(p[j]>=LIM[j]-1&&r<j+2){r=j+2;break}
+  if(Math.random()<SECRET_P)r=6;else for(let j=3;j>=0;j--)if(p[j]>=LIM[j]-1&&r<j+2){r=j+2;break}
   for(let j=0;j<4;j++)p[j]=r>=j+2?0:p[j]+1;
   const n=P[r][Math.random()*P[r].length|0],it={id:G.nid++,n,r,t,wasNew:!G.col.includes(n)};
   G.items.push(it);G.rolls++;
@@ -983,18 +1103,18 @@ const BOOST_Meta = {
 };
 
 const SHOP_POOL = [
-  {id:'b_luck2', icon:'🍀', name:'Эликсир Удачи', desc:'Повышает шанс выпадения Редких–Мифических номерков в 1.75 раза на 10 минут.', baseCost:4500, type:'boost', bKey:'luck2', mins:10},
-  {id:'b_luck3', icon:'🌈', name:'Мега-Удача', desc:'Мощный буст! Шанс на редкие и выше увеличен в 2.5 раза на 5 минут.', baseCost:11000, type:'boost', bKey:'luck3', mins:5},
-  {id:'b_sell50', icon:'💰', name:'Золотой Контракт', desc:'Повышает цену продажи всех твоих номерков на +35% на 10 минут.', baseCost:6500, type:'boost', bKey:'sell50', mins:10},
-  {id:'b_upg15', icon:'⚡', name:'Стабилизатор КПК', desc:'Добавляет +12% к шансу успешной прокачки в Апгрейдере на 10 минут.', baseCost:7500, type:'boost', bKey:'upg15', mins:10},
-  {id:'b_disc35', icon:'🏷️', name:'Оптовый Пропуск', desc:'Все крутки (×1 и ×5) стоят на 25% дешевле в течение 10 минут.', baseCost:4200, type:'boost', bKey:'disc35', mins:10},
-  {id:'b_xp2', icon:'🧠', name:'Нейро-Стимулятор', desc:'Удваивает получаемый опыт XP за все крутки в течение 10 минут.', baseCost:3800, type:'boost', bKey:'xp2', mins:10},
-  {id:'i_case_rare', icon:'📦', name:'Секретный Кейс КПК', desc:'Мгновенно выдаёт случайный номерок от Редкого до Мифического!', baseCost:4800, type:'case', minR:2},
-  {id:'i_case_epic', icon:'🔥', name:'Элитный Кейс (Эпик+)', desc:'Гарантированный Эпический, Легендарный или Мифический номерок!', baseCost:16500, type:'case', minR:3},
-  {id:'i_bless3', icon:'👵', name:'Пирожки Гардеробщицы', desc:'Заряжает благословение удачи сразу на 3 следующие крутки подряд!', baseCost:3900, type:'bless', count:3},
-  {id:'i_sp2', icon:'🧬', name:'Капсула Навыков', desc:'Мгновенно добавляет +1 очко навыков (🧠) для прокачки дерева.', baseCost:14000, type:'sp', count:1}
+  {id:'b_luck2', icon:'🍀', name:'Эликсир Удачи', desc:'Шанс Редких–Мифических номерков ×1.75 на 10 минут.', floor:60000, pct:.05, type:'boost', bKey:'luck2', mins:10},
+  {id:'b_luck3', icon:'🌈', name:'Мега-Удача', desc:'Шанс Редких–Мифических номерков ×2.5 на 5 минут.', floor:180000, pct:.12, type:'boost', bKey:'luck3', mins:5},
+  {id:'b_sell50', icon:'💰', name:'Золотой Контракт', desc:'Цена продажи номерков и курток +35% на 10 минут.', floor:150000, pct:.26, type:'boost', bKey:'sell50', mins:10},
+  {id:'b_upg15', icon:'⚡', name:'Стабилизатор КПК', desc:'+12% к шансу в Апгрейдере на 10 минут.', floor:90000, pct:.06, type:'boost', bKey:'upg15', mins:10},
+  {id:'b_xp2', icon:'🧠', name:'Нейро-Стимулятор', desc:'Опыт за крутки ×2 на 10 минут.', floor:50000, pct:.03, type:'boost', bKey:'xp2', mins:10},
+  {id:'b_combo', icon:'🌟', name:'Золотой час', desc:'Удача ×1.75 + Опыт ×2 + Апгрейд +12% сразу на 15 минут.', floor:200000, pct:.12, type:'combo', bKeys:['luck2','xp2','upg15'], mins:15},
+  {id:'i_bless3', icon:'👵', name:'Пирожки Гардеробщицы', desc:'Благословение удачи на 3 следующие крутки.', floor:45000, pct:.03, type:'bless', count:3},
+  {id:'i_bless8', icon:'🥧', name:'Пир Гардеробщицы', desc:'Благословение удачи сразу на 8 круток подряд.', floor:110000, pct:.07, type:'bless', count:8},
+  {id:'i_sp', icon:'🧬', name:'Капсула Навыков', desc:'Мгновенно даёт +1 очко навыков 🧠.', floor:300000, pct:.08, type:'sp', count:1}
 ];
 
+/* Цена = max(минимум, доля от твоего состояния). Чем богаче игрок, тем дороже усилители. */
 function getShopRotation(){
   const slot15m = Math.floor(Date.now() / 900000);
   const seedBase = slot15m * 31 + (G.shopRef || 0) * 97;
@@ -1005,11 +1125,12 @@ function getShopRotation(){
     const j = Math.floor(rnd() * (i+1));
     [pool[i], pool[j]] = [pool[j], pool[i]];
   }
-  const scale = 1 + Math.max(0, (G.lv - 1) * 0.12);
-  return pool.slice(0, 4).map((item, idx)=>{
+  const wealth = worth();
+  return pool.slice(0, 6).map((item, idx)=>{
     const isSale = idx === 0 && rnd() < 0.5;
-    const rawCost = Math.round(item.baseCost * scale * (isSale ? 0.75 : 1));
-    const cost = Math.max(500, Math.round(rawCost / 50) * 50);
+    const raw = Math.max(item.floor, wealth * item.pct) * (isSale ? 0.75 : 1);
+    const step = raw >= 1e6 ? 5000 : 500;
+    const cost = Math.max(step, Math.round(raw / step) * step);
     const key = `${slot15m}_${G.shopRef||0}_${item.id}`;
     return {...item, cost, isSale, buyKey: key};
   });
@@ -1058,6 +1179,8 @@ const ACHS=[
   {id:'col500',n:'🏛️ Хранитель музея (500)',d:'Собрать 500 уникальных номеров',c:()=>G.col.length>=500,rewC:55000,rewSp:3},
   {id:'set1',n:'🧩 Охотник за сетами',d:'Собрать хотя бы 1 тематический сет',c:()=>G.setsDone.length>=1,rewC:12000,rewSp:1},
   {id:'tr1',n:'🤝 Деловая сделка',d:'Отправить или принять 1 трейд',c:()=>G.st.trades>=1,rewC:3500,rewSp:1},
+  {id:'case10',n:'🧥 Модник',d:'Открыть 10 кейсов с куртками',c:()=>(G.st.cases||0)>=10,rewC:60000,rewSp:1},
+  {id:'cupid',n:'🏹 Избранник Купидона',d:'Заполучить секретную Куртку Купидона',c:()=>(G.jc||[]).includes('cupid'),rewC:500000,rewSp:3},
   {id:'lv25',n:'👑 Авторитет раздевалки',d:'Достичь 25 уровня',c:()=>G.lv>=25,rewC:25000,rewSp:2}
 ];
 
@@ -1145,6 +1268,7 @@ const view=()=>{
   if(s=='s2')games();
   if(s=='s3')board();
   if(s=='s4')renderMore();
+  if(s=='s5')renderCasesPage($('#casesBody'));
 };
 
 $$('nav button').forEach(b=>b.onclick=()=>{
@@ -1169,9 +1293,14 @@ $('#cap').onclick=()=>{
 };
 
 /* ===== 2. СКЛАД ===== */
-let fSort=0;
+let fSort=0,stMode='num';
 const SORTS=['💰 По цене','⭐ По редкости','🔢 По номеру','🆕 Сначала новые'];
 function store(){
+  $('#stMode').innerHTML=[['num','🎫 Номерки · '+G.items.length],['jk','🧥 Куртки · '+G.jk.length]].map(([k,n])=>`<button class="${stMode===k?'on':''}" data-sm="${k}">${n}</button>`).join('');
+  const jm=stMode==='jk';
+  ['#stHead','#ct','#cr','.st-tools','#grid'].forEach(s=>{$(s).style.display=jm?'none':''});
+  $('#jkWard').style.display=jm?'block':'none';
+  if(jm){jkWearTab($('#jkWard'));return}
   const vals=G.items.reduce((a,i)=>a+price(i),0), capN=cap();
   const byT=G.items.filter(i=>fT<0||i.t==fT);
   const cnt=RN.map((_,r)=>byT.filter(i=>i.r==r).length);
@@ -1198,6 +1327,7 @@ function store(){
       <div class="cn">№${L(i.n)}</div><div class="cr">${RN[i.r]}</div><div class="cp">${fmt(price(i))} ₽</div>
     </div>`;}).join(''):'<div class="st-empty"><b>📭</b>Здесь пока пусто</div>';
 }
+$('#stMode').onclick=e=>{const b=e.target.closest('[data-sm]');if(b){stMode=b.dataset.sm;store()}};
 $('#ct').onclick=e=>{const b=e.target.closest('button');if(b){fT=+b.dataset.t;store()}};
 $('#cr').onclick=e=>{const b=e.target.closest('button');if(b){fR=+b.dataset.r;store()}};
 $('#sortBtn').onclick=()=>{fSort=(fSort+1)%SORTS.length;toast(SORTS[fSort]);store()};
@@ -1263,7 +1393,8 @@ const MORE_TITLES = {
   achs: '🏅 Достижения (Ачивки)',
   sets: '📖 Сеты и Коллекция',
   skills: '🧠 Дерево Навыков',
-  shop: '🛒 Лавка Бустов и Кейсов',
+  shop: '🛒 Лавка Бустов',
+  cases: '🧥 Кейсы с куртками',
   trades: '🤝 Трейды (Обмен КПК)',
   transfers: '💸 Переводы по @username',
   news: '📰 Новости проекта',
@@ -1325,8 +1456,8 @@ function renderMore(){
         <button class="hub-btn accent wide" data-go="shop">
           <div class="hub-icon" style="background:#a855f733">🛒</div>
           <div class="hub-info">
-            <b style="color:var(--gold)">Лавка Бустов и Кейсов</b>
-            <small>Временные усилители удачи, дохода и редкие кейсы</small>
+            <b style="color:var(--gold)">Лавка Бустов</b>
+            <small>Усилители удачи и дохода · цены растут вместе с твоим состоянием</small>
           </div>
         </button>
         <button class="hub-btn ${pings.trPing?'ping':''}" data-go="trades">
@@ -1526,11 +1657,13 @@ function renderSkillsPage(container){
   };
 }
 
+function shopRefCost(){return Math.max(5000, Math.round(worth()*.01/500)*500)}
 function renderShopPage(container){
   const offers = getShopRotation();
   const now = Date.now();
   const active = Object.entries(BOOST_Meta).filter(([k])=>G.boosts && G.boosts[k] > now);
   const shopLeft = Math.max(0, 900 - Math.floor((now % 900000)/1000));
+  const rc = shopRefCost();
 
   container.innerHTML = `
     <div class="shop-head">
@@ -1538,8 +1671,9 @@ function renderShopPage(container){
         <b style="font-size:14px;color:var(--gold)">🛒 Витрина Усилителей</b>
         <small id="shopTimer" style="display:block;color:#d8b4fe;font-size:11px">Обновление через ${String(Math.floor(shopLeft/60)).padStart(2,'0')}:${String(shopLeft%60).padStart(2,'0')}</small>
       </div>
-      <button class="f on" id="shopRefreshBtn" style="font-size:11px;padding:7px 10px">🔄 Сменить (750 ₽)</button>
+      <button class="f on" id="shopRefreshBtn" style="font-size:11px;padding:7px 10px">🔄 Сменить (${fmt(rc)} ₽)</button>
     </div>
+    <div style="font-size:11px;color:var(--mut);margin:-4px 2px 8px;line-height:1.4">💡 Цены привязаны к твоему состоянию: чем больше у тебя ₽ и номерков, тем дороже усилители. Пока буст действует больше половины времени — повторно купить его нельзя.</div>
     ${active.length ? `<div class="scard" style="padding:9px 11px;margin-bottom:8px;border-color:#3fe06b55">
       <div style="font-size:11px;color:var(--ok);font-weight:800;margin-bottom:4px">⚡ Активные усилители сейчас:</div>
       <div style="display:flex;gap:6px;flex-wrap:wrap">
@@ -1565,8 +1699,9 @@ function renderShopPage(container){
   `;
 
   $('#shopRefreshBtn').onclick = () => {
-    if(G.c < 750) return toast('Не хватает денег на обновление витрины (750 ₽)');
-    G.c -= 750; G.shopRef = (G.shopRef || 0) + 1;
+    const c = shopRefCost();
+    if(G.c < c) return toast(`Не хватает денег на обновление витрины (${fmt(c)} ₽)`);
+    G.c -= c; G.shopRef = (G.shopRef || 0) + 1;
     hap('light'); save(true); hud(); renderShopPage(container);
     toast('🔄 Товары в лавке обновлены!');
   };
@@ -1577,35 +1712,211 @@ function renderShopPage(container){
     if(!o) return;
     if(G.shopBought && G.shopBought[o.buyKey]) return toast('Этот товар уже раскуплен');
     if(G.c < o.cost) return toast('Не хватает баланса');
-    if(o.type === 'case' && G.items.length >= cap()) return toast('📦 Освободи место на складе!');
+    if(!G.boosts) G.boosts = {};
+    const keys = o.type === 'combo' ? o.bKeys : (o.type === 'boost' ? [o.bKey] : []);
+    for(const k of keys){
+      if((G.boosts[k]||0) - Date.now() > o.mins * 30000) return toast('Этот буст ещё действует — купи, когда останется меньше половины времени');
+    }
+    if(o.type === 'bless' && (G.bless||0) + o.count > 15) return toast('Слишком много зарядов удачи — сначала используй текущие');
 
     G.c -= o.cost;
     if(!G.shopBought) G.shopBought = {};
+    const pre = o.buyKey.split('_')[0] + '_';
+    Object.keys(G.shopBought).forEach(k=>{ if(!k.startsWith(pre)) delete G.shopBought[k]; });
     G.shopBought[o.buyKey] = 1;
 
     if(o.type === 'boost'){
       addBoostTime(o.bKey, o.mins);
       toast(`⚡ Активирован буст «${o.name}» на +${o.mins} мин!`);
-    } else if(o.type === 'case'){
-      const weights = o.minR === 3 ? [0,0,0,740,210,50] : [0,0,680,230,70,20];
-      const r = pick(weights);
-      const n = P[r][Math.random()*P[r].length|0];
-      const it = {id:G.nid++, n, r, t:0};
-      G.items.push(it);
-      if(!G.col.includes(n)) G.col.push(n);
-      checkBest(it);
-      G.wipedHidden = false;
-      burst(innerWidth/2, innerHeight/2, RC[r], 40);
-      toast(`🎁 Из кейса выпал ${RN[r]} №${L(n)} (${fmt(price(it))} ₽)!`);
+    } else if(o.type === 'combo'){
+      o.bKeys.forEach(k=>addBoostTime(k, o.mins));
+      toast(`🌟 «${o.name}» активирован на ${o.mins} мин!`);
     } else if(o.type === 'bless'){
       G.bless = (G.bless || 0) + o.count;
-      toast(`👵 Получено благословение на ${G.bless} крутки!`);
+      toast(`👵 Заряды удачи: ${G.bless}`);
     } else if(o.type === 'sp'){
       G.sp += o.count;
       toast(`🧬 Получено +${o.count} 🧠 очко навыков!`);
     }
     hap('heavy'); save(true); hud(); renderShopPage(container);
   };
+}
+
+/* ===== КЕЙСЫ С КУРТКАМИ ===== */
+let jkTab='cases', csBusy=false, jkContainer=null, jkRedraw=null;
+
+function sellJk(list){
+  if(!list.length) return 0;
+  const sum = list.reduce((a,j)=>a+jkPrice(j),0);
+  const ids = new Set(list.map(j=>j.id));
+  G.jk = G.jk.filter(j=>!ids.has(j.id));
+  G.c += sum; G.earned += sum; G.st.sold += list.length; G.wipedHidden = false;
+  hap('light'); save(true); hud();
+  return sum;
+}
+
+const CASE_UI={
+ street:{c:'#3fbf5f',a:'#6f8a45',b:'#3b4526'},
+ prem:{c:'#2f8dff',a:'#3f7fd6',b:'#1c3f77'},
+ elite:{c:'#a855f7',a:'#8d4fe0',b:'#4a2284'},
+ legend:{c:'#ffa51f',a:'#e9a431',b:'#8a5a0c'}
+};
+function caseSvg(id,px){
+  const u=CASE_UI[id]||CASE_UI.street,gid='cg'+id;
+  let deco='';
+  if(id==='street')deco='<path d="M14 40H24M40 40H50M14 48H24M40 48H50" stroke="#0005" stroke-width="2" stroke-linecap="round"/>';
+  else if(id==='prem')deco='<path d="M32 4l6 7-6 8-6-8z" fill="#bfe0ff" stroke="#fff" stroke-width="1"/>';
+  else if(id==='elite')deco='<path d="M24 14v-5q0-3 3-3h10q3 0 3 3v5" fill="none" stroke="#e9d5ff" stroke-width="3" stroke-linecap="round"/>';
+  else deco='<path d="M21 14l3-10 8 6 8-6 3 10z" fill="#ffd54a" stroke="#fff6c8" stroke-width="1"/>';
+  return `<svg viewBox="0 0 64 64" width="${px}" height="${px}" style="display:block;filter:drop-shadow(0 0 8px ${u.c}99)"><defs><linearGradient id="${gid}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${u.a}"/><stop offset="1" stop-color="${u.b}"/></linearGradient></defs><rect x="8" y="28" width="48" height="28" rx="5" fill="url(#${gid})"/><path d="M8 30Q8 14 32 14Q56 14 56 30Z" fill="${u.a}"/><path d="M8 30Q8 14 32 14Q56 14 56 30Z" fill="#fff" opacity=".14"/><rect x="28" y="14" width="8" height="42" fill="#ffd54a" opacity=".92"/><rect x="27" y="31" width="10" height="10" rx="2" fill="#ffd54a" stroke="#7a5418" stroke-width="1.5"/><circle cx="32" cy="36" r="1.6" fill="#7a5418"/>${deco}</svg>`;
+}
+
+function renderCasesPage(container){
+  if(!container)return;
+  jkContainer=container;jkRedraw=null;
+  container.innerHTML=`<div class="cs-hero"><div><b>🧥 Кейсы с куртками</b><small>Из любого кейса есть шанс 1 к 3500 на секретную куртку 🏹</small></div><button class="f on" id="goWard">🧥 Гардероб · ${G.jk.length}</button></div><div id="jkBody"></div>`;
+  $('#goWard').onclick=()=>{stMode='jk';$$('nav button,.s').forEach(e=>e.classList.remove('on'));$('#navStore').classList.add('on');$('#s1').classList.add('on');store()};
+  jkCasesTab(container.querySelector('#jkBody'));
+}
+
+function jkCasesTab(body){
+  body.innerHTML=`<div id="csStage" class="scard cs-stage"><div class="cs-intro">🎰 Выбери кейс ниже — из него выпадет случайная куртка</div></div><div id="csList"></div>`;
+  const drawList=()=>{
+    $('#csList').innerHTML=CASES.map(cs=>{
+      const u=CASE_UI[cs.id]||CASE_UI.street,t=cs.w.reduce((a,b)=>a+b,0);
+      const chips=cs.w.map((w,r)=>w>0?`<span class="cs-chip" style="--c:${RC[r]}">${RN[r]} ${+(w/t*100).toFixed(1)}%</span>`:'').join('');
+      return `<div class="case-card" style="--c:${u.c}">
+        <div class="case-ico">${caseSvg(cs.id,60)}</div>
+        <div><div class="case-name">${cs.n}</div><div class="case-desc">${cs.d}</div><div class="cs-chips">${chips}</div></div>
+        <button class="case-open" data-open="${cs.id}" ${csBusy||G.c<cs.cost?'disabled':''}>Открыть <small>${fmt(cs.cost)} ₽</small></button>
+      </div>`;
+    }).join('');
+  };
+  jkRedraw=drawList;
+  drawList();
+  $('#csList').onclick=e=>{
+    const b=e.target.closest('[data-open]');if(!b||b.disabled)return;
+    openCase(b.dataset.open,1);
+  };
+}
+
+async function openCase(csId, count){
+  if(csBusy) return;
+  const cs = CASES.find(c=>c.id===csId); if(!cs) return;
+  const total = cs.cost * count;
+  if(G.c < total) return toast('Не хватает ₽ на кейс');
+  csBusy = true;
+  G.c -= total; G.spent += total; G.wipedHidden = false;
+  const won = [];
+  for(let i=0;i<count;i++){
+    const r = Math.random() < SECRET_P ? 6 : pick(cs.w);
+    const pl = JK.filter(j=>j.r===r);
+    const d = pl[Math.random()*pl.length|0];
+    const it = {id:G.nid++, k:d.k};
+    G.jk.push(it);
+    if(!G.jc.includes(d.k)) G.jc.push(d.k);
+    G.st.cases = (G.st.cases||0) + 1;
+    addXp(1 + r*2);
+    won.push(it);
+  }
+  save(true); hud(); hap('medium');
+  $$('#csList [data-open]').forEach(b=>b.disabled=true);
+  const st = $('#csStage');
+  try{
+    if(st && count === 1){
+      const WIN=32, IW=80, N=38, d0=JKD[won[0].k], arr=[];
+      for(let i=0;i<N;i++){
+        if(i===WIN){arr.push(d0);continue}
+        const rr = pick(cs.w), pl = JK.filter(j=>j.r===rr);
+        arr.push(pl[Math.random()*pl.length|0]);
+      }
+      st.innerHTML = `<div class="cs-win" id="csWin"><div class="cs-strip" id="csStrip">${arr.map(d=>`<div class="cs-it" style="--c:${RC[d.r]}">${jkSvg(d,58)}</div>`).join('')}</div></div><div style="color:var(--mut);font-size:12px">Крутим…</div>`;
+      const cw = $('#csWin').clientWidth || 300, strip = $('#csStrip');
+      const off = WIN*IW + IW/2 - cw/2 + (Math.random()*40-20);
+      const dur = G.set.fast ? 2.2 : 3.6;
+      strip.style.transition = 'none'; strip.style.transform = 'translateX(0)'; void strip.offsetWidth;
+      strip.style.transition = `transform ${dur}s cubic-bezier(.08,.75,.12,1)`;
+      strip.style.transform = `translateX(-${off}px)`;
+      const tick = setInterval(()=>{hap('soft');playTickSound(420+Math.random()*200,.02)},180);
+      await sleep(dur*1000 + 250);
+      clearInterval(tick);
+    }
+    csShowResult(cs, won, total);
+  } finally {
+    csBusy = false;
+    if(jkRedraw && $('#csList')) jkRedraw();
+  }
+}
+
+function csShowResult(cs, won, total){
+  const best = Math.max(...won.map(w=>JKD[w.k].r));
+  burst(innerWidth/2, innerHeight/2.5, best===6?null:RC[best], [0,6,12,22,34,50,70][best]);
+  hap(best>=4?'heavy':'medium');
+  if(best>=3) toast(best===6?'🏹 СЕКРЕТНАЯ КУРТКА КУПИДОНА!!!':best===5?'🌈 Мифическая куртка!':best===4?'🔥 Легендарная куртка!':'💜 Эпическая куртка!');
+  const st = $('#csStage');
+  if(!st || jkTab !== 'cases'){ toast(`🧥 Выпало: ${won.map(w=>JKD[w.k].n).join(', ')}`); return; }
+  const sum = won.reduce((a,j)=>a+jkPrice(j),0), df = sum - total, col = df>=0?'var(--ok)':'var(--bad)';
+  const one = won.length === 1;
+  const weak = won.filter(j=>JKD[j.k].r<=1);
+  st.innerHTML = `<div style="display:flex;flex-direction:column;align-items:center;gap:7px">
+    ${one ? `<div style="filter:drop-shadow(0 0 14px ${RC[best]}88)">${jkSvg(JKD[won[0].k],110)}</div>
+      <div style="font-size:16px;font-weight:800;color:${RC[best]}">${JKD[won[0].k].n}</div>
+      <div style="font-size:11px;color:var(--mut)">${RN[best]}</div>`
+    : `<div class="jk-grid" style="width:100%">${won.map(j=>{const d=JKD[j.k];return `<div class="cell" style="--c:${RC[d.r]};padding:8px 2px 6px">${jkSvg(d,48)}<div class="cn" style="font-size:10.5px;margin-top:4px;padding:0 2px">${d.n}</div><div class="cp" style="font-size:10.5px">${fmt(jkPrice(j))} ₽</div></div>`}).join('')}</div>`}
+    <div style="font-size:13px">Стоимость: <b style="color:var(--gold)">${fmt(sum)} ₽</b> · <b style="color:${col}">${sg(df)} ₽</b></div>
+    <div class="pair" style="width:100%;flex-wrap:wrap">
+      <button class="f" id="csKeep" style="flex:1;padding:10px">📦 Оставить${one?'':' всё'}</button>
+      <button class="f on" id="csSell" style="flex:1;padding:10px;background:#2a1018;border-color:#ff3355">💸 Продать +${fmt(sum)} ₽</button>
+      ${!one&&weak.length&&weak.length<won.length?`<button class="f" id="csWeak" style="flex:1 1 100%;padding:9px">🧹 Продать слабых (${weak.length})</button>`:''}
+    </div></div>`;
+  const ids = new Set(won.map(j=>j.id));
+  $('#csKeep').onclick = () => renderCasesPage(jkContainer);
+  $('#csSell').onclick = () => { const s = sellJk(G.jk.filter(j=>ids.has(j.id))); toast(`💸 Продано за ${fmt(s)} ₽`); renderCasesPage(jkContainer); };
+  const wk = $('#csWeak');
+  if(wk) wk.onclick = () => { const wid = new Set(weak.map(j=>j.id)); const s = sellJk(G.jk.filter(j=>wid.has(j.id))); toast(`🧹 Продано слабых за ${fmt(s)} ₽`); renderCasesPage(jkContainer); };
+}
+
+function jkWearTab(body){
+  const list=[...G.jk];
+  const total=list.reduce((a,j)=>a+jkPrice(j),0);
+  const groups={};
+  list.forEach(j=>{(groups[j.k]=groups[j.k]||[]).push(j)});
+  const keys=Object.keys(groups).sort((a,b)=>JKD[b].r-JKD[a].r||JKD[a].n.localeCompare(JKD[b].n));
+  const extra=[];keys.forEach(k=>extra.push(...groups[k].slice(1)));
+  const cheap=list.filter(j=>JKD[j.k].r<=1);
+  body.innerHTML=`<div class="st-head"><div class="st-top"><div><small>Стоимость гардероба</small><div class="st-val">${fmt(total)} ₽</div></div><div><small style="text-align:right">Курток</small><div class="st-cnt">${list.length}<span> · моделей ${keys.length}</span></div></div></div></div>
+    <div class="jk-tools">
+      <button class="f jk-act" id="jkExtra"><b>🔁 Продать лишние копии</b><small>Оставит по одной куртке каждой модели · ${extra.length} шт.</small></button>
+      <button class="f jk-act" id="jkCheap"><b>🧹 Продать дешёвые</b><small>Все Обычные и Необычные куртки · ${cheap.length} шт.</small></button>
+    </div>
+    ${keys.length?`<div class="jk-grid">${keys.map(k=>{const d=JKD[k],g=groups[k];return `<div class="cell" data-jk="${k}" style="--c:${RC[d.r]};padding:10px 2px 7px">${g.length>1?`<span class="bn">×${g.length}</span>`:''}${jkSvg(d,56)}<div class="cn" style="font-size:10.5px;margin-top:5px;padding:0 3px;line-height:1.15">${d.n}</div><div class="cr">${RN[d.r]}</div><div class="cp">${fmt(jkPrice(g[0]))} ₽</div></div>`}).join('')}</div>`:'<div class="st-empty"><b>🧥</b>Курток пока нет — открой кейс во вкладке «Кейсы»!</div>'}`;
+  const arm=(id,list2)=>{
+    const btn=body.querySelector('#'+id),orig=btn.innerHTML;let a=0;
+    btn.onclick=()=>{
+      if(!list2.length)return toast('Нечего продавать');
+      if(!a){a=1;const s=list2.reduce((x,j)=>x+jkPrice(j),0);btn.innerHTML=`<b>⚠️ Продать ${list2.length} шт. за ${fmt(s)} ₽?</b><small>Нажми ещё раз для подтверждения</small>`;setTimeout(()=>{a=0;if(btn.isConnected)btn.innerHTML=orig},3500);return}
+      const s=sellJk(list2);toast(`💸 Продано ${list2.length} шт. за ${fmt(s)} ₽`);store();
+    };
+  };
+  arm('jkExtra',extra);arm('jkCheap',cheap);
+  body.querySelectorAll('[data-jk]').forEach(el=>el.onclick=()=>{
+    const k=el.dataset.jk,d=JKD[k],g=groups[k];if(!g)return;
+    $('#md').innerHTML=`<div class="prof-box" style="text-align:center;max-width:340px">
+      <div style="display:flex;justify-content:center">${jkSvg(d,150)}</div>
+      <h2 style="color:${RC[d.r]};margin:10px 0 4px">${RN[d.r]}</h2>
+      <div>${d.n}${g.length>1?` · у тебя ${g.length} шт.`:''}</div>
+      <div style="color:var(--gold);font-size:22px;font-weight:800;margin:6px 0">${fmt(jkPrice(g[0]))} ₽</div>
+      <div style="display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:8px">
+        <button class="f on" id="jkSellOne" style="background:#2a1018;border-color:#ff3355">💸 Продать 1 шт.</button>
+        ${g.length>1?`<button class="f" id="jkSellAll" style="color:var(--gold)">💸 Все ${g.length} шт.</button>`:''}
+        <button class="f" id="jkClose">Закрыть</button>
+      </div></div>`;
+    $('#md').classList.add('on');
+    $('#jkClose').onclick=()=>$('#md').classList.remove('on');
+    $('#jkSellOne').onclick=()=>{const s=sellJk([g[0]]);$('#md').classList.remove('on');toast(`+${fmt(s)} ₽`);store()};
+    const sa=$('#jkSellAll');
+    if(sa)sa.onclick=()=>{const s=sellJk(g);$('#md').classList.remove('on');toast(`💸 Продано ${g.length} шт. за ${fmt(s)} ₽`);store()};
+  });
 }
 
 /* ===== ИСПРАВЛЕННЫЕ ТРЕЙДЫ (Защита от дюпа при покупке/отмене) ===== */
@@ -2154,7 +2465,7 @@ function openReferenceModal(){
       <tr><th>Редкость</th><th>Шанс</th><th>🔴 Пластик</th><th>📄 Бумага</th></tr>
       ${RN.map((x,i)=>`<tr><td><span class="dot" style="background:${RC[i]}"></span>${x}</td><td>${i<6?(w[i]/t*100).toFixed(2)+'%':(SECRET_P*100).toFixed(3)+'%'}</td><td>${fmt(BASE[0][i])} ₽</td><td>${fmt(BASE[1][i])} ₽</td></tr>`).join('')}
     </table>
-    <div style="font-size:11px;color:var(--mut);margin:-4px 0 8px">🔮 Секретные: №215 «Кабинет Котова», №300 «Кабинет математики» (~100 000 ₽) и «XXX» (~250 000 ₽). Выпадают только из круток (на гарантах шанс выше: ×2.5 / ×5 / ×12) — в Апгрейдере и кейсах недоступны.</div><h3>🔥 Бонусы за красивые номера</h3>
+    <div style="font-size:11px;color:var(--mut);margin:-4px 0 8px">🔮 Секретные: №215 «Кабинет Котова», №300 «Кабинет математики» (~100 000 ₽) и «XXX» (~250 000 ₽). Выпадают только из круток: ровно 1 к 3500 на каждую крутку, в том числе в гарант-режимах (там шанс не растёт). В Апгрейдере и лавке недоступны.</div><h3>🔥 Бонусы за красивые номера</h3>
     <div style="font-size:11px;color:var(--mut);margin-bottom:6px">Бонусы складываются: 550 = 🔟 Десятичный (+0.15) и 👯 Парный (+0.3) → ×1.45. Максимум ×6.</div>
     <table>
       <tr><th>Номер / Категория</th><th>Бонус к цене</th></tr>
@@ -2173,6 +2484,7 @@ function openReferenceModal(){
       <tr><td>🐚 Фибоначчи: 13, 21, 34, 55, 89, 144, 233, 377, 610, 987</td><td><b style="color:var(--gold)">×1.35</b></td></tr>
       <tr><td>🤪 Номера с «67» · 👯 Парный (55 в 550, 22 в 122…)</td><td><b style="color:var(--gold)">×1.3</b></td></tr>
       <tr><td>🪜 Лесенка · 💾 Степени двойки (16…512)</td><td><b style="color:var(--gold)">×1.25</b></td></tr>
+      <tr><td>🔟 Двузначные 10–99 (всегда минимум Редкий)</td><td><b style="color:var(--gold)">×2.2 к цене</b></td></tr>
       <tr><td>🪞 Зеркальные · 🧱 Круглые сотни</td><td><b style="color:var(--gold)">×1.2</b></td></tr>
       <tr><td>🔟 Десятичный (оканчивается на 0)</td><td><b style="color:var(--gold)">×1.15</b></td></tr>
       <tr><td>🌌 42 · 🥧 314 (Пи) · ✈️ 747</td><td><b style="color:var(--gold)">×1.9–2.0</b></td></tr>
@@ -2684,6 +2996,7 @@ function applyCommand(cmd){
   if(cmd.addSp)G.sp+=Number(cmd.addSp);
   if(cmd.addBless)G.bless=(G.bless||0)+Number(cmd.addBless);
   if(cmd.giveBoost)Object.keys(BOOST_Meta).forEach(k=>addBoostTime(k,Number(cmd.giveBoost)));
+  if(cmd.giveJk&&JKD[cmd.giveJk]){G.jk.push({id:G.nid++,k:cmd.giveJk});if(!G.jc.includes(cmd.giveJk))G.jc.push(cmd.giveJk)}
   if(cmd.giveNum){
     const num=Math.min(MAX_NUM,Math.max(1,Number(cmd.giveNum)));
     const it={id:G.nid++,n:num,r:RAR[num]||0,t:cmd.giveType||0};
@@ -2739,7 +3052,7 @@ function adoptCloud(cloud,asLegacy){
   const s=$('.s.on').id;
   if(s==='s1')store();
   else if(s==='s0')refit();
-  else if(s==='s4'&&!['trades','transfers','coupons','admin'].includes(moreSub))renderMore();
+  else if(s==='s4'&&!['trades','transfers','coupons','admin','cases'].includes(moreSub))renderMore();
   toast('☁️ Данные обновлены с другого устройства');
   return true;
 }
@@ -2847,54 +3160,73 @@ async function initCloudRecovery(){
   const t=setTimeout(()=>{if(!cloudReady){cloudReady=true;hud()}},3500);
   try{await syncCloud()}catch(e){}
   clearTimeout(t);cloudReady=true;hud();
-  fetchTrades();fetchNews();
+  fetchTrades();fetchNews();loadLeaderboard();
 }
 
-async function loadLeaderboard(){
-  if(!DB_BASE) return;
-  try{
-    const r = await fetch(`${DB_BASE}/players.json`);
-    const d = await r.json();
-    if(d && !d.error && typeof d === 'object'){
-      cloudPlayers = Object.values(d).filter(isValidPlayer);
-      cloudStatus = `🟢 В топе активных: ${cloudPlayers.length} игр.`;
-    } else { cloudPlayers = []; }
-  }catch(e){}
+let lbPromise=null,lbTs=0;
+try{const c=JSON.parse(localStorage.getItem('nomerok-lb')||'null');if(Array.isArray(c))cloudPlayers=c.filter(isValidPlayer)}catch(e){}
+function loadLeaderboard(force){
+  if(!DB_BASE) return Promise.resolve();
+  if(lbPromise) return lbPromise;
+  if(!force && Date.now()-lbTs<4000) return Promise.resolve();
+  lbPromise=(async()=>{
+    try{
+      const r = await fetch(`${DB_BASE}/players.json`);
+      const d = await r.json();
+      if(d && !d.error && typeof d === 'object'){
+        cloudPlayers = Object.values(d).filter(isValidPlayer);
+        cloudStatus = `🟢 В топе активных: ${cloudPlayers.length} игр.`;
+        lbTs = Date.now();
+        try{localStorage.setItem('nomerok-lb',JSON.stringify(cloudPlayers.map(({uid,uname,n,c,r,lv,rolls,best})=>({uid,uname,n,c,r,lv,rolls,best}))))}catch(e){}
+      } else { cloudPlayers = []; }
+    }catch(e){}
+    finally{lbPromise=null}
+  })();
+  return lbPromise;
 }
 
 $$('#s3 .sub button').forEach(b=>b.onclick=()=>{ttab=+b.dataset.t;$$('#s3 .sub button').forEach(x=>x.classList.toggle('on',x==b));board()});
+
+let boardTok=0;
+function boardRender(){
+  if(ttab===2) return;
+  const w=worth();
+  const me={uid:MY_UID, uname:MY_UNAME, n:UN, c:G.c, r:w, lv:G.lv, best:G.best, me:1, wiped: !!(G.wipedHidden || w<=0)};
+  const pool = cloudPlayers.filter(x=>String(x.uid)!==String(MY_UID)).map(x=>({...x, n:cleanNick(x.n), me:0}));
+  if(!me.wiped) pool.push(me);
+  const admHint = window.__IS_ADMIN ? `<div style="font-size:10px;color:var(--gold);margin-bottom:6px">${cloudStatus}</div>` : '';
+  let html;
+  if(ttab === 0){
+    const all = pool.filter(x=>x.r > 0 && !x.wiped).sort((a,b)=>b.r - a.r);
+    const rk = all.indexOf(me);
+    const row=(x,i)=>`<div class="row leader-row ${x.me?'me':''}"><b class="n">${['🥇','🥈','🥉'][i]||i+1}</b><div><span class="nick">${x.n}</span><small>Ур. ${x.lv||1} · баланс ${fmt(x.c ?? x.r)} ₽ · состояние ${fmt(x.r)} ₽</small></div></div>`;
+    html=`<p style="color:var(--mut);font-size:11px;margin:0 0 4px">Рейтинг активных богачей (обнулённые игроки скрыты).</p>`+admHint+(all.length?all.slice(0,15).map(row).join('')+(rk>=15?`<div style="text-align:center;color:var(--mut)">⋮</div>`+row(me,rk):''):'<p style="color:var(--mut)">В топе пока никого нет — сделай крутку!</p>');
+  } else {
+    const withBest = pool.filter(x=>!x.wiped && x.best && x.best.n && x.best.n <= MAX_NUM).map(x=>{
+      const bp = x.best.p || price(x.best);
+      return {...x, bestPrice: bp};
+    }).sort((a,b)=>b.bestPrice - a.bestPrice || (b.best.r - a.best.r));
+    const row=(x,i)=>`<div class="row leader-row ${x.me?'me':''}"><b class="n">${['🥇','🥈','🥉'][i]||i+1}</b>${tg(x.best,34,false)}<div><span class="nick">${x.n}</span><small style="color:${RC[x.best.r||0]}">${RN[x.best.r||0]} №${L(x.best.n)}</small></div><b style="color:var(--gold);font-size:13px">${fmt(x.bestPrice)} ₽</b></div>`;
+    html=`<p style="color:var(--mut);font-size:11px;margin:0 0 4px">Рейтинг самых дорогих выбитых номерков среди игроков.</p>`+admHint+(withBest.length?withBest.slice(0,15).map(row).join(''):'<p style="color:var(--mut)">Пока никто не выбил номерки</p>');
+  }
+  const el=$('#top0');
+  if(el && el._h!==html){el._h=html;el.innerHTML=html}
+}
 
 async function board(){
   if(ttab === 2){
     const l=[...G.items].sort((a,b)=>price(b)-price(a)).slice(0,15);
     $('#top0').innerHTML=l.length?l.map((i,k)=>`<div class="row"><b class="n">${k+1}</b>${tg(i,38,false)}<div><b style="color:${RC[i.r]}">${RN[i.r]} №${L(i.n)}</b><small>${TN[i.t]}</small></div><b style="color:var(--gold)">${fmt(price(i))} ₽</b></div>`).join(''):'<p style="color:var(--mut)">Склад пуст — покрути номерки!</p>';
+    $('#top0')._h=null;
     return;
   }
-  await syncCloud();
-  await loadLeaderboard();
   G.items.forEach(checkBest);
-
-  const me={uid:MY_UID, uname:MY_UNAME, n:UN, c:G.c, r:worth(), lv:G.lv, best:G.best, me:1, wiped: !!(G.wipedHidden || worth()<=0)};
-  const validCloud = cloudPlayers.filter(x=>String(x.uid)!==String(MY_UID));
-  const pool = [...validCloud.map(x=>({...x, n:cleanNick(x.n), me:0}))];
-  if(!me.wiped) pool.push(me);
-
-  const admHint = window.__IS_ADMIN ? `<div style="font-size:10px;color:var(--gold);margin-bottom:6px">${cloudStatus}</div>` : '';
-
-  if(ttab === 0){
-    const all = pool.filter(x=>x.r > 0 && !x.wiped).sort((a,b)=>b.r - a.r);
-    const rk = all.indexOf(me);
-    const row=(x,i)=>`<div class="row leader-row ${x.me?'me':''}"><b class="n">${['🥇','🥈','🥉'][i]||i+1}</b><div><span class="nick">${x.n}</span><small>Ур. ${x.lv||1} · баланс ${fmt(x.c ?? x.r)} ₽ · состояние ${fmt(x.r)} ₽</small></div></div>`;
-    $('#top0').innerHTML=`<p style="color:var(--mut);font-size:11px;margin:0 0 4px">Рейтинг активных богачей (обнулённые игроки скрыты).</p>`+admHint+(all.length?all.slice(0,15).map(row).join('')+(rk>=15?`<div style="text-align:center;color:var(--mut)">⋮</div>`+row(me,rk):''):'<p style="color:var(--mut)">В топе пока никого нет — сделай крутку!</p>');
-  } else if(ttab === 1){
-    const withBest = pool.filter(x=>!x.wiped && x.best && x.best.n && x.best.n <= MAX_NUM).map(x=>{
-      const bp = x.best.p || price(x.best);
-      return {...x, bestPrice: bp};
-    }).sort((a,b)=>b.bestPrice - a.bestPrice || (b.best.r - a.best.r));
-
-    const row=(x,i)=>`<div class="row leader-row ${x.me?'me':''}"><b class="n">${['🥇','🥈','🥉'][i]||i+1}</b>${tg(x.best,34,false)}<div><span class="nick">${x.n}</span><small style="color:${RC[x.best.r||0]}">${RN[x.best.r||0]} №${L(x.best.n)}</small></div><b style="color:var(--gold);font-size:13px">${fmt(x.bestPrice)} ₽</b></div>`;
-    $('#top0').innerHTML=`<p style="color:var(--mut);font-size:11px;margin:0 0 4px">Рейтинг самых дорогих выбитых номерков среди игроков.</p>`+admHint+(withBest.length?withBest.slice(0,15).map(row).join(''):'<p style="color:var(--mut)">Пока никто не выбил номерки</p>');
-  }
+  boardRender();                         /* мгновенно, из кэша */
+  const tok=++boardTok;
+  syncCloud();                           /* в фоне, не ждём */
+  await loadLeaderboard(true);
+  if(tok!==boardTok || ttab===2 || !$('#s3').classList.contains('on')) return;
+  boardRender();                         /* обновляем свежими данными */
 }
 
 /* ===== Защищённая Активация Купонов ===== */
@@ -3027,6 +3359,7 @@ async function renderAdminModal(){
       <div class="adm-row">
         <button class="f" id="admBoostAll">⚡ Все бусты 30 мин</button>
         <button class="f" id="admSecrets">🔮 Выдать секретки</button>
+        <button class="f" id="admCupid">🏹 Куртка Купидона</button>
       </div>
       <div class="adm-row">
         <select class="adm-inp" id="admRandR" style="flex:.9">${RN.map((n,i)=>`<option value="${i}">${n}</option>`).join('')}</select>
@@ -3055,6 +3388,7 @@ async function renderAdminModal(){
     $('#admGiftReset').onclick=()=>{G.gift=0;save(true);hud();toast('✅ Таймер подарка сброшен')};
     $('#admMaxSkills').onclick=()=>{UP.forEach(u=>{G.up[u.k]=u.m});save(true);hud();toast('✅ Все навыки на максимуме')};
     $('#admBoostAll').onclick=()=>{Object.keys(BOOST_Meta).forEach(k=>addBoostTime(k,30));save(true);hud();toast('✅ Все бусты на 30 минут')};
+    $('#admCupid').onclick=()=>{G.jk.push({id:G.nid++,k:'cupid'});if(!G.jc.includes('cupid'))G.jc.push('cupid');G.wipedHidden=false;save(true);hud();toast('🏹 Выдана Куртка Купидона')};
     $('#admSecrets').onclick=()=>{SECRET.forEach(give);G.wipedHidden=false;save(true);hud();toast('🔮 Выданы все секретки')};
     $('#admRand').onclick=()=>{
       const r=+$('#admRandR').value,k=Math.min(200,Math.max(1,Number($('#admRandN').value||1)));
