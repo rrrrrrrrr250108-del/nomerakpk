@@ -315,6 +315,17 @@ nav button.on b{filter:drop-shadow(0 0 6px #3fe06b99)}
 .jk-act{white-space:normal;text-align:left;padding:9px 10px;line-height:1.25}
 .jk-act b{display:block;font-size:12px}
 .jk-act small{display:block;color:var(--mut);font-size:10px;font-weight:500;margin-top:3px;line-height:1.3}
+
+#csModal{position:fixed;inset:0;z-index:92;background:radial-gradient(ellipse at 50% 30%,#1a0f2acc,#000000ee);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:14px;animation:fin .2s ease-out}
+.cs-box{width:100%;max-width:440px;max-height:96vh;overflow-y:auto;background:linear-gradient(165deg,#1c1830,#0d0d15);border:1.5px solid color-mix(in srgb,var(--c) 60%,transparent);border-radius:24px;padding:16px 14px 14px;box-shadow:0 20px 60px #000d,0 0 44px color-mix(in srgb,var(--c) 24%,transparent);text-align:center}
+.cs-title{display:flex;align-items:center;justify-content:center;gap:8px;font-weight:800;font-size:16px;margin-bottom:12px}
+.cs-res{min-height:90px;margin-top:10px}
+.cs-got{display:flex;flex-direction:column;align-items:center;gap:3px;margin-bottom:10px}
+.cs-gn{font-size:18px;font-weight:800}.cs-gr{font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.06em}.cs-gv{font-size:13px;margin-top:2px}
+.jk-pic{display:flex;justify-content:center;align-items:center;width:100%;padding:6px 0 2px;border-radius:14px;background:radial-gradient(circle at 50% 48%,color-mix(in srgb,var(--c,#fff) 30%,transparent),transparent 68%)}
+.jk-pic.big{padding:12px 0 6px;background:radial-gradient(circle at 50% 50%,color-mix(in srgb,var(--c,#fff) 36%,transparent),transparent 70%)}
+.case-ev{font-size:10px;color:var(--mut);margin-top:6px}
+.cs-win{margin-bottom:0;background:linear-gradient(#08080e,#14141e)}
 </style></head><body>
 <div id="bgfx"></div>
 <div id="aura"></div>
@@ -545,34 +556,43 @@ const CASES=[
 ];
 function jkPrice(j){
   const d=JKD[j.k];if(!d)return 0;
-  const mult=1+0.015*(G.up.m||0)+getSetBonus('sell')+(hasBoost('sell50')?0.35:0);
-  return Math.max(1,Math.round(JK_V[d.r]*mult));
+  return Math.max(1,Math.round(JK_V[d.r]*jkMult()));
 }
+function shadeC(h,f){h=h.replace('#','');if(h.length===3)h=h.split('').map(c=>c+c).join('');const n=parseInt(h,16),t=f<0?0:255,a=Math.abs(f),m=v=>Math.round(v+(t-v)*a);return '#'+((1<<24)+(m(n>>16)<<16)+(m((n>>8)&255)<<8)+m(n&255)).toString(16).slice(1)}
+let _jg=0;
 function jkSvg(d,px,dim){
-  const p=d.p,B='M30 18L42 12Q50 17 58 12L70 18L90 62L78 68L72 50L72 86Q50 90 28 86L28 50L22 68L10 62Z';
+  const p=d.p,id='jg'+(++_jg);
+  const B='M30 18L42 12Q50 17 58 12L70 18L90 62L78 68L72 50L72 86Q50 90 28 86L28 50L22 68L10 62Z';
   const C='M32 12L43 8Q50 13 57 8L68 12L88 52L77 58L72 40L78 94Q50 98 22 94L28 40L23 58L12 52Z';
-  let g='';
+  const coat=d.kind==='coat',body=coat?C:B;
+  const lt=shadeC(p.m,.3),dk=shadeC(p.m,-.38),ol=shadeC(p.d,-.45);
+  const slv=coat?'M32 12L12 52L23 58L28 40ZM68 12L88 52L77 58L72 40Z':'M30 18L10 62L22 68L28 50ZM70 18L90 62L78 68L72 50Z';
+  const zip=(x,y1,y2,c)=>`<path d="M${x} ${y1}V${y2}" stroke="${c}" stroke-width="2.2" stroke-dasharray="1.3 1.1" opacity=".85"/><rect x="${x-1.8}" y="${y1+3}" width="3.6" height="6" rx="1.4" fill="${c}"/>`;
+  const cuffs=`<path d="M10 62L22 68L20.4 72.2L8 66.2ZM90 62L78 68L79.6 72.2L92 66.2Z" fill="${dk}" stroke="${ol}" stroke-width=".8" stroke-linejoin="round"/>`;
+  let pre='',g='';
   switch(d.kind){
     case 'puffer':
-      g=`<ellipse cx="50" cy="12" rx="16" ry="9" fill="${p.d}"/><path d="${B}" fill="${p.m}"/><path d="M29 34H71M28 46H72M28 58H72M28 70H72M22 38L29 40M17 50L27 52M78 38L71 40M83 50L73 52" stroke="${p.d}" stroke-width="1.5" opacity=".55" fill="none"/><path d="M50 17V86" stroke="${p.a}" stroke-width="1.3" opacity=".75"/><path d="M33 24L40 22L35 80L30 80Z" fill="#fff" opacity=".24"/><path d="M42 12Q50 17 58 12L57 19Q50 23 43 19Z" fill="${p.d}"/>`;break;
+      pre=`<ellipse cx="50" cy="13" rx="17" ry="9" fill="${p.d}"/>`;
+      g=`<path d="M29 32Q50 36 71 32M28.5 44Q50 48 71.5 44M28 56Q50 60 72 56M28 68Q50 72 72 68M24 38L29 40M19 50L27 52M76 38L71 40M81 50L73 52" stroke="${p.d}" stroke-width="1.6" opacity=".6" fill="none" stroke-linecap="round"/><path d="M42 12Q50 17 58 12L57 19Q50 23 43 19Z" fill="${p.d}" stroke="${ol}" stroke-width=".6"/>${zip(50,19,84,p.a)}`;break;
     case 'alaska':
-      g=`<ellipse cx="50" cy="12" rx="19" ry="11" fill="${p.f}"/><ellipse cx="50" cy="13" rx="12" ry="7" fill="${p.d}"/><path d="${B}" fill="${p.m}"/><path d="M37 15Q50 28 63 15" stroke="${p.f}" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M50 24V86" stroke="${p.a}" stroke-width="1.3" opacity=".7"/><path d="M28 60Q50 65 72 60" stroke="${p.d}" stroke-width="1.6" fill="none"/><rect x="32" y="66" width="11" height="10" rx="2" fill="none" stroke="${p.d}" stroke-width="1.4"/><rect x="57" y="66" width="11" height="10" rx="2" fill="none" stroke="${p.d}" stroke-width="1.4"/>`;break;
+      pre=`<ellipse cx="50" cy="12" rx="20" ry="11" fill="${p.f}"/><ellipse cx="50" cy="13" rx="12" ry="7" fill="${p.d}"/>`;
+      g=`<path d="M37 15Q50 28 63 15" stroke="${p.f}" stroke-width="6" fill="none" stroke-linecap="round"/>${zip(50,25,84,p.a)}<path d="M28 60Q50 65 72 60" stroke="${p.d}" stroke-width="1.8" fill="none"/><rect x="32" y="66" width="11" height="10" rx="2" fill="${p.d}" opacity=".35" stroke="${p.d}" stroke-width="1.2"/><rect x="57" y="66" width="11" height="10" rx="2" fill="${p.d}" opacity=".35" stroke="${p.d}" stroke-width="1.2"/><rect x="58" y="34" width="9" height="4" rx="1" fill="${p.a}" opacity=".8"/>`;break;
     case 'china':
-      g=`<path d="${B}" fill="${p.m}"/><path d="M33 19L14 61M36 21L18 63M67 19L86 61M64 21L82 63" stroke="${p.a}" stroke-width="1.8" fill="none" opacity=".9"/><path d="M41 10H59V19Q50 22 41 19Z" fill="${p.d}"/><path d="M50 20V86" stroke="${p.d}" stroke-width="1" opacity=".6"/><path d="M43 30H57M43 42H57M43 54H57M43 66H57" stroke="${p.a}" stroke-width="2.6" stroke-linecap="round"/><g fill="${p.a}"><circle cx="50" cy="30" r="2"/><circle cx="50" cy="42" r="2"/><circle cx="50" cy="54" r="2"/><circle cx="50" cy="66" r="2"/></g>`;break;
+      g=`<path d="M33 19L14 61M36 21L18 63M67 19L86 61M64 21L82 63" stroke="${p.a}" stroke-width="1.8" fill="none" opacity=".9"/><path d="M41 10H59V19Q50 22 41 19Z" fill="${p.d}" stroke="${ol}" stroke-width=".6"/><path d="M50 20V86" stroke="${p.d}" stroke-width="1" opacity=".7"/><path d="M43 30H57M43 42H57M43 54H57M43 66H57" stroke="${p.a}" stroke-width="2.6" stroke-linecap="round"/><g fill="${p.a}"><circle cx="50" cy="30" r="2.2"/><circle cx="50" cy="42" r="2.2"/><circle cx="50" cy="54" r="2.2"/><circle cx="50" cy="66" r="2.2"/></g>`;break;
     case 'racer':
-      g=`<path d="${B}" fill="${p.m}"/><path d="M33 19L14 61M67 19L86 61" stroke="${p.a}" stroke-width="2.4" fill="none"/><path d="M36 21L18 63M64 21L82 63" stroke="#fff" stroke-width="1.4" fill="none" opacity=".9"/><rect x="28" y="79" width="44" height="7" rx="2" fill="${p.d}"/><path d="M40 12L50 26L60 12L56 10Q50 15 44 10Z" fill="${p.d}"/><path d="M50 26V79" stroke="#fff" stroke-width="1.2" opacity=".6"/><rect x="33" y="34" width="12" height="6" rx="1.2" fill="${p.a}"/><rect x="55" y="34" width="12" height="6" rx="1.2" fill="#fff" opacity=".85"/><rect x="34" y="46" width="9" height="3.5" rx="1" fill="#fff" opacity=".5"/>`;break;
+      g=`<path d="M33 19L14 61M67 19L86 61" stroke="${p.a}" stroke-width="2.6" fill="none"/><path d="M36 21L18 63M64 21L82 63" stroke="#fff" stroke-width="1.4" fill="none" opacity=".9"/><path d="M28 80H72V86Q50 90 28 86Z" fill="${p.d}"/><path d="M40 12L50 26L60 12L56 10Q50 15 44 10Z" fill="${p.d}" stroke="${ol}" stroke-width=".6"/><path d="M50 26V80" stroke="#fff" stroke-width="1.2" opacity=".6"/><rect x="33" y="34" width="12" height="6" rx="1.2" fill="${p.a}"/><rect x="55" y="34" width="12" height="6" rx="1.2" fill="#fff" opacity=".85"/><rect x="34" y="46" width="9" height="3.5" rx="1" fill="#fff" opacity=".5"/>`;break;
     case 'plush':{
-      let dots='';for(let i=0;i<26;i++)dots+=`<circle cx="${30+(i*37)%41}" cy="${22+(i*53)%60}" r="1" fill="#fff" opacity=".14"/>`;
-      g=`<path d="${B}" fill="${p.m}"/>${dots}<path d="M41 10H59V19Q50 22 41 19Z" fill="${p.d}"/><path d="M50 20V86" stroke="${p.a}" stroke-width="1" opacity=".5"/><circle cx="62" cy="38" r="4.2" fill="none" stroke="${p.a}" stroke-width="1.2"/><circle cx="63.6" cy="37" r="3.4" fill="${p.m}"/><path d="M34 82L37 62L40 82M37 62V52" stroke="${p.a}" stroke-width="1" fill="none" opacity=".5"/>`;break}
+      let dots='';for(let i=0;i<30;i++)dots+=`<circle cx="${30+(i*37)%41}" cy="${22+(i*53)%60}" r="1" fill="#fff" opacity=".16"/>`;
+      g=`${dots}<path d="M41 10H59V19Q50 22 41 19Z" fill="${p.d}" stroke="${ol}" stroke-width=".6"/><path d="M50 20V84" stroke="${p.a}" stroke-width="1" opacity=".5"/><circle cx="62" cy="38" r="4.2" fill="none" stroke="${p.a}" stroke-width="1.2"/><circle cx="63.6" cy="37" r="3.4" fill="${p.m}"/><path d="M34 82L37 62L40 82M37 62V52" stroke="${p.a}" stroke-width="1" fill="none" opacity=".5"/>`;break}
     case 'bomber':
-      g=`<path d="${B}" fill="${p.m}"/><rect x="28" y="79" width="44" height="7" rx="2" fill="${p.d}"/><path d="M10 62L22 68L20 72L8 66Z M90 62L78 68L80 72L92 66Z" fill="${p.d}"/><path d="M38 14Q50 22 62 14L60 10Q50 16 40 10Z" fill="${p.d}"/><path d="M50 21V79" stroke="${p.a}" stroke-width="1.3" opacity=".75"/><path d="M33 20L40 19L36 72L31 72Z" fill="#fff" opacity=".12"/><path d="M34 44H44M56 44H66" stroke="${p.a}" stroke-width="1.4" opacity=".6"/>`;break;
+      g=`<path d="M28 79H72V86Q50 90 28 86Z" fill="${p.d}"/><path d="M32 79V87M36 79V88M40 79V88.5M44 79V89M48 79V89.3M52 79V89.3M56 79V89M60 79V88.5M64 79V88M68 79V87" stroke="#000" stroke-width=".7" opacity=".3"/><path d="M38 14Q50 22 62 14L60 10Q50 16 40 10Z" fill="${p.d}" stroke="${ol}" stroke-width=".6"/><path d="M50 21V79" stroke="${p.a}" stroke-width="1.3" opacity=".75"/><path d="M34 44H44M56 44H66" stroke="${p.a}" stroke-width="1.4" opacity=".6"/>`;break;
     case 'coat':
-      g=`<path d="${C}" fill="${p.m}"/><path d="M22 88Q50 94 78 88L78 94Q50 98 22 94Z" fill="${p.d}"/><path d="M43 8L50 34L33 20Z M57 8L50 34L67 20Z" fill="${p.d}"/><path d="M27 58H73V64H27Z" fill="${p.d}"/><rect x="47" y="57" width="6" height="8" rx="1" fill="${p.a}"/><g fill="${p.a}"><circle cx="50" cy="46" r="1.6"/><circle cx="50" cy="73" r="1.6"/><circle cx="50" cy="84" r="1.6"/></g><path d="M36 30c-2-3-6 0-3 3l3 3l3-3c3-3-1-6-3-3z" fill="#ff8aa0"/><path d="M34 22L28 40M66 22L72 40" stroke="${p.a}" stroke-width="1" opacity=".5"/>`;break;
+      g=`<path d="M22 88Q50 94 78 88L78 94Q50 98 22 94Z" fill="${p.d}"/><path d="M43 8L50 34L33 20Z M57 8L50 34L67 20Z" fill="${p.d}" stroke="${ol}" stroke-width=".6"/><path d="M27 58H73V64H27Z" fill="${p.d}"/><rect x="46.5" y="57" width="7" height="8" rx="1.4" fill="${p.a}" stroke="${ol}" stroke-width=".6"/><g fill="${p.a}"><circle cx="50" cy="46" r="1.8"/><circle cx="50" cy="73" r="1.8"/><circle cx="50" cy="84" r="1.8"/></g><path d="M36 30c-2-3-6 0-3 3l3 3l3-3c3-3-1-6-3-3z" fill="#ff8aa0"/><path d="M34 22L28 40M66 22L72 40" stroke="${p.a}" stroke-width="1" opacity=".5"/>`;break;
   }
   let fl='';
   if(dim)fl='filter:grayscale(1) brightness(.35);';
-  else if(d.r===6)fl='filter:drop-shadow(0 0 5px #ffd54acc);';
-  return `<svg viewBox="0 0 100 100" width="${px}" height="${px}" style="display:block;${fl}">${g}</svg>`;
+  else if(d.r>=3)fl=`filter:drop-shadow(0 0 ${d.r>=5?8:5}px ${RC[d.r]}bb);`;
+  return `<svg viewBox="0 0 100 100" width="${px}" height="${px}" style="display:block;${fl}"><defs><linearGradient id="${id}b" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${lt}"/><stop offset=".55" stop-color="${p.m}"/><stop offset="1" stop-color="${dk}"/></linearGradient><linearGradient id="${id}s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".4"/><stop offset=".55" stop-color="#fff" stop-opacity="0"/></linearGradient><clipPath id="${id}c"><path d="${body}"/></clipPath></defs><ellipse cx="50" cy="95" rx="26" ry="2.6" fill="#000" opacity=".35"/>${pre}<path d="${body}" fill="url(#${id}b)" stroke="${ol}" stroke-width="1.2" stroke-linejoin="round"/><g clip-path="url(#${id}c)"><path d="${slv}" fill="#000" opacity=".2"/><path d="${body}" fill="url(#${id}s)"/><path d="M26 14L38 12L33 96L18 96Z" fill="#fff" opacity=".09"/></g>${coat?'':cuffs}${g}</svg>`;
 }
 
 const KEY = 'nomerok-rng-v8-' + MY_UID;
@@ -1771,109 +1791,94 @@ function caseSvg(id,px){
   return `<svg viewBox="0 0 64 64" width="${px}" height="${px}" style="display:block;filter:drop-shadow(0 0 8px ${u.c}99)"><defs><linearGradient id="${gid}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${u.a}"/><stop offset="1" stop-color="${u.b}"/></linearGradient></defs><rect x="8" y="28" width="48" height="28" rx="5" fill="url(#${gid})"/><path d="M8 30Q8 14 32 14Q56 14 56 30Z" fill="${u.a}"/><path d="M8 30Q8 14 32 14Q56 14 56 30Z" fill="#fff" opacity=".14"/><rect x="28" y="14" width="8" height="42" fill="#ffd54a" opacity=".92"/><rect x="27" y="31" width="10" height="10" rx="2" fill="#ffd54a" stroke="#7a5418" stroke-width="1.5"/><circle cx="32" cy="36" r="1.6" fill="#7a5418"/>${deco}</svg>`;
 }
 
+const CASE_MARGIN=1.15; /* возврат игроку ≈ 1/1.15 ≈ 87% */
+function jkMult(){return 1+0.015*(G.up.m||0)+getSetBonus('sell')+(hasBoost('sell50')?0.35:0)}
+/* средняя цена куртки из кейса (с учётом секретной 1/3500) при текущих бонусах продажи */
+function caseEV(cs){
+  const t=cs.w.reduce((a,b)=>a+b,0);let ev=0;
+  cs.w.forEach((w,r)=>{ev+=w/t*JK_V[r]});
+  return (ev*(1-SECRET_P)+SECRET_P*JK_V[6])*jkMult();
+}
+/* цена кейса = средняя ценность × 1.15 → у всех кейсов одинаковый честный возврат и нет дыр с бонусами */
+function caseCost(cs){
+  const raw=caseEV(cs)*CASE_MARGIN,step=raw>=1e6?10000:raw>=1e5?1000:500;
+  return Math.max(step,Math.round(raw/step)*step);
+}
+
 function renderCasesPage(container){
   if(!container)return;
-  jkContainer=container;jkRedraw=null;
-  container.innerHTML=`<div class="cs-hero"><div><b>🧥 Кейсы с куртками</b><small>Из любого кейса есть шанс 1 к 3500 на секретную куртку 🏹</small></div><button class="f on" id="goWard">🧥 Гардероб · ${G.jk.length}</button></div><div id="jkBody"></div>`;
-  $('#goWard').onclick=()=>{stMode='jk';$$('nav button,.s').forEach(e=>e.classList.remove('on'));$('#navStore').classList.add('on');$('#s1').classList.add('on');store()};
-  jkCasesTab(container.querySelector('#jkBody'));
+  jkContainer=container;
+  container.innerHTML='<div id="csList"></div>';
+  const list=container.querySelector('#csList');
+  list.innerHTML=CASES.map(cs=>{
+    const u=CASE_UI[cs.id]||CASE_UI.street,t=cs.w.reduce((a,b)=>a+b,0),cost=caseCost(cs);
+    const chips=cs.w.map((w,r)=>w>0?`<span class="cs-chip" style="--c:${RC[r]}">${RN[r]} ${+(w/t*100).toFixed(1)}%</span>`:'').join('')+`<span class="cs-chip" style="--c:${RC[6]}">🏹 Секретная 1/3500</span>`;
+    return `<div class="case-card" style="--c:${u.c}">
+      <div class="case-ico">${caseSvg(cs.id,60)}</div>
+      <div><div class="case-name">${cs.n}</div><div class="case-desc">${cs.d}</div><div class="cs-chips">${chips}</div><div class="case-ev">Средняя куртка ≈ ${fmt(Math.round(caseEV(cs)))} ₽</div></div>
+      <button class="case-open" data-open="${cs.id}" ${csBusy||G.c<cost?'disabled':''}>Открыть <small>${fmt(cost)} ₽</small></button>
+    </div>`;
+  }).join('');
+  list.onclick=e=>{const b=e.target.closest('[data-open]');if(!b||b.disabled)return;openCase(b.dataset.open)};
 }
 
-function jkCasesTab(body){
-  body.innerHTML=`<div id="csStage" class="scard cs-stage"><div class="cs-intro">🎰 Выбери кейс ниже — из него выпадет случайная куртка</div></div><div id="csList"></div>`;
-  const drawList=()=>{
-    $('#csList').innerHTML=CASES.map(cs=>{
-      const u=CASE_UI[cs.id]||CASE_UI.street,t=cs.w.reduce((a,b)=>a+b,0);
-      const chips=cs.w.map((w,r)=>w>0?`<span class="cs-chip" style="--c:${RC[r]}">${RN[r]} ${+(w/t*100).toFixed(1)}%</span>`:'').join('');
-      return `<div class="case-card" style="--c:${u.c}">
-        <div class="case-ico">${caseSvg(cs.id,60)}</div>
-        <div><div class="case-name">${cs.n}</div><div class="case-desc">${cs.d}</div><div class="cs-chips">${chips}</div></div>
-        <button class="case-open" data-open="${cs.id}" ${csBusy||G.c<cs.cost?'disabled':''}>Открыть <small>${fmt(cs.cost)} ₽</small></button>
-      </div>`;
-    }).join('');
-  };
-  jkRedraw=drawList;
-  drawList();
-  $('#csList').onclick=e=>{
-    const b=e.target.closest('[data-open]');if(!b||b.disabled)return;
-    openCase(b.dataset.open,1);
-  };
+function csModalEl(){let m=$('#csModal');if(!m){m=document.createElement('div');m.id='csModal';document.body.append(m)}return m}
+function csClose(){
+  const m=$('#csModal');if(m)m.remove();
+  csBusy=false;hud();
+  if($('#s5').classList.contains('on'))renderCasesPage($('#casesBody'));
+  else if($('#s1').classList.contains('on'))store();
 }
 
-async function openCase(csId, count){
-  if(csBusy) return;
-  const cs = CASES.find(c=>c.id===csId); if(!cs) return;
-  const total = cs.cost * count;
-  if(G.c < total) return toast('Не хватает ₽ на кейс');
-  csBusy = true;
-  G.c -= total; G.spent += total; G.wipedHidden = false;
-  const won = [];
-  for(let i=0;i<count;i++){
-    const r = Math.random() < SECRET_P ? 6 : pick(cs.w);
-    const pl = JK.filter(j=>j.r===r);
-    const d = pl[Math.random()*pl.length|0];
-    const it = {id:G.nid++, k:d.k};
-    G.jk.push(it);
-    if(!G.jc.includes(d.k)) G.jc.push(d.k);
-    G.st.cases = (G.st.cases||0) + 1;
-    addXp(1 + r*2);
-    won.push(it);
+async function openCase(csId){
+  if(csBusy)return;
+  const cs=CASES.find(c=>c.id===csId);if(!cs)return;
+  const total=caseCost(cs);
+  if(G.c<total)return toast('Не хватает ₽ на кейс');
+  csBusy=true;
+  G.c-=total;G.spent+=total;G.wipedHidden=false;
+  const r=Math.random()<SECRET_P?6:pick(cs.w);
+  const pl=JK.filter(j=>j.r===r),d0=pl[Math.random()*pl.length|0];
+  const it={id:G.nid++,k:d0.k};
+  G.jk.push(it);if(!G.jc.includes(d0.k))G.jc.push(d0.k);
+  G.st.cases=(G.st.cases||0)+1;addXp(1+r*2);
+  save(true);hud();hap('medium');
+  const ui=CASE_UI[cs.id]||CASE_UI.street;
+  const WIN=32,IW=80,N=38,arr=[];
+  for(let i=0;i<N;i++){
+    if(i===WIN){arr.push(d0);continue}
+    const rr=pick(cs.w),q=JK.filter(j=>j.r===rr);
+    arr.push(q[Math.random()*q.length|0]);
   }
-  save(true); hud(); hap('medium');
-  $$('#csList [data-open]').forEach(b=>b.disabled=true);
-  const st = $('#csStage');
+  const m=csModalEl();
+  m.innerHTML=`<div class="cs-box" style="--c:${ui.c}"><div class="cs-title">${caseSvg(cs.id,36)}<span>${cs.n}</span></div><div class="cs-win" id="csWin"><div class="cs-strip" id="csStrip">${arr.map(d=>`<div class="cs-it" style="--c:${RC[d.r]}">${jkSvg(d,58)}</div>`).join('')}</div></div><div class="cs-res" id="csRes"><div style="color:var(--mut);font-size:12px;padding:30px 0">Крутим…</div></div></div>`;
   try{
-    if(st && count === 1){
-      const WIN=32, IW=80, N=38, d0=JKD[won[0].k], arr=[];
-      for(let i=0;i<N;i++){
-        if(i===WIN){arr.push(d0);continue}
-        const rr = pick(cs.w), pl = JK.filter(j=>j.r===rr);
-        arr.push(pl[Math.random()*pl.length|0]);
-      }
-      st.innerHTML = `<div class="cs-win" id="csWin"><div class="cs-strip" id="csStrip">${arr.map(d=>`<div class="cs-it" style="--c:${RC[d.r]}">${jkSvg(d,58)}</div>`).join('')}</div></div><div style="color:var(--mut);font-size:12px">Крутим…</div>`;
-      const cw = $('#csWin').clientWidth || 300, strip = $('#csStrip');
-      const off = WIN*IW + IW/2 - cw/2 + (Math.random()*40-20);
-      const dur = G.set.fast ? 2.2 : 3.6;
-      strip.style.transition = 'none'; strip.style.transform = 'translateX(0)'; void strip.offsetWidth;
-      strip.style.transition = `transform ${dur}s cubic-bezier(.08,.75,.12,1)`;
-      strip.style.transform = `translateX(-${off}px)`;
-      const tick = setInterval(()=>{hap('soft');playTickSound(420+Math.random()*200,.02)},180);
-      await sleep(dur*1000 + 250);
-      clearInterval(tick);
-    }
-    csShowResult(cs, won, total);
-  } finally {
-    csBusy = false;
-    if(jkRedraw && $('#csList')) jkRedraw();
-  }
+    const cw=$('#csWin').clientWidth||300,strip=$('#csStrip');
+    const off=WIN*IW+IW/2-cw/2+(Math.random()*40-20);
+    const dur=G.set.fast?2.2:3.8;
+    strip.style.transition='none';strip.style.transform='translateX(0)';void strip.offsetWidth;
+    strip.style.transition=`transform ${dur}s cubic-bezier(.08,.75,.12,1)`;
+    strip.style.transform=`translateX(-${off}px)`;
+    const tick=setInterval(()=>{hap('soft');playTickSound(420+Math.random()*200,.02)},180);
+    await sleep(dur*1000+250);
+    clearInterval(tick);
+  }catch(e){}
+  csShowResult(cs,it,total);
 }
 
-function csShowResult(cs, won, total){
-  const best = Math.max(...won.map(w=>JKD[w.k].r));
-  burst(innerWidth/2, innerHeight/2.5, best===6?null:RC[best], [0,6,12,22,34,50,70][best]);
-  hap(best>=4?'heavy':'medium');
-  if(best>=3) toast(best===6?'🏹 СЕКРЕТНАЯ КУРТКА КУПИДОНА!!!':best===5?'🌈 Мифическая куртка!':best===4?'🔥 Легендарная куртка!':'💜 Эпическая куртка!');
-  const st = $('#csStage');
-  if(!st || jkTab !== 'cases'){ toast(`🧥 Выпало: ${won.map(w=>JKD[w.k].n).join(', ')}`); return; }
-  const sum = won.reduce((a,j)=>a+jkPrice(j),0), df = sum - total, col = df>=0?'var(--ok)':'var(--bad)';
-  const one = won.length === 1;
-  const weak = won.filter(j=>JKD[j.k].r<=1);
-  st.innerHTML = `<div style="display:flex;flex-direction:column;align-items:center;gap:7px">
-    ${one ? `<div style="filter:drop-shadow(0 0 14px ${RC[best]}88)">${jkSvg(JKD[won[0].k],110)}</div>
-      <div style="font-size:16px;font-weight:800;color:${RC[best]}">${JKD[won[0].k].n}</div>
-      <div style="font-size:11px;color:var(--mut)">${RN[best]}</div>`
-    : `<div class="jk-grid" style="width:100%">${won.map(j=>{const d=JKD[j.k];return `<div class="cell" style="--c:${RC[d.r]};padding:8px 2px 6px">${jkSvg(d,48)}<div class="cn" style="font-size:10.5px;margin-top:4px;padding:0 2px">${d.n}</div><div class="cp" style="font-size:10.5px">${fmt(jkPrice(j))} ₽</div></div>`}).join('')}</div>`}
-    <div style="font-size:13px">Стоимость: <b style="color:var(--gold)">${fmt(sum)} ₽</b> · <b style="color:${col}">${sg(df)} ₽</b></div>
-    <div class="pair" style="width:100%;flex-wrap:wrap">
-      <button class="f" id="csKeep" style="flex:1;padding:10px">📦 Оставить${one?'':' всё'}</button>
-      <button class="f on" id="csSell" style="flex:1;padding:10px;background:#2a1018;border-color:#ff3355">💸 Продать +${fmt(sum)} ₽</button>
-      ${!one&&weak.length&&weak.length<won.length?`<button class="f" id="csWeak" style="flex:1 1 100%;padding:9px">🧹 Продать слабых (${weak.length})</button>`:''}
-    </div></div>`;
-  const ids = new Set(won.map(j=>j.id));
-  $('#csKeep').onclick = () => renderCasesPage(jkContainer);
-  $('#csSell').onclick = () => { const s = sellJk(G.jk.filter(j=>ids.has(j.id))); toast(`💸 Продано за ${fmt(s)} ₽`); renderCasesPage(jkContainer); };
-  const wk = $('#csWeak');
-  if(wk) wk.onclick = () => { const wid = new Set(weak.map(j=>j.id)); const s = sellJk(G.jk.filter(j=>wid.has(j.id))); toast(`🧹 Продано слабых за ${fmt(s)} ₽`); renderCasesPage(jkContainer); };
+function csShowResult(cs,it,total){
+  const d=JKD[it.k],r=d.r;
+  burst(innerWidth/2,innerHeight/2.5,r===6?null:RC[r],[0,6,12,22,34,50,70][r]);
+  hap(r>=4?'heavy':'medium');
+  if(r>=3)toast(r===6?'🏹 СЕКРЕТНАЯ КУРТКА КУПИДОНА!!!':r===5?'🌈 Мифическая куртка!':r===4?'🔥 Легендарная куртка!':'💜 Эпическая куртка!');
+  const res=$('#csRes');if(!res)return;
+  const val=jkPrice(it),df=val-total,col=df>=0?'var(--ok)':'var(--bad)',again=caseCost(cs);
+  res.innerHTML=`<div class="cs-got" style="--c:${RC[r]}"><div class="jk-pic big" style="--c:${RC[r]}">${jkSvg(d,104)}</div><div class="cs-gn" style="color:${RC[r]}">${d.n}</div><div class="cs-gr">${RN[r]}</div><div class="cs-gv">Цена: <b style="color:var(--gold)">${fmt(val)} ₽</b> · <b style="color:${col}">${sg(df)} ₽</b></div></div>
+    <div class="pair" style="margin-bottom:8px"><button class="f" id="csKeep" style="flex:1;padding:11px">📦 Оставить</button><button class="f on" id="csSell" style="flex:1;padding:11px;background:#2a1018;border-color:#ff3355">💸 Продать +${fmt(val)} ₽</button></div>
+    <button class="gbtn" id="csAgain" ${G.c<again?'disabled':''} style="padding:11px;font-size:14px">🔁 Открыть ещё · ${fmt(again)} ₽</button>`;
+  $('#csKeep').onclick=()=>csClose();
+  $('#csSell').onclick=()=>{const s=sellJk(G.jk.filter(x=>x.id===it.id));toast(`💸 Продано за ${fmt(s)} ₽`);csClose()};
+  $('#csAgain').onclick=()=>{csClose();openCase(cs.id)};
 }
 
 function jkWearTab(body){
@@ -1889,7 +1894,7 @@ function jkWearTab(body){
       <button class="f jk-act" id="jkExtra"><b>🔁 Продать лишние копии</b><small>Оставит по одной куртке каждой модели · ${extra.length} шт.</small></button>
       <button class="f jk-act" id="jkCheap"><b>🧹 Продать дешёвые</b><small>Все Обычные и Необычные куртки · ${cheap.length} шт.</small></button>
     </div>
-    ${keys.length?`<div class="jk-grid">${keys.map(k=>{const d=JKD[k],g=groups[k];return `<div class="cell" data-jk="${k}" style="--c:${RC[d.r]};padding:10px 2px 7px">${g.length>1?`<span class="bn">×${g.length}</span>`:''}${jkSvg(d,56)}<div class="cn" style="font-size:10.5px;margin-top:5px;padding:0 3px;line-height:1.15">${d.n}</div><div class="cr">${RN[d.r]}</div><div class="cp">${fmt(jkPrice(g[0]))} ₽</div></div>`}).join('')}</div>`:'<div class="st-empty"><b>🧥</b>Курток пока нет — открой кейс во вкладке «Кейсы»!</div>'}`;
+    ${keys.length?`<div class="jk-grid">${keys.map(k=>{const d=JKD[k],g=groups[k];return `<div class="cell" data-jk="${k}" style="--c:${RC[d.r]};padding:10px 2px 7px">${g.length>1?`<span class="bn">×${g.length}</span>`:''}<div class="jk-pic" style="--c:${RC[d.r]}">${jkSvg(d,62)}</div><div class="cn" style="font-size:10.5px;margin-top:3px;padding:0 3px;line-height:1.15">${d.n}</div><div class="cr">${RN[d.r]}</div><div class="cp">${fmt(jkPrice(g[0]))} ₽</div></div>`}).join('')}</div>`:'<div class="st-empty"><b>🧥</b>Курток пока нет — открой кейс во вкладке «Кейсы»!</div>'}`;
   const arm=(id,list2)=>{
     const btn=body.querySelector('#'+id),orig=btn.innerHTML;let a=0;
     btn.onclick=()=>{
@@ -1902,7 +1907,7 @@ function jkWearTab(body){
   body.querySelectorAll('[data-jk]').forEach(el=>el.onclick=()=>{
     const k=el.dataset.jk,d=JKD[k],g=groups[k];if(!g)return;
     $('#md').innerHTML=`<div class="prof-box" style="text-align:center;max-width:340px">
-      <div style="display:flex;justify-content:center">${jkSvg(d,150)}</div>
+      <div class="jk-pic big" style="--c:${RC[d.r]}">${jkSvg(d,140)}</div>
       <h2 style="color:${RC[d.r]};margin:10px 0 4px">${RN[d.r]}</h2>
       <div>${d.n}${g.length>1?` · у тебя ${g.length} шт.`:''}</div>
       <div style="color:var(--gold);font-size:22px;font-weight:800;margin:6px 0">${fmt(jkPrice(g[0]))} ₽</div>
@@ -3035,7 +3040,7 @@ async function processCommands(){
   return applied;
 }
 
-const canAdopt=()=>!busy&&!gbusy&&!pend.length&&!(mn&&mn.on);
+const canAdopt=()=>!busy&&!gbusy&&!csBusy&&!pend.length&&!(mn&&mn.on);
 
 function adoptCloud(cloud,asLegacy){
   let raw;try{raw=JSON.parse(cloud.data)}catch(e){return false}
